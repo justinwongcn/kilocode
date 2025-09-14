@@ -1,236 +1,253 @@
-# Checkpoints
+# 检查点
 
-Checkpoints automatically version your workspace files during Kilo Code tasks, enabling non-destructive exploration of AI suggestions and easy recovery from unwanted changes.
+检查点在 Kilo Code 任务期间自动对您的工作区文件进行版本控制，从而实现对 AI 建议的非破坏性探索，并轻松从不需要的更改中恢复。
 
-Checkpoints let you:
-- Safely experiment with AI-suggested changes
-- Easily recover from undesired modifications
-- Compare different implementation approaches
-- Revert to previous project states without losing work
+检查点让您能够：
 
-:::info Important Notes
-- **Checkpoints are enabled by default.**
-- **Git must be installed** for checkpoints to function - [see installation instructions](#git-installation)
-- No GitHub account or repository is required
-- No Git personal information configuration is needed
-- The shadow Git repository operates independently from your project's existing Git configuration
-:::
+- 安全地试验 AI 建议的更改
+- 轻松从不需要的修改中恢复
+- 比较不同的实现方法
+- 恢复到以前的项目状态而不会丢失工作
 
-## Configuration Options
+:::info 重要说明
 
-Access checkpoint settings in Kilo Code settings under the "Checkpoints" section:
+- **检查点默认启用。**
+- **必须安装 Git** 才能使检查点正常工作 - [请参阅安装说明](#git-installation)
+- 无需 GitHub 帐户或仓库
+- 无需 Git 个人信息配置
+- 影子 Git 仓库独立于您项目现有的 Git 配置运行
+  :::
 
-1. Open Settings by clicking the gear icon <Codicon name="gear" /> → Checkpoints
-2. Check or uncheck the "Enable automatic checkpoints" checkbox
+## 配置选项
 
-   <img src="/docs/img/checkpoints/checkpoints.png" alt="Checkpoint settings in Kilo Code configuration" width="500" />
+在 Kilo Code 设置的“检查点”部分访问检查点设置：
 
-## How Checkpoints Work
+1.  单击齿轮图标 <Codicon name="gear" /> → Checkpoints 打开设置
+2.  选中或取消选中“启用自动检查点”复选框
 
-Kilo Code captures snapshots of your project's state using a shadow Git repository, separate from your main version control system. These snapshots, called checkpoints, automatically record changes throughout your AI-assisted workflow—whenever tasks begin, files change, or commands run.
+    <img src="/docs/img/checkpoints/checkpoints.png" alt="Kilo Code 配置中的检查点设置" width="500" />
 
-Checkpoints are stored as Git commits in the shadow repository, capturing:
+## 检查点工作原理
 
-- File content changes
-- New files added
-- Deleted files
-- Renamed files
-- Binary file changes
+Kilo Code 使用一个影子 Git 仓库（独立于您的主版本控制系统）捕获项目状态的快照。这些快照称为检查点，会在您的 AI 辅助工作流中自动记录更改——无论任务何时开始、文件何时更改或命令何时运行。
 
-## Working with Checkpoints
+检查点作为 Git 提交存储在影子仓库中，捕获：
 
-Checkpoints are integrated directly into your workflow through the chat interface.
+- 文件内容更改
+- 添加的新文件
+- 删除的文件
+- 重命名文件
+- 二进制文件更改
 
-Checkpoints appear directly in your chat history in two forms:
+## 使用检查点
 
-- **Initial checkpoint** marks your starting project state
-   <img src="/docs/img/checkpoints/checkpoints-1.png" alt="Initial checkpoint indicator in chat" width="500" />
+检查点直接通过聊天界面集成到您的工作流中。
 
-- **Regular checkpoints** appear after file modifications or command execution
-   <img src="/docs/img/checkpoints/checkpoints-2.png" alt="Regular checkpoint indicator in chat" width="500" />
+检查点以两种形式直接出现在您的聊天历史记录中：
 
-Each checkpoint provides two primary functions:
+- **初始检查点**标记您的起始项目状态
+  <img src="/docs/img/checkpoints/checkpoints-1.png" alt="聊天中的初始检查点指示器" width="500" />
 
-### Viewing Differences
+- **常规检查点**在文件修改或命令执行后出现
+  <img src="/docs/img/checkpoints/checkpoints-2.png" alt="聊天中的常规检查点指示器" width="500" />
 
-To compare your current workspace with a previous checkpoint:
+每个检查点提供两个主要功能：
 
-1. Locate the checkpoint in your chat history
-2. Click the checkpoint's `View Differences` button
+### 查看差异
 
-   <img src="/docs/img/checkpoints/checkpoints-6.png" alt="View Differences button interface" width="100" />
+要将当前工作区与以前的检查点进行比较：
 
-3. Review the differences in the comparison view:
-   - Added lines are highlighted in green
-   - Removed lines are highlighted in red
-   - Modified files are listed with detailed changes
-   - Renamed and moved files are tracked with their path changes
-   - New or deleted files are clearly marked
+1.  在聊天历史记录中找到检查点
+2.  单击检查点的 `View Differences` 按钮
 
-<img src="/docs/img/checkpoints/checkpoints-3.png" alt="View differences option for checkpoints" width="800" />
+   <img src="/docs/img/checkpoints/checkpoints-6.png" alt="查看差异按钮界面" width="100" />
 
-### Restoring Checkpoints
+3.  在比较视图中查看差异：
+    - 添加的行以绿色突出显示
+    - 删除的行以红色突出显示
+    - 修改的文件列出详细更改
+    - 重命名和移动的文件跟踪其路径更改
+    - 新建或删除的文件清晰标记
 
-To restore a project to a previous checkpoint state:
+<img src="/docs/img/checkpoints/checkpoints-3.png" alt="检查点的查看差异选项" width="800" />
 
-1. Locate the checkpoint in your chat history
-2. Click the checkpoint's `Restore Checkpoint` button
-   <img src="/docs/img/checkpoints/checkpoints-7.png" alt="Restore checkpoint button interface" width="100" />
-3. Choose one of these restoration options:
-   
-   <img src="/docs/img/checkpoints/checkpoints-4.png" alt="Restore checkpoint option" width="300" />
+### 恢复检查点
 
-   - **Restore Files Only** - Reverts only workspace files to checkpoint state without modifying conversation history. Ideal for comparing alternative implementations while maintaining chat context, allowing you to seamlessly switch between different project states. This option does not require confirmation and lets you quickly switch between different implementations.
-   
-   - **Restore Files & Task** - Reverts both workspace files AND removes all subsequent conversation messages. Use when you want to completely reset both your code and conversation back to the checkpoint's point in time. This option requires confirmation in a dialog as it cannot be undone.
+要将项目恢复到以前的检查点状态：
 
-      <img src="/docs/img/checkpoints/checkpoints-9.png" alt="Confirmation dialog for restoring checkpoint with files & task" width="300" />
+1.  在聊天历史记录中找到检查点
+2.  单击检查点的 `Restore Checkpoint` 按钮
+    <img src="/docs/img/checkpoints/checkpoints-7.png" alt="恢复检查点按钮界面" width="100" />
+3.  选择以下恢复选项之一：
 
-### Limitations and Considerations
+   <img src="/docs/img/checkpoints/checkpoints-4.png" alt="恢复检查点选项" width="300" />
 
-- **Scope**: Checkpoints only capture changes made during active Kilo Code tasks
-- **External changes**: Modifications made outside of tasks (manual edits, other tools) aren't included
-- **Large files**: Very large binary files may impact performance
-- **Unsaved work**: Restoration will overwrite any unsaved changes in your workspace
+- **仅恢复文件** - 仅将工作区文件恢复到检查点状态，而不修改对话历史记录。非常适合在保持聊天上下文的同时比较替代实现，让您可以在不同项目状态之间无缝切换。此选项无需确认，可让您快速在不同实现之间切换。
 
-## Technical Implementation
+- **恢复文件和任务** - 恢复工作区文件并删除所有后续对话消息。当您希望将代码和对话完全重置回检查点的时间点时使用。此选项需要在对话框中进行确认，因为它无法撤消。
 
-### Checkpoint Architecture
+     <img src="/docs/img/checkpoints/checkpoints-9.png" alt="恢复文件和任务检查点的确认对话框" width="300" />
 
-The checkpoint system consists of:
+### 限制和注意事项
 
-1. **Shadow Git Repository**: A separate Git repository created specifically for checkpoint tracking that functions as the persistent storage mechanism for checkpoint state.
+- **范围**：检查点仅捕获在活动 Kilo Code 任务期间所做的更改
+- **外部更改**：在任务之外进行的修改（手动编辑、其他工具）不包括在内
+- **大文件**：非常大的二进制文件可能会影响性能
+- **未保存的工作**：恢复将覆盖工作区中任何未保存的更改
 
-2. **Checkpoint Service**: Handles Git operations and state management through:
-   - Repository initialization
-   - Checkpoint creation and storage
-   - Diff computation
-   - State restoration
+## 技术实现
 
-3. **UI Components**: Interface elements displayed in the chat that enable interaction with checkpoints.
+### 检查点架构
 
-### Restoration Process
+检查点系统包括：
 
-When restoration executes, Kilo Code:
-- Performs a hard reset to the specified checkpoint commit
-- Copies all files from the shadow repository to your workspace
-- Updates internal checkpoint tracking state
+1. **影子 Git 仓库**：专门为检查点跟踪创建的独立 Git 仓库，作为检查点状态的持久存储机制。
 
-### Storage Type
+2. **检查点服务**：通过以下方式处理 Git 操作和状态管理：
 
-Checkpoints are task-scoped, meaning they are specific to a single task.
+    - 仓库初始化
+    - 检查点创建和存储
+    - 差异计算
+    - 状态恢复
 
-### Diff Computation
+3. **UI 组件**：聊天中显示的界面元素，可实现与检查点的交互。
 
-Checkpoint comparison uses Git's underlying diff capabilities to produce structured file differences:
-- Modified files show line-by-line changes
-- Binary files are properly detected and handled
-- Renamed and moved files are tracked correctly
-- File creation and deletion are clearly identified
+### 恢复过程
 
-### File Exclusion and Ignore Patterns
+当执行恢复时，Kilo Code：
 
-The checkpoint system uses intelligent file exclusion to track only relevant files:
+- 对指定的检查点提交执行硬重置
+- 将所有文件从影子仓库复制到您的工作区
+- 更新内部检查点跟踪状态
 
-#### Built-in Exclusions
+### 存储类型
 
-The system has comprehensive built-in exclusion patterns that automatically ignore:
-- Build artifacts and dependency directories (`node_modules/`, `dist/`, `build/`)
-- Media files and binary assets (images, videos, audio)
-- Cache and temporary files (`.cache/`, `.tmp/`, `.bak`)
-- Configuration files with sensitive information (`.env`)
-- Large data files (archives, executables, binaries)
-- Database files and logs
+检查点是任务范围的，这意味着它们特定于单个任务。
 
-These patterns are written to the shadow repository's `.git/info/exclude` file during initialization.
+### 差异计算
 
-#### .gitignore Support
+检查点比较使用 Git 的底层差异功能生成结构化的文件差异：
 
-The checkpoint system respects `.gitignore` patterns in your workspace:
-- Files excluded by `.gitignore` won't trigger checkpoint creation
-- Excluded files won't appear in checkpoint diffs
-- Standard Git ignore rules apply when staging file changes
+- 修改的文件显示逐行更改
+- 正确检测和处理二进制文件
+- 正确跟踪重命名和移动的文件
+- 清晰识别文件创建和删除
 
-#### .kilocodeignore Behavior
+### 文件排除和忽略模式
 
-The `.kilocodeignore` file (which controls AI access to files) is separate from checkpoint tracking:
-- Files excluded by `.kilocodeignore` but not by `.gitignore` will still be checkpointed
-- Changes to AI-inaccessible files can still be restored through checkpoints
+检查点系统使用智能文件排除来仅跟踪相关文件：
 
-This separation is intentional, as `.kilocodeignore` limits which files the AI can access, not which files should be tracked for version history.
+#### 内置排除
 
-#### Nested Git Repositories
+系统具有全面的内置排除模式，自动忽略：
 
-The checkpoint system includes special handling for nested Git repositories:
-- Temporarily renames nested `.git` directories to `.git_disabled` during operations
-- Restores them after operations complete
-- Allows proper tracking of files in nested repositories
-- Ensures nested repositories remain functional and unaffected
+- 构建工件和依赖项目录（`node_modules/`、`dist/`、`build/`）
+- 媒体文件和二进制资产（图像、视频、音频）
+- 缓存和临时文件（`.cache/`、`.tmp/`、`.bak`）
+- 包含敏感信息的配置文件（`.env`）
+- 大型数据文件（存档、可执行文件、二进制文件）
+- 数据库文件和日志
 
-### Concurrency Control
+这些模式在初始化期间写入影子仓库的 `.git/info/exclude` 文件。
 
-Operations are queued to prevent concurrent Git operations that might corrupt repository state. This ensures that rapid checkpoint operations complete safely even when requested in quick succession.
+#### .gitignore 支持
 
-## Git Installation
+检查点系统尊重工作区中的 `.gitignore` 模式：
 
-Checkpoints require Git to be installed on your system. The implementation uses the `simple-git` library, which relies on Git command-line tools to create and manage shadow repositories.
+- 被 `.gitignore` 排除的文件不会触发检查点创建
+- 排除的文件不会出现在检查点差异中
+- 暂存文件更改时应用标准 Git 忽略规则
+
+#### .kilocodeignore 行为
+
+`.kilocodeignore` 文件（控制 AI 对文件的访问）与检查点跟踪是分开的：
+
+- 被 `.kilocodeignore` 排除但未被 `.gitignore` 排除的文件仍将被检查点
+- 对 AI 无法访问的文件的更改仍可通过检查点恢复
+
+这种分离是故意的，因为 `.kilocodeignore` 限制了 AI 可以访问的文件，而不是应该跟踪版本历史的文件。
+
+#### 嵌套 Git 仓库
+
+检查点系统包括对嵌套 Git 仓库的特殊处理：
+
+- 在操作期间临时将嵌套的 `.git` 目录重命名为 `.git_disabled`
+- 操作完成后恢复它们
+- 允许正确跟踪嵌套仓库中的文件
+- 确保嵌套仓库保持功能正常且不受影响
+
+### 并发控制
+
+操作排队以防止可能损坏仓库状态的并发 Git 操作。这确保了即使在快速连续请求时，快速检查点操作也能安全完成。
+
+## Git 安装
+
+检查点要求您的系统上安装 Git。该实现使用 `simple-git` 库，该库依赖于 Git 命令行工具来创建和管理影子仓库。
 
 ### macOS
 
-1. **Install with Homebrew (recommended)**:
-   ```
-   brew install git
-   ```
+1.  **使用 Homebrew 安装（推荐）**：
 
-2. **Alternative: Install with Xcode Command Line Tools**:
-   ```
-   xcode-select --install
-   ```
+    ```
+    brew install git
+    ```
 
-3. **Verify installation**:
-   - Open Terminal
-   - Type `git --version`
-   - You should see a version number like `git version 2.40.0`
+2.  **替代方案：使用 Xcode 命令行工具安装**：
+
+    ```
+    xcode-select --install
+    ```
+
+3.  **验证安装**：
+    - 打开终端
+    - 键入 `git --version`
+    - 您应该会看到版本号，例如 `git version 2.40.0`
 
 ### Windows
 
-1. **Download Git for Windows**:
-   - Visit https://git-scm.com/download/win
-   - The download should start automatically
+1.  **下载适用于 Windows 的 Git**：
 
-2. **Run the installer**:
-   - Accept the license agreement
-   - Choose installation location (default is recommended)
-   - Select components (default options are typically sufficient)
-   - Choose the default editor
-   - Choose how to use Git from the command line (recommended: Git from the command line and also from 3rd-party software)
-   - Configure line ending conversions (recommended: Checkout Windows-style, commit Unix-style)
-   - Complete the installation
+    - 访问 https://git-scm.com/download/win
+    - 下载应自动开始
 
-3. **Verify installation**:
-   - Open Command Prompt or PowerShell
-   - Type `git --version`
-   - You should see a version number like `git version 2.40.0.windows.1`
+2.  **运行安装程序**：
+
+    - 接受许可协议
+    - 选择安装位置（推荐默认）
+    - 选择组件（默认选项通常足够）
+    - 选择默认编辑器
+    - 选择如何从命令行使用 Git（推荐：从命令行和第三方软件使用 Git）
+    - 配置行尾转换（推荐：Checkout Windows-style, commit Unix-style）
+    - 完成安装
+
+3.  **验证安装**：
+    - 打开命令提示符或 PowerShell
+    - 键入 `git --version`
+    - 您应该会看到版本号，例如 `git version 2.40.0.windows.1`
 
 ### Linux
 
-**Debian/Ubuntu**:
+**Debian/Ubuntu**：
+
 ```
 sudo apt update
 sudo apt install git
 ```
 
-**Fedora**:
+**Fedora**：
+
 ```
 sudo dnf install git
 ```
 
-**Arch Linux**:
+**Arch Linux**：
+
 ```
 sudo pacman -S git
 ```
 
-**Verify installation**:
-- Open Terminal
-- Type `git --version`
-- You should see a version number
+**验证安装**：
+
+- 打开终端
+- 键入 `git --version`
+- 您应该会看到版本号

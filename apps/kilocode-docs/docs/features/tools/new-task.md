@@ -1,103 +1,110 @@
 # new_task
 
-The `new_task` tool creates subtasks with specialized modes while maintaining a parent-child relationship. It breaks down complex projects into manageable pieces, each operating in the mode best suited for specific work.
+`new_task` 工具创建具有专用模式的子任务，同时维护父子关系。它将复杂项目分解为可管理的部分，每个部分在最适合特定工作的模式下运行。
 
-## Parameters
+## 参数
 
-The tool accepts these parameters:
+该工具接受以下参数：
 
-- `mode` (required): The slug of the mode to start the new task in (e.g., "code", "ask", "architect")
-- `message` (required): The initial user message or instructions for this new task
+- `mode`（必填）：要启动新任务的模式的 slug（例如，"code"、"ask"、"architect"）
+- `message`（必填）：此新任务的初始用户消息或指令
 
-## What It Does
+## 功能
 
-This tool creates a new task instance with a specified starting mode and initial message. It allows complex workflows to be divided into subtasks with their own conversation history. Parent tasks are paused during subtask execution and resumed when the subtask completes, with results transferred back to the parent.
+该工具创建一个具有指定启动模式和初始消息的新任务实例。它允许将复杂的工作流划分为具有自己对话历史的子任务。父任务在子任务执行期间暂停，并在子任务完成时恢复，结果传递回父任务。
 
-## When is it used?
+## 使用场景
 
-- When breaking down complex projects into separate, focused subtasks
-- When different aspects of a task require different specialized modes
-- When different phases of work benefit from context separation
-- When organizing multi-phase development workflows
+- 当将复杂项目分解为独立的、专注的子任务时
+- 当任务的不同方面需要不同的专用模式时
+- 当工作的不同阶段受益于上下文分离时
+- 当组织多阶段开发工作流时
 
-## Key Features
+## 主要特性
 
-- Creates subtasks with their own conversation history and specialized mode
-- Pauses parent tasks for later resumption
-- Maintains hierarchical task relationships for navigation
-- Transfers results back to parent tasks upon completion
-- Supports workflow segregation for complex projects
-- Allows different parts of a project to use modes optimized for specific work
-- Requires explicit user approval for task creation
-- Provides clear task transition in the UI
+- 创建具有自己对话历史和专用模式的子任务
+- 暂停父任务以便稍后恢复
+- 维护分层任务关系以便导航
+- 在完成后将结果传递回父任务
+- 支持复杂项目的工作流隔离
+- 允许项目的不同部分使用针对特定工作优化的模式
+- 需要用户明确批准任务创建
+- 在 UI 中提供清晰的任务过渡
 
-## Limitations
+## 限制
 
-- Cannot create tasks with modes that don't exist
-- Requires user approval before creating each new task
-- Task interface may become complex with deeply nested subtasks
-- Subtasks inherit certain workspace and extension configurations from parents
-- May require re-establishing context when switching between deeply nested tasks
-- Task completion needs explicit signaling to properly return to parent tasks
+- 无法创建不存在的模式的任务
+- 创建每个新任务前需要用户批准
+- 任务界面在深度嵌套子任务时可能变得复杂
+- 子任务从父任务继承某些工作区和扩展配置
+- 在切换深度嵌套任务时可能需要重新建立上下文
+- 任务完成需要明确信号以正确返回到父任务
 
-## How It Works
+## 工作原理
 
-When the `new_task` tool is invoked, it follows this process:
+当调用 `new_task` 工具时，它会遵循以下流程：
 
-1. **Parameter Validation**:
-   - Validates the required `mode` and `message` parameters
-   - Verifies that the requested mode exists in the system
+1. **参数验证**：
 
-2. **Task Stack Management**:
-   - Maintains a task stack that tracks all active and paused tasks
-   - Preserves the current mode for later resumption
-   - Sets the parent task to paused state
+    - 验证必填的 `mode` 和 `message` 参数
+    - 确认请求的模式存在于系统中
 
-3. **Task Context Management**:
-   - Creates a new task context with the provided message
-   - Assigns unique taskId and instanceId identifiers for state management
-   - Captures telemetry data on tool usage and task lifecycles
+2. **任务栈管理**：
 
-4. **Mode Switching and Integration**:
-   - Switches to the specified mode with appropriate role and capabilities
-   - Initializes the new task with the provided message
-   - Integrates with VS Code's command palette and code actions
+    - 维护一个任务栈以跟踪所有活动任务和暂停任务
+    - 保留当前模式以便稍后恢复
+    - 将父任务设置为暂停状态
 
-5. **Task Completion and Result Transfer**:
-   - When subtask completes, result is passed back to parent task via `finishSubTask()`
-   - Parent task resumes in its original mode
-   - Task history and token usage metrics are updated
-   - The `taskCompleted` event is emitted with performance data
+3. **任务上下文管理**：
 
-## Examples When Used
+    - 使用提供的消息创建新的任务上下文
+    - 分配唯一的 taskId 和 instanceId 标识符以进行状态管理
+    - 捕获有关工具使用和任务生命周期的遥测数据
 
-- When a front-end developer needs to architect a new feature, implement the code, and document it, they can create separate tasks for each phase with results flowing from one phase to the next.
-- When debugging an issue before implementing a fix, the debugging task can document findings that are passed to the implementation task.
-- When developing a full-stack application, database schema designs from an architect-mode task inform implementation details in a subsequent code-mode task.
-- When documenting a system after implementation, the documentation task can reference the completed implementation while using documentation-specific features.
+4. **模式切换和集成**：
 
-## Usage Examples
+    - 切换到指定模式，并应用相应的角色和能力
+    - 使用提供的消息初始化新任务
+    - 与 VS Code 的命令面板和代码操作集成
 
-Creating a new task in code mode:
+5. **任务完成和结果传递**：
+    - 当子任务完成时，结果通过 `finishSubTask()` 传递回父任务
+    - 父任务恢复其原始模式
+    - 更新任务历史和令牌使用指标
+    - 发出 `taskCompleted` 事件并附带性能数据
+
+## 使用示例
+
+- 当前端开发人员需要架构新功能、实现代码并编写文档时，他们可以为每个阶段创建单独的任务，结果从一个阶段传递到下一个阶段。
+- 在调试问题并实施修复之前，调试任务可以记录发现的结果，并将其传递给实施任务。
+- 在开发全栈应用程序时，来自架构模式任务的数据库模式设计会告知后续代码模式任务的实施细节。
+- 在实施完成后编写系统文档时，文档任务可以参考已完成的实施，同时使用文档专用功能。
+
+## 用法示例
+
+在代码模式中创建新任务：
+
 ```
 <new_task>
 <mode>code</mode>
-<message>Implement a user authentication service with login, registration, and password reset functionality.</message>
+<message>实现具有登录、注册和密码重置功能的用户身份验证服务。</message>
 </new_task>
 ```
 
-Creating a documentation task after completing implementation:
+在完成实施后创建文档任务：
+
 ```
 <new_task>
 <mode>docs</mode>
-<message>Create comprehensive API documentation for the authentication service we just built.</message>
+<message>为我们刚刚构建的身份验证服务创建全面的 API 文档。</message>
 </new_task>
 ```
 
-Breaking down a complex feature into architectural planning and implementation:
+将复杂功能分解为架构规划和实施：
+
 ```
 <new_task>
 <mode>architect</mode>
-<message>Design the database schema and system architecture for our new e-commerce platform.</message>
+<message>为我们新的电子商务平台设计数据库模式和系统架构。</message>
 </new_task>
 ```

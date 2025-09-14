@@ -2,32 +2,33 @@
 sidebar_label: DeepSeek
 ---
 
-# Using DeepSeek With Kilo Code
+# 在Kilo Code中使用DeepSeek
 
-Kilo Code supports accessing models through the DeepSeek API, including `deepseek-chat` and `deepseek-reasoner`.
+Kilo Code支持通过DeepSeek API访问模型，包括`deepseek-chat`和`deepseek-reasoner`。
 
-**Website:** [https://platform.deepseek.com/](https://platform.deepseek.com/)
+**官方网站:** [https://platform.deepseek.com/](https://platform.deepseek.com/)
 
-## Getting an API Key
+## 获取API Key
 
-1.  **Sign Up/Sign In:** Go to the [DeepSeek Platform](https://platform.deepseek.com/). Create an account or sign in.
-2.  **Navigate to API Keys:** Find your API keys in the [API keys](https://platform.deepseek.com/api_keys) section of the platform.
-3.  **Create a Key:** Click "Create new API key".  Give your key a descriptive name (e.g., "Kilo Code").
-4.  **Copy the Key:**  **Important:** Copy the API key *immediately*.  You will not be able to see it again.  Store it securely.
+1. **注册/登录:** 访问[DeepSeek平台](https://platform.deepseek.com/)。创建账号或登录。
+2. **导航到API密钥:** 在平台的[API密钥](https://platform.deepseek.com/api_keys)部分找到你的API密钥。
+3. **创建密钥:** 点击"Create new API key"。为密钥起一个描述性名称(例如"Kilo Code")。
+4. **复制密钥:** **重要:** 立即复制API密钥，之后将无法再次查看。请安全存储。
 
-## Supported Models
+## 支持的模型
 
-Kilo Code supports the following DeepSeek models:
+Kilo Code支持以下DeepSeek模型：
 
-*   `deepseek-chat` (Recommended for coding tasks)
-*	  `deepseek-reasoner` (Recommended for reasoning tasks)
+- `deepseek-chat` (推荐用于编码任务)
+- `deepseek-reasoner` (推荐用于推理任务)
 
-## Configuration in Kilo Code
+## 在Kilo Code中配置
 
-1.  **Open Kilo Code Settings:** Click the gear icon (<Codicon name="gear" />) in the Kilo Code panel.
-2.  **Select Provider:** Choose "DeepSeek" from the "API Provider" dropdown.
-3.  **Enter API Key:** Paste your DeepSeek API key into the "DeepSeek API Key" field.
-4.  **Select Model:** Choose your desired model from the "Model" dropdown.
+1. **打开Kilo Code设置:** 点击Kilo Code面板中的齿轮图标(<Codicon name="gear" />)
+2. **选择提供商:** 从"API Provider"下拉菜单中选择"DeepSeek"
+3. **输入API密钥:** 将DeepSeek API密钥粘贴到"DeepSeek API Key"字段
+4. **选择模型:** 从"Model"下拉菜单中选择所需模型
 
-## Tips and Notes
-*   **Pricing:** Refer to the [DeepSeek Pricing](https://api-docs.deepseek.com/quick_start/pricing/) page for details on model costs.
+## 提示和注意事项
+
+- **价格:** 参考[DeepSeek定价](https://api-docs.deepseek.com/quick_start/pricing/)页面了解模型费用详情

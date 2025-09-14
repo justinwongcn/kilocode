@@ -1,86 +1,86 @@
 ---
-sidebar_label: Welcome
+sidebar_label: 欢迎
 ---
 
 import { DISCORD_URL, REDDIT_URL, GITHUB_ISSUES_MAIN_URL, GITHUB_FEATURES_URL, YOUTUBE_URL } from '@site/src/constants.ts'
 import Image from '@site/src/components/Image';
 
-# Kilo Code Documentation
+# Kilo Code 文档
 
-Kilo Code **accelerates** development with AI-driven code generation and task automation. This open source extension plugs directly into VS Code.
+Kilo Code 通过 AI 驱动的代码生成和任务自动化**加速**开发。这个开源扩展直接集成到 VS Code 中。
 
-## What Can Kilo Code Do?
+## Kilo Code 能做什么？
 
-- 🚀 **Generate Code** from natural language descriptions
-- 🔧 **Refactor & Debug** existing code
-- 📝 **Write & Update** documentation
-- 🤔 **Answer Questions** about your codebase
-- 🔄 **Automate** repetitive tasks
-- 🏗️ **Create** new files and projects
+- 🚀 **生成代码**：根据自然语言描述生成代码
+- 🔧 **重构与调试**：优化现有代码并修复问题
+- 📝 **编写与更新**：创建和更新文档
+- 🤔 **回答问题**：解答关于代码库的疑问
+- 🔄 **自动化**：自动化重复性任务
+- 🏗️ **创建**：新建文件和项目
 
-## Quick Start
+## 快速开始
 
-1. [Install Kilo Code](/getting-started/installing)
-2. [Set up Kilo Code](/getting-started/setting-up)
-3. [Try Your First Task](/getting-started/your-first-task)
+1. [安装 Kilo Code](/getting-started/installing)
+2. [设置 Kilo Code](/getting-started/setting-up)
+3. [尝试你的首个任务](/getting-started/your-first-task)
 
-## Features
+## 功能
 
-<Image src="/docs/img/kilogif.gif" alt="GIF showing some of the capabilities of Kilo Code" width="600" />
+<Image src="/docs/img/kilogif.gif" alt="展示 Kilo Code 部分功能的 GIF" width="600" />
 
-### Basics
+### 基础功能
 
-Use [the chat interface](/basic-usage/the-chat-interface) to tell Kilo Code what you need. It relies on coding‑optimized AI models to complete each request.
+使用[聊天界面](/basic-usage/the-chat-interface)告诉 Kilo Code 您需要什么。它依赖于针对编码优化的 AI 模型来完成每个请求。
 
-- Switch [modes](/basic-usage/using-modes) to fit the task
-- Control allowed [actions](/features/auto-approving-actions)
-- Run direct [code actions](/features/code-actions)
+- 切换[模式](/basic-usage/using-modes)以适应任务
+- 控制允许的[操作](/features/auto-approving-actions)
+- 运行直接[代码操作](/features/code-actions)
 
-### Using Kilo Code
+### 使用 Kilo Code
 
-#### Multiple Modes
-Kilo Code adapts to your needs with specialized [modes](/basic-usage/using-modes):
-- [**Code Mode:**](/basic-usage/using-modes#code-mode-default) For general-purpose coding tasks
-- [**Architect Mode:**](/basic-usage/using-modes#architect-mode) For planning and technical leadership
-- [**Ask Mode:**](/basic-usage/using-modes#ask-mode) For answering questions and providing information
-- [**Debug Mode:**](/basic-usage/using-modes#debug-mode) For systematic problem diagnosis
-- **[Custom Modes](/features/custom-modes):** Create unlimited specialized personas for security auditing, performance optimization, documentation, or any other task
+#### 多种模式
+Kilo Code 通过专门的[模式](/basic-usage/using-modes)适应你的需求：
+- [**Code 模式：**](/basic-usage/using-modes#code-mode-default) 用于通用编码任务
+- [**Architect 模式：**](/basic-usage/using-modes#architect-mode) 用于规划和技术领导
+- [**Ask 模式：**](/basic-usage/using-modes#ask-mode) 用于回答问题并提供信息
+- [**Debug 模式：**](/basic-usage/using-modes#debug-mode) 用于系统化问题诊断
+- **[自定义模式](/features/custom-modes)：** 创建无限数量的专门角色，用于安全审计、性能优化、文档编写或任何其他任务
 
-#### Core Tools
-Kilo Code comes with powerful [tools](/features/tools/tool-use-overview) that can:
-- [Read](/features/tools/read-file) and [write](/features/tools/write-to-file) files in your project
-- [Execute commands](/features/tools/execute-command) in your VS Code terminal
-- [Control a web browser](/features/tools/browser-action)
-- [Ask follow-up questions](/features/tools/ask-followup-question)
-- [Search your codebase](/features/tools/search-files)
+#### 核心工具
+Kilo Code 配备了强大的[工具](/features/tools/tool-use-overview)，可以：
+- [读取](/features/tools/read-file)和[写入](/features/tools/write-to-file)项目中的文件
+- 在你的 VS Code 终端中[执行命令](/features/tools/execute-command)
+- [控制网页浏览器](/features/tools/browser-action)
+- [提问跟进问题](/features/tools/ask-followup-question)
+- [搜索你的代码库](/features/tools/search-files)
 
-See the complete [Tools Reference](/features/tools/tool-use-overview) for all available tools.
+查看完整的[工具参考](/features/tools/tool-use-overview)以了解所有可用工具。
 
-### Extending Kilo Code
-- **[MCP (Model Context Protocol)](/features/mcp/overview):** Add unlimited custom tools, integrate with external APIs, connect to databases, or create specialized development tools
-- **[Local Models](/advanced-usage/local-models):** Run Kilo Code with local AI models for offline use or enhanced privacy
+### 扩展 Kilo Code
+- **[MCP（模型上下文协议）](/features/mcp/overview)：** 添加无限自定义工具，集成外部 API，连接数据库，或创建专门的开发工具
+- **[本地模型](/advanced-usage/local-models)：** 使用本地 AI 模型运行 Kilo Code，以实现离线使用或增强隐私
 
-### Customizing Kilo Code
-Make Kilo Code work your way with:
-- [Settings Management](/features/settings-management) for configuring your experience
-- [Custom Modes](/features/custom-modes) for specialized tasks
-- [Custom Rules](/advanced-usage/custom-rules) for project-specific rules
-- [Custom Instructions](/advanced-usage/custom-instructions) for global plugin-wide instructions
-- [API Configuration Profiles](/features/api-configuration-profiles) for different model providers
-- [Auto-Approval Settings](/features/auto-approving-actions) for faster workflows
+### 自定义 Kilo Code
+通过以下方式让 Kilo Code 按照你的方式工作：
+- [设置管理](/features/settings-management)来配置你的体验
+- [自定义模式](/features/custom-modes)用于专门任务
+- [自定义规则](/advanced-usage/custom-rules)用于项目特定规则
+- [自定义指令](/advanced-usage/custom-instructions)用于全局插件范围内的指令
+- [API 配置配置文件](/features/api-configuration-profiles)用于不同的模型提供商
+- [自动批准设置](/features/auto-approving-actions)用于更快的工作流程
 
-## Resources
+## 资源
 
-### Documentation
-- [Using Kilo Code](/basic-usage/the-chat-interface) - Learn the basics
-- [Core Concepts](/features/auto-approving-actions) - Master key features
-- [Advanced Usage](/advanced-usage/prompt-engineering) - Take your skills further
-- [Frequently Asked Questions](/faq) - Get answers to common questions
+### 文档
+- [使用 Kilo Code](/basic-usage/the-chat-interface) - 学习基础知识
+- [核心概念](/features/auto-approving-actions) - 掌握关键功能
+- [高级用法](/advanced-usage/prompt-engineering) - 进一步提升你的技能
+- [常见问题解答](/faq) - 获取常见问题的答案
 
-### Community
-- **Discord:** <a href={DISCORD_URL} target="_blank">Join our Discord server</a> for real-time help and discussions
-- **Reddit:** <a href={REDDIT_URL} target="_blank">Visit our subreddit</a> to share experiences and tips
-- **YouTube:** <a href={YOUTUBE_URL} target="_blank">Check out our YouTube</a> to learn hands on skills when using Kilo Code
-- **GitHub:** Report <a href={GITHUB_ISSUES_MAIN_URL} target="_blank">issues</a> or request <a href={GITHUB_FEATURES_URL} target="_blank">features</a>
+### 社区
+- **Discord：** <a href={DISCORD_URL} target="_blank">加入我们的 Discord 服务器</a>以获取实时帮助和讨论
+- **Reddit：** <a href={REDDIT_URL} target="_blank">访问我们的 subreddit</a>以分享经验和技巧
+- **YouTube：** <a href={YOUTUBE_URL} target="_blank">查看我们的 YouTube</a>以学习使用 Kilo Code 的实践技能
+- **GitHub：** 在<a href={GITHUB_ISSUES_MAIN_URL} target="_blank">问题页面</a>报告问题或在<a href={GITHUB_FEATURES_URL} target="_blank">功能请求页面</a>提出建议
 
-Ready to get started? Click the **Next** button below to begin your journey with Kilo Code!
+准备好开始了吗？点击下方的**下一步**按钮，开启你的 Kilo Code 之旅！

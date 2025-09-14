@@ -1,36 +1,35 @@
-# Fast Edits
+# 快速编辑
 
-:::info Default Setting
-Fast Edits (using the "Enable editing through diffs" setting) is enabled by default in Kilo Code. You typically don't need to change these settings unless you encounter specific issues or want to experiment with different diff strategies.
+:::info 默认设置
+Kilo Code 默认启用快速编辑（使用“通过差异启用编辑”设置）。除非您遇到特定问题或想尝试不同的差异策略，否则通常无需更改这些设置。
 :::
 
-Kilo Code offers an advanced setting to change how it edits files, using diffs (differences) instead of rewriting entire files. Enabling this feature provides significant benefits.
+Kilo Code 提供了一个高级设置，可以使用差异（差异）而不是重写整个文件来更改其编辑文件的方式。启用此功能可带来显著优势。
 
-## Enable Editing Through Diffs
+## 通过差异启用编辑
 
-Open Settings by clicking the gear icon <Codicon name="gear" /> → Advanced
+单击齿轮图标 <Codicon name="gear" /> → 高级 打开设置
 
+当选中“**通过差异启用编辑**”时：
 
+    <img src="/docs/img/fast-edits/fast-edits-5.png" alt="Kilo Code 设置显示通过差异启用编辑" width="500" />
 
-When **Enable editing through diffs** is checked:
+1.  **更快的文件编辑**：Kilo 通过仅应用必要的更改来更快地修改文件。
+2.  **防止截断写入**：系统自动检测并拒绝 AI 写入不完整文件内容的尝试，这可能发生在大型文件或复杂指令中。这有助于防止文件损坏。
 
-    <img src="/docs/img/fast-edits/fast-edits-5.png" alt="Kilo Code settings showing Enable editing through diffs" width="500" />
-1.  **Faster File Editing**: Kilo modifies files more quickly by applying only the necessary changes.
-2.  **Prevents Truncated Writes**: The system automatically detects and rejects attempts by the AI to write incomplete file content, which can happen with large files or complex instructions. This helps prevent corrupted files.
-
-:::note Disabling Fast Edits
-If you uncheck **Enable editing through diffs**, Kilo will revert to writing the entire file content for every edit using the [`write_to_file`](/features/tools/write-to-file) tool, instead of applying targeted changes with [`apply_diff`](/features/tools/apply-diff). This full-write approach is generally slower for modifying existing files and leads to higher token usage.
+:::note 禁用快速编辑
+如果您取消选中“**通过差异启用编辑**”，Kilo 将恢复为使用 [`write_to_file`](/features/tools/write-to-file) 工具为每次编辑写入整个文件内容，而不是使用 [`apply_diff`](/features/tools/apply-diff) 应用有针对性的更改。这种完全写入的方法通常在修改现有文件时速度较慢，并导致更高的 token 使用量。
 :::
 
-## Match Precision
+## 匹配精度
 
-This slider controls how closely the code sections identified by the AI must match the actual code in your file before a change is applied.
+此滑块控制 AI 识别的代码部分在应用更改之前必须与文件中实际代码匹配的紧密程度。
 
-    <img src="/docs/img/fast-edits/fast-edits-4.png" alt="Kilo Code settings showing Enable editing through diffs checkbox and Match precision slider" width="500" />
+    <img src="/docs/img/fast-edits/fast-edits-4.png" alt="Kilo Code 设置显示通过差异启用编辑复选框和匹配精度滑块" width="500" />
 
-*   **100% (Default)**: Requires an exact match. This is the safest option, minimizing the risk of incorrect changes.
-*   **Lower Values (80%-99%)**: Allows for "fuzzy" matching. Kilo can apply changes even if the code section has minor differences from what the AI expected. This can be useful if the file has been slightly modified, but **increases the risk** of applying changes in the wrong place.
+- **100%（默认）**：需要精确匹配。这是最安全的选择，可最大程度地降低错误更改的风险。
+- **较低值（80%-99%）**：允许“模糊”匹配。即使代码部分与 AI 预期有细微差异，Kilo 也可以应用更改。这在文件略有修改时很有用，但**增加了**在错误位置应用更改的风险。
 
-**Use values below 100% with extreme caution.** Lower precision might be necessary occasionally, but always review the proposed changes carefully.
+**请极其谨慎地使用低于 100% 的值。** 较低的精度可能偶尔是必要的，但请务必仔细审查提议的更改。
 
-Internally, this setting adjusts a `fuzzyMatchThreshold` used with algorithms like Levenshtein distance to compare code similarity.
+在内部，此设置调整用于比较代码相似性的 `fuzzyMatchThreshold`（例如 Levenshtein 距离）算法。

@@ -1,192 +1,192 @@
-# Development Environment
+# 开发环境
 
-<!-- Please refer to the [DEVELOPMENT.md](https://github.com/Kilo-Org/kilocode/blob/main/DEVELOPMENT.md) guide in the main repository for detailed instructions on setting up the development environment. -->
+<!-- 请参考主仓库中的 [DEVELOPMENT.md](https://github.com/Kilo-Org/kilocode/blob/main/DEVELOPMENT.md) 指南，获取详细的开发环境设置说明。 -->
 
-This document will help you set up your development environment and understand how to work with the codebase. Whether you're fixing bugs, adding features, or just exploring the code, this guide will get you started.
+本文档将帮助你设置开发环境，并了解如何与代码库一起工作。无论你是修复错误、添加功能，还是仅仅探索代码，本指南都将帮助你入门。
 
-## Prerequisites
+## 先决条件
 
-Before you begin, make sure you have the following installed:
+在开始之前，请确保已安装以下内容：
 
-1. **Git** - For version control
-2. **Node.js** (version [v20.18.1](https://github.com/Kilo-Org/kilocode/blob/main/.nvmrc) or higher recommended) and npm
-3. **Visual Studio Code** - Our recommended IDE for development
+1. **Git** - 用于版本控制
+2. **Node.js**（建议使用 [v20.18.1](https://github.com/Kilo-Org/kilocode/blob/main/.nvmrc) 或更高版本）和 npm
+3. **Visual Studio Code** - 我们推荐的开发 IDE
 
-## Getting Started
+## 入门
 
-### Installation
+### 安装
 
-1. **Fork and Clone the Repository**:
+1. **Fork 并克隆仓库**：
 
-    - **Fork the Repository**:
-        - Visit the [Kilo Code GitHub repository](https://github.com/Kilo-Org/kilocode)
-        - Click the "Fork" button in the top-right corner to create your own copy.
-    - **Clone Your Fork**:
+    - **Fork 仓库**：
+        - 访问 [Kilo Code GitHub 仓库](https://github.com/Kilo-Org/kilocode)
+        - 点击右上角的 "Fork" 按钮，创建你自己的副本。
+    - **克隆你的 Fork**：
         ```bash
         git clone https://github.com/[YOUR-USERNAME]/kilocode.git
         cd kilocode
         ```
-        Replace `[YOUR-USERNAME]` with your actual GitHub username.
+        将 `[YOUR-USERNAME]` 替换为你的 GitHub 用户名。
 
-1. **Install dependencies**:
+2. **安装依赖项**：
 
     ```bash
-    pnpm install
+    npm run install:all
     ```
 
-    This command will install dependencies for the main extension, webview UI, and e2e tests.
+    此命令将为主扩展、Webview UI 和 e2e 测试安装依赖项。
 
-1. **Install VSCode Extensions**:
-    - **Required**: [ESBuild Problem Matchers](https://marketplace.visualstudio.com/items?itemName=connor4312.esbuild-problem-matchers) - Helps display build errors correctly.
+3. **安装 VSCode 扩展**：
+    - **必需**：[ESBuild Problem Matchers](https://marketplace.visualstudio.com/items?itemName=connor4312.esbuild-problem-matchers) - 帮助正确显示构建错误。
 
-While not strictly necessary for running the extension, these extensions are recommended for development:
+虽然不是运行扩展所必需的，但以下扩展建议用于开发：
 
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - Integrates ESLint into VS Code.
-- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - Integrates Prettier into VS Code.
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - 将 ESLint 集成到 VS Code 中。
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - 将 Prettier 集成到 VS Code 中。
 
-The full list of recommended extensions is [here](https://github.com/Kilo-Org/kilocode/blob/main/.vscode/extensions.json)
+推荐的扩展完整列表在[这里](https://github.com/Kilo-Org/kilocode/blob/main/.vscode/extensions.json)
 
-### Project Structure
+### 项目结构
 
-The project is organized into several key directories:
+项目组织为以下几个关键目录：
 
-- **`src/`** - Core extension code
-    - **`core/`** - Core functionality and tools
-    - **`services/`** - Service implementations
-- **`webview-ui/`** - Frontend UI code
-- **`e2e/`** - End-to-end tests
-- **`scripts/`** - Utility scripts
-- **`assets/`** - Static assets like images and icons
+- **`src/`** - 核心扩展代码
+    - **`core/`** - 核心功能和工具
+    - **`services/`** - 服务实现
+- **`webview-ui/`** - 前端 UI 代码
+- **`e2e/`** - 端到端测试
+- **`scripts/`** - 实用脚本
+- **`assets/`** - 静态资源，如图片和图标
 
-## Development Workflow
+## 开发工作流
 
-### Building the Extension
+### 构建扩展
 
-To build the extension:
+要构建扩展：
 
 ```bash
-pnpm build
+npm run build
 ```
 
-This will:
+这将：
 
-1. Build the webview UI
-2. Compile TypeScript
-3. Bundle the extension
-4. Create a `.vsix` file in the `bin/` directory
+1. 构建 Webview UI
+2. 编译 TypeScript
+3. 打包扩展
+4. 在 `bin/` 目录下创建 `.vsix` 文件
 
-### Running the Extension
+### 运行扩展
 
-To run the extension in development mode:
+要在开发模式下运行扩展：
 
-1. Press `F5` (or select **Run** → **Start Debugging**) in VSCode
-2. This will open a new VSCode window with Kilo Code loaded
+1. 在 VSCode 中按 `F5`（或选择 **Run** → **Start Debugging**）
+2. 这将打开一个新的 VSCode 窗口，并加载 Kilo Code
 
-### Hot Reloading
+### 热重载
 
-- **Webview UI changes**: Changes to the webview UI will appear immediately without restarting
-- **Core extension changes**: Changes to the core extension code will automatically reload the ext host
+- **Webview UI 变更**：Webview UI 的变更会立即生效，无需重启
+- **核心扩展变更**：核心扩展代码的变更会自动重新加载扩展主机
 
-In development mode (NODE_ENV="development"), changing the core code will trigger a `workbench.action.reloadWindow` command, so it is no longer necessary to manually start/stop the debugger and tasks.
+在开发模式下（NODE_ENV="development"），更改核心代码将触发 `workbench.action.reloadWindow` 命令，因此不再需要手动启动/停止调试器和任务。
 
-> **Important**: In production builds, when making changes to the core extension, you need to:
+> **重要提示**：在生产构建中，更改核心扩展代码时，你需要：
 >
-> 1. Stop the debugging process
-> 2. Kill any npm tasks running in the background (see screenshot below)
-> 3. Start debugging again
+> 1. 停止调试过程
+> 2. 终止任何在后台运行的 npm 任务（见下图）
+> 3. 重新开始调试
 
 <img width="600" alt="Stopping background tasks" src="https://github.com/user-attachments/assets/466fb76e-664d-4066-a3f2-0df4d57dd9a4" />
 
-### Installing the Built Extension
+### 安装构建的扩展
 
-To install your built extension:
+要安装你构建的扩展：
 
 ```bash
 code --install-extension "$(ls -1v bin/kilo-code-*.vsix | tail -n1)"
 ```
 
-Replace `[version]` with the current version number.
+将 `[version]` 替换为当前版本号。
 
-## Testing
+## 测试
 
-Kilo Code uses several types of tests to ensure quality:
+Kilo Code 使用多种测试来确保质量：
 
-### Unit Tests
+### 单元测试
 
-Run unit tests with:
+运行单元测试：
 
 ```bash
 npm test
 ```
 
-This runs both extension and webview tests.
+这将运行扩展和 Webview 测试。
 
-To run specific test suites:
+要运行特定测试套件：
 
 ```bash
-npm run test:extension  # Run only extension tests
-npm run test:webview    # Run only webview tests
+npm run test:extension  # 仅运行扩展测试
+npm run test:webview    # 仅运行 Webview 测试
 ```
 
-### End-to-End Tests
+### 端到端测试
 
-E2E tests verify the extension works correctly within VSCode:
+E2E 测试验证扩展在 VSCode 中是否正确工作：
 
-1. Create a `.env.local` file in the root with required API keys:
+1. 在根目录下创建 `.env.local` 文件，包含所需的 API 密钥：
 
     ```
     OPENROUTER_API_KEY=sk-or-v1-...
     ```
 
-2. Run the integration tests:
+2. 运行集成测试：
     ```bash
     npm run test:integration
     ```
 
-For more details on E2E tests, see [e2e/VSCODE_INTEGRATION_TESTS.md](https://github.com/Kilo-Org/kilocode/blob/main/e2e/VSCODE_INTEGRATION_TESTS.md).
+有关 E2E 测试的更多详细信息，请参阅 [e2e/VSCODE_INTEGRATION_TESTS.md](https://github.com/Kilo-Org/kilocode/blob/main/e2e/VSCODE_INTEGRATION_TESTS.md)。
 
-## Linting and Type Checking
+## 代码检查和类型检查
 
-Ensure your code meets our quality standards:
+确保你的代码符合我们的质量标准：
 
 ```bash
-npm run lint          # Run ESLint
-npm run check-types   # Run TypeScript type checking
+npm run lint          # 运行 ESLint
+npm run check-types   # 运行 TypeScript 类型检查
 ```
 
-## Git Hooks
+## Git 钩子
 
-This project uses [Husky](https://typicode.github.io/husky/) to manage Git hooks, which automate certain checks before commits and pushes. The hooks are located in the `.husky/` directory.
+该项目使用 [Husky](https://typicode.github.io/husky/) 来管理 Git 钩子，这些钩子会在提交和推送之前自动执行某些检查。钩子位于 `.husky/` 目录中。
 
-### Pre-commit Hook
+### 预提交钩子
 
-Before a commit is finalized, the `.husky/pre-commit` hook runs:
+在提交完成之前，`.husky/pre-commit` 钩子会运行：
 
-1.  **Branch Check**: Prevents committing directly to the `main` branch.
-2.  **Type Generation**: Runs `npm run generate-types`.
-3.  **Type File Check**: Ensures that any changes made to `src/exports/roo-code.d.ts` by the type generation are staged.
-4.  **Linting**: Runs `lint-staged` to lint and format staged files.
+1.  **分支检查**：防止直接提交到 `main` 分支。
+2.  **类型生成**：运行 `npm run generate-types`。
+3.  **类型文件检查**：确保类型生成对 `src/exports/roo-code.d.ts` 的更改已暂存。
+4.  **代码检查**：运行 `lint-staged` 以检查和格式化暂存的文件。
 
-### Pre-push Hook
+### 预推送钩子
 
-Before changes are pushed to the remote repository, the `.husky/pre-push` hook runs:
+在将更改推送到远程仓库之前，`.husky/pre-push` 钩子会运行：
 
-1.  **Branch Check**: Prevents pushing directly to the `main` branch.
-2.  **Compilation**: Runs `npm run compile` to ensure the project builds successfully.
-3.  **Changeset Check**: Checks if a changeset file exists in `.changeset/` and reminds you to create one using `npm run changeset` if necessary.
+1.  **分支检查**：防止直接推送到 `main` 分支。
+2.  **编译**：运行 `npm run compile` 以确保项目成功构建。
+3.  **变更集检查**：检查 `.changeset/` 中是否存在变更集文件，并提醒你使用 `npm run changeset` 创建一个。
 
-These hooks help maintain code quality and consistency. If you encounter issues with commits or pushes, check the output from these hooks for error messages.
+这些钩子有助于保持代码质量和一致性。如果遇到提交或推送问题，请检查这些钩子的输出以获取错误信息。
 
-## Troubleshooting
+## 故障排除
 
-### Common Issues
+### 常见问题
 
-1. **Extension not loading**: Check the VSCode Developer Tools (Help > Toggle Developer Tools) for errors
-2. **Webview not updating**: Try reloading the window (Developer: Reload Window)
-3. **Build errors**: Make sure all dependencies are installed with `npm run install:all`
+1. **扩展未加载**：检查 VSCode 开发者工具（Help > Toggle Developer Tools）中的错误
+2. **Webview 未更新**：尝试重新加载窗口（Developer: Reload Window）
+3. **构建错误**：确保所有依赖项都已通过 `npm run install:all` 安装
 
-### Debugging Tips
+### 调试技巧
 
-- Use `console.log()` statements in your code for debugging
-- Check the Output panel in VSCode (View > Output) and select "Kilo Code" from the dropdown
-- For webview issues, use the browser developer tools in the webview (right-click > "Inspect Element")
+- 在代码中使用 `console.log()` 语句进行调试
+- 检查 VSCode 中的输出面板（View > Output）并从下拉菜单中选择 "Kilo Code"
+- 对于 Webview 问题，请在 Webview 中使用浏览器开发者工具（右键点击 > "Inspect Element"）

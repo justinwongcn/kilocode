@@ -2,80 +2,80 @@
 sidebar_label: Overview
 ---
 
-# API Providers Overview
+# API 提供商概述
 
-**Bottom line**: Kilo Code, like any agentic AI coding tool, needs AI model providers to function. You can use our [built-in provider](/providers/kilocode) (easiest) or connect your own API keys from **30+ providers**.
+**总结**：Kilo Code，像任何代理 AI 编码工具一样，需要 AI 模型提供商才能运行。你可以使用我们的[内置提供商](/providers/kilocode)（最简单）或连接来自 **30 多个提供商**的你自己的 API 密钥。
 
-## Kilo Code Extension vs. API Provider
+## Kilo Code 扩展与 API 提供商
 
-### The Extension
+### 扩展
 
-- VS Code tool you install from the marketplace
-- Handles UI, file operations, and workflow management
-- [Open source](https://github.com/Kilo-Org/kilocode)
-- Connects to any AI provider
+- 你从市场安装的 VS Code 工具
+- 处理 UI、文件操作和工作流管理
+- [开源](https://github.com/Kilo-Org/kilocode)
+- 连接到任何 AI 提供商
 
-### Kilo Code API Provider
+### Kilo Code API 提供商
 
-- **Built-in option** that comes with the extension
-- Google sign-in with free credits included
-- No API key management required
-- Access to frontier coding models
-- [Competitive pricing](https://kilocode.ai/pricing)
+- **内置选项**，随扩展一起提供
+- 包含免费积分的 Google 登录
+- 无需 API 密钥管理
+- 访问前沿编码模型
+- [有竞争力的定价](https://kilocode.ai/pricing)
 
-**Key point**: The extension works with any provider—our API service is just the "batteries included" option.
+**关键点**：该扩展适用于任何提供商——我们的 API 服务只是“包含电池”的选项。
 
-## Getting Started: Two Paths
+## 入门：两条路径
 
-### Option 1: Built-in Provider (Recommended)
+### 选项 1：内置提供商（推荐）
 
-✅ **Fastest setup**
+✅ **快速设置**
 
-- Sign in with Google or GitHub at kilocode.ai
-- Free credits included for your first top-up
-- Zero API key management
-- Latest models available
+- 在 kilocode.ai 使用 Google 或 GitHub 登录
+- 首次充值包含免费积分
+- 无需 API 密钥管理
+- 可使用最新模型
 
-→ [Complete setup guide](/providers/kilocode)
+→ [完整设置指南](/providers/kilocode)
 
-### Option 2: Your Own Provider
+### 选项 2：你自己的提供商
 
-**More control, more setup**
+**更多控制，更多设置**
 
-1. Choose from 30+ supported providers
-2. Get API key from your provider
-3. Configure in Kilo Code settings
+1. 从 30 多个受支持的提供商中选择
+2. 从你的提供商处获取 API 密钥
+3. 在 Kilo Code 设置中配置
 
-## Why Use Multiple Providers?
+## 为什么要使用多个提供商？
 
-- **Cost**: Compare pricing across providers
-- **Models**: Access different AI capabilities
-- **Reliability**: Backup options for outages
-- **Features**: Some providers offer exclusive models
-- **Regional**: Better performance in certain locations
+- **成本**：比较不同提供商的定价
+- **模型**：访问不同的 AI 功能
+- **可靠性**：停机时的备份选项
+- **功能**：某些提供商提供独家模型
+- **区域**：在某些位置提供更好的性能
 
-## What's in This Section
+## 本节内容
 
-### [Connecting Your First AI Provider](/getting-started/connecting-api-provider)
+### [连接你的第一个 AI 提供商](/getting-started/connecting-api-provider)
 
-**For beginners**: Step-by-step setup including:
+**面向初学者**：分步设置，包括：
 
-- Recommended providers
-- How to get API keys
-- Initial VS Code configuration
-- Starting your first AI chat
+- 推荐的提供商
+- 如何获取 API 密钥
+- 初始 VS Code 配置
+- 开始你的第一个 AI 聊天
 
-### [API Configuration Profiles](/features/api-configuration-profiles)
+### [API 配置配置文件](/features/api-configuration-profiles)
 
-**For power users**: Advanced management including:
+**面向高级用户**：高级管理，包括：
 
-- Multiple provider configurations
-- Model switching strategies
-- Secure API key management
-- Task-specific optimizations
+- 多个提供商配置
+- 模型切换策略
+- 安全的 API 密钥管理
+- 任务特定优化
 
-## Security Note
+## 安全注意事项
 
-All API keys use VS Code's Secret Storage—never stored in plain text. Industry-standard security practices protect your credentials.
+所有 API 密钥都使用 VS Code 的 Secret Storage——从不以纯文本形式存储。行业标准的安全实践保护你的凭据。
 
-**Ready to start?** → [Connect your first provider](/getting-started/connecting-api-provider) or jump to [advanced profiles](/features/api-configuration-profiles).
+**准备好开始了吗？** → [连接你的第一个提供商](/getting-started/connecting-api-provider)或跳转到[高级配置文件](/features/api-configuration-profiles)。

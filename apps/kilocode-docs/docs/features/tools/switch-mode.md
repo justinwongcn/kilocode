@@ -1,151 +1,158 @@
 # switch_mode
 
-The `switch_mode` tool enables Kilo Code to change between different operational modes, each with specialized capabilities for specific types of tasks. This allows seamless transitions between modes like Code, Architect, Ask, or Debug when the current task requires different expertise.
+`switch_mode` 工具使 Kilo Code 能够在不同操作模式之间切换，每种模式都具有针对特定任务类型的专业能力。当当前任务需要不同的专业知识时，可以无缝切换到 Code、Architect、Ask 或 Debug 模式。
 
-## Parameters
+## 参数
 
-The tool accepts these parameters:
+该工具接受以下参数：
 
-- `mode_slug` (required): The slug of the mode to switch to (e.g., "code", "ask", "architect")
-- `reason` (optional): The reason for switching modes, providing context for the user
+- `mode_slug`（必填）：要切换到的模式标识符（例如 "code"、"ask"、"architect"）
+- `reason`（可选）：切换模式的原因，为用户提供上下文
 
-## What It Does
+## 功能
 
-This tool requests a mode change when the current task would be better handled by another mode's capabilities. It maintains context while shifting Kilo Code's focus and available toolsets to match the requirements of the new task phase.
+该工具在当当前任务更适合由其他模式处理时请求模式切换。它在切换过程中保持上下文，同时调整 Kilo Code 的焦点和可用工具集，以匹配新任务阶段的需求。
 
-## When is it used?
+## 使用场景
 
-- When transitioning from information gathering to code implementation
-- When shifting from coding to architecture or design
-- When the current task requires capabilities only available in a different mode
-- When specialized expertise is needed for a particular phase of a complex project
+- 从信息收集过渡到代码实现时
+- 从编码切换到架构或设计时
+- 当前任务需要仅在另一个模式中可用的功能时
+- 复杂项目的特定阶段需要专业知识时
 
-## Key Features
+## 主要特性
 
-- Maintains context continuity across mode transitions
-- Provides clear reasoning for mode switch recommendations
-- Requires user approval for all mode changes
-- Enforces tool group restrictions specific to each mode
-- Seamlessly adapts tool availability based on the selected mode
-- Works with both standard and custom modes
-- Displays the mode switch and reasoning in the UI
-- Uses XML-style formatting for parameter specification
-- Handles file type restrictions specific to certain modes
+- 在模式切换过程中保持上下文连续性
+- 为模式切换提供清晰的推理
+- 需要用户批准所有模式更改
+- 强制执行特定模式的工具组限制
+- 根据所选模式无缝调整工具可用性
+- 适用于标准和自定义模式
+- 在 UI 中显示模式切换和原因
+- 使用 XML 格式指定参数
+- 强制执行某些模式的文件类型限制
 
-## Limitations
+## 限制
 
-- Cannot switch to modes that don't exist in the system
-- Requires explicit user approval for each mode transition
-- Cannot use tools specific to a mode until the switch is complete
-- Applies a 500ms delay after mode switching to allow the change to take effect
-- Some modes have file type restrictions (e.g., Architect mode can only edit markdown files)
-- Mode preservation for resumption applies only to the `new_task` functionality, not general mode switching
+- 无法切换到系统中不存在的模式
+- 每次模式转换都需要用户明确批准
+- 在切换完成前无法使用特定模式的工具
+- 模式切换后应用 500ms 的延迟以确保更改生效
+- 某些模式有文件类型限制（例如 Architect 模式只能编辑 markdown 文件）
+- 模式保存仅适用于 `new_task` 功能，不适用于一般模式切换
 
-## How It Works
+## 工作原理
 
-When the `switch_mode` tool is invoked, it follows this process:
+当调用 `switch_mode` 工具时，它会遵循以下流程：
 
-1. **Request Validation**:
-   - Validates that the requested mode exists in the system
-   - Checks that the `mode_slug` parameter is provided and valid
-   - Verifies the user isn't already in the requested mode
-   - Ensures the `reason` parameter (if provided) is properly formatted
+1. **请求验证**：
 
-2. **Mode Transition Preparation**:
-   - Packages the mode change request with the provided reason
-   - Presents the change request to the user for approval
+    - 验证请求的模式是否存在于系统中
+    - 检查是否提供了 `mode_slug` 参数且有效
+    - 确认用户尚未处于请求的模式
+    - 确保 `reason` 参数（如果提供）格式正确
 
-3. **Mode Activation (Upon User Approval)**:
-   - Updates the UI to reflect the new mode
-   - Adjusts available tools based on the mode's tool group configuration
-   - Applies the mode-specific prompt and behavior
-   - Applies a 500ms delay to allow the change to take effect before executing next tool
-   - Enforces any file restrictions specific to the mode
+2. **模式切换准备**：
 
-4. **Continuation**:
-   - Proceeds with the task using the capabilities of the new mode
-   - Retains relevant context from the previous interaction
+    - 将模式更改请求与提供的原因打包
+    - 向用户展示更改请求以获取批准
 
-## Tool Group Association
+3. **模式激活（用户批准后）**：
 
-The `switch_mode` tool belongs to the "modes" tool group but is also included in the "always available" tools list. This means:
+    - 更新 UI 以反映新模式
+    - 根据模式的工具组配置调整可用工具
+    - 应用模式特定的提示和行为
+    - 应用 500ms 延迟以确保更改生效再执行下一个工具
+    - 强制执行模式特定的文件限制
 
-- It can be used in any mode regardless of the mode's configured tool groups
-- It's available alongside other core tools like `ask_followup_question` and `attempt_completion`
-- It allows mode transitions at any point in a workflow when task requirements change
+4. **继续执行**：
+    - 使用新模式的功能继续任务
+    - 保留之前交互的相关上下文
 
-## Mode Structure
+## 工具组关联
 
-Each mode in the system has a specific structure:
+`switch_mode` 工具属于 "modes" 工具组，但也包含在 "always available" 工具列表中。这意味着：
 
-- `slug`: Unique identifier for the mode (e.g., "code", "ask")
-- `name`: Display name for the mode (e.g., "Code", "Ask")
-- `roleDefinition`: The specialized role and capabilities of the mode
-- `customInstructions`: Optional mode-specific instructions that guide behavior
-- `groups`: Tool groups available to the mode with optional restrictions
+- 它可以在任何模式下使用，不受模式配置的工具组限制
+- 它与 `ask_followup_question` 和 `attempt_completion` 等核心工具一起可用
+- 它允许在工作流的任何阶段进行模式切换，以适应任务需求的变化
 
-## Mode Capabilities
+## 模式结构
 
-The core modes provide these specialized capabilities:
+系统中的每个模式都有特定的结构：
 
-- **Code Mode**: Focused on coding tasks with full access to code editing tools
-- **Architect Mode**: Specialized for system design and architecture planning, limited to editing markdown files only
-- **Ask Mode**: Optimized for answering questions and providing information
-- **Debug Mode**: Equipped for systematic problem diagnosis and resolution
+- `slug`：模式的唯一标识符（例如 "code"、"ask"）
+- `name`：模式的显示名称（例如 "Code"、"Ask"）
+- `roleDefinition`：模式的专业角色和能力
+- `customInstructions`：可选的模式特定指令，用于指导行为
+- `groups`：模式可用的工具组，可设置限制
 
-## Custom Modes
+## 模式能力
 
-Beyond the core modes, the system supports custom project-specific modes:
+核心模式提供以下专业能力：
 
-- Custom modes can be defined with specific tool groups enabled
-- They can specify custom role definitions and instructions
-- The system checks custom modes first before falling back to core modes
-- Custom mode definitions take precedence over core modes with the same slug
+- **Code 模式**：专注于编码任务，完全访问代码编辑工具
+- **Architect 模式**：专用于系统设计和架构规划，仅限于编辑 markdown 文件
+- **Ask 模式**：优化用于回答问题并提供信息
+- **Debug 模式**：配备用于系统问题诊断和解决
 
-## File Restrictions
+## 自定义模式
 
-Different modes may have specific file type restrictions:
+除了核心模式外，系统还支持特定项目的自定义模式：
 
-- **Architect Mode**: Can only edit files matching the `.md` extension
-- Attempting to edit restricted file types results in a `FileRestrictionError`
-- These restrictions help enforce proper separation of concerns between modes
+- 可以定义具有特定工具组启用的自定义模式
+- 可以指定自定义角色定义和指令
+- 系统会先检查自定义模式，然后再回退到核心模式
+- 自定义模式定义优先于具有相同标识符的核心模式
 
-## Examples When Used
+## 文件限制
 
-- When discussing a new feature, Kilo Code switches from Ask mode to Architect mode to help design the system structure.
-- After completing architecture planning in Architect mode, Kilo Code switches to Code mode to implement the designed features.
-- When encountering bugs during development, Kilo Code switches from Code mode to Debug mode for systematic troubleshooting.
+不同的模式可能有特定的文件类型限制：
 
-## Usage Examples
+- **Architect 模式**：只能编辑扩展名为 `.md` 的文件
+- 尝试编辑受限制的文件类型会导致 `FileRestrictionError`
+- 这些限制有助于在模式之间强制执行适当的关注点分离
 
-Switching to Code mode for implementation:
+## 使用示例
+
+- 讨论新功能时，Kilo Code 从 Ask 模式切换到 Architect 模式以帮助设计系统结构。
+- 在 Architect 模式中完成架构规划后，Kilo Code 切换到 Code 模式以实现设计的功能。
+- 在开发过程中遇到错误时，Kilo Code 从 Code 模式切换到 Debug 模式进行系统问题排查。
+
+## 使用示例
+
+切换到 Code 模式进行实现：
+
 ```
 <switch_mode>
 <mode_slug>code</mode_slug>
-<reason>Need to implement the login functionality based on the architecture we've discussed</reason>
+<reason>需要基于我们讨论的架构实现登录功能</reason>
 </switch_mode>
 ```
 
-Switching to Architect mode for design:
+切换到 Architect 模式进行设计：
+
 ```
 <switch_mode>
 <mode_slug>architect</mode_slug>
-<reason>Need to design the system architecture before implementation</reason>
+<reason>需要在实现前设计系统架构</reason>
 </switch_mode>
 ```
 
-Switching to Debug mode for troubleshooting:
+切换到 Debug 模式进行问题排查：
+
 ```
 <switch_mode>
 <mode_slug>debug</mode_slug>
-<reason>Need to systematically diagnose the authentication error</reason>
+<reason>需要系统诊断认证错误</reason>
 </switch_mode>
 ```
 
-Switching to Ask mode for information:
+切换到 Ask 模式获取信息：
+
 ```
 <switch_mode>
 <mode_slug>ask</mode_slug>
-<reason>Need to answer questions about the implemented feature</reason>
+<reason>需要回答关于已实现功能的问题</reason>
 </switch_mode>
 ```

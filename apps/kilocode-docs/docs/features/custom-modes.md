@@ -1,400 +1,397 @@
-# Custom Modes
+# 自定义模式
 
-Kilo Code allows you to create **custom modes** to tailor Kilo's behavior to specific tasks or workflows. Custom modes can be either **global** (available across all projects) or **project-specific** (defined within a single project).
+Kilo Code 允许您创建**自定义模式**，以根据特定任务或工作流程调整 Kilo 的行为。自定义模式可以是**全局**（在所有项目中可用）或**项目特定**（在单个项目中定义）。
 
-## Sticky Models for Efficient Workflow
+## 粘性模型以提高工作效率
 
-Each mode—including custom ones—features **Sticky Models**. This means Kilo Code automatically remembers and selects the last model you used with a particular mode. This lets you assign different preferred models to different tasks without constant reconfiguration, as Kilo switches between models when you change modes.
+每种模式（包括自定义模式）都有**粘性模型**功能。这意味着 Kilo Code 会自动记住并选择您上次在特定模式下使用的模型。这让您能够为不同任务分配不同的首选模型，而无需不断重新配置，因为 Kilo 会在您切换模式时自动切换模型。
 
-## Why Use Custom Modes?
+## 为什么使用自定义模式？
 
-- **Specialization:** Create modes optimized for specific tasks, like "Documentation Writer," "Test Engineer," or "Refactoring Expert"
-- **Safety:** Restrict a mode's access to sensitive files or commands. For example, a "Review Mode" could be limited to read-only operations
-- **Experimentation:** Safely experiment with different prompts and configurations without affecting other modes
-- **Team Collaboration:** Share custom modes with your team to standardize workflows
+- **专业化**：创建针对特定任务优化的模式，如"文档编写者"、"测试工程师"或"重构专家"
+- **安全性**：限制模式对敏感文件或命令的访问。例如，"审查模式"可以限制为只读操作
+- **实验性**：安全地尝试不同的提示和配置，而不会影响其他模式
+- **团队协作**：与团队共享自定义模式以标准化工作流程
 
-<img src="/img/custom-modes/custom-modes.png" alt="Overview of custom modes interface" width="600" />
+<img src="/img/custom-modes/custom-modes.png" alt="自定义模式界面概览" width="600" />
 
-_Kilo Code's interface for creating and managing custom modes._
+_Kilo Code 创建和管理自定义模式的界面。_
 
-## What's Included in a Custom Mode?
+## 自定义模式包含哪些内容？
 
-Custom modes are defined by several key properties. Understanding these concepts will help you tailor Kilo's behavior effectively.
+自定义模式由几个关键属性定义。理解这些概念将帮助您有效地调整 Kilo 的行为。
 
-| UI Field / YAML Property                       | Conceptual Description                                                                                                                                                               |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Slug** (`slug`)                              | A unique internal identifier for the mode. Used by Kilo Code to reference the mode, especially for associating mode-specific instruction files.                                      |
-| **Name** (`name`)                              | The display name for the mode as it appears in the Kilo Code user interface. Should be human-readable and descriptive.                                                               |
-| **Description** (`description`)                | A short, user-friendly summary of the mode's purpose displayed in the mode selector UI. Keep this concise and focused on what the mode does for the user.                            |
-| **Role Definition** (`roleDefinition`)         | Defines the core identity and expertise of the mode. This text is placed at the beginning of the system prompt and defines Kilo's personality and behavior when this mode is active. |
-| **Available Tools** (`groups`)                 | Defines the allowed toolsets and file access permissions for the mode. Corresponds to selecting which general categories of tools the mode can use.                                  |
-| **When to Use** (`whenToUse`)                  | _(Optional)_ Provides guidance for Kilo's automated decision-making, particularly for mode selection and task orchestration. Used by the Orchestrator mode for task coordination.    |
-| **Custom Instructions** (`customInstructions`) | _(Optional)_ Specific behavioral guidelines or rules for the mode. Added near the end of the system prompt to further refine Kilo's behavior.                                        |
+| UI 字段 / YAML 属性                   | 概念描述                                                                                           |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Slug** (`slug`)                     | 模式的唯一内部标识符。Kilo Code 使用它来引用模式，特别是用于关联特定于模式的指令文件。             |
+| **名称** (`name`)                     | 在 Kilo Code 用户界面中显示的模式名称。应该是人类可读且具有描述性的。                              |
+| **描述** (`description`)              | 在模式选择器 UI 中显示的模式目的的简短、用户友好的摘要。保持简洁，并专注于该模式对用户的作用。     |
+| **角色定义** (`roleDefinition`)       | 定义模式的核心身份和专业领域。此文本放置在系统提示的开头，并定义 Kilo 在此模式激活时的个性和行为。 |
+| **可用工具** (`groups`)               | 定义模式允许的工具集和文件访问权限。对应于选择模式可以使用的工具的一般类别。                       |
+| **使用时机** (`whenToUse`)            | _(可选)_ 为 Kilo 的自动化决策提供指导，特别是模式选择和任务编排。由协调器模式用于任务协调。        |
+| **自定义指令** (`customInstructions`) | _(可选)_ 模式的特定行为准则或规则。添加在系统提示的末尾附近，以进一步细化 Kilo 的行为。            |
 
-## Import/Export Modes
+## 导入/导出模式
 
-Easily share, back up, and template your custom modes. This feature lets you export any mode—and its associated rules—into a single, portable YAML file that you can import into any project.
+轻松共享、备份和模板化您的自定义模式。此功能允许您将任何模式及其关联规则导出到单个便携式 YAML 文件中，您可以将其导入到任何项目中。
 
-### Key Features
+### 主要功能
 
-- **Shareable Setups:** Package a mode and its rules into one file to easily share with your team
-- **Easy Backups:** Save your custom mode configurations so you never lose them
-- **Project Templates:** Create standardized mode templates for different types of projects
-- **Simple Migration:** Move modes between your global settings and specific projects effortlessly
-- **Flexible Slug Changes:** Change mode slugs in exported files without manual path editing
+- **可共享设置**：将模式及其规则打包到一个文件中，轻松与团队共享
+- **轻松备份**：保存您的自定义模式配置，这样您就不会丢失它们
+- **项目模板**：为不同类型的项目创建标准化模式模板
+- **简单迁移**：在全局设置和特定项目之间轻松移动模式
+- **灵活的 Slug 更改**：在导出的文件中更改模式 slug，无需手动路径编辑
 
-### How it Works
+### 工作原理
 
-**Exporting a Mode:**
+**导出模式：**
 
-1. Navigate to the Modes view
-2. Select the mode you wish to export
-3. Click the Export Mode button (download icon)
-4. Choose a location to save the `.yaml` file
-5. Kilo packages the mode's configuration and any rules into the YAML file
+1. 导航到模式视图
+2. 选择您希望导出的模式
+3. 点击导出模式按钮（下载图标）
+4. 选择保存 `.yaml` 文件的位置
+5. Kilo 将模式的配置和任何规则打包到 YAML 文件中
 
-**Importing a Mode:**
+**导入模式：**
 
-1. Click the Import Mode button (upload icon) in the Modes view
-2. Select the mode's YAML file
-3. Choose the import level:
-   - **Project:** Available only in current workspace (saved to `.kilocodemodes` file)
-   - **Global:** Available in all projects (saved to global settings)
+1. 在模式视图中点击导入模式按钮（上传图标）
+2. 选择模式的 YAML 文件
+3. 选择导入级别：
+    - **项目**：仅在当前工作区中可用（保存到 `.kilocodemodes` 文件）
+    - **全局**：在所有项目中可用（保存到全局设置）
 
-### Changing Slugs on Import
+### 导入时更改 Slug
 
-When importing modes, you can change the slug in the exported YAML file before importing:
+导入模式时，您可以在导入之前更改导出的 YAML 文件中的 slug：
 
-1. Export a mode with slug `original-mode`
-2. Edit the YAML file and change the slug to `new-mode`
-3. Import the file - the import process will automatically update rule file paths to match the new slug
+1. 导出一个 slug 为 `original-mode` 的模式
+2. 编辑 YAML 文件并将 slug 更改为 `new-mode`
+3. 导入文件 - 导入过程将自动更新规则文件路径以匹配新的 slug
 
-## Methods for Creating and Configuring Custom Modes
+## 创建和配置自定义模式的方法
 
-You can create and configure custom modes in several ways:
+您可以通过几种方式创建和配置自定义模式：
 
-### 1. Ask Kilo! (Recommended)
+### 1. 询问 Kilo！（推荐）
 
-You can quickly create a basic custom mode by asking Kilo Code to do it for you. For example:
+您可以通过要求 Kilo Code 为您创建基本的自定义模式来快速创建。例如：
 
 ```
-Create a new mode called "Documentation Writer". It should only be able to read files and write Markdown files.
+创建一个名为"文档编写者"的新模式。它应该只能读取文件和编写 Markdown 文件。
 ```
 
-Kilo Code will guide you through the process, prompting for necessary information and creating the mode using the preferred YAML format.
+Kilo Code 将引导您完成此过程，提示必要的信息并使用首选的 YAML 格式创建模式。
 
-### 2. Using the Prompts Tab
+### 2. 使用提示标签页
 
-1. **Open Prompts Tab:** Click the <Codicon name="notebook" /> icon in the Kilo Code top menu bar
-2. **Create New Mode:** Click the <Codicon name="add" /> button to the right of the Modes heading
-3. **Fill in Fields:**
+1. **打开提示标签页**：点击 Kilo Code 顶部菜单栏中的 <Codicon name="notebook" /> 图标
+2. **创建新模式**：点击模式标题右侧的 <Codicon name="add" /> 按钮
+3. **填写字段**：
 
-<img src="/img/custom-modes/custom-modes-2.png" alt="Custom mode creation interface in the Prompts tab" width="600" />
+<img src="/img/custom-modes/custom-modes-2.png" alt="提示标签页中的自定义模式创建界面" width="600" />
 
-_The custom mode creation interface showing fields for name, slug, description, save location, role definition, available tools, custom instructions._
+_自定义模式创建界面，显示名称、slug、描述、保存位置、角色定义、可用工具、自定义指令的字段。_
 
-The interface provides fields for Name, Slug, Description, Save Location, Role Definition, When to Use (optional), Available Tools, and Custom Instructions. After filling these, click the "Create Mode" button. Kilo Code will save the new mode in YAML format.
+界面提供名称、Slug、描述、保存位置、角色定义、使用时机（可选）、可用工具和自定义指令的字段。填写这些字段后，点击"创建模式"按钮。Kilo Code 将以 YAML 格式保存新模式。
 
-### 3. Manual Configuration (YAML & JSON)
+### 3. 手动配置（YAML 和 JSON）
 
-You can directly edit the configuration files to create or modify custom modes. This method offers the most control over all properties. Kilo Code now supports both YAML (preferred) and JSON formats.
+您可以直接编辑配置文件来创建或修改自定义模式。此方法为您提供对所有属性的最大控制。Kilo Code 现在支持 YAML（首选）和 JSON 格式。
 
-- **Global Modes:** Edit the `custom_modes.yaml` (preferred) or `custom_modes.json` file. Access it via Prompts Tab > <Codicon name="gear" /> (Settings Menu icon next to "Global Prompts") > "Edit Global Modes"
-- **Project Modes:** Edit the `.kilocodemodes` file (which can be YAML or JSON) in your project root. Access it via Prompts Tab > <Codicon name="gear" /> (Settings Menu icon next to "Project Prompts") > "Edit Project Modes"
+- **全局模式**：编辑 `custom_modes.yaml`（首选）或 `custom_modes.json` 文件。通过提示标签页 > <Codicon name="gear" />（"全局提示"旁的设置菜单图标）> "编辑全局模式" 访问
+- **项目模式**：编辑项目根目录中的 `.kilocodemodes` 文件（可以是 YAML 或 JSON）。通过提示标签页 > <Codicon name="gear" />（"项目提示"旁的设置菜单图标）> "编辑项目模式" 访问
 
-These files define an array/list of custom modes.
+这些文件定义自定义模式的数组/列表。
 
-## YAML Configuration Format (Preferred)
+## YAML 配置格式（首选）
 
-YAML is now the preferred format for defining custom modes due to better readability, comment support, and cleaner multi-line strings.
+YAML 现在是定义自定义模式的首选格式，因为它具有更好的可读性、注释支持和更清晰的多行字符串。
 
-### YAML Example
+### YAML 示例
 
 ```yaml
 customModes:
-  - slug: docs-writer
-    name: 📝 Documentation Writer
-    description: A specialized mode for writing and editing technical documentation.
-    roleDefinition: You are a technical writer specializing in clear documentation.
-    whenToUse: Use this mode for writing and editing documentation.
-    customInstructions: Focus on clarity and completeness in documentation.
-    groups:
-      - read
-      - - edit # First element of tuple
-        - fileRegex: \.(md|mdx)$ # Second element is the options object
-          description: Markdown files only
-      - browser
-  - slug: another-mode
-    name: Another Mode
-    # ... other properties
+    - slug: docs-writer
+      name: 📝 文档编写者
+      description: 专门用于编写和编辑技术文档的模式。
+      roleDefinition: 您是一位专门编写清晰文档的技术作家。
+      whenToUse: 使用此模式编写和编辑文档。
+      customInstructions: 专注于文档的清晰性和完整性。
+      groups:
+          - read
+          - - edit # 元组的第一个元素
+            - fileRegex: \.(md|mdx)$ # 第二个元素是选项对象
+              description: 仅限 Markdown 文件
+          - browser
+    - slug: another-mode
+      name: 另一个模式
+      # ... 其他属性
 ```
 
-### JSON Alternative
+### JSON 替代方案
 
 ```json
 {
-  "customModes": [
-    {
-      "slug": "docs-writer",
-      "name": "📝 Documentation Writer",
-      "description": "A specialized mode for writing and editing technical documentation.",
-      "roleDefinition": "You are a technical writer specializing in clear documentation.",
-      "whenToUse": "Use this mode for writing and editing documentation.",
-      "customInstructions": "Focus on clarity and completeness in documentation.",
-      "groups": [
-        "read",
-        [
-          "edit",
-          { "fileRegex": "\\.(md|mdx)$", "description": "Markdown files only" }
-        ],
-        "browser"
-      ]
-    }
-  ]
+	"customModes": [
+		{
+			"slug": "docs-writer",
+			"name": "📝 文档编写者",
+			"description": "专门用于编写和编辑技术文档的模式。",
+			"roleDefinition": "您是一位专门编写清晰文档的技术作家。",
+			"whenToUse": "使用此模式编写和编辑文档。",
+			"customInstructions": "专注于文档的清晰性和完整性。",
+			"groups": [
+				"read",
+				["edit", { "fileRegex": "\\.(md|mdx)$", "description": "仅限 Markdown 文件" }],
+				"browser"
+			]
+		}
+	]
 }
 ```
 
-## YAML/JSON Property Details
+## YAML/JSON 属性详情
 
 ### `slug`
 
-- **Purpose:** A unique identifier for the mode
-- **Format:** Must match the pattern `/^[a-zA-Z0-9-]+$/` (only letters, numbers, and hyphens)
-- **Usage:** Used internally and in file/directory names for mode-specific rules (e.g., `.kilo/rules-{slug}/`)
-- **Recommendation:** Keep it short and descriptive
+- **用途**：模式的唯一标识符
+- **格式**：必须匹配模式 `/^[a-zA-Z0-9-]+$/`（仅字母、数字和连字符）
+- **用法**：在内部使用以及模式特定规则的文件/目录名中使用（例如，`.kilo/rules-{slug}/`）
+- **建议**：保持简短且具有描述性
 
-**YAML Example:** `slug: docs-writer`
-**JSON Example:** `"slug": "docs-writer"`
+**YAML 示例**：`slug: docs-writer`
+**JSON 示例**：`"slug": "docs-writer"`
 
 ### `name`
 
-- **Purpose:** The display name shown in the Kilo Code UI
-- **Format:** Can include spaces and proper capitalization
+- **用途**：在 Kilo Code UI 中显示的名称
+- **格式**：可以包含空格和适当的大小写
 
-**YAML Example:** `name: 📝 Documentation Writer`
-**JSON Example:** `"name": "Documentation Writer"`
+**YAML 示例**：`name: 📝 文档编写者`
+**JSON 示例**：`"name": "文档编写者"`
 
 ### `description`
 
-- **Purpose:** A short, user-friendly summary displayed below the mode name in the mode selector UI
-- **Format:** Keep this concise and focused on what the mode does for the user
-- **UI Display:** This text appears in the redesigned mode selector
+- **用途**：在模式选择器 UI 中显示在模式名称下方的简短、用户友好的摘要
+- **格式**：保持简洁，并专注于该模式对用户的作用
+- **UI 显示**：此文本出现在重新设计的模式选择器中
 
-**YAML Example:** `description: A specialized mode for writing and editing technical documentation.`
-**JSON Example:** `"description": "A specialized mode for writing and editing technical documentation."`
+**YAML 示例**：`description: 专门用于编写和编辑技术文档的模式。`
+**JSON 示例**：`"description": "专门用于编写和编辑技术文档的模式。"`
 
 ### `roleDefinition`
 
-- **Purpose:** Detailed description of the mode's role, expertise, and personality
-- **Placement:** This text is placed at the beginning of the system prompt when the mode is active
+- **用途**：模式角色、专业领域和个性的详细描述
+- **位置**：当模式激活时，此文本放置在系统提示的开头
 
-**YAML Example (multi-line):**
+**YAML 示例（多行）**：
 
 ```yaml
 roleDefinition: >-
-  You are a test engineer with expertise in:
-  - Writing comprehensive test suites
-  - Test-driven development
+    您是一位测试工程师，具有以下专业知识：
+     - 编写全面的测试套件
+     - 测试驱动开发
 ```
 
-**JSON Example:** `"roleDefinition": "You are a technical writer specializing in clear documentation."`
+**JSON 示例**：`"roleDefinition": "您是一位专门编写清晰文档的技术作家。"`
 
 ### `groups`
 
-- **Purpose:** Array/list defining which tool groups the mode can access and any file restrictions
-- **Available Tool Groups:** `"read"`, `"edit"`, `"browser"`, `"command"`, `"mcp"`
-- **Structure:**
-  - Simple string for unrestricted access: `"edit"`
-  - Tuple (two-element array) for restricted access: `["edit", { fileRegex: "pattern", description: "optional" }]`
+- **用途**：定义模式可以访问的工具组和任何文件限制的数组/列表
+- **可用工具组**：`"read"`、`"edit"`、`"browser"`、`"command"`、`"mcp"`
+- **结构**：
+    - 无限制访问的简单字符串：`"edit"`
+    - 受限访问的元组（双元素数组）：`["edit", { fileRegex: "pattern", description: "optional" }]`
 
-**File Restrictions for "edit" group:**
+**"edit" 组的文件限制**：
 
-- `fileRegex`: A regular expression string to control which files the mode can edit
-- In YAML, typically use single backslashes for regex special characters (e.g., `\.md$`)
-- In JSON, backslashes must be double-escaped (e.g., `\\.md$`)
-- `description`: An optional string describing the restriction
+- `fileRegex`：用于控制模式可以编辑哪些文件的正则表达式字符串
+- 在 YAML 中，通常对正则特殊字符使用单个反斜杠（例如，`\.md$`）
+- 在 JSON 中，反斜杠必须双转义（例如，`\\.md$`）
+- `description`：描述限制的可选字符串
 
-**YAML Example:**
+**YAML 示例**：
 
 ```yaml
 groups:
-  - read
-  - - edit # First element of tuple
-    - fileRegex: \.(js|ts)$ # Second element is the options object
-      description: JS/TS files only
-  - command
+    - read
+    - - edit # 元组的第一个元素
+      - fileRegex: \.(js|ts)$ # 第二个元素是选项对象
+        description: 仅限 JS/TS 文件
+    - command
 ```
 
-**JSON Example:**
+**JSON 示例**：
 
 ```json
 "groups": [
   "read",
-  ["edit", { "fileRegex": "\\.(js|ts)$", "description": "JS/TS files only" }],
+  ["edit", { "fileRegex": "\\.(js|ts)$", "description": "仅限 JS/TS 文件" }],
   "command"
 ]
 ```
 
-### `whenToUse` (Optional)
+### `whenToUse`（可选）
 
-- **Purpose:** Provides guidance for Kilo's automated decision-making, particularly for mode selection and task orchestration
-- **Format:** A string describing ideal scenarios or task types for this mode
-- **Usage:** Used by Kilo for automated decisions and not displayed in the mode selector UI
+- **用途**：为 Kilo 的自动化决策提供指导，特别是模式选择和任务编排
+- **格式**：描述此模式的理想场景或任务类型的字符串
+- **用法**：由 Kilo 用于自动化决策，不在模式选择器 UI 中显示
 
-**YAML Example:** `whenToUse: This mode is best for refactoring Python code.`
-**JSON Example:** `"whenToUse": "This mode is best for refactoring Python code."`
+**YAML 示例**：`whenToUse: 此模式最适合重构 Python 代码。`
+**JSON 示例**：`"whenToUse": "此模式最适合重构 Python 代码。"`
 
-### `customInstructions` (Optional)
+### `customInstructions`（可选）
 
-- **Purpose:** A string containing additional behavioral guidelines for the mode
-- **Placement:** This text is added near the end of the system prompt
+- **用途**：包含模式附加行为准则的字符串
+- **位置**：此文本添加在系统提示的末尾附近
 
-**YAML Example (multi-line):**
+**YAML 示例（多行）**：
 
 ```yaml
 customInstructions: |-
-  When writing tests:
-  - Use describe/it blocks
-  - Include meaningful descriptions
+    编写测试时：
+     - 使用 describe/it 块
+     - 包含有意义的描述
 ```
 
-**JSON Example:** `"customInstructions": "Focus on explaining concepts and providing examples."`
+**JSON 示例**：`"customInstructions": "专注于解释概念并提供示例。"`
 
-## Benefits of YAML Format
+## YAML 格式的优势
 
-YAML is now the preferred format for defining custom modes due to several advantages:
+YAML 现在是定义自定义模式的首选格式，因为它具有以下优势：
 
-- **Readability:** YAML's indentation-based structure is easier for humans to read and understand
-- **Comments:** YAML allows for comments (lines starting with `#`), making it possible to annotate your mode definitions
-- **Multi-line Strings:** YAML provides cleaner syntax for multi-line strings using `|` (literal block) or `>` (folded block)
-- **Less Punctuation:** YAML generally requires less punctuation compared to JSON, reducing syntax errors
-- **Editor Support:** Most modern code editors provide excellent syntax highlighting and validation for YAML files
+- **可读性**：YAML 基于缩进的结构更容易被人阅读和理解
+- **注释**：YAML 允许注释（以 `#` 开头的行），可以为您的模式定义添加注释
+- **多行字符串**：YAML 提供更清晰的多行字符串语法，使用 `|`（文字块）或 `>`（折叠块）
+- **更少标点符号**：与 JSON 相比，YAML 通常需要更少的标点符号，减少语法错误
+- **编辑器支持**：大多数现代代码编辑器为 YAML 文件提供出色的语法高亮和验证
 
-While JSON is still fully supported, new modes created via the UI or by asking Kilo will default to YAML.
+虽然 JSON 仍然完全支持，但通过 UI 或询问 Kilo 创建的新模式将默认为 YAML。
 
-## Migration to YAML Format
+## 迁移到 YAML 格式
 
-### Global Modes
+### 全局模式
 
-Automatic migration from `custom_modes.json` to `custom_modes.yaml` happens when:
+当以下情况发生时，会自动从 `custom_modes.json` 迁移到 `custom_modes.yaml`：
 
-- Kilo Code starts up
-- A `custom_modes.json` file exists
-- No `custom_modes.yaml` file exists yet
+- Kilo Code 启动时
+- 存在 `custom_modes.json` 文件
+- 尚不存在 `custom_modes.yaml` 文件
 
-The migration process preserves the original JSON file for rollback purposes.
+迁移过程会保留原始 JSON 文件以备回滚。
 
-### Project Modes (`.kilocodemodes`)
+### 项目模式（`.kilocodemodes`）
 
-- No automatic startup migration occurs for project-specific files
-- Kilo Code can read `.kilocodemodes` files in either YAML or JSON format
-- When editing through the UI, JSON files will be converted to YAML format
-- For manual conversion, you can ask Kilo to help reformat configurations
+- 项目特定文件不会在启动时自动迁移
+- Kilo Code 可以读取 YAML 或 JSON 格式的 `.kilocodemodes` 文件
+- 通过 UI 编辑时，JSON 文件将转换为 YAML 格式
+- 对于手动转换，您可以要求 Kilo 帮助重新格式化配置
 
-## Mode-Specific Instructions via Files/Directories
+## 通过文件/目录提供特定于模式的指令
 
-You can provide instructions for custom modes using dedicated files or directories within your workspace, allowing for better organization and version control.
+您可以使用工作区内的专用文件或目录为自定义模式提供指令，从而实现更好的组织和版本控制。
 
-### Preferred Method: Directory (`.kilo/rules-{mode-slug}/`)
+### 首选方法：目录（`.kilo/rules-{mode-slug}/`）
 
 ```
 .
 ├── .kilo/
-│   └── rules-docs-writer/  # Example for mode slug "docs-writer"
+│   └── rules-docs-writer/  # 模式 slug "docs-writer" 的示例
 │       ├── 01-style-guide.md
 │       └── 02-formatting.txt
-└── ... (other project files)
+└── ... (其他项目文件)
 ```
 
-### Fallback Method: Single File (`.kilorules-{mode-slug}`)
+### 备用方法：单个文件（`.kilorules-{mode-slug}`）
 
 ```
 .
-├── .kilorules-docs-writer  # Example for mode slug "docs-writer"
-└── ... (other project files)
+├── .kilorules-docs-writer  # 模式 slug "docs-writer" 的示例
+└── ... (其他项目文件)
 ```
 
-**Rules Directory Scope:**
+**规则目录范围**：
 
-- **Global modes:** Rules are stored in `~/.kilo/rules-{slug}/`
-- **Project modes:** Rules are stored in `{workspace}/.kilo/rules-{slug}/`
+- **全局模式**：规则存储在 `~/.kilo/rules-{slug}/`
+- **项目模式**：规则存储在 `{workspace}/.kilo/rules-{slug}/`
 
-The directory method takes precedence if it exists and contains files. Files within the directory are read recursively and appended in alphabetical order.
+如果目录存在且包含文件，则目录方法优先。目录中的文件按字母顺序递归读取并追加。
 
-## Configuration Precedence
+## 配置优先级
 
-Mode configurations are applied in this order:
+模式配置按以下顺序应用：
 
-1. **Project-level mode configurations** (from `.kilocodemodes` - YAML or JSON)
-2. **Global mode configurations** (from `custom_modes.yaml`, then `custom_modes.json` if YAML not found)
-3. **Default mode configurations**
+1. **项目级模式配置**（来自 `.kilocodemodes` - YAML 或 JSON）
+2. **全局模式配置**（来自 `custom_modes.yaml`，如果未找到 YAML 则来自 `custom_modes.json`）
+3. **默认模式配置**
 
-**Important:** When modes with the same slug exist in both `.kilocodemodes` and global settings, the `.kilocodemodes` version completely overrides the global one for ALL properties.
+**重要**：当 `.kilocodemodes` 和全局设置中存在相同 slug 的模式时，`.kilocodemodes` 版本会完全覆盖全局版本的所有属性。
 
-## Overriding Default Modes
+## 覆盖默认模式
 
-You can override Kilo Code's built-in modes (like 💻 Code, 🪲 Debug, ❓ Ask, 🏗️ Architect, 🪃 Orchestrator) by creating a custom mode with the same slug.
+您可以通过创建具有相同 slug 的自定义模式来覆盖 Kilo Code 的内置模式（如 💻 代码、🪲 调试、❓ 询问、🏗️ 架构师、🪃 协调器）。
 
-### Global Override Example
+### 全局覆盖示例
 
 ```yaml
 customModes:
-  - slug: code # Matches the default 'code' mode slug
-    name: 💻 Code (Global Override)
-    roleDefinition: You are a software engineer with global-specific constraints.
-    whenToUse: This globally overridden code mode is for JS/TS tasks.
-    customInstructions: Focus on project-specific JS/TS development.
-    groups:
-      - read
-      - - edit
-        - fileRegex: \.(js|ts)$
-          description: JS/TS files only
+    - slug: code # 匹配默认的 'code' 模式 slug
+      name: 💻 代码（全局覆盖）
+      roleDefinition: 您是一位具有全局特定约束的软件工程师。
+      whenToUse: 此全局覆盖的代码模式用于 JS/TS 任务。
+      customInstructions: 专注于项目特定的 JS/TS 开发。
+      groups:
+          - read
+          - - edit
+            - fileRegex: \.(js|ts)$
+              description: 仅限 JS/TS 文件
 ```
 
-### Project-Specific Override Example
+### 项目特定覆盖示例
 
 ```yaml
 customModes:
-  - slug: code # Matches the default 'code' mode slug
-    name: 💻 Code (Project-Specific)
-    roleDefinition: You are a software engineer with project-specific constraints for this project.
-    whenToUse: This project-specific code mode is for Python tasks within this project.
-    customInstructions: Adhere to PEP8 and use type hints.
-    groups:
-      - read
-      - - edit
-        - fileRegex: \.py$
-          description: Python files only
-      - command
+    - slug: code # 匹配默认的 'code' 模式 slug
+      name: 💻 代码（项目特定）
+      roleDefinition: 您是一位具有此项目特定约束的软件工程师。
+      whenToUse: 此项目特定代码模式用于此项目中的 Python 任务。
+      customInstructions: 遵循 PEP8 并使用类型提示。
+      groups:
+          - read
+          - - edit
+            - fileRegex: \.py$
+              description: 仅限 Python 文件
+          - command
 ```
 
-## Understanding Regex in Custom Modes
+## 理解自定义模式中的正则表达式
 
-Regular expressions (`fileRegex`) offer fine-grained control over file editing permissions.
+正则表达式（`fileRegex`）提供对文件编辑权限的细粒度控制。
 
 :::tip
-**Let Kilo Build Your Regex Patterns**
+**让 Kilo 构建您的正则表达式模式**
 
-Instead of writing complex regex manually, ask Kilo:
+不要手动编写复杂的正则表达式，询问 Kilo：
 
 ```
-Create a regex pattern that matches JavaScript files but excludes test files
+创建一个匹配 JavaScript 文件但排除测试文件的正则表达式模式
 ```
 
-Kilo will generate the pattern. Remember to adapt it for YAML (usually single backslashes) or JSON (double backslashes).
+Kilo 将生成模式。请记住根据 YAML（通常单个反斜杠）或 JSON（双反斜杠）进行调整。
 :::
 
-### Important Rules for `fileRegex`
+### `fileRegex` 的重要规则
 
-- **Escaping in JSON:** In JSON strings, backslashes (`\`) must be double-escaped (e.g., `\\.md$`)
-- **Escaping in YAML:** In unquoted or single-quoted YAML strings, a single backslash is usually sufficient for regex special characters (e.g., `\.md$`)
-- **Path Matching:** Patterns match against the full relative file path from your workspace root
-- **Case Sensitivity:** Regex patterns are case-sensitive by default
-- **Validation:** Invalid regex patterns are rejected with an "Invalid regular expression pattern" error message
+- **JSON 中的转义**：在 JSON 字符串中，反斜杠（`\`）必须双转义（例如，`\\.md$`）
+- **YAML 中的转义**：在未加引号或单引号的 YAML 字符串中，单个反斜杠通常足以用于正则特殊字符（例如，`\.md$`）
+- **路径匹配**：模式与工作区根目录的完整相对文件路径匹配
+- **大小写敏感性**：正则表达式模式默认区分大小写
+- **验证**：无效的正则表达式模式会被拒绝，并显示"无效的正则表达式模式"错误消息
 
-### Common Pattern Examples
+### 常见模式示例
 
-| Pattern (YAML-like)              | JSON fileRegex Value                | Matches                                   | Doesn't Match                      |
+| 模式（类似 YAML）                | JSON fileRegex 值                   | 匹配                                      | 不匹配                             |
 | -------------------------------- | ----------------------------------- | ----------------------------------------- | ---------------------------------- |
 | `\.md$`                          | `"\\.md$"`                          | `readme.md`, `docs/guide.md`              | `script.js`, `readme.md.bak`       |
 | `^src/.*`                        | `"^src/.*"`                         | `src/app.js`, `src/components/button.tsx` | `lib/utils.js`, `test/src/mock.js` |
@@ -402,96 +399,96 @@ Kilo will generate the pattern. Remember to adapt it for YAML (usually single ba
 | `docs/.*\.md$`                   | `"docs/.*\\.md$"`                   | `docs/guide.md`, `docs/api/reference.md`  | `guide.md`, `src/docs/notes.md`    |
 | `^(?!.*(test\|spec))\.(js\|ts)$` | `"^(?!.*(test\|spec))\\.(js\|ts)$"` | `app.js`, `utils.ts`                      | `app.test.js`, `utils.spec.js`     |
 
-### Key Regex Building Blocks
+### 关键正则构建块
 
-- `\.`: Matches a literal dot (YAML: `\.`, JSON: `\\.`)
-- `$`: Matches the end of the string
-- `^`: Matches the beginning of the string
-- `.*`: Matches any character (except newline) zero or more times
-- `(a|b)`: Matches either "a" or "b"
-- `(?!...)`: Negative lookahead
+- `\.`：匹配文字点（YAML：`\.`，JSON：`\\.`）
+- `$`：匹配字符串末尾
+- `^`：匹配字符串开头
+- `.*`：匹配任何字符（换行符除外）零次或多次
+- `(a|b)`：匹配"a"或"b"
+- `(?!...)`：负向先行断言
 
-## Error Handling
+## 错误处理
 
-When a mode attempts to edit a file that doesn't match its `fileRegex` pattern, you'll see a `FileRestrictionError` that includes:
+当模式尝试编辑不匹配其 `fileRegex` 模式的文件时，您会看到包含以下内容的 `FileRestrictionError`：
 
-- The mode name
-- The allowed file pattern
-- The description (if provided)
-- The attempted file path
-- The tool that was blocked
+- 模式名称
+- 允许的文件模式
+- 描述（如果提供）
+- 尝试的文件路径
+- 被阻止的工具
 
-## Example Configurations
+## 配置示例
 
-### Basic Documentation Writer (YAML)
-
-```yaml
-customModes:
-  - slug: docs-writer
-    name: 📝 Documentation Writer
-    description: Specialized for writing and editing technical documentation
-    roleDefinition: You are a technical writer specializing in clear documentation
-    groups:
-      - read
-      - - edit
-        - fileRegex: \.md$
-          description: Markdown files only
-    customInstructions: Focus on clear explanations and examples
-```
-
-### Test Engineer with File Restrictions (YAML)
+### 基本文档编写者（YAML）
 
 ```yaml
 customModes:
-  - slug: test-engineer
-    name: 🧪 Test Engineer
-    description: Focused on writing and maintaining test suites
-    roleDefinition: You are a test engineer focused on code quality
-    whenToUse: Use for writing tests, debugging test failures, and improving test coverage
-    groups:
-      - read
-      - - edit
-        - fileRegex: \.(test|spec)\.(js|ts)$
-          description: Test files only
-      - command
+    - slug: docs-writer
+      name: 📝 文档编写者
+      description: 专门用于编写和编辑技术文档
+      roleDefinition: 您是一位专门编写清晰文档的技术作家
+      groups:
+          - read
+          - - edit
+            - fileRegex: \.md$
+              description: 仅限 Markdown 文件
+      customInstructions: 专注于清晰的解释和示例
 ```
 
-### Security Review Mode (YAML)
+### 带文件限制的测试工程师（YAML）
 
 ```yaml
 customModes:
-  - slug: security-review
-    name: 🔒 Security Reviewer
-    description: Read-only security analysis and vulnerability assessment
-    roleDefinition: You are a security specialist reviewing code for vulnerabilities
-    whenToUse: Use for security reviews and vulnerability assessments
-    customInstructions: |-
-      Focus on:
-      - Input validation issues
-      - Authentication and authorization flaws
-      - Data exposure risks
-      - Injection vulnerabilities
-    groups:
-      - read
-      - browser
+    - slug: test-engineer
+      name: 🧪 测试工程师
+      description: 专注于编写和维护测试套件
+      roleDefinition: 您是一位专注于代码质量的测试工程师
+      whenToUse: 用于编写测试、调试测试失败和提高测试覆盖率
+      groups:
+          - read
+          - - edit
+            - fileRegex: \.(test|spec)\.(js|ts)$
+              description: 仅限测试文件
+          - command
 ```
 
-## Troubleshooting
+### 安全审查模式（YAML）
 
-### Common Issues
+```yaml
+customModes:
+    - slug: security-review
+      name: 🔒 安全审查员
+      description: 只读安全分析和漏洞评估
+      roleDefinition: 您是一位审查代码漏洞的安全专家
+      whenToUse: 用于安全审查和漏洞评估
+      customInstructions: |-
+          关注：
+          - 输入验证问题
+          - 身份验证和授权缺陷
+          - 数据暴露风险
+          - 注入漏洞
+      groups:
+          - read
+          - browser
+```
 
-- **Mode not appearing:** After creating or importing a mode, you may need to reload the VS Code window
-- **Invalid regex patterns:** Test your patterns using online regex testers before applying them
-- **Precedence confusion:** Remember that project modes completely override global modes with the same slug
-- **YAML syntax errors:** Use proper indentation (spaces, not tabs) and validate your YAML
+## 故障排除
 
-### Tips for Working with YAML
+### 常见问题
 
-- **Indentation is Key:** YAML uses indentation (spaces, not tabs) to define structure
-- **Colons for Key-Value Pairs:** Keys must be followed by a colon and a space (e.g., `slug: my-mode`)
-- **Hyphens for List Items:** List items start with a hyphen and a space (e.g., `- read`)
-- **Validate Your YAML:** Use online YAML validators or your editor's built-in validation
+- **模式未出现**：创建或导入模式后，您可能需要重新加载 VS Code 窗口
+- **无效的正则表达式模式**：在应用之前使用在线正则表达式测试器测试您的模式
+- **优先级混淆**：请记住，项目模式会完全覆盖具有相同 slug 的全局模式
+- **YAML 语法错误**：使用正确的缩进（空格，不是制表符）并验证您的 YAML
 
-## Community Gallery
+### 使用 YAML 的技巧
 
-Ready to explore more? Check out the [Show and Tell](https://github.com/Kilo-Org/kilocode/discussions/categories/show-and-tell) to discover and share custom modes created by the community!
+- **缩进是关键**：YAML 使用缩进（空格，不是制表符）来定义结构
+- **冒号用于键值对**：键后面必须跟一个冒号和一个空格（例如，`slug: my-mode`）
+- **连字符用于列表项**：列表项以连字符和一个空格开头（例如，`- read`）
+- **验证您的 YAML**：使用在线 YAML 验证器或编辑器的内置验证
+
+## 社区画廊
+
+准备好探索更多了吗？查看 [Show and Tell](https://github.com/Kilo-Org/kilocode/discussions/categories/show-and-tell) 来发现和分享社区创建的自定义模式！

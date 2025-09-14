@@ -1,29 +1,29 @@
-# Human Relay Provider
+# 人工中继提供商
 
-The Human Relay provider allows you to use Kilo Code with web-based AI models like ChatGPT or Claude without needing an API key. Instead, it relies on you to manually relay messages between Kilo Code and the AI's web interface.
+人工中继提供商允许您在不需要 API 密钥的情况下，使用基于 Web 的 AI 模型（如 ChatGPT 或 Claude）与 Kilo Code 配合使用。相反，它依赖于您在 Kilo Code 和 AI 的 Web 界面之间手动传递消息。
 
-## How it Works
+## 工作原理
 
-1.  **Select Human Relay**: Choose "Human Relay" as your API provider in Kilo Code's settings. No API key is required.
-2.  **Initiate a Request**: Start a chat or task with Kilo Code as usual.
-3.  **Dialog Prompt**: A dialog box will appear in VS Code. Your message to the AI is automatically copied to your clipboard.
-4.  **Paste to Web AI**: Go to the web interface of your chosen AI (e.g., chat.openai.com, claude.ai) and paste the message from your clipboard into the chat input.
-5.  **Copy AI Response**: Once the AI responds, copy its complete response text.
-6.  **Paste Back to Kilo Code**: Return to the dialog box in VS Code, paste the AI's response into the designated field, and click "Confirm".
-7.  **Continue**: Kilo Code will process the response as if it came directly from an API.
+1. **选择人工中继：** 在 Kilo Code 的设置中选择 "人工中继" 作为您的 API 提供商。无需 API 密钥。
+2. **发起请求：** 像往常一样开始与 Kilo Code 的聊天或任务。
+3. **对话框提示：** 在 VS Code 中会弹出一个对话框。您发送给 AI 的消息会自动复制到剪贴板。
+4. **粘贴到 Web AI：** 前往您选择的 AI 的 Web 界面（例如，chat.openai.com, claude.ai），并将剪贴板中的消息粘贴到聊天输入框中。
+5. **复制 AI 的回复：** 当 AI 回复后，复制其完整的回复文本。
+6. **粘贴回 Kilo Code：** 返回 VS Code 中的对话框，将 AI 的回复粘贴到指定字段中，然后点击“确认”。
+7. **继续：** Kilo Code 会像处理直接来自 API 的响应一样处理该回复。
 
-## Use Cases
+## 使用场景
 
-This provider is useful if:
+此提供商在以下情况下有用：
 
-*   You want to use models that don't offer direct API access.
-*   You prefer not to manage API keys.
-*   You need to leverage the specific capabilities or context available only in the web UI of certain AI models.
+- 您想使用不提供直接 API 访问的模型。
+- 您不希望管理 API 密钥。
+- 您需要利用某些 AI 模型的 Web UI 中提供的特定功能或上下文。
 
-## Limitations
+## 限制
 
-*   **Manual Effort**: Requires constant copy-pasting between VS Code and your browser.
-*   **Slower Interaction**: The back-and-forth process is significantly slower than direct API integration.
-*   **Potential for Errors**: Manual copying and pasting can introduce errors or omissions.
+- **手动操作：** 需要在 VS Code 和浏览器之间不断进行复制粘贴。
+- **交互速度较慢：** 来回传递的过程比直接 API 集成要慢得多。
+- **可能出现错误：** 手动复制粘贴可能会引入错误或遗漏。
 
-Choose this provider when the benefits of using a specific web AI outweigh the inconvenience of the manual relay process.
+当使用特定 Web AI 的好处超过了手动中继过程的不便时，请选择此提供商。

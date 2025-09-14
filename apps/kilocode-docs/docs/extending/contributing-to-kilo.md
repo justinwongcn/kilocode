@@ -1,125 +1,128 @@
-# Contributing to Kilo Code
+# 为 Kilo Code 做贡献
 
-Kilo Code is an open-source project that welcomes contributions from developers of all skill levels. This guide will help you get started with contributing to Kilo Code, whether you're fixing bugs, adding features, improving documentation, or sharing custom modes.
+Kilo Code 是一个开源项目，欢迎所有技能水平的开发者贡献代码。本指南将帮助你开始为 Kilo Code 做出贡献，无论是修复错误、添加功能、改进文档还是分享自定义模式。
 
-## Ways to Contribute
+## 贡献方式
 
-There are many ways to contribute to Kilo Code:
+有多种方式可以为 Kilo Code 做出贡献：
 
-1. **Code Contributions**: Implement new features or fix bugs
-2. **Documentation**: Improve existing docs or create new guides
-3. **Custom Modes**: Create and share specialized modes
-4. **Bug Reports**: Report issues you encounter
-5. **Feature Requests**: Suggest new features or improvements
-6. **Community Support**: Help other users in the community
+1. **代码贡献**：实现新功能或修复错误
+2. **文档**：改进现有文档或创建新指南
+3. **自定义模式**：创建并分享专用模式
+4. **错误报告**：报告你遇到的问题
+5. **功能请求**：建议新功能或改进
+6. **社区支持**：在社区中帮助其他用户
 
-## Setting Up the Development Environment
+## 设置开发环境
 
-Setting Up the Development Environment is described in details on [this page](/docs/extending/development-environment.md)
+设置开发环境的详细说明请参阅[此页面](/extending/development-environment.md)
 
-## Development Workflow
+## 开发工作流
 
-### Branching Strategy
+### 分支策略
 
-- Create a new branch for each feature or bugfix
-- Use descriptive branch names (e.g., `feature/new-tool-support` or `fix/browser-action-bug`)
+- 为每个功能或错误修复创建一个新分支
+- 使用描述性的分支名称（例如 `feature/new-tool-support` 或 `fix/browser-action-bug`）
 
 ```bash
 git checkout -b your-branch-name
 ```
 
-### Coding Standards
+### 编码标准
 
-- Follow the existing code style and patterns
-- Use TypeScript for new code
-- Include appropriate tests for new features
-- Update documentation for any user-facing changes
+- 遵循现有的代码风格和模式
+- 新代码使用 TypeScript
+- 为新功能包含适当的测试
+- 更新文档以反映任何面向用户的更改
 
-### Commit Guidelines
+### 提交指南
 
-- Write clear, concise commit messages
-- Reference issue numbers when applicable
-- Keep commits focused on a single change
+- 编写清晰、简洁的提交信息
+- 在适用时引用问题编号
+- 保持每次提交专注于单一更改
 
-### Testing Your Changes
+### 测试你的更改
 
-- Run the test suite:
-  ```bash
-  npm test
-  ```
-- Manually test your changes in the development extension
+- 运行测试套件：
+    ```bash
+    npm test
+    ```
+- 在开发扩展中手动测试你的更改
 
-### Creating a Pull Request
+### 创建拉取请求
 
-1. Push your changes to your fork:
-   ```bash
-   git push origin your-branch-name
-   ```
+1. 将你的更改推送到你的 fork：
 
-2. Go to the [Kilo Code repository](https://github.com/Kilo-Org/kilocode)
+    ```bash
+    git push origin your-branch-name
+    ```
 
-3. Click "New Pull Request" and select "compare across forks"
+2. 前往 [Kilo Code 仓库](https://github.com/Kilo-Org/kilocode)
 
-4. Select your fork and branch
+3. 点击 "New Pull Request" 并选择 "compare across forks"
 
-5. Fill out the PR template with:
-   - A clear description of the changes
-   - Any related issues
-   - Testing steps
-   - Screenshots (if applicable)
+4. 选择你的 fork 和分支
 
-## Creating Custom Modes
+5. 填写 PR 模板，包括：
+    - 更改的清晰描述
+    - 任何相关问题
+    - 测试步骤
+    - 截图（如适用）
 
-Custom modes are a powerful way to extend Kilo Code's capabilities. To create and share a custom mode:
+## 创建自定义模式
 
-1. Follow the [Custom Modes documentation](/features/custom-modes) to create your mode
+自定义模式是扩展 Kilo Code 功能的强大方式。要创建并分享自定义模式：
 
-2. Test your mode thoroughly
+1. 按照 [自定义模式文档](/features/custom-modes) 创建你的模式
 
-3. Share your mode with the community by submitting a [GitHub Discussion](https://github.com/Kilo-Org/kilocode/discussions)
+2. 彻底测试你的模式
 
-## Documentation Contributions
+3. 通过提交 [GitHub Discussion](https://github.com/Kilo-Org/kilocode/discussions) 与社区分享你的模式
 
-Documentation improvements are highly valued contributions:
+## 文档贡献
 
-1. Follow the documentation style guide:
-   - Use clear, concise language
-   - Include examples where appropriate
-   - Use absolute paths starting from `/docs/` for internal links
-   - Don't include `.md` extensions in links
+文档改进是非常有价值的贡献：
 
-2. Test your documentation changes by running the docs site locally:
-   ```bash
-   cd docs
-   npm install
-   npm start
-   ```
+1. 遵循文档风格指南：
 
-3. Submit a PR with your documentation changes
+    - 使用清晰、简洁的语言
+    - 在适当时包含示例
+    - 使用以 `/docs/` 开头的绝对路径作为内部链接
+    - 不要在链接中包含 `.md` 扩展名
 
-## Community Guidelines
+2. 通过本地运行文档站点测试你的文档更改：
 
-When participating in the Kilo Code community:
+    ```bash
+    cd docs
+    npm install
+    npm start
+    ```
 
-- Be respectful and inclusive
-- Provide constructive feedback
-- Help newcomers get started
-- Follow the [Code of Conduct](https://github.com/Kilo-Org/kilocode/blob/main/CODE_OF_CONDUCT.md)
+3. 提交包含文档更改的 PR
 
-## Getting Help
+## 社区准则
 
-If you need help with your contribution:
+参与 Kilo Code 社区时：
 
-- Join our [Discord community](https://kilocode.ai/discord) for real-time support
-- Ask questions on [GitHub Discussions](https://github.com/Kilo-Org/kilocode/discussions)
-- Visit our [Reddit community](https://www.reddit.com/r/KiloCode)
+- 保持尊重和包容
+- 提供建设性的反馈
+- 帮助新手入门
+- 遵守 [行为准则](https://github.com/Kilo-Org/kilocode/blob/main/CODE_OF_CONDUCT.md)
 
-## Recognition
+## 获取帮助
 
-All contributors are valued members of the Kilo Code community. Contributors are recognized in:
+如果你需要帮助：
 
-- Release notes
-- The project's README
-- The contributors list on GitHub
+- 加入我们的 [Discord 社区](https://kilocode.ai/discord) 获取实时支持
+- 在 [GitHub Discussions](https://github.com/Kilo-Org/kilocode/discussions) 上提问
+- 访问我们的 [Reddit 社区](https://www.reddit.com/r/KiloCode)
 
-Thank you for contributing to Kilo Code and helping make AI-powered coding assistance better for everyone!
+## 致谢
+
+所有贡献者都是 Kilo Code 社区的重要成员。贡献者将在以下地方获得认可：
+
+- 发布说明
+- 项目的 README
+- GitHub 上的贡献者列表
+
+感谢你为 Kilo Code 做出贡献，帮助让 AI 驱动的编码辅助对每个人更好！

@@ -1,90 +1,90 @@
-# Using Modes
+# 使用模式
 
-Modes in Kilo Code are specialized personas that tailor the assistant's behavior to your current task. Each mode offers different capabilities, expertise, and access levels to help you accomplish specific goals.
+Kilo Code 中的模式是专门设计的角色，可以根据当前任务调整助手的行为。每种模式都提供不同的能力、专业知识和访问权限，帮助你完成特定目标。
 
-## Why Use Different Modes?
+## 为什么使用不同的模式？
 
-- **Task specialization:** Get precisely the type of assistance you need for your current task
-- **Safety controls:** Prevent unintended file modifications when focusing on planning or learning
-- **Focused interactions:** Receive responses optimized for your current activity
-- **Workflow optimization:** Seamlessly transition between planning, implementing, debugging, and learning
+- **任务专业化**：获得针对当前任务所需的精确帮助
+- **安全控制**：在专注于规划或学习时，防止意外的文件修改
+- **专注交互**：接收针对当前活动优化的响应
+- **工作流优化**：在规划、实施、调试和学习之间无缝切换
 
 <YouTubeEmbed
   url="https://youtu.be/cS4vQfX528w"
-  caption="Explaining the different modes in Kilo Code"
+  caption="解释 Kilo Code 中的不同模式"
 />
 
-## Switching Between Modes
+## 切换模式
 
-Four ways to switch modes:
+四种切换模式的方式：
 
-1. **Dropdown menu:** Click the selector to the left of the chat input
-   
-   <img src="/docs/img/modes/modes.png" alt="Using the dropdown menu to switch modes" width="400" />
+1. **下拉菜单**：点击聊天输入框左侧的选择器
 
-2. **Slash command:** Type `/architect`, `/ask`, `/debug`, or `/code` in the chat input
-   
-   <img src="/docs/img/modes/modes-1.png" alt="Using slash commands to switch modes" width="400" />
+    <img src="/docs/img/modes/modes.png" alt="使用下拉菜单切换模式" width="400" />
 
-3. **Toggle command/Keyboard shortcut:** Use the keyboard shortcut below, applicable to your operating system. Each press cycles through the available modes in sequence, wrapping back to the first mode after reaching the end.
-       
-    | Operating System | Shortcut |
-    |------------------|----------|
-    | macOS | ⌘ + . |
-    | Windows | Ctrl + . |
-    | Linux | Ctrl + . |
+2. **斜杠命令**：在聊天输入框中输入 `/architect`、`/ask`、`/debug` 或 `/code`
 
-4. **Accept suggestions:** Click on mode switch suggestions that Kilo Code offers when appropriate
-   
-    <img src="/docs/img/modes/modes-2.png" alt="Accepting a mode switch suggestion from Kilo Code" width="400" />
+    <img src="/docs/img/modes/modes-1.png" alt="使用斜杠命令切换模式" width="400" />
 
-## Built-in Modes
+3. **切换命令/键盘快捷键**：使用适用于你操作系统的键盘快捷键。每次按下都会按顺序循环切换可用模式，到达末尾后返回第一个模式。
 
-### Code Mode (Default)
+    | 操作系统 | 快捷键   |
+    | -------- | -------- |
+    | macOS    | ⌘ + .    |
+    | Windows  | Ctrl + . |
+    | Linux    | Ctrl + . |
 
-| Aspect | Details |
-|--------|---------|
-| **Description** | A skilled software engineer with expertise in programming languages, design patterns, and best practices |
-| **Tool Access** | Full access to all tool groups: `read`, `edit`, `browser`, `command`, `mcp` |
-| **Ideal For** | Writing code, implementing features, debugging, and general development |
-| **Special Features** | No tool restrictions—full flexibility for all coding tasks |
+4. **接受建议**：在适当时点击 Kilo Code 提供的模式切换建议
 
-### Ask Mode
+ <img src="/docs/img/modes/modes-2.png" alt="接受 Kilo Code 提供的模式切换建议" width="400" />
 
-| Aspect | Details |
-|--------|---------|
-| **Description** | A knowledgeable technical assistant focused on answering questions without changing your codebase |
-| **Tool Access** | Limited access: `read`, `browser`, `mcp` only (cannot edit files or run commands) |
-| **Ideal For** | Code explanation, concept exploration, and technical learning |
-| **Special Features** | Optimized for informative responses without modifying your project |
+## 内置模式
 
-### Architect Mode
+### 代码模式（默认）
 
-| Aspect | Details |
-|--------|---------|
-| **Description** | An experienced technical leader and planner who helps design systems and create implementation plans |
-| **Tool Access** | Access to `read`, `browser`, `mcp`, and restricted `edit` (markdown files only) |
-| **Ideal For** | System design, high-level planning, and architecture discussions |
-| **Special Features** | Follows a structured approach from information gathering to detailed planning |
+| 方面         | 详细信息                                                        |
+| ------------ | --------------------------------------------------------------- |
+| **描述**     | 一位熟练的软件工程师，精通编程语言、设计模式和最佳实践          |
+| **工具访问** | 完全访问所有工具组：`read`、`edit`、`browser`、`command`、`mcp` |
+| **适合场景** | 编写代码、实现功能、调试和一般开发                              |
+| **特殊功能** | 无工具限制——所有编码任务完全灵活                                |
 
-### Debug Mode
+### 问答模式
 
-| Aspect | Details |
-|--------|---------|
-| **Description** | An expert problem solver specializing in systematic troubleshooting and diagnostics |
-| **Tool Access** | Full access to all tool groups: `read`, `edit`, `browser`, `command`, `mcp` |
-| **Ideal For** | Tracking down bugs, diagnosing errors, and resolving complex issues |
-| **Special Features** | Uses a methodical approach of analyzing, narrowing possibilities, and fixing issues |
+| 方面         | 详细信息                                                        |
+| ------------ | --------------------------------------------------------------- |
+| **描述**     | 一位知识渊博的技术助手，专注于回答问题而不修改代码库            |
+| **工具访问** | 有限访问：仅 `read`、`browser`、`mcp`（无法编辑文件或运行命令） |
+| **适合场景** | 代码解释、概念探索和技术学习                                    |
+| **特殊功能** | 优化为在不修改项目的情况下提供信息丰富的响应                    |
 
-### Orchestrator Mode
+### 架构师模式
 
-| Aspect | Details |
-|--------|---------|
-| **Description** | A strategic workflow orchestrator who coordinates complex tasks by delegating them to appropriate specialized modes |
-| **Tool Access** | Limited access to create new tasks and coordinate workflows |
-| **Ideal For** | Breaking down complex projects into manageable subtasks assigned to specialized modes |
-| **Special Features** | Uses the new_task tool to delegate work to other modes |
+| 方面         | 详细信息                                                            |
+| ------------ | ------------------------------------------------------------------- |
+| **描述**     | 一位经验丰富的技术领导和规划者，帮助设计系统并创建实施计划          |
+| **工具访问** | 访问 `read`、`browser`、`mcp` 和受限的 `edit`（仅限 markdown 文件） |
+| **适合场景** | 系统设计、高层规划和架构讨论                                        |
+| **特殊功能** | 遵循从信息收集到详细规划的结构化方法                                |
 
-## Custom Modes
+### 调试模式
 
-Create your own specialized assistants by defining tool access, file permissions, and behavior instructions. Custom modes help enforce team standards or create purpose-specific assistants. See [Custom Modes documentation](/features/custom-modes) for setup instructions.
+| 方面         | 详细信息                                                        |
+| ------------ | --------------------------------------------------------------- |
+| **描述**     | 一位擅长系统化故障排除和诊断的专家问题解决者                    |
+| **工具访问** | 完全访问所有工具组：`read`、`edit`、`browser`、`command`、`mcp` |
+| **适合场景** | 追踪错误、诊断问题并解决复杂问题                                |
+| **特殊功能** | 使用分析、缩小可能性和修复问题的系统化方法                      |
+
+### 协调者模式
+
+| 方面         | 详细信息                                                           |
+| ------------ | ------------------------------------------------------------------ |
+| **描述**     | 一位战略工作流协调者，通过将复杂任务委派给适当的专业模式来协调工作 |
+| **工具访问** | 有限的访问权限，用于创建新任务和协调工作流                         |
+| **适合场景** | 将复杂项目分解为可管理的子任务，并分配给专业模式                   |
+| **特殊功能** | 使用 new_task 工具将工作委派给其他模式                             |
+
+## 自定义模式
+
+通过定义工具访问权限、文件权限和行为指令，创建你自己的专业助手。自定义模式有助于执行团队标准或创建特定用途的助手。有关设置说明，请参阅 [自定义模式文档](/features/custom-modes)。

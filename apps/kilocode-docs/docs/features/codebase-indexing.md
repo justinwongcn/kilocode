@@ -1,230 +1,230 @@
 import Codicon from '@site/src/components/Codicon';
 
-# Codebase Indexing
+# 代码库索引
 
-Codebase Indexing enables semantic code search across your entire project using AI embeddings. Instead of searching for exact text matches, it understands the _meaning_ of your queries, helping Kilo Code find relevant code even when you don't know specific function names or file locations.
+代码库索引通过 AI 嵌入实现对整个项目的语义代码搜索。它不是搜索精确的文本匹配，而是理解您查询的*含义*，帮助 Kilo Code 找到相关代码，即使您不知道特定的函数名称或文件位置。
 
-<img src="/docs/img/codebase-indexing/codebase-indexing.png" alt="Codebase Indexing Settings" width="800" />
+<img src="/docs/img/codebase-indexing/codebase-indexing.png" alt="代码库索引设置" width="800" />
 
-## What It Does
+## 作用
 
-When enabled, the indexing system:
+启用后，索引系统：
 
-1. **Parses your code** using Tree-sitter to identify semantic blocks (functions, classes, methods)
-2. **Creates embeddings** of each code block using AI models
-3. **Stores vectors** in a Qdrant database for fast similarity search
-4. **Provides the [`codebase_search`](/advanced-usage/available-tools/codebase-search) tool** to Kilo Code for intelligent code discovery
+1.  **使用 Tree-sitter 解析您的代码**以识别语义块（函数、类、方法）
+2.  **使用 AI 模型创建每个代码块的嵌入**
+3.  **将向量存储在 Qdrant 数据库中**以进行快速相似性搜索
+4.  **为 Kilo Code 提供 [`codebase_search`](/advanced-usage/available-tools/codebase-search) 工具**以进行智能代码发现
 
-This enables natural language queries like "user authentication logic" or "database connection handling" to find relevant code across your entire project.
+这使得自然语言查询（如“用户身份验证逻辑”或“数据库连接处理”）能够查找整个项目中的相关代码。
 
-## Key Benefits
+## 主要优点
 
-- **Semantic Search**: Find code by meaning, not just keywords
-- **Enhanced AI Understanding**: Kilo Code can better comprehend and work with your codebase
-- **Cross-Project Discovery**: Search across all files, not just what's open
-- **Pattern Recognition**: Locate similar implementations and code patterns
+- **语义搜索**：通过含义查找代码，而不仅仅是关键字
+- **增强 AI 理解**：Kilo Code 可以更好地理解和使用您的代码库
+- **跨项目发现**：搜索所有文件，而不仅仅是打开的文件
+- **模式识别**：查找相似的实现和代码模式
 
-## Setup Requirements
+## 设置要求
 
-### Embedding Provider
+### 嵌入提供商
 
-Choose one of these options for generating embeddings:
+选择以下选项之一来生成嵌入：
 
-**OpenAI (Recommended)**
+**OpenAI（推荐）**
 
-- Requires OpenAI API key
-- Supports all OpenAI embedding models
-- Default: `text-embedding-3-small`
-- Processes up to 100,000 tokens per batch
+- 需要 OpenAI API 密钥
+- 支持所有 OpenAI 嵌入模型
+- 默认：`text-embedding-3-small`
+- 每批处理多达 100,000 个 token
 
 **Gemini**
 
-- Requires Google AI API key
-- Supports Gemini embedding models including `gemini-embedding-001`
-- Cost-effective alternative to OpenAI
-- High-quality embeddings for code understanding
+- 需要 Google AI API 密钥
+- 支持 Gemini 嵌入模型，包括 `gemini-embedding-001`
+- OpenAI 的经济高效替代方案
+- 用于代码理解的高质量嵌入
 
-**Ollama (Local)**
+**Ollama（本地）**
 
-- Requires local Ollama installation
-- No API costs or internet dependency
-- Supports any Ollama-compatible embedding model
-- Requires Ollama base URL configuration
+- 需要本地 Ollama 安装
+- 无 API 成本或互联网依赖
+- 支持任何 Ollama 兼容的嵌入模型
+- 需要 Ollama 基本 URL 配置
 
-### Vector Database
+### 向量数据库
 
-**Qdrant** is required for storing and searching embeddings:
+**Qdrant** 是存储和搜索嵌入所必需的：
 
-- **Local**: `http://localhost:6333` (recommended for testing)
-- **Cloud**: Qdrant Cloud or self-hosted instance
-- **Authentication**: Optional API key for secured deployments
+- **本地**：`http://localhost:6333`（推荐用于测试）
+- **云**：Qdrant Cloud 或自托管实例
+- **身份验证**：安全部署的可选 API 密钥
 
-## Setting Up Qdrant
+## 设置 Qdrant
 
-### Quick Local Setup
+### 快速本地设置
 
-**Using Docker:**
+**使用 Docker：**
 
 ```bash
 docker run -p 6333:6333 qdrant/qdrant
 ```
 
-**Using Docker Compose:**
+**使用 Docker Compose：**
 
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
-  qdrant:
-    image: qdrant/qdrant
-    ports:
-      - '6333:6333'
-    volumes:
-      - qdrant_storage:/qdrant/storage
+    qdrant:
+        image: qdrant/qdrant
+        ports:
+            - "6333:6333"
+        volumes:
+            - qdrant_storage:/qdrant/storage
 volumes:
-  qdrant_storage:
+    qdrant_storage:
 ```
 
-### Production Deployment
+### 生产部署
 
-For team or production use:
+用于团队或生产：
 
-- [Qdrant Cloud](https://cloud.qdrant.io/) - Managed service
-- Self-hosted on AWS, GCP, or Azure
-- Local server with network access for team sharing
+- [Qdrant Cloud](https://cloud.qdrant.io/) - 托管服务
+- 在 AWS、GCP 或 Azure 上自托管
+- 带有网络访问的本地服务器，用于团队共享
 
-## Configuration
+## 配置
 
-1. Open Kilo Code settings (<Codicon name="gear" /> icon)
-2. Navigate to **Codebase Indexing** section
-3. Enable **"Enable Codebase Indexing"** using the toggle switch
-4. Configure your embedding provider:
-   - **OpenAI**: Enter API key and select model
-   - **Gemini**: Enter Google AI API key and select embedding model
-   - **Ollama**: Enter base URL and select model
-5. Set Qdrant URL and optional API key
-6. Configure **Max Search Results** (default: 20, range: 1-100)
-7. Click **Save** to start initial indexing
+1.  打开 Kilo Code 设置（<Codicon name="gear" /> 图标）
+2.  导航到 **代码库索引** 部分
+3.  使用切换开关启用 **“启用代码库索引”**
+4.  配置您的嵌入提供商：
+    - **OpenAI**：输入 API 密钥并选择模型
+    - **Gemini**：输入 Google AI API 密钥并选择嵌入模型
+    - **Ollama**：输入基本 URL 并选择模型
+5.  设置 Qdrant URL 和可选的 API 密钥
+6.  配置 **最大搜索结果**（默认：20，范围：1-100）
+7.  单击 **保存** 开始初始索引
 
-### Enable/Disable Toggle
+### 启用/禁用切换
 
-The codebase indexing feature includes a convenient toggle switch that allows you to:
+代码库索引功能包含一个方便的切换开关，允许您：
 
-- **Enable**: Start indexing your codebase and make the search tool available
-- **Disable**: Stop indexing, pause file watching, and disable the search functionality
-- **Preserve Settings**: Your configuration remains saved when toggling off
+- **启用**：开始索引您的代码库并使搜索工具可用
+- **禁用**：停止索引、暂停文件监视并禁用搜索功能
+- **保留设置**：关闭时您的配置仍会保存
 
-This toggle is useful for temporarily disabling indexing during intensive development work or when working with sensitive codebases.
+此切换对于在密集开发工作期间或处理敏感代码库时暂时禁用索引很有用。
 
-## Understanding Index Status
+## 理解索引状态
 
-The interface shows real-time status with color indicators:
+界面显示带有颜色指示器的实时状态：
 
-- **Standby** (Gray): Not running, awaiting configuration
-- **Indexing** (Yellow): Currently processing files
-- **Indexed** (Green): Up-to-date and ready for searches
-- **Error** (Red): Failed state requiring attention
+- **待机**（灰色）：未运行，等待配置
+- **索引中**（黄色）：当前正在处理文件
+- **已索引**（绿色）：最新且可供搜索
+- **错误**（红色）：失败状态，需要注意
 
-## How Files Are Processed
+## 文件处理方式
 
-### Smart Code Parsing
+### 智能代码解析
 
-- **Tree-sitter Integration**: Uses AST parsing to identify semantic code blocks
-- **Language Support**: All languages supported by Tree-sitter
-- **Markdown Support**: Full support for markdown files and documentation
-- **Fallback**: Line-based chunking for unsupported file types
-- **Block Sizing**:
-  - Minimum: 100 characters
-  - Maximum: 1,000 characters
-  - Splits large functions intelligently
+- **Tree-sitter 集成**：使用 AST 解析识别语义代码块
+- **语言支持**：Tree-sitter 支持的所有语言
+- **Markdown 支持**：完全支持 markdown 文件和文档
+- **回退**：对于不支持的文件类型，基于行的分块
+- **块大小**：
+    - 最小：100 个字符
+    - 最大：1,000 个字符
+    - 智能拆分大型函数
 
-### Automatic File Filtering
+### 自动文件过滤
 
-The indexer automatically excludes:
+索引器自动排除：
 
-- Binary files and images
-- Large files (&gt;1MB)
-- Git repositories (`.git` folders)
-- Dependencies (`node_modules`, `vendor`, etc.)
-- Files matching `.gitignore` and `.kilocode` patterns
+- 二进制文件和图像
+- 大文件（>1MB）
+- Git 仓库（`.git` 文件夹）
+- 依赖项（`node_modules`、`vendor` 等）
+- 与 `.gitignore` 和 `.kilocode` 模式匹配的文件
 
-### Incremental Updates
+### 增量更新
 
-- **File Watching**: Monitors workspace for changes
-- **Smart Updates**: Only reprocesses modified files
-- **Hash-based Caching**: Avoids reprocessing unchanged content
-- **Branch Switching**: Automatically handles Git branch changes
+- **文件监视**：监视工作区中的更改
+- **智能更新**：仅重新处理修改过的文件
+- **基于哈希的缓存**：避免重新处理未更改的内容
+- **分支切换**：自动处理 Git 分支更改
 
-## Best Practices
+## 最佳实践
 
-### Model Selection
+### 模型选择
 
-**For OpenAI:**
+**对于 OpenAI：**
 
-- **`text-embedding-3-small`**: Best balance of performance and cost
-- **`text-embedding-3-large`**: Higher accuracy, 5x more expensive
-- **`text-embedding-ada-002`**: Legacy model, lower cost
+- **`text-embedding-3-small`**：性能和成本的最佳平衡
+- **`text-embedding-3-large`**：更高精度，成本高 5 倍
+- **`text-embedding-ada-002`**：旧模型，成本较低
 
-**For Ollama:**
+**对于 Ollama：**
 
-- **`mxbai-embed-large`**: The largest and highest-quality embedding model.
-- **`nomic-embed-text`**: Best balance of performance and embedding quality.
-- **`all-minilm`**: Compact model with lower quality but faster performance.
+- **`mxbai-embed-large`**：最大和最高质量的嵌入模型。
+- **`nomic-embed-text`**：性能和嵌入质量的最佳平衡。
+- **`all-minilm`**：紧凑型模型，质量较低但性能更快。
 
-### Security Considerations
+### 安全注意事项
 
-- **API Keys**: Stored securely in VS Code's encrypted storage
-- **Code Privacy**: Only small code snippets sent for embedding (not full files)
-- **Local Processing**: All parsing happens locally
-- **Qdrant Security**: Use authentication for production deployments
+- **API 密钥**：安全地存储在 VS Code 的加密存储中
+- **代码隐私**：仅发送少量代码片段用于嵌入
+- **本地处理**：所有解析均在本地进行
+- **Qdrant 安全**：在生产环境部署时使用身份验证
 
-## Current Limitations
+## 当前限制
 
-- **File Size**: 1MB maximum per file
-- **Single Workspace**: One workspace at a time
-- **Dependencies**: Requires external services (embedding provider + Qdrant)
-- **Language Coverage**: Limited to Tree-sitter supported languages for optimal parsing
+- **文件大小**：每个文件最大 1MB
+- **单个工作区**：一次一个工作区
+- **依赖项**：需要外部服务（嵌入提供商 + Qdrant）
+- **语言覆盖**：仅限于 Tree-sitter 支持的语言以实现最佳解析
 
-## Using the Search Feature
+## 使用搜索功能
 
-Once indexed, Kilo Code can use the [`codebase_search`](/advanced-usage/available-tools/codebase-search) tool to find relevant code:
+索引后，Kilo Code 可以使用 [`codebase_search`](/advanced-usage/available-tools/codebase-search) 工具查找相关代码：
 
-**Example Queries:**
+**示例查询：**
 
-- "How is user authentication handled?"
-- "Database connection setup"
-- "Error handling patterns"
-- "API endpoint definitions"
+- “用户身份验证如何处理？”
+- “数据库连接设置”
+- “错误处理模式”
+- “API 端点定义”
 
-The tool provides Kilo Code with:
+该工具为 Kilo Code 提供：
 
-- Relevant code snippets (up to your configured max results limit)
-- File paths and line numbers
-- Similarity scores
-- Contextual information
+- 相关代码片段（最多达到您配置的最大结果限制）
+- 文件路径和行号
+- 相似度分数
+- 上下文信息
 
-### Search Results Configuration
+### 搜索结果配置
 
-You can control the number of search results returned by adjusting the **Max Search Results** setting:
+您可以通过调整 **最大搜索结果** 设置来控制返回的搜索结果数量：
 
-- **Default**: 20 results
-- **Range**: 1-100 results
-- **Performance**: Lower values improve response speed
-- **Comprehensiveness**: Higher values provide more context but may slow responses
+- **默认**：20 个结果
+- **范围**：1-100 个结果
+- **性能**：较低的值可提高响应速度
+- **全面性**：较高的值提供更多上下文，但可能会减慢响应速度
 
-## Privacy & Security
+## 隐私与安全
 
-- **Code stays local**: Only small code snippets sent for embedding
-- **Embeddings are numeric**: Not human-readable representations
-- **Secure storage**: API keys encrypted in VS Code storage
-- **Local option**: Use Ollama for completely local processing
-- **Access control**: Respects existing file permissions
+- **代码保留在本地**：仅发送少量代码片段用于嵌入
+- **嵌入是数字的**：不是人类可读的表示
+- **安全存储**：API 密钥在 VS Code 存储中加密
+- **本地选项**：使用 Ollama 进行完全本地处理
+- **访问控制**：尊重现有文件权限
 
-## Future Enhancements
+## 未来增强
 
-Planned improvements:
+计划的改进：
 
-- Additional embedding providers
-- Multi-workspace indexing
-- Enhanced filtering and configuration options
-- Team sharing capabilities
-- Integration with VS Code's native search
+- 附加嵌入提供商
+- 多工作区索引
+- 增强的过滤和配置选项
+- 团队共享功能
+- 与 VS Code 本机搜索集成

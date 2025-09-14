@@ -1,93 +1,93 @@
-# Model Temperature
+# 模型温度
 
-Temperature controls the randomness of AI model outputs. Adjusting this setting optimizes results for different tasks - from precise code generation to creative brainstorming. Temperature is one of the most powerful parameters for controlling AI behavior. A well-tuned temperature setting can dramatically improve the quality and appropriateness of responses for specific tasks.
+温度控制 AI 模型输出的随机性。调整此设置可优化不同任务的结果——从精确的代码生成到创意头脑风暴。温度是控制 AI 行为最强大的参数之一。精心调整的温度设置可以显著提高特定任务响应的质量和适用性。
 
-<img src="/docs/img/model-temperature/model-temperature.gif" alt="Animation showing temperature slider adjustment" width="100%" />
+<img src="/docs/img/model-temperature/model-temperature.gif" alt="显示温度滑块调整的动画" width="100%" />
 
-## What is Temperature?
+## 什么是温度？
 
-Temperature is a setting (usually between 0.0 and 2.0) that controls how random or predictable the AI's output is. Finding the right balance is key: lower values make the output more focused and consistent, while higher values encourage more creativity and variation. For many coding tasks, a moderate temperature (around 0.3 to 0.7) often works well, but the best setting depends on what you're trying to achieve.
+温度是一个设置（通常在 0.0 到 2.0 之间），用于控制 AI 输出的随机性或可预测性。找到正确的平衡是关键：较低的值使输出更集中和一致，而较高的值则鼓励更多的创造性和多样性。对于许多编码任务，中等温度（约 0.3 到 0.7）通常效果很好，但最佳设置取决于您要实现的目标。
 
-:::info Temperature and Code: Common Misconceptions
-Temperature controls output randomness, not code quality or accuracy directly. Key points:
+:::info 温度和代码：常见误解
+温度控制输出随机性，而不是直接控制代码质量或准确性。关键点：
 
-*   **Low Temperature (near 0.0):** Produces predictable, consistent code. Good for simple tasks, but can be repetitive and lack creativity. It doesn't guarantee *better* code.
-*   **High Temperature:** Increases randomness, potentially leading to creative solutions but also more errors or nonsensical code. It doesn't guarantee *higher-quality* code.
-*   **Accuracy:** Code accuracy depends on the model's training and prompt clarity, not temperature.
-*   **Temperature 0.0:** Useful for consistency, but limits exploration needed for complex problems.
-:::
+- **低温度（接近 0.0）：** 生成可预测、一致的代码。适用于简单任务，但可能重复且缺乏创造力。它不能保证*更好*的代码。
+- **高温度：** 增加随机性，可能导致创造性解决方案，但也可能导致更多错误或无意义的代码。它不能保证*更高质量*的代码。
+- **准确性：** 代码准确性取决于模型的训练和提示清晰度，而不是温度。
+- **温度 0.0：** 有助于一致性，但限制了复杂问题所需的探索。
+  :::
 
-## Default Values in Kilo Code
+## Kilo Code 中的默认值
 
-Kilo Code uses a default temperature of 0.0 for most models, optimizing for maximum determinism and precision in code generation. This applies to OpenAI models, Anthropic models (non-thinking variants), LM Studio models, and most other providers.
+Kilo Code 对大多数模型使用 0.0 的默认温度，以优化代码生成的最大确定性和精度。这适用于 OpenAI 模型、Anthropic 模型（非思考变体）、LM Studio 模型和大多数其他提供商。
 
-Some models use higher default temperatures - DeepSeek R1 models and certain reasoning-focused models default to 0.6, providing a balance between determinism and creative exploration.
+某些模型使用较高的默认温度——DeepSeek R1 模型和某些以推理为重点的模型默认为 0.6，在确定性和创造性探索之间取得了平衡。
 
-Models with thinking capabilities (where the AI shows its reasoning process) require a fixed temperature of 1.0 which cannot be changed, as this setting ensures optimal performance of the thinking mechanism. This applies to any model with the ":thinking" flag enabled.
+具有思考能力的模型（AI 显示其推理过程）需要固定温度 1.0，无法更改，因为此设置可确保思考机制的最佳性能。这适用于任何启用“:thinking”标志的模型。
 
-Some specialized models don't support temperature adjustments at all, in which case Kilo Code respects these limitations automatically.
+某些专业模型根本不支持温度调整，在这种情况下，Kilo Code 会自动遵守这些限制。
 
-## When to Adjust Temperature
+## 何时调整温度
 
-Here are some examples of temperature settings that might work well for different tasks:
+以下是一些可能适用于不同任务的温度设置示例：
 
-*   **Code Mode (0.0-0.3):** For writing precise, correct code with consistent, deterministic results
-*   **Architect Mode (0.4-0.7):** For brainstorming architecture or design solutions with balanced creativity and structure
-*   **Ask Mode (0.7-1.0):** For explanations or open-ended questions requiring diverse and insightful responses
-*   **Debug Mode (0.0-0.3):** For troubleshooting bugs with consistent precision
+- **代码模式 (0.0-0.3)：** 用于编写精确、正确的代码，具有一致、确定性的结果
+- **架构师模式 (0.4-0.7)：** 用于头脑风暴架构或设计解决方案，具有平衡的创造性和结构
+- **询问模式 (0.7-1.0)：** 用于需要多样化和有见地的解释或开放式问题
+- **调试模式 (0.0-0.3)：** 用于以一致的精度排除故障
 
-These are starting points – it's important to [experiment with different settings](#experimentation) to find what works best for your specific needs and preferences.
+这些是起点——重要的是[尝试不同的设置](#experimentation)以找到最适合您特定需求和偏好的设置。
 
-## How to Adjust Temperature
+## 如何调整温度
 
-1.  **Open the Kilo Code Panel:** Click the Kilo Code icon (<img src="/docs/img/kilo-v1.svg" width="12" />) in the VS Code Side Bar
-2.  **Open Settings:** Click the <Codicon name="gear" /> icon in the top right corner
-3.  **Find Temperature Control:** Navigate to the Providers section
-4.  **Enable Custom Temperature:** Check the "Use custom temperature" box
-5.  **Set Your Value:** Adjust the slider to your preferred value
+1.  **打开 Kilo Code 面板：** 单击 VS Code 侧边栏中的 Kilo Code 图标（<img src="/docs/img/kilo-v1.svg" width="12" />）
+2.  **打开设置：** 单击右上角的 <Codicon name="gear" /> 图标
+3.  **查找温度控制：** 导航到“提供商”部分
+4.  **启用自定义温度：** 选中“使用自定义温度”框
+5.  **设置您的值：** 将滑块调整到您喜欢的值
 
-    <img src="/docs/img/model-temperature/model-temperature.png" alt="Temperature setting in Kilo Code settings panel" width="550" />
-    *Temperature slider in Kilo Code settings panel*
+    <img src="/docs/img/model-temperature/model-temperature.png" alt="Kilo Code 设置面板中的温度设置" width="550" />
+    *Kilo Code 设置面板中的温度滑块*
 
-## Using API Configuration Profiles for Temperature
+## 使用 API 配置配置文件进行温度设置
 
-Create multiple [API configuration profiles](/features/api-configuration-profiles) with different temperature settings:
+创建多个具有不同温度设置的[API 配置配置文件](/features/api-configuration-profiles)：
 
-**How to set up task-specific temperature profiles:**
+**如何设置任务特定温度配置文件：**
 
-1. Create specialized profiles like "Code - Low Temp" (0.1) and "Ask - High Temp" (0.8)
-2. Configure each profile with appropriate temperature settings
-3. Switch between profiles using the dropdown in settings or chat interface
-4. Set different profiles as defaults for each mode for automatic switching when changing modes
+1.  创建专业配置文件，例如“代码 - 低温”（0.1）和“询问 - 高温”（0.8）
+2.  为每个配置文件配置适当的温度设置
+3.  使用设置或聊天界面中的下拉菜单在配置文件之间切换
+4.  为每种模式设置不同的配置文件作为默认值，以便在切换模式时自动切换
 
-This approach optimizes model behavior for specific tasks without manual adjustments.
+这种方法可以优化模型行为以适应特定任务，而无需手动调整。
 
-## Technical Implementation
+## 技术实现
 
-Kilo Code implements temperature handling with these considerations:
+Kilo Code 在实现温度处理时考虑了以下因素：
 
-*   User-defined settings take priority over defaults
-*   Provider-specific behaviors are respected
-*   Model-specific limitations are enforced:
-    *   Thinking-enabled models require a fixed temperature of 1.0
-    *   Some models don't support temperature adjustments
+- 用户定义的设置优先于默认设置
+- 尊重提供商特定的行为
+- 强制执行模型特定的限制：
+    - 启用思考功能的模型需要固定温度 1.0
+    - 某些模型不支持温度调整
 
-## Experimentation
+## 实验
 
-Experimenting with different temperature settings is the most effective way to discover what works best for your specific needs:
+尝试不同的温度设置是发现最适合您特定需求的最有效方法：
 
-### Effective Temperature Testing
+### 有效的温度测试
 
-1. **Start with defaults** - Begin with Kilo Code's preset values (0.0 for most tasks) as your baseline
-2. **Make incremental adjustments** - Change values in small steps (±0.1) to observe subtle differences
-3. **Test consistently** - Use the same prompt across different temperature settings for valid comparisons
-4. **Document results** - Note which values produce the best outcomes for specific types of tasks
-5. **Create profiles** - Save effective settings as [API configuration profiles](/features/api-configuration-profiles) for quick access
+1.  **从默认值开始** - 从 Kilo Code 的预设值（大多数任务为 0.0）作为您的基线
+2.  **进行增量调整** - 以小步（±0.1）更改值以观察细微差异
+3.  **一致测试** - 在不同的温度设置下使用相同的提示进行有效比较
+4.  **记录结果** - 记录哪些值对特定类型的任务产生最佳结果
+5.  **创建配置文件** - 将有效设置保存为[API 配置配置文件](/features/api-configuration-profiles)以便快速访问
 
-Remember that different models may respond differently to the same temperature values, and thinking-enabled models always use a fixed temperature of 1.0 regardless of your settings.
+请记住，不同的模型可能对相同的温度值有不同的响应，并且启用思考功能的模型始终使用固定温度 1.0，无论您的设置如何。
 
-## Related Features
+## 相关功能
 
-- Works with all [API providers](/providers/openai) supported by Kilo Code
-- Complements [custom instructions](/advanced-usage/custom-instructions) for fine-tuning responses
-- Works alongside [custom modes](/features/custom-modes) you create
+- 适用于 Kilo Code 支持的所有 [API 提供商](/providers/openai)
+- 补充[自定义指令](/advanced-usage/custom-instructions)以微调响应
+- 与您创建的[自定义模式](/features/custom-modes)一起使用

@@ -1,169 +1,177 @@
 # ask_followup_question
 
-The `ask_followup_question` tool enables interactive communication by asking specific questions to gather additional information needed to complete tasks effectively.
+`ask_followup_question` 工具通过提出具体问题来收集完成任务所需的额外信息，从而实现交互式沟通。
 
-## Parameters
+## 参数
 
-The tool accepts these parameters:
+该工具接受以下参数：
 
-- `question` (required): The specific question to ask the user
-- `follow_up` (optional): A list of 2-4 suggested answers that help guide user responses, each within `<suggest>` tags
+- `question` (必填): 向用户提出的具体问题
+- `follow_up` (可选): 包含 2-4 个建议答案的列表，帮助引导用户回答，每个建议用 `<suggest>` 标签包裹
 
-## What It Does
+## 功能
 
-This tool creates a conversational interface between Kilo Code and the user, allowing for gathering clarification, additional details, or user preferences when facing ambiguities or decision points. Each question can include suggested responses to streamline the interaction.
+该工具在 Kilo Code 和用户之间创建了一个对话界面，当遇到模糊不清或决策点时，可以用于收集澄清信息、额外细节或用户偏好。每个问题可以包含建议的响应，以简化交互。
 
-## When is it used?
+## 使用场景
 
-- When critical information is missing from the original request
-- When Kilo Code needs to choose between multiple valid implementation approaches
-- When technical details or preferences are required to proceed
-- When Kilo Code encounters ambiguities that need resolution
-- When additional context would significantly improve the solution quality
+- 当原始请求中缺少关键信息时
+- 当 Kilo Code 需要在多个有效的实现方法之间做出选择时
+- 当需要技术细节或偏好才能继续时
+- 当 Kilo Code 遇到需要解决的模糊不清的情况时
+- 当额外的上下文会显著提高解决方案质量时
 
-## Key Features
+## 主要特性
 
-- Provides a structured way to gather specific information without breaking workflow
-- Includes suggested answers to reduce user typing and guide responses
-- Maintains conversation history and context across interactions
-- Supports responses containing images and code snippets
-- Available in all modes as part of the "always available" tool set
-- Enables direct user guidance on implementation decisions
-- Formats responses with `<answer>` tags to distinguish them from regular conversation
-- Resets consecutive error counter when used successfully
+- 提供结构化的方式来收集特定信息，而不会中断工作流程
+- 包含建议答案以减少用户输入并引导响应
+- 在交互过程中维护对话历史和上下文
+- 支持包含图片和代码片段的响应
+- 在所有模式下都可用，作为"始终可用"的工具集的一部分
+- 支持用户直接指导实现决策
+- 使用 `<answer>` 标签格式化响应，以区分常规对话
+- 成功使用时重置连续错误计数器
 
-## Limitations
+## 限制
 
-- Limited to asking one specific question per tool use
-- Presents suggestions as selectable options in the UI
-- Cannot force structured responses – users can still respond freely
-- Excessive use can slow down task completion and create a fragmented experience
-- Suggested answers must be complete, with no placeholders requiring user edits
-- No built-in validation for user responses
-- Contains no mechanism to enforce specific answer formats
+- 每次工具使用仅限于提出一个具体问题
+- 在 UI 中将建议作为可选项呈现
+- 不能强制结构化响应 - 用户仍然可以自由响应
+- 过度使用可能会减慢任务完成速度并造成碎片化体验
+- 建议答案必须完整，不能包含需要用户编辑的占位符
+- 没有内置的用户响应验证机制
+- 没有强制特定答案格式的机制
 
-## How It Works
+## 工作原理
 
-When the `ask_followup_question` tool is invoked, it follows this process:
+当调用 `ask_followup_question` 工具时，它会遵循以下流程：
 
-1. **Parameter Validation**: Validates the required `question` parameter and checks for optional suggestions
-   - Ensures question text is provided
-   - Parses any suggested answers from the `follow_up` parameter using the `fast-xml-parser` library
-   - Normalizes suggestions into an array format even if there's only one suggestion
+1. **参数验证**: 验证必需的 `question` 参数并检查可选建议
 
-2. **JSON Transformation**: Converts the XML structure into a standardized JSON format for UI display
-   ```typescript
-   {
-     question: "User's question here",
-     suggest: [
-       { answer: "Suggestion 1" },
-       { answer: "Suggestion 2" }
-     ]
-   }
-   ```
+    - 确保提供了问题文本
+    - 使用 `fast-xml-parser` 库从 `follow_up` 参数中解析任何建议答案
+    - 即使只有一个建议，也将建议规范化为数组格式
 
-3. **UI Integration**:
-   - Passes the JSON structure to the UI layer via the `ask("followup", ...)` method
-   - Displays selectable suggestion buttons to the user in the interface
-   - Creates an interactive experience for selecting or typing a response
+2. **JSON 转换**: 将 XML 结构转换为标准化的 JSON 格式以供 UI 显示
 
-4. **Response Collection and Processing**:
-   - Captures user text input and any images included in the response
-   - Wraps user responses in `<answer>` tags when returning to the assistant
-   - Preserves any images included in the user's response
-   - Maintains the conversational context by adding the response to the history
-   - Resets the consecutive error counter when the tool is used successfully
+    ```typescript
+    {
+      question: "用户的问题在这里",
+      suggest: [
+        { answer: "建议 1" },
+        { answer: "建议 2" }
+      ]
+    }
+    ```
 
-5. **Error Handling**:
-   - Tracks consecutive mistakes using a counter
-   - Resets the counter when the tool is used successfully
-   - Provides specific error messages:
-     - For missing parameters: "Missing required parameter 'question'"
-     - For XML parsing: "Failed to parse operations: [error message]"
-     - For invalid format: "Invalid operations xml format"
-   - Contains safeguards to prevent tool execution when required parameters are missing
-   - Increments consecutive mistake count when errors occur
+3. **UI 集成**:
 
-## Workflow Sequence
+    - 通过 `ask("followup", ...)` 方法将 JSON 结构传递给 UI 层
+    - 在界面中向用户显示可选的建议按钮
+    - 创建选择或输入响应的交互式体验
 
-The question-answer cycle follows this sequence:
+4. **响应收集与处理**:
 
-1. **Information Gap Recognition**: Kilo Code identifies missing information needed to proceed
-2. **Specific Question Creation**: Kilo Code formulates a clear, targeted question
-3. **Suggestion Development**: Kilo Code creates relevant suggested answers (optional but recommended)
-4. **Tool Invocation**: Assistant invokes the tool with question and optional suggestions
-5. **UI Presentation**: Question and suggestions are displayed to the user as interactive elements
-6. **User Response**: The user selects a suggestion or provides a custom answer
-7. **Message Handling**: System handles both partial and complete messages
-   - For streaming responses, processes chunks as they arrive
-   - For complete messages, processes the entire response at once
-   - Maintains state consistency regardless of message chunking
-8. **Response Processing**: System wraps the response in `<answer>` tags and preserves images
-9. **Context Integration**: Response is added to the conversation history
-10. **Task Continuation**: Kilo Code proceeds with the task using the new information
+    - 捕获用户文本输入和响应中包含的任何图片
+    - 在返回给助手时用 `<answer>` 标签包裹用户响应
+    - 保留用户响应中包含的任何图片
+    - 通过将响应添加到历史记录中来维护对话上下文
+    - 在工具成功使用时重置连续错误计数器
 
-## Examples When Used
+5. **错误处理**:
+    - 使用计数器跟踪连续错误
+    - 在工具成功使用时重置计数器
+    - 提供特定的错误消息：
+        - 对于缺少参数："缺少必需的参数 'question'"
+        - 对于 XML 解析："无法解析操作：[错误消息]"
+        - 对于无效格式："操作 xml 格式无效"
+    - 包含防止在缺少必需参数时执行工具的安全措施
+    - 发生错误时增加连续错误计数
 
-- When developing a web application, Kilo Code might ask about preferred styling frameworks (Bootstrap, Tailwind, custom CSS)
-- When creating an API, Kilo Code might ask about authentication methods (JWT, OAuth, API keys)
-- When refactoring code, Kilo Code might ask about prioritizing performance vs. readability
-- When setting up a database, Kilo Code might ask about specific schema design preferences
-- When creating a custom feature, Kilo Code might ask about specific behavior expectations
-- When troubleshooting errors, Kilo Code might ask about specific environment details
+## 工作流程
 
-## Response Format
+问题-回答周期遵循以下顺序：
 
-When a user responds to a question, the response is formatted with `<answer>` tags for clarity and consistency. This format helps clearly separate the user's answer from other conversation elements.
+1. **信息差距识别**: Kilo Code 识别出继续所需缺少的信息
+2. **具体问题创建**: Kilo Code 形成一个明确的、有针对性的问题
+3. **建议开发**: Kilo Code 创建相关的建议答案（可选但推荐）
+4. **工具调用**: 助手使用问题和可选建议调用工具
+5. **UI 呈现**: 问题和建议作为交互元素显示给用户
+6. **用户响应**: 用户选择建议或提供自定义答案
+7. **消息处理**: 系统处理部分和完整的消息
+    - 对于流式响应，在到达时处理每个块
+    - 对于完整消息，一次性处理整个响应
+    - 无论消息分块如何，都保持状态一致性
+8. **响应处理**: 系统用 `<answer>` 标签包裹响应并保留图片
+9. **上下文集成**: 响应被添加到对话历史中
+10. **任务继续**: Kilo Code 使用新信息继续任务
 
-Example response format:
+## 使用示例
+
+- 在开发 Web 应用程序时，Kilo Code 可能会询问首选的样式框架（Bootstrap、Tailwind、自定义 CSS）
+- 在创建 API 时，Kilo Code 可能会询问认证方法（JWT、OAuth、API 密钥）
+- 在重构代码时，Kilo Code 可能会询问是优先考虑性能还是可读性
+- 在设置数据库时，Kilo Code 可能会询问特定的模式设计偏好
+- 在创建自定义功能时，Kilo Code 可能会询问特定的行为期望
+- 在排查错误时，Kilo Code 可能会询问特定的环境细节
+
+## 响应格式
+
+当用户回答问题时，响应会用 `<answer>` 标签进行格式化，以提高清晰度和一致性。这种格式有助于将用户的回答与其他对话元素明确区分开来。
+
+示例响应格式：
+
 ```
 <answer>
-Use Tailwind CSS for utility-first styling with maximum flexibility
+使用 Tailwind CSS 进行实用优先的样式设计，具有最大的灵活性
 </answer>
 ```
 
-Key characteristics of the response format:
-- Surrounded by `<answer>` tags
-- Preserves formatting of the original response
-- Maintains images if included in the response
-- Returns the complete text, even for long responses
+响应格式的关键特征：
 
-## Usage Examples
+- 用 `<answer>` 标签包裹
+- 保留原始响应的格式
+- 如果响应中包含图片，则保留图片
+- 返回完整文本，即使是长响应
 
-Asking about implementation preferences:
+## 使用示例
+
+询问实现偏好：
+
 ```
 <ask_followup_question>
-<question>Which styling approach would you prefer for this web application?</question>
+<question>你希望这个 Web 应用程序采用哪种样式方法？</question>
 <follow_up>
-<suggest>Use Bootstrap for rapid development with consistent components</suggest>
-<suggest>Use Tailwind CSS for utility-first styling with maximum flexibility</suggest>
-<suggest>Use vanilla CSS with custom styling for complete control and minimal dependencies</suggest>
+<suggest>使用 Bootstrap 进行快速开发，具有一致的组件</suggest>
+<suggest>使用 Tailwind CSS 进行实用优先的样式设计，具有最大的灵活性</suggest>
+<suggest>使用自定义样式的原生 CSS，以获得完全控制和最小依赖</suggest>
 </follow_up>
 </ask_followup_question>
 ```
 
+请求技术澄清：
 
-Requesting technical clarification:
 ```
 <ask_followup_question>
-<question>What database should this application use for storing user data?</question>
+<question>这个应用程序应该使用什么数据库来存储用户数据？</question>
 <follow_up>
-<suggest>MongoDB for flexible schema and document-based storage</suggest>
-<suggest>PostgreSQL for relational data with strong consistency guarantees</suggest>
-<suggest>Firebase for real-time updates and simplified backend management</suggest>
-<suggest>SQLite for lightweight local storage without external dependencies</suggest>
+<suggest>MongoDB 用于灵活的模式和基于文档的存储</suggest>
+<suggest>PostgreSQL 用于具有强一致性保证的关系数据</suggest>
+<suggest>Firebase 用于实时更新和简化的后端管理</suggest>
+<suggest>SQLite 用于轻量级本地存储，无需外部依赖</suggest>
 </follow_up>
 </ask_followup_question>
 ```
 
-Addressing ambiguity in requirements:
+解决需求中的模糊性：
+
 ```
 <ask_followup_question>
-<question>How should the application handle user authentication?</question>
+<question>应用程序应如何处理用户认证？</question>
 <follow_up>
-<suggest>Implement email/password authentication with account verification</suggest>
-<suggest>Use social login providers (Google, GitHub, etc.) for quick signup</suggest>
-<suggest>Implement both email/password and social login options</suggest>
+<suggest>实施带账户验证的电子邮件/密码认证</suggest>
+<suggest>使用社交登录提供商（Google、GitHub 等）快速注册</suggest>
+<suggest>同时实施电子邮件/密码和社交登录选项</suggest>
 </follow_up>
 </ask_followup_question>
 ```

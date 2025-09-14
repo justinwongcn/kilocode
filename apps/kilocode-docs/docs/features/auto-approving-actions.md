@@ -1,285 +1,295 @@
-# Auto-Approving Actions
+# 自动批准操作
 
-> ⚠️ **SECURITY WARNING:** Auto-approve settings bypass confirmation prompts, giving Kilo Code direct access to your system. This can result in **data loss, file corruption, or worse**. Command line access is particularly dangerous, as it can potentially execute harmful operations that could damage your system or compromise security. Only enable auto-approval for actions you fully trust.
+> ⚠️ **安全警告：** 自动批准设置会绕过确认提示，使 Kilo Code 直接访问您的系统。这可能导致**数据丢失、文件损坏，甚至更糟**。命令行访问尤其危险，因为它可能执行有害操作，从而损坏您的系统或危及安全。仅对您完全信任的操作启用自动批准。
 
-Auto-approve settings speed up your workflow by eliminating repetitive confirmation prompts, but they significantly increase security risks.
+自动批准设置通过消除重复的确认提示来加快您的工作流程，但它们会显著增加安全风险。
 
-## Quick Start Guide
+## 快速入门指南
 
-1. Click the Auto-Approve Toolbar above the chat input
-2. Select which actions Kilo Code can perform without asking permission
-3. Use the master toggle (leftmost checkbox) to quickly enable/disable all permissions
+1.  单击聊天输入上方的自动批准工具栏
+2.  选择 Kilo Code 可以执行哪些操作而无需请求权限
+3.  使用主开关（最左侧的复选框）快速启用/禁用所有权限
 
 [![KiloCode Task Timeline](https://img.youtube.com/vi/NBccFnYDQ-k/maxresdefault.jpg)](https://youtube.com/shorts/NBccFnYDQ-k?feature=shared)
 
-## Auto-Approve Toolbar
+## 自动批准工具栏
 
-<img src="/docs/img/auto-approving-actions/auto-approving-actions.png" alt="Auto-approve toolbar collapsed state" width="600" />
+<img src="/docs/img/auto-approving-actions/auto-approving-actions.png" alt="自动批准工具栏折叠状态" width="600" />
 
-*Prompt box and Auto-Approve Toolbar showing enabled permissions*
+_提示框和自动批准工具栏显示已启用的权限_
 
-Click the toolbar to expand it and configure individual permissions:
+单击工具栏以展开它并配置单个权限：
 
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-1.png" alt="Auto-approve toolbar expanded state" width="600" />
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-1.png" alt="自动批准工具栏展开状态" width="600" />
 
-*Prompt text box and Expanded toolbar with all options*
+_提示文本框和展开的工具栏，包含所有选项_
 
-### Available Permissions
+### 可用权限
 
-| Permission | What it does | Risk level |
-|------------|--------------|------------|
-| **Read files and directories** | Lets Kilo Code access files without asking | Medium |
-| **Edit files** | Lets Kilo Code modify files without asking | **High** |
-| **Execute approved commands** | Runs whitelisted terminal commands automatically | **High** |
-| **Use the browser** | Allows headless browser interaction | Medium |
-| **Use MCP servers** | Lets Kilo Code use configured MCP services | Medium-High |
-| **Switch modes** | Changes between Kilo Code modes automatically | Low |
-| **Create & complete subtasks** | Manages subtasks without confirmation | Low |
-| **Retry failed requests** | Automatically retries failed API requests | Low |
-| **Answer follow-up questions** | Selects default answer for follow-up questions| Low |
-| **Update todo list** | Automatically updates task progress | Low |
+| 权限                 | 作用                                | 风险级别 |
+| -------------------- | ----------------------------------- | -------- |
+| **读取文件和目录**   | 允许 Kilo Code 无需询问即可访问文件 | 中       |
+| **编辑文件**         | 允许 Kilo Code 无需询问即可修改文件 | **高**   |
+| **执行已批准的命令** | 自动运行白名单中的终端命令          | **高**   |
+| **使用浏览器**       | 允许无头浏览器交互                  | 中       |
+| **使用 MCP 服务器**  | 允许 Kilo Code 使用配置的 MCP 服务  | 中-高    |
+| **切换模式**         | 自动在 Kilo Code 模式之间切换       | 低       |
+| **创建和完成子任务** | 无需确认即可管理子任务              | 低       |
+| **重试失败的请求**   | 自动重试失败的 API 请求             | 低       |
+| **回答后续问题**     | 为后续问题选择默认答案              | 低       |
+| **更新待办事项列表** | 自动更新任务进度                    | 低       |
 
-## Master Toggle for Quick Control
+## 快速控制的主开关
 
-The leftmost checkbox works as a master toggle:
+最左侧的复选框作为主开关：
 
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-14.png" alt="Master toggle in Auto-approve toolbar" width="600" />
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-14.png" alt="自动批准工具栏中的主开关" width="600" />
 
-*Master toggle (checkbox) controls all auto-approve permissions at once*
+_主开关（复选框）一次控制所有自动批准权限_
 
-Use the master toggle when:
-- Working in sensitive code (turn off)
-- Doing rapid development (turn on)
-- Switching between exploration and editing tasks
+在以下情况下使用主开关：
 
-## Advanced Settings Panel
+- 在敏感代码中工作（关闭）
+- 进行快速开发（打开）
+- 在探索和编辑任务之间切换
 
-The settings panel provides detailed control with important security context:
+## 高级设置面板
 
-> **Allow Kilo Code to automatically perform operations without requiring approval. Enable these settings only if you fully trust the AI and understand the associated security risks.**
+设置面板提供详细控制和重要的安全上下文：
 
-To access these settings:
+> **允许 Kilo Code 自动执行操作而无需批准。仅在您完全信任 AI 并了解相关安全风险的情况下才启用这些设置。**
 
-1. Click <Codicon name="gear" /> in the top-right corner
-2. Navigate to Auto-Approve Settings
+要访问这些设置：
 
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-4.png" alt="Settings panel auto-approve options" width="550" />
+1.  单击右上角的 <Codicon name="gear" />
+2.  导航到自动批准设置
 
-*Complete settings panel view*
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-4.png" alt="设置面板自动批准选项" width="550" />
 
-### Read Operations
+_完整的设置面板视图_
 
-:::caution Read Operations
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-6.png" alt="Read-only operations setting" width="550" />
+### 读取操作
 
-**Setting:** "Always approve read-only operations"
+:::caution 读取操作
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-6.png" alt="只读操作设置" width="550" />
 
-**Description:** "When enabled, Kilo Code will automatically view directory contents and read files without requiring you to click the Approve button."
+**设置：** “始终批准只读操作”
 
-**Risk level:** Medium
+**描述：** “启用后，Kilo Code 将自动查看目录内容并读取文件，无需您单击批准按钮。”
 
-While this setting only allows reading files (not modifying them), it could potentially expose sensitive data. Still recommended as a starting point for most users, but be mindful of what files Kilo Code can access.
+**风险级别：** 中
+
+虽然此设置只允许读取文件（不修改它们），但它可能会暴露敏感数据。对于大多数用户来说，仍然建议将其作为起点，但请注意 Kilo Code 可以访问哪些文件。
 :::
 
-### Write Operations
+### 写入操作
 
-:::caution Write Operations
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-7.png" alt="Write operations setting with delay slider" width="550" />
+:::caution 写入操作
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-7.png" alt="带延迟滑块的写入操作设置" width="550" />
 
-**Setting:** "Always approve write operations"
+**设置：** “始终批准写入操作”
 
-**Description:** "Automatically create and edit files without requiring approval"
+**描述：** “自动创建和编辑文件，无需批准”
 
-**Delay slider:** "Delay after writes to allow diagnostics to detect potential problems" (Default: 1000ms)
+**延迟滑块：** “写入后延迟以允许诊断检测潜在问题”（默认：1000ms）
 
-**Risk level:** High
+**风险级别：** 高
 
-This setting allows Kilo Code to modify your files without confirmation. The delay timer is crucial:
-- Higher values (2000ms+): Recommended for complex projects where diagnostics take longer
-- Default (1000ms): Suitable for most projects
-- Lower values: Use only when speed is critical and you're in a controlled environment
-- Zero: No delay for diagnostics (not recommended for critical code)
+此设置允许 Kilo Code 无需确认即可修改您的文件。延迟计时器至关重要：
 
-#### Write Delay & Problems Pane Integration
+- 较高值（2000ms+）：建议用于诊断时间较长的复杂项目
+- 默认值（1000ms）：适用于大多数项目
+- 较低值：仅在速度至关重要且您处于受控环境中时使用
+- 零：诊断无延迟（不建议用于关键代码）
 
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-5.png" alt="VSCode Problems pane showing diagnostic information" width="600" />
+#### 写入延迟和问题窗格集成
 
-*VSCode Problems pane that Kilo Code checks during the write delay*
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-5.png" alt="显示诊断信息的 VSCode 问题窗格" width="600" />
 
-When you enable auto-approval for writing files, the delay timer works with VSCode's Problems pane:
+_Kilo Code 在写入延迟期间检查的 VSCode 问题窗格_
 
-1. Kilo Code makes a change to your file
-2. VSCode's diagnostic tools analyze the change
-3. The Problems pane updates with any errors or warnings
-4. Kilo Code notices these issues before continuing
+当您启用文件写入的自动批准时，延迟计时器与 VSCode 的问题窗格一起工作：
 
-This works like a human developer pausing to check for errors after changing code. You can adjust the delay time based on:
+1.  Kilo Code 对您的文件进行更改
+2.  VSCode 的诊断工具分析更改
+3.  问题窗格更新任何错误或警告
+4.  Kilo Code 在继续之前注意到这些问题
 
-- Project complexity
-- Language server speed
-- How important error detection is for your workflow
+这就像人类开发人员在更改代码后暂停检查错误一样。您可以根据以下因素调整延迟时间：
+
+- 项目复杂性
+- 语言服务器速度
+- 错误检测对您的工作流程的重要性
+  :::
+
+### 浏览器操作
+
+:::info 浏览器操作
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-8.png" alt="浏览器操作设置" width="550" />
+
+**设置：** “始终批准浏览器操作”
+
+**描述：** “自动执行浏览器操作，无需批准”
+
+**注意：** “仅当模型支持计算机使用时才适用”
+
+**风险级别：** 中
+
+允许 Kilo Code 无需确认即可控制无头浏览器。这可以包括：
+
+- 打开网站
+- 导航页面
+- 与网页元素交互
+
+考虑允许自动化浏览器访问的安全隐患。
 :::
 
-### Browser Actions
+### API 请求
 
-:::info Browser Actions
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-8.png" alt="Browser actions setting" width="550" />
+:::info API 请求
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-9.png" alt="带延迟滑块的 API 请求重试设置" width="550" />
 
-**Setting:** "Always approve browser actions"
+**设置：** “始终重试失败的 API 请求”
 
-**Description:** "Automatically perform browser actions without requiring approval"
+**描述：** “当服务器返回错误响应时，自动重试失败的 API 请求”
 
-**Note:** "Only applies when the model supports computer use"
+**延迟滑块：** “重试请求前的延迟”（默认：5s）
 
-**Risk level:** Medium
+**风险级别：** 低
 
-Allows Kilo Code to control a headless browser without confirmation. This can include:
-- Opening websites
-- Navigating pages
-- Interacting with web elements
+此设置会在 API 调用失败时自动重试。延迟控制 Kilo Code 在重试之前等待多长时间：
 
-Consider the security implications of allowing automated browser access.
+- 较长的延迟对 API 速率限制更温和
+- 较短的延迟可以更快地从瞬时错误中恢复
+  :::
+
+### MCP 工具
+
+:::caution MCP 工具
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-10.png" alt="MCP 工具设置" width="550" />
+
+**设置：** “始终批准 MCP 工具”
+
+**描述：** “在 MCP 服务器视图中启用单个 MCP 工具的自动批准（需要此设置和工具的单独‘始终允许’复选框）”
+
+**风险级别：** 中-高（取决于配置的 MCP 工具）
+
+此设置与 MCP 服务器视图中的单个工具权限结合使用。此全局设置和工具特定权限都必须启用才能进行自动批准。
 :::
 
-### API Requests
+### 模式切换
 
-:::info API Requests
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-9.png" alt="API requests retry setting with delay slider" width="550" />
+:::info 模式切换
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-11.png" alt="模式切换设置" width="550" />
 
-**Setting:** "Always retry failed API requests"
+**设置：** “始终批准模式切换”
 
-**Description:** "Automatically retry failed API requests when server returns an error response"
+**描述：** “自动在不同模式之间切换，无需批准”
 
-**Delay slider:** "Delay before retrying the request" (Default: 5s)
+**风险级别：** 低
 
-**Risk level:** Low
-
-This setting automatically retries API calls when they fail. The delay controls how long Kilo Code waits before trying again:
-- Longer delays are gentler on API rate limits
-- Shorter delays give faster recovery from transient errors
+允许 Kilo Code 在不同模式（代码、架构师等）之间切换，无需请求权限。这主要影响 AI 的行为，而不是系统访问。
 :::
 
-### MCP Tools
+### 子任务
 
-:::caution MCP Tools
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-10.png" alt="MCP tools setting" width="550" />
+:::info 子任务
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-12.png" alt="子任务设置" width="550" />
 
-**Setting:** "Always approve MCP tools"
+**设置：** “始终批准子任务的创建和完成”
 
-**Description:** "Enable auto-approval of individual MCP tools in the MCP Servers view (requires both this setting and the tool's individual 'Always allow' checkbox)"
+**描述：** “允许创建和完成子任务，无需批准”
 
-**Risk level:** Medium-High (depends on configured MCP tools)
+**风险级别：** 低
 
-This setting works in conjunction with individual tool permissions in the MCP Servers view. Both this global setting and the tool-specific permission must be enabled for auto-approval.
+启用 Kilo Code 自动创建和完成子任务。这与工作流组织有关，而不是系统访问。
 :::
 
-### Mode Switching
+### 命令执行
 
-:::info Mode Switching
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-11.png" alt="Mode switching setting" width="550" />
+:::caution 命令执行
+<img src="/docs/img/auto-approving-actions/auto-approving-actions-13.png" alt="带白名单界面的命令执行设置" width="550" />
 
-**Setting:** "Always approve mode switching"
+**设置：** “始终批准允许的执行操作”
 
-**Description:** "Automatically switch between different modes without requiring approval"
+**描述：** “自动执行允许的终端命令，无需批准”
 
-**Risk level:** Low
+**命令管理：** “当启用‘始终批准执行操作’时，可以自动执行的命令前缀。添加 \* 以允许所有命令（谨慎使用）。”
 
-Allows Kilo Code to change between different modes (Code, Architect, etc.) without asking for permission. This primarily affects the AI's behavior rather than system access.
-:::
+**风险级别：** 高
 
-### Subtasks
+此设置允许通过控制执行终端命令。虽然有风险，但白名单功能限制了可以运行的命令。重要的安全功能：
 
-:::info Subtasks
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-12.png" alt="Subtasks setting" width="550" />
+- 白名单特定命令前缀（推荐）
+- 切勿在生产环境或敏感数据中使用 \* 通配符
+- 考虑每个允许命令的安全隐患
+- 始终验证与外部系统交互的命令
 
-**Setting:** "Always approve creation & completion of subtasks"
+**界面元素：**
 
-**Description:** "Allow creation and completion of subtasks without requiring approval"
+- 文本字段用于输入命令前缀（例如，“git”）
+- “添加”按钮用于添加新前缀
+- 可单击的命令按钮，带 X 可删除它们
+  :::
 
-**Risk level:** Low
+### 后续问题
 
-Enables Kilo Code to create and complete subtasks automatically. This relates to workflow organization rather than system access.
-:::
+:::info 后续问题（风险：低）
 
-### Command Execution
+**设置：** `始终为后续问题提供默认答案`
 
-:::caution Command Execution
-<img src="/docs/img/auto-approving-actions/auto-approving-actions-13.png" alt="Command execution setting with whitelist interface" width="550" />
+**描述：** 在可配置的超时后，自动为后续问题选择第一个 AI 建议的答案。这通过让 Roo 无需手动干预即可继续操作来加快您的工作流程。
 
-**Setting:** "Always approve allowed execute operations"
+**视觉倒计时：** 启用后，第一个建议按钮上会出现一个倒计时计时器，显示自动选择前的剩余时间。计时器显示为圆形进度指示器，随着时间推移而耗尽。
 
-**Description:** "Automatically execute allowed terminal commands without requiring approval"
+**超时滑块：** 使用滑块设置等待时间，从 1 到 300 秒（默认：60 秒）。
 
-**Command management:** "Command prefixes that can be auto-executed when 'Always approve execute operations' is enabled. Add * to allow all commands (use with caution)."
+**覆盖选项：** 您可以通过以下方式随时取消自动选择：
 
-**Risk level:** High
+- 单击不同的建议
+- 编辑任何建议
+- 输入您自己的响应
+- 单击计时器以暂停它
 
-This setting allows terminal command execution with controls. While risky, the whitelist feature limits what commands can run. Important security features:
+**风险级别：** 低
 
-- Whitelist specific command prefixes (recommended)
-- Never use * wildcard in production or with sensitive data
-- Consider security implications of each allowed command
-- Always verify commands that interact with external systems
+**用例：**
 
-**Interface elements:**
-- Text field to enter command prefixes (e.g., 'git')
-- "Add" button to add new prefixes
-- Clickable command buttons with X to remove them
-:::
+- 您希望 Roo 继续工作的隔夜运行
+- 默认建议通常正确的重复任务
+- 交互不重要的测试工作流
+  :::
 
-### Follow-Up Questions
+### 更新待办事项列表
 
-:::info Follow-Up Questions (Risk: Low)
+:::info 更新待办事项列表（风险：低）
 
-**Setting:** `Always default answer for follow-up questions`
+**设置：** “始终批准待办事项列表更新”
 
-**Description:** Automatically selects the first AI-suggested answer for a follow-up question after a configurable timeout. This speeds up your workflow by letting Roo proceed without manual intervention.
+**描述：** “自动更新待办事项列表，无需批准”
 
-**Visual countdown:** When enabled, a countdown timer appears on the first suggestion button, showing the remaining time before auto-selection. The timer is displayed as a circular progress indicator that depletes as time passes.
+**风险级别：** 低
 
-**Timeout slider:** Use the slider to set the wait time from 1 to 300 seconds (Default: 60s).
+此设置允许 Roo 在工作会话期间自动更新任务进度和待办事项列表。这包括：
 
-**Override options:** You can cancel the auto-selection at any time by:
-- Clicking a different suggestion
-- Editing any suggestion
-- Typing your own response
-- Clicking the timer to pause it
+- 将任务标记为已完成
+- 添加新发现的任务
+- 更新任务状态（待处理、进行中、已完成）
+- 重新组织任务优先级
 
-**Risk level:** Low
+**优点：**
 
-**Use cases:**
-- Overnight runs where you want Roo to continue working
-- Repetitive tasks where the default suggestions are usually correct
-- Testing workflows where interaction isn't critical
-:::
+- 保持实时任务进度可见性
+- 减少多步骤工作流中的中断
+- 保持项目状态准确反映
+- 帮助跟踪复杂的任务依赖关系
 
-### Update Todo List
+**用例：**
 
-:::info Update Todo List (Risk: Low)
+- 长期开发会话
+- 多步骤重构项目
+- 复杂调试工作流
+- 具有许多子任务的功能实现
 
-**Setting:** "Always approve todo list updates"
-
-**Description:** "Automatically update the to-do list without requiring approval"
-
-**Risk level:** Low
-
-This setting allows Roo to automatically update task progress and todo lists during work sessions. This includes:
-- Marking tasks as completed
-- Adding new discovered tasks
-- Updating task status (pending, in progress, completed)
-- Reorganizing task priorities
-
-**Benefits:**
-- Maintains real-time task progress visibility
-- Reduces interruptions during multi-step workflows
-- Keeps project status accurately reflected
-- Helps track complex task dependencies
-
-**Use cases:**
-- Long-running development sessions
-- Multi-step refactoring projects
-- Complex debugging workflows
-- Feature implementation with many subtasks
-
-This is particularly useful when combined with the Subtasks permission, as it allows Roo to maintain a complete picture of project progress without constant approval requests.
+当与子任务权限结合使用时，这尤其有用，因为它允许 Roo 在没有持续批准请求的情况下保持项目进度的完整视图。
 :::

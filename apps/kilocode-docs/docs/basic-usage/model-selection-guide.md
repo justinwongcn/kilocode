@@ -1,84 +1,84 @@
 ---
-sidebar_label: "Model Selection Guide"
+sidebar_label: "模型选择指南"
 ---
 
-# Kilo Code Model Selection Guide
+# Kilo Code 模型选择指南
 
-Last updated: September 3, 2025.
+最后更新：2025年9月3日。
 
-The AI model landscape evolves rapidly, so this guide focuses on what's delivering excellent results with Kilo Code right now. We update this regularly as new models emerge and performance shifts.
+AI 模型领域发展迅速，因此本指南重点介绍目前在 Kilo Code 中表现优异的模型。我们会定期更新，以反映新模型的出现和性能变化。
 
-## Kilo Code Top Performers
+## Kilo Code 表现最佳者
 
-| Model                | Context Window | SWE-Bench Verified | Human Eval | LiveCodeBench | Input Price\* | Output Price\* | Best For                                    |
-| -------------------- | -------------- | ------------------ | ---------- | ------------- | ------------- | -------------- | ------------------------------------------- |
-| **GPT-5**            | 400K tokens    | 74.9%              | 96.3%      | 68.2%         | $1.25         | $10            | Latest capabilities, multi-modal coding     |
-| **Claude Sonnet 4**  | 1M tokens      | 72.7%              | 94.8%      | 65.9%         | $3-6          | $15-22.50      | Enterprise code generation, complex systems |
-| **Grok Code Fast 1** | 256K tokens    | 70.8%              | 92.1%      | 63.4%         | $0.75         | $3.50          | Rapid development, cost-performance balance |
-| **Qwen3 Coder**      | 256K tokens    | 68.4%              | 91.7%      | 61.8%         | $0.20         | $0.80          | Pure coding tasks, rapid prototyping        |
-| **Gemini 2.5 Pro**   | 1M+ tokens     | 67.2%              | 89.9%      | 59.3%         | TBD           | TBD            | Massive codebases, architectural planning   |
+| 模型                 | 上下文窗口  | SWE-Bench 验证 | 人工评估 | LiveCodeBench | 输入价格\* | 输出价格\* | 最佳用途                 |
+| -------------------- | ----------- | -------------- | -------- | ------------- | ---------- | ---------- | ------------------------ |
+| **GPT-5**            | 400K tokens | 74.9%          | 96.3%    | 68.2%         | $1.25      | $10        | 最新功能，多模态编码     |
+| **Claude Sonnet 4**  | 1M tokens   | 72.7%          | 94.8%    | 65.9%         | $3-6       | $15-22.50  | 企业级代码生成，复杂系统 |
+| **Grok Code Fast 1** | 256K tokens | 70.8%          | 92.1%    | 63.4%         | $0.75      | $3.50      | 快速开发，性价比平衡     |
+| **Qwen3 Coder**      | 256K tokens | 68.4%          | 91.7%    | 61.8%         | $0.20      | $0.80      | 纯编码任务，快速原型开发 |
+| **Gemini 2.5 Pro**   | 1M+ tokens  | 67.2%          | 89.9%    | 59.3%         | TBD        | TBD        | 大型代码库，架构规划     |
 
-\*Per million tokens
+\*每百万 tokens
 
-## Budget-Conscious Options
+## 高性价比选项
 
-| Model            | Context Window | SWE-Bench Verified | Human Eval | LiveCodeBench | Input Price\* | Output Price\* | Notes                                |
-| ---------------- | -------------- | ------------------ | ---------- | ------------- | ------------- | -------------- | ------------------------------------ |
-| **DeepSeek V3**  | 128K tokens    | 64.1%              | 87.3%      | 56.7%         | $0.14         | $0.28          | Exceptional value for daily coding   |
-| **DeepSeek R1**  | 128K tokens    | 62.8%              | 85.9%      | 54.2%         | $0.55         | $2.19          | Advanced reasoning at budget prices  |
-| **Qwen3 32B**    | 128K tokens    | 60.3%              | 83.4%      | 52.1%         | Varies        | Varies         | Open source flexibility              |
-| **Z AI GLM 4.5** | 128K tokens    | 58.7%              | 81.2%      | 49.8%         | TBD           | TBD            | MIT license, hybrid reasoning system |
+| 模型             | 上下文窗口  | SWE-Bench 验证 | 人工评估 | LiveCodeBench | 输入价格\* | 输出价格\* | 说明                     |
+| ---------------- | ----------- | -------------- | -------- | ------------- | ---------- | ---------- | ------------------------ |
+| **DeepSeek V3**  | 128K tokens | 64.1%          | 87.3%    | 56.7%         | $0.14      | $0.28      | 日常编码的超高性价比     |
+| **DeepSeek R1**  | 128K tokens | 62.8%          | 85.9%    | 54.2%         | $0.55      | $2.19      | 预算价格下的高级推理能力 |
+| **Qwen3 32B**    | 128K tokens | 60.3%          | 83.4%    | 52.1%         | Varies     | Varies     | 开源灵活性               |
+| **Z AI GLM 4.5** | 128K tokens | 58.7%          | 81.2%    | 49.8%         | TBD        | TBD        | MIT 许可，混合推理系统   |
 
-\*Per million tokens
+\*每百万 tokens
 
-## Comprehensive Evaluation Framework
+## 全面评估框架
 
-### Latency Performance
+### 延迟性能
 
-Response times significantly impact development flow and productivity:
+响应时间显著影响开发流程和生产力：
 
-- **Ultra-Fast (< 2s)**: Grok Code Fast 1, Qwen3 Coder
-- **Fast (2-4s)**: DeepSeek V3, GPT-5
-- **Moderate (4-8s)**: Claude Sonnet 4, DeepSeek R1
-- **Slower (8-15s)**: Gemini 2.5 Pro, Z AI GLM 4.5
+- **超快 (< 2秒)**：Grok Code Fast 1，Qwen3 Coder
+- **快速 (2-4秒)**：DeepSeek V3，GPT-5
+- **中等 (4-8秒)**：Claude Sonnet 4，DeepSeek R1
+- **较慢 (8-15秒)**：Gemini 2.5 Pro，Z AI GLM 4.5
 
-**Impact on Development**: Ultra-fast models enable real-time coding assistance and immediate feedback loops. Models with 8+ second latency can disrupt flow state but may be acceptable for complex architectural decisions.
+**对开发的影响**：超快模型支持实时编码辅助和即时反馈循环。延迟超过 8 秒的模型可能会打断心流状态，但在处理复杂架构决策时可能仍然可以接受。
 
-### Throughput Analysis
+### 吞吐量分析
 
-Token generation rates affect large codebase processing:
+Token 生成速率影响大型代码库的处理：
 
-- **High Throughput (150+ tokens/s)**: GPT-5, Grok Code Fast 1
-- **Medium Throughput (100-150 tokens/s)**: Claude Sonnet 4, Qwen3 Coder
-- **Standard Throughput (50-100 tokens/s)**: DeepSeek models, Gemini 2.5 Pro
-- **Variable Throughput**: Open source models depend on infrastructure
+- **高吞吐量 (150+ tokens/s)**：GPT-5，Grok Code Fast 1
+- **中吞吐量 (100-150 tokens/s)**：Claude Sonnet 4，Qwen3 Coder
+- **标准吞吐量 (50-100 tokens/s)**：DeepSeek 模型，Gemini 2.5 Pro
+- **可变吞吐量**：开源模型依赖基础设施
 
-**Scaling Factors**: High throughput models excel when generating extensive documentation, refactoring large files, or batch processing multiple components.
+**扩展因素**：高吞吐量模型在生成大量文档、重构大型文件或批量处理多个组件时表现出色。
 
-### Reliability & Availability
+### 可靠性与可用性
 
-Enterprise considerations for production environments:
+企业级生产环境的考虑：
 
-- **Enterprise Grade (99.9%+ uptime)**: Claude Sonnet 4, GPT-5, Gemini 2.5 Pro
-- **Production Ready (99%+ uptime)**: Qwen3 Coder, Grok Code Fast 1
-- **Developing Reliability**: DeepSeek models, Z AI GLM 4.5
-- **Self-Hosted**: Qwen3 32B (reliability depends on your infrastructure)
+- **企业级 (99.9%+ 正常运行时间)**：Claude Sonnet 4，GPT-5，Gemini 2.5 Pro
+- **生产就绪 (99%+ 正常运行时间)**：Qwen3 Coder，Grok Code Fast 1
+- **可靠性发展中**：DeepSeek 模型，Z AI GLM 4.5
+- **自托管**：Qwen3 32B（可靠性取决于您的基础设施）
 
-**Success Rates**: Enterprise models maintain consistent output quality and handle edge cases more gracefully, while budget options may require additional validation steps.
+**成功率**：企业级模型保持一致的输出质量并更优雅地处理边缘情况，而预算选项可能需要额外的验证步骤。
 
-### Context Window Strategy
+### 上下文窗口策略
 
-Optimizing for different project scales:
+针对不同项目规模的优化：
 
-| Size             | Word Count      | Typical Use Case                      | Recommended Models                     | Strategy                                        |
-| ---------------- | --------------- | ------------------------------------- | -------------------------------------- | ----------------------------------------------- |
-| **32K tokens**   | ~24,000 words   | Individual components, scripts        | DeepSeek V3, Qwen3 Coder               | Focus on single-file optimization               |
-| **128K tokens**  | ~96,000 words   | Standard applications, most projects  | All budget models, Grok Code Fast 1    | Multi-file context, moderate complexity         |
-| **256K tokens**  | ~192,000 words  | Large applications, multiple services | Qwen3 Coder, Grok Code Fast 1          | Full feature context, service integration       |
-| **400K+ tokens** | ~300,000+ words | Enterprise systems, full stack apps   | GPT-5, Claude Sonnet 4, Gemini 2.5 Pro | Architectural overview, system-wide refactoring |
+| 大小             | 字数估算        | 典型用例                 | 推荐模型                               | 策略                     |
+| ---------------- | --------------- | ------------------------ | -------------------------------------- | ------------------------ |
+| **32K tokens**   | ~24,000 words   | 单个组件、脚本           | DeepSeek V3, Qwen3 Coder               | 专注于单文件优化         |
+| **128K tokens**  | ~96,000 words   | 标准应用程序、大多数项目 | 所有预算模型, Grok Code Fast 1         | 多文件上下文，中等复杂度 |
+| **256K tokens**  | ~192,000 words  | 大型应用程序、多个服务   | Qwen3 Coder, Grok Code Fast 1          | 完整功能上下文，服务集成 |
+| **400K+ tokens** | ~300,000+ words | 企业系统、全栈应用       | GPT-5, Claude Sonnet 4, Gemini 2.5 Pro | 架构概览，系统级重构     |
 
-**Performance Degradation**: Model effectiveness typically drops significantly beyond 400-500K tokens, regardless of advertised limits. Plan context usage accordingly.
+**性能下降**：无论宣传的限制如何，模型的有效性通常在超过 400-500K tokens 后显著下降。请相应规划上下文使用。
 
-## Community Choice
+## 社区选择
 
-The AI model landscape changes quicky to stay up to date [**👉 check Kilo Code Community Favorites on OpenRouter**](https://openrouter.ai/apps?url=https%3A%2F%2Fkilocode.ai%2F)
+AI 模型领域变化迅速，要保持更新，请查看 [**👉 Kilo Code 在 OpenRouter 上的社区最爱**](https://openrouter.ai/apps?url=https%3A%2F%2Fkilocode.ai%2F)

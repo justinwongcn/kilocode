@@ -1,49 +1,49 @@
 ---
-title: What is MCP?
-sidebar_label: What is MCP?
+title: 什么是 MCP？
+sidebar_label: 什么是 MCP？
 ---
 
-# What is MCP?
+# 什么是 MCP？
 
-MCP (Model Context Protocol) is a standardized communication protocol for LLM systems to interact with external tools and services. It functions as a universal adapter between AI assistants and various data sources or applications.
+MCP（Model Context Protocol，模型上下文协议）是 LLM 系统与外部工具和服务交互的标准化通信协议。它充当 AI 助手与各类数据源或应用程序之间的通用适配器。
 
-## How It Works
+## 工作原理
 
-MCP uses a client-server architecture:
+MCP 采用客户端-服务端架构：
 
-1. The AI assistant (client) connects to MCP servers
-2. Each server provides specific capabilities (file access, database queries, API integrations)
-3. The AI uses these capabilities through a standardized interface
-4. Communication occurs via JSON-RPC 2.0 messages
+1. AI 助手（客户端）连接至 MCP 服务器
+2. 每个服务器提供特定能力（文件访问、数据库查询、API 集成等）
+3. AI 通过标准化接口使用这些能力
+4. 通信通过 JSON-RPC 2.0 消息进行
 
-Think of MCP as similar to a USB-C port in the sense that any compatible LLM can connect to any MCP server to access its functionality. This standardization eliminates the need to build custom integrations for each tool and service.
+可以将 MCP 类比为 USB-C 接口——任何兼容的 LLM 都能连接任意 MCP 服务器来使用其功能。这种标准化消除了为每个工具和服务构建定制集成的需求。
 
-For example, an AI using MCP can perform tasks like "search our company database and generate a report" without requiring specialized code for each database system.
+例如，使用 MCP 的 AI 可以执行"搜索公司数据库并生成报告"这类任务，而无需为每个数据库系统编写专用代码。
 
-## Common Questions
+## 常见问题
 
-- **Is MCP a cloud service?** MCP servers can run locally on your computer or remotely as cloud services, depending on the use case and security requirements.
+- **MCP 是云服务吗？** MCP 服务器既可在本地运行，也可作为云服务远程部署，具体取决于使用场景和安全要求。
 
-- **Does MCP replace other integration methods?** No. MCP complements existing tools like API plugins and retrieval-augmented generation. It provides a standardized protocol for tool interaction but doesn't replace specialized integration approaches.
+- **MCP 会取代其他集成方式吗？** 不会。MCP 是对 API 插件和检索增强生成等现有工具的补充。它提供了工具交互的标准化协议，但不会取代专业集成方案。
 
-- **How is security handled?** Users control which MCP servers they connect to and what permissions those servers have. As with any tool that accesses data or services, use trusted sources and configure appropriate access controls.
+- **如何保障安全性？** 用户可自主控制连接哪些 MCP 服务器，以及授予这些服务器哪些权限。与任何访问数据或服务的工具一样，请使用可信来源并配置适当的访问控制。
 
-## MCP in Kilo Code
+## Kilo Code 中的 MCP
 
-Kilo Code implements the Model Context Protocol to:
+Kilo Code 通过实现模型上下文协议来：
 
-- Connect to both local and remote MCP servers
-- Provide a consistent interface for accessing tools
-- Extend functionality without core modifications
-- Enable specialized capabilities on demand
+- 同时连接本地和远程 MCP 服务器
+- 提供访问工具的统一接口
+- 无需修改核心即可扩展功能
+- 按需启用专项能力
 
-MCP provides a standardized way for AI systems to interact with external tools and services, making complex integrations more accessible and consistent.
+MCP 为 AI 系统与外部工具服务的交互提供了标准化方式，使复杂集成更易用且一致。
 
-## Learn More About MCP
+## 深入了解 MCP
 
-Ready to dig deeper? Check out these guides:
+准备好深入探索了吗？请查阅以下指南：
 
-- [MCP Overview](/features/mcp/overview) - A quick glance at the MCP documentation structure
-- [Using MCP in Kilo Code](/features/mcp/using-mcp-in-kilo-code) - Get started with MCP in Kilo Code, including creating simple servers
-- [MCP vs API](/features/mcp/mcp-vs-api) - Technical advantages compared to traditional APIs
-- [STDIO & SSE Transports](/features/mcp/server-transports) - Local vs. hosted deployment models
+- [MCP 概述](/features/mcp/overview) - 快速了解 MCP 文档结构
+- [在 Kilo Code 中使用 MCP](/features/mcp/using-mcp-in-kilo-code) - 包含创建简单服务器的入门指导
+- [MCP vs 传统 API](/features/mcp/mcp-vs-api) - 相比传统 API 的技术优势
+- [STDIO 与 SSE 传输协议](/features/mcp/server-transports) - 本地与云端部署模式对比

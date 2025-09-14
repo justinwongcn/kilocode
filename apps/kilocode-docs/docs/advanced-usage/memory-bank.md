@@ -1,297 +1,322 @@
 # Memory Bank
 
-## Overview
+## 概述
 
 <figure style={{ float: 'right', width: '40%', maxWidth: '350px', margin: '0 0 10px 20px' }}>
-  <img src="/docs/img/memory-bank/at-work.png" alt="Executing task with the memory bank" style={{ border: '1px solid grey', borderRadius: '5px', width: '100%' }} />
+  <img src="/docs/img/memory-bank/at-work.png" alt="使用 Memory Bank 执行任务" style={{ border: '1px solid grey', borderRadius: '5px', width: '100%' }} />
   <figcaption style={{ fontSize: '0.9rem', color: '#666', marginTop: '8px', textAlign: 'center' }}>
-    Kilo Code works more efficiently with Memory Bank enabled, instantly understanding project context and technologies.
+    启用 Memory Bank 后，Kilo Code 可以更高效地工作，立即理解项目上下文和技术栈。
   </figcaption>
 </figure>
 
-### The Problem: AI Memory Loss
+### 问题：AI 记忆丢失
 
-AI assistants like Kilo Code face a fundamental limitation: they reset completely between sessions. This "memory loss" means that every time you start a new conversation, you need to re-explain your project's architecture, goals, technologies, and current status. This creates a critical efficiency dilemma: AI models either make edits without proper project understanding (leading to errors and misaligned solutions), or must spend significant time and resources analyzing your entire codebase in each session (which is prohibitively expensive and slow for larger projects)
+像 Kilo Code 这样的 AI 助手面临一个根本性的限制：它们会在会话之间完全重置。这种“记忆丢失”意味着每次开始新的对话时，都需要重新解释项目的架构、目标、技术和当前状态。这造成了一个关键效率困境：AI 模型要么在没有正确理解项目的情况下进行编辑（导致错误和解决方案不一致），要么必须在每个会话中花费大量时间和资源分析整个代码库（对于大型项目来说，这既昂贵又缓慢）。
 
-Without a solution to this memory problem, AI assistants remain powerful but stateless tools that can't truly function as persistent development partners.
+如果没有解决这个记忆问题，AI 助手仍然是强大但无状态的工具，无法真正作为持续的开发伙伴。
 
-### The Solution: Memory Bank
+### 解决方案：Memory Bank
 
-Memory Bank is a system of structured documentation that enables Kilo Code to **better understand your project** and **maintain context across coding sessions**. It transforms your AI assistant from a stateless tool into a persistent development partner with perfect recall of your project details. Kilo Code automatically reads your Memory Bank files to rebuild its understanding of your project whenever you start a new session.
+Memory Bank 是一个结构化文档系统，使 Kilo Code 能够**更好地理解你的项目**并**在编码会话之间保持上下文**。它将你的 AI 助手从无状态工具转变为具有完美项目记忆的持续开发伙伴。Kilo Code 会在每次开始新会话时自动读取你的 Memory Bank 文件，以重建对项目的理解。
 
-When Memory Bank is active, Kilo Code begins each task with `[Memory Bank: Active]` and a brief summary of your project context, ensuring consistent understanding without repetitive explanations.
+当 Memory Bank 处于活动状态时，Kilo Code 会在每个任务的开始处显示 `[Memory Bank: Active]`，并简要总结你的项目上下文，确保在不重复解释的情况下保持一致性。
 
-## Key Benefits
+## 主要优点
 
-- **Language Agnostic**: Functions with any programming language or framework
-- **Efficient Project Understanding**: Helps Kilo Code understand the purpose and tech stack of a project
-- **Context Preservation**: Maintain project knowledge across sessions without needing to scan files in every new session
-- **Faster Startup**: Kilo Code immediately comprehends your project context when you begin a new session
-- **Self-Documenting Projects**: Create valuable documentation as a byproduct
+- **语言无关**：适用于任何编程语言或框架
+- **高效的项目理解**：帮助 Kilo Code 理解项目的用途和技术栈
+- **上下文保留**：在会话之间维护项目知识，而无需在每个新会话中扫描文件
+- **更快的启动**：Kilo Code 在开始新会话时立即理解你的项目上下文
+- **自我记录项目**：作为副产品创建有价值的文档
 
-## How Memory Bank Works
+## Memory Bank 的工作原理
 
-Memory Bank is built on Kilo Code's [Custom Rules](/advanced-usage/custom-rules) feature, providing a specialized framework for project documentation. Memory Bank files are standard markdown files stored in `.kilocode/rules/memory-bank` folder within your project repository. They're not hidden or proprietary - they're regular documentation files that both you and Kilo Code can access.
+Memory Bank 基于 Kilo Code 的 [自定义规则](/advanced-usage/custom-rules) 功能构建，为项目文档提供了一个专门的框架。Memory Bank 文件是存储在项目仓库 `.kilocode/rules/memory-bank` 文件夹中的标准 Markdown 文件。它们不是隐藏或专有的——它们是你和 Kilo Code 都可以访问的常规文档文件。
 
-At the start of every task, Kilo Code reads all Memory Bank files to build a comprehensive understanding of your project. This happens automatically without requiring any action from you. Kilo Code then indicates successful Memory Bank activation with `[Memory Bank: Active]` at the beginning of its response, followed by a brief summary of its understanding of your project.
+在每个任务开始时，Kilo Code 会读取所有 Memory Bank 文件，以构建对项目的全面理解。这是自动进行的，不需要你采取任何操作。Kilo Code 然后会在其响应的开头显示 `[Memory Bank: Active]`，表示 Memory Bank 已成功激活，并简要总结其对项目的理解。
 
-Files are organized in a hierarchical structure that builds a complete picture of your project:
+文件按层次结构组织，构建项目的完整视图：
 
-## Core Memory Bank Files
+## 核心 Memory Bank 文件
 
 ### brief.md
-*This file is created and maintained manually by you*
-- The foundation of your project
-- High-level overview of what you're building
-- Core requirements and goals
 
-Example: *"Building a React web app for inventory management with barcode scanning. The system needs to support multiple warehouses and integrate with our existing ERP system."*
+_此文件由你手动创建和维护_
 
-Note: Kilo Code will not edit this file directly but may suggest improvements if it identifies ways to enhance your project brief.
+- 项目的基础
+- 项目的高级概述
+- 核心需求和目标
+
+示例：_"构建一个带有条形码扫描功能的 React 库存管理系统。该系统需要支持多个仓库并与我们现有的 ERP 系统集成。"_
+
+注意：Kilo Code 不会直接编辑此文件，但如果发现可以改进项目摘要的方式，可能会提出建议。
 
 ### product.md
-- Explains why the project exists
-- Describes the problems being solved
-- Outlines how the product should work
-- User experience goals
 
-Example: *"The inventory system needs to support multiple warehouses and real-time updates. It solves the problem of inventory discrepancies by providing barcode scanning for accurate stock counts."*
+- 解释项目存在的原因
+- 描述正在解决的问题
+- 概述产品应如何工作
+- 用户体验目标
+
+示例：_"库存系统需要支持多个仓库和实时更新。它通过提供条形码扫描来解决库存差异问题，确保准确的库存计数。"_
 
 ### context.md
-- The most frequently updated file
-- Contains current work focus and recent changes
-- Tracks active decisions and considerations
-- Next steps for development
 
-Example: *"Currently implementing the barcode scanner component; last session completed the API integration. Next steps include adding error handling for network failures."*
+- 更新最频繁的文件
+- 包含当前工作重点和最近的变化
+- 跟踪活动决策和考虑事项
+- 开发的下一步
+
+示例：_"当前正在实施条形码扫描组件；上次会话完成了 API 集成。下一步包括为网络故障添加错误处理。"_
 
 ### architecture.md
-- Documents the system architecture
-- Records key technical decisions
-- Lists design patterns in use
-- Explains component relationships
-- Critical implementation paths
 
-Example: *"Using Redux for state management with a normalized store structure. The application follows a modular architecture with separate services for API communication, state management, and UI components."*
+- 记录系统架构
+- 记录关键技术决策
+- 列出正在使用的设计模式
+- 解释组件关系
+- 关键实现路径
+
+示例：_"使用 Redux 进行状态管理，采用规范化的存储结构。应用程序遵循模块化架构，API 通信、状态管理和 UI 组件分别位于不同的服务中。"_
 
 ### tech.md
-- Lists technologies and frameworks used
-- Describes development setup
-- Notes technical constraints
-- Records dependencies and tool configurations
-- Tool usage patterns
 
-Example: *"React 18, TypeScript, Firebase, Jest for testing. Development requires Node.js 16+ and uses Vite as the build tool."*
+- 列出使用的技术和框架
+- 描述开发设置
+- 记录技术约束
+- 记录依赖项和工具配置
+- 工具使用模式
 
-## Additional Context Files
+示例：_"React 18、TypeScript、Firebase、Jest 用于测试。开发需要 Node.js 16+ 并使用 Vite 作为构建工具。"_
 
-Create additional files as needed to organize:
-- Complex feature documentation
-- Integration specifications
-- API documentation
-- Testing strategies
-- Deployment procedures
+## 其他上下文文件
 
-These additional files help organize more detailed information that doesn't fit neatly into the core files.
+根据需要创建其他文件以组织：
+
+- 复杂功能文档
+- 集成规范
+- API 文档
+- 测试策略
+- 部署程序
+
+这些附加文件有助于组织不适合核心文件的更详细信息。
 
 ### tasks.md
-*Optional file for documenting repetitive tasks*
-- Stores workflows for tasks that follow similar patterns
-- Documents which files need to be modified
-- Captures step-by-step procedures
-- Records important considerations and gotchas
 
-Example: Adding support for new AI models, implementing API endpoints, or any task that requires doing similar jobs repeatedly.
+_用于记录重复任务的可选文件_
 
-## Getting Started with Memory Bank
+- 存储遵循类似模式的任务的工作流程
+- 记录需要修改的文件
+- 记录分步程序
+- 记录重要的注意事项和陷阱
 
-### First-Time Setup
+示例：添加对新 AI 模型的支持、实现 API 端点或任何需要重复执行类似工作的任务。
 
-1. Create a `.kilocode/rules/memory-bank/` folder in your project
-2. Write a basic project brief in `.kilocode/rules/memory-bank/brief.md`
-3. Create a file `.kilocode/rules/memory-bank-instructions.md` and paste there [this document](pathname:///downloads/memory-bank.md)
-4. Switch to `Architect` mode
-5. Check if a best available AI model is selected, don't use "lightweight" models
-6. Ask Kilo Code to "initialize memory bank"
-7. Wait for Kilo Code to analyze your project and initialize the Memory Bank files
-8. Verify the content of the files to see if the project is described correctly. Update the files if necessary.
+## 开始使用 Memory Bank
 
-### Project Brief Tips
+### 首次设置
 
-- Start simple - it can be as detailed or high-level as you like
-- Focus on what matters most to you
-- Kilo Code will help fill in gaps and ask questions
-- You can update it as your project evolves
+1. 在项目中创建 `.kilocode/rules/memory-bank/` 文件夹
+2. 在 `.kilocode/rules/memory-bank/brief.md` 中编写基本的项目摘要
+3. 创建文件 `.kilocode/rules/memory-bank-instructions.md` 并将 [此文档](pathname:///downloads/memory-bank.md) 粘贴到其中
+4. 切换到 `Architect` 模式
+5. 检查是否选择了最佳可用的 AI 模型，不要使用“轻量级”模型
+6. 要求 Kilo Code “initialize memory bank”
+7. 等待 Kilo Code 分析你的项目并初始化 Memory Bank 文件
+8. 验证文件内容，确保项目描述正确。如有必要，更新文件。
 
-Sample prompt that delivers a reasonably good brief:
+### 项目摘要提示
+
+- 从简单开始——它可以是你喜欢的任何详细程度或高级程度
+- 专注于对你最重要的事情
+- Kilo Code 将帮助填补空白并提出问题
+- 你可以随着项目的发展更新它
+
+提供合理摘要的示例提示：
 
 ```
-Provide a concise and comprehensive description of this project, highlighting its main objectives, key features, used technologies and significance. Then, write this description into a text file named appropriately to reflect the project's content, ensuring clarity and professionalism in the writing. Stay brief and short.
+提供此项目的简明而全面的描述，突出其主要目标、关键功能、使用的技术和重要性。然后，将此描述写入适当命名的文本文件中，以反映项目内容，确保写作的清晰性和专业性。保持简洁。
 ```
 
-## Working with Memory Bank
+## 使用 Memory Bank
 
-### Core Workflows
+### 核心工作流程
 
-#### Memory Bank Initialization
+#### Memory Bank 初始化
 
-The initialization step is critically important as it establishes the foundation for all future interactions with your project. When you request initialization with the command `initialize memory bank`, Kilo Code will:
+初始化步骤至关重要，因为它为所有未来的项目交互奠定了基础。当你使用命令 `initialize memory bank` 请求初始化时，Kilo Code 将：
 
-1. Perform an exhaustive analysis of your project, including:
-   - All source code files and their relationships
-   - Configuration files and build system setup
-   - Project structure and organization patterns
-   - Documentation and comments
-   - Dependencies and external integrations
-   - Testing frameworks and patterns
-2. Create comprehensive memory bank files in the `.kilocode/rules/memory-bank` folder
-3. Provide a detailed summary of what it has understood about your project
-4. Ask you to verify the accuracy of the generated files
+1. 对你的项目进行详尽的分析，包括：
+    - 所有源代码文件及其关系
+    - 配置文件和构建系统设置
+    - 项目结构和组织模式
+    - 文档和注释
+    - 依赖项和外部集成
+    - 测试框架和模式
+2. 在 `.kilocode/rules/memory-bank` 文件夹中创建全面的 Memory Bank 文件
+3. 提供对其对项目的理解的详细摘要
+4. 要求你验证生成文件的准确性
 
-:::warning Important
-Take time to carefully review and correct the generated files after initialization. Any misunderstandings or missing information at this stage will affect all future interactions. A thorough initialization dramatically improves Kilo Code's effectiveness, while a rushed or incomplete initialization will permanently limit its ability to assist you effectively.
+:::warning 重要
+初始化后，请花时间仔细审查并更正生成的文件。此阶段的任何误解或缺失信息都会影响所有未来的交互。彻底的初始化将显著提高 Kilo Code 的有效性，而仓促或不完整的初始化将永久限制其有效协助你的能力。
 :::
 
-#### Memory Bank Updates
+#### Memory Bank 更新
 
-Memory Bank updates occur when:
-1. Kilo Code discovers new project patterns
-2. After implementing significant changes
-3. When you explicitly request with `update memory bank`
-4. When context needs clarification
+Memory Bank 更新发生在以下情况：
 
-To execute a Memory Bank update, Kilo Code will:
-1. Review ALL project files
-2. Document the current state
-3. Document insights and patterns
-4. Update all memory bank files as needed
+1. 发现新的项目模式
+2. 实施重大更改后
+3. 当你明确请求 `update memory bank` 时
+4. 当上下文需要澄清时
 
-You can direct Kilo Code to focus on specific information sources by using commands like `update memory bank using information from @/Makefile`.
+要执行 Memory Bank 更新，Kilo Code 将：
 
-#### Regular Task Execution
+1. 审查所有项目文件
+2. 记录当前状态
+3. 记录见解和模式
+4. 根据需要更新所有 Memory Bank 文件
 
-At the beginning of every task, Kilo Code:
-1. Reads ALL memory bank files
-2. Includes `[Memory Bank: Active]` at the beginning of its response
-3. Provides a brief summary of its understanding of your project
-4. Proceeds with the requested task
+你可以使用类似 `update memory bank using information from @/Makefile` 的命令来指导 Kilo Code 专注于特定的信息源。
 
-At the end of a task, Kilo Code may suggest updating the memory bank if significant changes were made, using the phrase: "Would you like me to update memory bank to reflect these changes?"
+#### 常规任务执行
 
-#### Add Task Workflow
+在每个任务开始时，Kilo Code：
 
-When you complete a repetitive task that follows a similar pattern each time, you can document it for future reference. This is particularly useful for tasks like adding features that follow existing patterns
+1. 读取所有 Memory Bank 文件
+2. 在其响应的开头包含 `[Memory Bank: Active]`
+3. 提供其对项目理解的简要摘要
+4. 继续执行请求的任务
 
-To document a task, use the command `add task` or `store this as a task`. Kilo Code will:
-1. Create or update the `tasks.md` file in the memory bank folder
-2. Document the task using current context:
-   - Task name and description
-   - List of files that need to be modified
-   - Step-by-step workflow
-   - Important considerations
-   - Example implementation
+在任务结束时，如果进行了重大更改，Kilo Code 可能会建议更新 Memory Bank，使用短语：“Would you like me to update memory bank to reflect these changes?”
 
-When starting a new task, Kilo Code will check if it matches any documented tasks and follow the established workflow to ensure no steps are missed.
+#### 添加任务工作流程
 
-### Key Commands
+当你完成一个重复的任务时，你可以将其记录下来以备将来参考。这对于遵循现有模式添加功能等任务特别有用。
 
-- `initialize memory bank` - Use when starting a new project
-- `update memory bank` - Initiates a comprehensive re-analysis of the contextual documentation for the current task. **Caution:** This is resource-intensive and not recommended for "lightweight" models due to potentially reduced effectiveness. Can be used multiple times, well combinable with specific instructions, e.g. `update memory bank using information from @/Makefile`
-- `add task` or `store this as a task` - Documents a repetitive task for future reference
+要记录任务，请使用命令 `add task` 或 `store this as a task`。Kilo Code 将：
 
-### Status Indicators
+1. 创建或更新 Memory Bank 文件夹中的 `tasks.md` 文件
+2. 使用当前上下文记录任务：
+    - 任务名称和描述
+    - 需要修改的文件列表
+    - 分步工作流程
+    - 重要的注意事项
+    - 示例实现
 
-Kilo Code uses status indicators to clearly communicate Memory Bank status:
+当开始新任务时，Kilo Code 会检查它是否与任何记录的任务匹配，并遵循已建立的工作流程，以确保不会遗漏任何步骤。
 
-- `[Memory Bank: Active]` - Indicates Memory Bank files were successfully read and are being used
-- `[Memory Bank: Missing]` - Indicates Memory Bank files could not be found or are empty
+### 关键命令
 
-These indicators appear at the beginning of Kilo Code's responses, providing immediate confirmation of Memory Bank status.
+- `initialize memory bank` - 在开始新项目时使用
+- `update memory bank` - 启动对当前任务的上下文文档的全面重新分析。**注意：**此操作资源密集，由于可能降低有效性，不建议用于“轻量级”模型。可以多次使用，可与特定指令很好地结合，例如 `update memory bank using information from @/Makefile`
+- `add task` 或 `store this as a task` - 记录重复任务以备将来参考
 
-### Documentation Updates
+### 状态指示器
 
-Memory Bank updates should automatically occur when:
-- You discover new patterns in your project
-- After implementing significant changes
-- When you explicitly request with `update memory bank`
-- When you feel context needs clarification
+Kilo Code 使用状态指示器来清楚地传达 Memory Bank 状态：
 
-## Context Window Management
+- `[Memory Bank: Active]` - 表示 Memory Bank 文件已成功读取并正在使用
+- `[Memory Bank: Missing]` - 表示找不到 Memory Bank 文件或文件为空
 
-As you work with Kilo Code, your context window will eventually fill up. When you notice responses slowing down or references becoming less accurate:
+这些指示器出现在 Kilo Code 响应的开头，提供 Memory Bank 状态的即时确认。
 
-1. Ask Kilo Code to "update memory bank" to document the current state
-2. Start a new conversation/task
-3. Kilo Code will automatically access your Memory Bank in the new conversation
+### 文档更新
 
-This process ensures continuity across multiple sessions without losing important context.
+Memory Bank 更新应自动发生在以下情况：
 
-## Handling Inconsistencies
+- 发现新的项目模式
+- 实施重大更改后
+- 当你明确请求 `update memory bank` 时
+- 当上下文需要澄清时
 
-If Kilo Code detects inconsistencies between memory bank files:
+## 上下文窗口管理
 
-1. It will prioritize information from `brief.md` as the source of truth
-2. Note any discrepancies to you
-3. Continue working with the most reliable information available
+当你与 Kilo Code 一起工作时，你的上下文窗口最终会填满。当你注意到响应速度变慢或引用变得不那么准确时：
 
-This ensures that even with imperfect documentation, Kilo Code can still function effectively.
+1. 要求 Kilo Code “update memory bank” 以记录当前状态
+2. 开始新的对话/任务
+3. Kilo Code 将在新对话中自动访问你的 Memory Bank
 
-## Frequently Asked Questions
+此过程确保在多个会话之间保持连续性，而不会丢失重要上下文。
 
-### Where are the memory bank files stored?
-The Memory Bank files are regular markdown files stored in your project repository, typically in a `.kilocode/rules/memory-bank/` folder. They're not hidden system files - they're designed to be part of your project documentation.
+## 处理不一致
 
-### How often should I update the memory bank?
-Update the Memory Bank after significant milestones or changes in direction. For active development, updates every few sessions can be helpful. Use the "update memory bank" command when you want to ensure all context is preserved.
+如果 Kilo Code 检测到 Memory Bank 文件之间的不一致：
 
-### Can I edit memory bank files manually?
-Yes! While Kilo Code manages most of the files, you can edit any of them manually. The `brief.md` file is specifically designed to be maintained by you. Manual edits to other files will be respected by Kilo Code.
+1. 它将优先考虑 `brief.md` 中的信息作为真相来源
+2. 向你指出任何不一致之处
+3. 继续使用最可靠的信息
 
-### What happens if memory bank files are missing?
-If memory bank files are missing, Kilo Code will indicate this with `[Memory Bank: Missing]` at the beginning of its response and suggest initializing the memory bank.
+这确保即使文档不完美，Kilo Code 仍然可以有效地工作。
 
-### Does Memory Bank work with all AI models?
-Memory Bank works with all AI models, but more powerful models will create more comprehensive and accurate memory bank files. Lightweight models may struggle with the resource-intensive process of analyzing and updating memory bank files.
+## 常见问题解答
 
-### Can I use Memory Bank with multiple projects?
-Yes! Each project has its own Memory Bank in its `.kilocode/rules/memory-bank/` folder. Kilo Code will automatically use the correct Memory Bank for each project.
+### Memory Bank 文件存储在哪里？
 
-### Doesn't Memory Bank use up my context window?
-Yes, Memory Bank does consume some of your context window at the beginning of each session as it loads all memory bank files. However, this is a strategic tradeoff that significantly improves overall efficiency. By front-loading project context:
+Memory Bank 文件是存储在项目仓库中的常规 Markdown 文件，通常在 `.kilocode/rules/memory-bank/` 文件夹中。它们不是隐藏的系统文件——它们旨在成为项目文档的一部分。
 
-- You eliminate repetitive explanations that would consume even more context over time
-- You reach productive outcomes with fewer back-and-forth exchanges
-- You maintain consistent understanding throughout your session
+### 我应该多久更新一次 Memory Bank？
 
-Testing shows that while Memory Bank uses more tokens initially, it dramatically reduces the total number of interactions needed to achieve results. This means less time explaining and more time building.
+在重大里程碑或方向变化后更新 Memory Bank。对于活跃的开发，每隔几次会话更新一次会很有帮助。当你希望确保所有上下文都得到保留时，请使用“update memory bank”命令。
 
-## Best Practices
+### 我可以手动编辑 Memory Bank 文件吗？
 
-### Getting Started
-- Start with a basic project brief and let the structure evolve
-- Let Kilo Code help create the initial structure
-- Review and adjust files as needed to match your workflow
-- Verify the accuracy of generated files after initialization
+是的！虽然 Kilo Code 管理大多数文件，但你可以手动编辑其中任何文件。`brief.md` 文件专门设计为由你维护。Kilo Code 会尊重对其他文件的手动编辑。
 
-### Ongoing Work
-- Let patterns emerge naturally as you work
-- Don't force documentation updates - they should happen organically
-- Trust the process - the value compounds over time
-- Watch for context confirmation at the start of sessions
-- Use the status indicators to confirm Memory Bank is active
+### 如果 Memory Bank 文件丢失会发生什么？
 
-### Documentation Flow
-- `brief.md` is your foundation
-- `context.md` changes most frequently
-- All files collectively maintain project intelligence
-- Update after significant milestones or changes in direction
+如果 Memory Bank 文件丢失，Kilo Code 会在其响应的开头显示 `[Memory Bank: Missing]`，并建议初始化 Memory Bank。
 
-### Optimizing Memory Bank Performance
-- Keep memory bank files concise and focused
-- Use additional files for detailed documentation
-- Update regularly but not excessively
-- Use specific update commands when focusing on particular aspects
+### Memory Bank 是否适用于所有 AI 模型？
 
-## Remember
+Memory Bank 适用于所有 AI 模型，但更强大的模型将创建更全面和准确的 Memory Bank 文件。轻量级模型可能难以处理分析和更新 Memory Bank 文件的资源密集型过程。
 
-The Memory Bank is Kilo Code's only link to previous work. Its effectiveness depends entirely on maintaining clear, accurate documentation and confirming context preservation in every interaction. When you see `[Memory Bank: Active]` at the beginning of a response, you can be confident that Kilo Code has a comprehensive understanding of your project.
+### 我可以在多个项目中使用 Memory Bank 吗？
+
+是的！每个项目都有自己的 Memory Bank，位于其 `.kilocode/rules/memory-bank/` 文件夹中。Kilo Code 会自动为每个项目使用正确的 Memory Bank。
+
+### Memory Bank 是否会占用我的上下文窗口？
+
+是的，Memory Bank 在每个会话开始时确实会占用一些上下文窗口，因为它会加载所有 Memory Bank 文件。然而，这是一个战略性的权衡，可以显著提高整体效率。通过预先加载项目上下文：
+
+- 你消除了重复解释，这些解释会随着时间的推移消耗更多的上下文
+- 你可以通过更少的来回交流达到富有成效的结果
+- 你在整个会话中保持一致性理解
+
+测试表明，虽然 Memory Bank 最初使用了更多的 token，但它显著减少了实现结果所需的总交互次数。这意味着更少的时间解释和更多的时间构建。
+
+## 最佳实践
+
+### 开始使用
+
+- 从基本项目摘要开始，让结构逐步发展
+- 让 Kilo Code 帮助创建初始结构
+- 根据需要审查和调整文件以匹配你的工作流程
+- 初始化后验证生成文件的准确性
+
+### 持续工作
+
+- 让模式随着工作自然出现
+- 不要强制文档更新——它们应该有机地发生
+- 信任过程——价值会随着时间的推移而复合
+- 在会话开始时注意上下文确认
+- 使用状态指示器确认 Memory Bank 处于活动状态
+
+### 文档流程
+
+- `brief.md` 是你的基础
+- `context.md` 变化最频繁
+- 所有文件共同维护项目智能
+- 在重大里程碑或方向变化后更新
+
+### 优化 Memory Bank 性能
+
+- 保持 Memory Bank 文件简洁且重点突出
+- 使用附加文件进行详细文档记录
+- 定期更新但不要过度
+- 专注于特定方面时使用特定的更新命令
+
+## 记住
+
+Memory Bank 是 Kilo Code 与之前工作的唯一链接。其有效性完全依赖于在每个交互中维护清晰、准确的文档并确认上下文保留。当你在响应开头看到 `[Memory Bank: Active]` 时，你可以确信 Kilo Code 对你的项目有全面的理解。

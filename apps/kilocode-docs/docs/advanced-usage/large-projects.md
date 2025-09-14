@@ -1,46 +1,48 @@
-# Working with Large Projects
+# 处理大型项目
 
-Kilo Code can be used with projects of any size, but large projects require some extra care to manage context effectively. Here are some tips for working with large codebases:
+Kilo Code 可以用于任何规模的项目，但处理大型项目时需要特别注意上下文管理。以下是一些处理大型代码库的技巧：
 
-## Understanding Context Limits
+## 理解上下文限制
 
-Kilo Code uses large language models (LLMs) that have a limited "context window."  This is the maximum amount of text (measured in tokens) that the model can process at once.  If the context is too large, the model may not be able to understand your request or generate accurate responses.
+Kilo Code 使用的大语言模型 (LLMs) 有一个有限的 "上下文窗口"。这是模型一次可以处理的文本的最大量（以 token 为单位）。如果上下文过大，模型可能无法理解你的请求或生成准确的响应。
 
-The context window includes:
+上下文窗口包括：
 
-*   The system prompt (instructions for Kilo Code).
-*   The conversation history.
-*   The content of any files you mention using `@`.
-*   The output of any commands or tools Kilo Code uses.
+- 系统提示（Kilo Code 的指令）。
+- 对话历史记录。
+- 你使用 `@` 提到的任何文件内容。
+- Kilo Code 使用的任何命令或工具的输出。
 
-## Strategies for Managing Context
+## 管理上下文的策略
 
-1.  **Be Specific:**  When referring to files or code, use specific file paths and function names.  Avoid vague references like "the main file."
+1.  **具体化：** 当引用文件或代码时，使用具体的文件路径和函数名称。避免使用模糊的引用，如 "主文件"。
 
-2.  **Use Context Mentions Effectively:** Use `@/path/to/file.ts` to include specific files. Use `@problems` to include current errors and warnings.  Use `@` followed by a commit hash to reference specific Git commits.
+2.  **有效使用上下文提及：** 使用 `@/path/to/file.ts` 来包含特定文件。使用 `@problems` 来包含当前错误和警告。使用 `@` 后跟提交哈希来引用特定的 Git 提交。
 
-3.  **Break Down Tasks:** Divide large tasks into smaller, more manageable sub-tasks.  This helps keep the context focused.
+3.  **分解任务：** 将大型任务分解为更小、更易管理的子任务。这有助于保持上下文的聚焦。
 
-4.  **Summarize:**  If you need to refer to a large amount of code, consider summarizing the relevant parts in your prompt instead of including the entire code.
+4.  **总结：** 如果需要引用大量代码，考虑在提示中总结相关部分，而不是包含整个代码。
 
-5.  **Prioritize Recent History:** Kilo Code automatically truncates older messages in the conversation history to stay within the context window. Be mindful of this, and re-include important context if needed.
+5.  **优先处理最近的历史记录：** Kilo Code 会自动截断对话历史记录中的旧消息，以保持在上下文窗口内。请注意这一点，并在需要时重新包含重要上下文。
 
-6.  **Use Prompt Caching (if available):** Some API providers like Anthropic, OpenAI, OpenRouter and Requesty support "prompt caching". This caches your prompts for use in future tasks and helps reduce the cost and latency of requests.
+6.  **使用提示缓存（如果可用）：** 一些 API 提供商如 Anthropic、OpenAI、OpenRouter 和 Requesty 支持 "提示缓存"。这将缓存你的提示以供未来任务使用，有助于降低请求的成本和延迟。
 
-## Example: Refactoring a Large File
+## 示例：重构大型文件
 
-Let's say you need to refactor a large TypeScript file (`src/components/MyComponent.tsx`).  Here's a possible approach:
+假设你需要重构一个大型 TypeScript 文件 (`src/components/MyComponent.tsx`)。以下是一个可能的方法：
 
-1.  **Initial Overview:**
+1.  **初始概览：**
+
     ```
-    @/src/components/MyComponent.tsx List the functions and classes in this file.
-    ```
-
-2.  **Target Specific Functions:**
-    ```
-    @/src/components/MyComponent.tsx Refactor the `processData` function to use `async/await` instead of Promises.
+    @/src/components/MyComponent.tsx 列出此文件中的函数和类。
     ```
 
-3.  **Iterative Changes:**  Make small, incremental changes, reviewing and approving each step.
+2.  **定位特定函数：**
 
-By breaking down the task and providing specific context, you can work effectively with large files even with a limited context window.
+    ```
+    @/src/components/MyComponent.tsx 将 `processData` 函数重构为使用 `async/await` 而不是 Promises。
+    ```
+
+3.  **迭代更改：** 进行小的、增量的更改，审查并批准每一步。
+
+通过分解任务并提供具体的上下文，即使在上下文窗口有限的情况下，你也可以有效地处理大型文件。

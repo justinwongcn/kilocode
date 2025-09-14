@@ -1,107 +1,108 @@
-
 # search_files
 
-The `search_files` tool performs regex searches across multiple files in your project. It helps Kilo Code locate specific code patterns, text, or other content throughout your codebase with contextual results.
+`search_files` 工具可以在你的项目中跨多个文件执行正则表达式搜索。它帮助 Kilo Code 在代码库中定位特定的代码模式、文本或其他内容，并提供上下文的搜索结果。
 
-## Parameters
+## 参数
 
-The tool accepts these parameters:
+该工具接受以下参数：
 
-- `path` (required): The path of the directory to search in, relative to the current working directory
-- `regex` (required): The regular expression pattern to search for (uses Rust regex syntax)
-- `file_pattern` (optional): Glob pattern to filter files (e.g., '*.ts' for TypeScript files)
+- `path`（必填）：要搜索的目录路径，相对于当前工作目录
+- `regex`（必填）：要搜索的正则表达式模式（使用 Rust 正则表达式语法）
+- `file_pattern`（可选）：用于过滤文件的 glob 模式（例如，'\*.ts' 表示仅搜索 TypeScript 文件）
 
-## What It Does
+## 功能
 
-This tool searches across files in a specified directory using regular expressions, showing each match with surrounding context. It's like having a powerful "Find in Files" feature that works across the entire project structure.
+该工具使用正则表达式在指定目录中跨文件搜索，显示每个匹配项及其上下文。它就像一个强大的“在文件中查找”功能，适用于整个项目结构。
 
-## When is it used?
+## 使用场景
 
-- When Kilo Code needs to find where specific functions or variables are used
-- When Kilo Code helps with refactoring and needs to understand usage patterns
-- When Kilo Code needs to locate all instances of a particular code pattern
-- When Kilo Code searches for text across multiple files with filtering capabilities
+- 当 Kilo Code 需要查找特定函数或变量的使用位置时
+- 当 Kilo Code 协助重构并需要了解使用模式时
+- 当 Kilo Code 需要定位特定代码模式的所有实例时
+- 当 Kilo Code 需要在多个文件中搜索文本并具有过滤功能时
 
-## Key Features
+## 主要特性
 
-- Searches across multiple files in a single operation using high-performance Ripgrep
-- Shows context around each match (1 line before and after)
-- Filters files by type using glob patterns (e.g., only TypeScript files)
-- Provides line numbers for easy reference
-- Uses powerful regex patterns for precise searches
-- Automatically limits output to 300 results with notification
-- Truncates lines longer than 500 characters with "[truncated...]" marker
-- Intelligently combines nearby matches into single blocks for readability
+- 使用高性能的 Ripgrep 在多个文件中进行搜索
+- 显示每个匹配项的上下文（前后各 1 行）
+- 使用 glob 模式按文件类型过滤（例如，仅 TypeScript 文件）
+- 提供行号以便参考
+- 使用强大的正则表达式模式进行精确搜索
+- 自动限制输出为 300 个结果并通知
+- 截断超过 500 个字符的行并标记为“[truncated...]”
+- 智能地将附近的匹配项合并为单个块以提高可读性
 
-## Limitations
+## 限制
 
-- Works best with text-based files (not effective for binary files like images)
-- Performance may slow with extremely large codebases
-- Uses Rust regex syntax, which may differ slightly from other regex implementations
-- Cannot search within compressed files or archives
-- Default context size is fixed (1 line before and after)
-- May display varying context sizes when matches are close together due to result grouping
+- 最适合文本文件（对图像等二进制文件无效）
+- 在非常大的代码库中性能可能会下降
+- 使用 Rust 正则表达式语法，可能与其他正则表达式实现略有不同
+- 无法在压缩文件或存档中搜索
+- 默认上下文大小固定（前后各 1 行）
+- 由于结果分组，当匹配项接近时可能会显示不同的上下文大小
 
-## How It Works
+## 工作原理
 
-When the `search_files` tool is invoked, it follows this process:
+当调用 `search_files` 工具时，它会遵循以下流程：
 
-1. **Parameter Validation**: Validates the required `path` and `regex` parameters
-2. **Path Resolution**: Resolves the relative path to an absolute path
-3. **Search Execution**:
-   - Uses Ripgrep (rg) for high-performance text searching
-   - Applies file pattern filtering if specified
-   - Collects matches with surrounding context
-4. **Result Formatting**:
-   - Formats results with file paths, line numbers, and context
-   - Displays 1 line of context before and after each match
-   - Structures output for easy readability
-   - Limits results to a maximum of 300 matches with notification
-   - Truncates lines longer than 500 characters
-   - Merges nearby matches into contiguous blocks
+1. **参数验证**：验证必需的 `path` 和 `regex` 参数
+2. **路径解析**：将相对路径解析为绝对路径
+3. **搜索执行**：
+    - 使用 Ripgrep (rg) 进行高性能文本搜索
+    - 如果指定了文件模式，则应用过滤
+    - 收集匹配项及其上下文
+4. **结果格式化**：
+    - 格式化结果，包括文件路径、行号和上下文
+    - 显示每个匹配项前后各 1 行的上下文
+    - 结构化输出以便于阅读
+    - 将结果限制为最多 300 个匹配项并通知
+    - 截断超过 500 个字符的行
+    - 将附近的匹配项合并为连续块
 
-## Search Results Format
+## 搜索结果格式
 
-The search results include:
+搜索结果包括：
 
-- Relative file paths for each matching file (prefixed with #)
-- Context lines before and after each match (1 line by default)
-- Line numbers padded to 3 spaces followed by ` | ` and the line content
-- A separator line (----) after each match group
+- 每个匹配文件的相对路径（前缀为 #）
+- 每个匹配项前后的上下文行（默认为 1 行）
+- 行号填充为 3 个空格，后跟 `|` 和行内容
+- 每个匹配组后跟分隔线（----）
 
-Example output format:
+示例输出格式：
+
 ```
 # rel/path/to/app.ts
- 11 |   // Some processing logic here
- 12 |   // TODO: Implement error handling
+ 11 |   // 一些处理逻辑
+ 12 |   // TODO: 实现错误处理
  13 |   return processedData;
 ----
 
-# Showing first 300 of 300+ results. Use a more specific search if necessary.
+# 显示 300 多个结果中的前 300 个。如有必要，请使用更具体的搜索。
 ```
 
-When matches occur close to each other, they're merged into a single block rather than shown as separate results:
+当匹配项彼此接近时，它们会合并为单个块而不是显示为单独的结果：
 
 ```
 # rel/path/to/auth.ts
- 13 | // Some code here
- 14 | // TODO: Add proper validation
+ 13 | // 一些代码
+ 14 | // TODO: 添加适当的验证
  15 | function validateUser(credentials) {
- 16 |   // TODO: Implement rate limiting
+ 16 |   // TODO: 实现速率限制
  17 |   return checkDatabase(credentials);
 ----
 ```
 
-## Examples When Used
+## 使用示例
 
-- When asked to refactor a function, Kilo Code first searches for all places the function is used to ensure comprehensive changes.
-- When investigating bugs, Kilo Code searches for similar patterns to identify related issues across the codebase.
-- When addressing technical debt, Kilo Code locates all TODO comments across the project.
-- When analyzing dependencies, Kilo Code finds all imports of a particular module.
+- 当要求重构函数时，Kilo Code 首先搜索该函数的所有使用位置，以确保全面更改。
+- 在调查错误时，Kilo Code 搜索相似模式以识别代码库中相关的错误。
+- 在处理技术债务时，Kilo Code 查找项目中所有 TODO 注释。
+- 在分析依赖项时，Kilo Code 查找特定模块的所有导入。
 
-## Usage Examples
+## 用法示例
 
-Searching for TODO comments in all JavaScript files:
+在所有 JavaScript 文件中搜索 TODO 注释：
+
 ```
 <search_files>
 <path>src</path>
@@ -110,7 +111,8 @@ Searching for TODO comments in all JavaScript files:
 </search_files>
 ```
 
-Finding all usages of a specific function:
+查找特定函数的所有使用位置：
+
 ```
 <search_files>
 <path>.</path>
@@ -119,7 +121,8 @@ Finding all usages of a specific function:
 </search_files>
 ```
 
-Searching for a specific import pattern across the entire project:
+在整个项目中搜索特定的导入模式：
+
 ```
 <search_files>
 <path>.</path>

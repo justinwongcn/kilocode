@@ -1,83 +1,86 @@
 import Image from '@site/src/components/Image';
 
-# Chatting with Kilo Code
+# 与 Kilo Code 聊天
 
 :::tip
 
-**Bottom line:** Kilo Code is an AI coding assistant that lives in VS Code. You chat with it in plain English, and it writes, edits, and explains code for you.
+**总结：** Kilo Code 是一个 AI 编码助手，它存在于 VS Code 中。您可以用简单的英语与它聊天，它会为您编写、编辑和解释代码。
 
 :::
 
-## Quick Setup
+## 快速设置
 
-Find the Kilo Code icon (<img src="/docs/img/kilo-v1.svg" width="12" />) in VS Code's Primary Side Bar. Click it to open the chat panel.
+在 VS Code 的主侧边栏中找到 Kilo Code 图标（<img src="/docs/img/kilo-v1.svg" width="12" />）。单击它以打开聊天面板。
 
-**Lost the panel?** Go to View > Open View... and search for "Kilo Code"
+**找不到面板？** 转到“视图”>“打开视图...”并搜索“Kilo Code”
 
-## How to Talk to Kilo Code
+## 如何与 Kilo Code 对话
 
-**The key insight:** Just type what you want in normal English. No special commands needed.
+**关键见解：** 只需用普通英语输入您想要的内容。无需特殊命令。
 
-<Image src="/docs/img/typing-your-requests/typing-your-requests.png" alt="Example of typing a request in Kilo Code" width="600" />
+<Image src="/docs/img/typing-your-requests/typing-your-requests.png" alt="在 Kilo Code 中输入请求的示例" width="600" />
 
-**Good requests:**
-
-```
-create a new file named utils.py and add a function called add that takes two numbers as arguments and returns their sum
-```
+**好的请求：**
 
 ```
-in the file @src/components/Button.tsx, change the color of the button to blue
+创建一个名为 utils.py 的新文件，并添加一个名为 add 的函数，该函数接受两个数字作为参数并返回它们的和
 ```
 
 ```
-find all instances of the variable oldValue in @/src/App.js and replace them with newValue
+在文件 @src/components/Button.tsx 中，将按钮的颜色更改为蓝色
 ```
 
-**What makes requests work:**
-- **Be specific** - "Fix the bug in `calculateTotal` that returns incorrect results" beats "Fix the code"
-- **Use @ mentions** - Reference files and code directly with `@filename`
-- **One task at a time** - Break complex work into manageable steps
-- **Include examples** - Show the style or format you want
+```
+在 @/src/App.js 中查找变量 oldValue 的所有实例，并将其替换为 newValue
+```
 
+**使请求生效的因素：**
 
-## The Chat Interface
+- **具体** - “修复 `calculateTotal` 中返回不正确结果的错误”胜过“修复代码”
+- **使用 @ 提及** - 使用 `@filename` 直接引用文件和代码
+- **一次一个任务** - 将复杂工作分解为可管理的步骤
+- **包含示例** - 显示您想要的样式或格式
+
+## 聊天界面
 
 <Image 
     src="/docs/img/the-chat-interface/the-chat-interface-1.png" 
-    alt="Chat interface components labeled with callouts" width="750" 
-    caption="Everything you need is right here"
+    alt="带有标注的聊天界面组件" width="750" 
+    caption="您需要的一切都在这里"
 />
 
-**Essential controls:**
-- **Chat history** - See your conversation and task history
-- **Input field** - Type your requests here (press Enter to send)
-- **Action buttons** - Approve or reject Kilo's proposed changes
-- **Plus button** - Start a new task session
-- **Mode selector** - Choose how Kilo should approach your task
+**基本控件：**
 
-## Quick Interactions
+- **聊天历史记录** - 查看您的对话和任务历史记录
+- **输入字段** - 在此处输入您的请求（按 Enter 发送）
+- **操作按钮** - 批准或拒绝 Kilo 的提议更改
+- **加号按钮** - 开始新的任务会话
+- **模式选择器** - 选择 Kilo 应如何处理您的任务
 
-**Click to act:**
-- File paths → Opens the file
-- URLs → Opens in browser
-- Messages → Expand/collapse details
-- Code blocks → Copy button appears
+## 快速交互
 
-**Status signals:**
-- Spinning → Kilo is working
-- Red → Error occurred
-- Green → Success
+**点击操作：**
 
-## Common Mistakes to Avoid
+- 文件路径 → 打开文件
+- URL → 在浏览器中打开
+- 消息 → 展开/折叠详细信息
+- 代码块 → 出现复制按钮
 
-| Instead of this... | Try this |
-|-------------------|----------|
-| "Fix the code" | "Fix the bug in `calculateTotal` that returns incorrect results" |
-| Assuming Kilo knows context | Use `@` to reference specific files |
-| Multiple unrelated tasks | Submit one focused request at a time |
-| Technical jargon overload | Clear, straightforward language works best |
+**状态信号：**
 
-**Why it matters:** Kilo Code works best when you communicate like you're talking to a smart teammate who needs clear direction.
+- 旋转 → Kilo 正在工作
+- 红色 → 发生错误
+- 绿色 → 成功
 
-Ready to start coding? Open the chat panel and describe what you want to build!
+## 需要避免的常见错误
+
+| 替代这个...          | 尝试这个                                       |
+| -------------------- | ---------------------------------------------- |
+| "Fix the code"       | "修复 `calculateTotal` 中返回不正确结果的错误" |
+| 假设 Kilo 知道上下文 | 使用 `@` 引用特定文件                          |
+| 多个不相关的任务     | 一次提交一个重点突出的请求                     |
+| 技术术语过多         | 清晰、直接的语言效果最好                       |
+
+**重要的原因：** 当您像与需要明确指导的聪明队友交谈一样进行交流时，Kilo Code 的效果最佳。
+
+准备好开始编码了吗？打开聊天面板并描述您想要构建的内容！

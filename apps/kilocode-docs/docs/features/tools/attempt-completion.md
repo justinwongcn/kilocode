@@ -1,174 +1,182 @@
 # attempt_completion
 
-The `attempt_completion` tool signals that Kilo Code believes a task is complete and presents results to the user. It provides a summary of what was accomplished, optionally includes a command to demonstrate the result, and supports continued refinement through user feedback.
+`attempt_completion` 工具用于标记 Kilo Code 认为任务已完成并向用户展示结果。它提供了任务完成的摘要，可选地包括一个用于展示结果的命令，并支持通过用户反馈进行进一步优化。
 
-## Parameters
+## 参数
 
-The tool accepts these parameters:
+该工具接受以下参数：
 
-- `result` (required): The final result description summarizing what was accomplished
-- `command` (optional): A CLI command to execute to demonstrate the result
+- `result` (必填): 最终结果描述，总结已完成的工作
+- `command` (可选): 用于展示结果的 CLI 命令
 
-## What It Does
+## 功能
 
-This tool marks the end of a task by presenting a final summary of what was accomplished. It signals to both the user and the system that the current task is complete. When a command is provided, it can also demonstrate the result through a live execution.
+该工具通过提供最终摘要来标记任务的结束。它向用户和系统发出信号，表明当前任务已完成。当提供命令时，它还可以通过实时执行来展示结果。
 
-## When is it used?
+## 使用场景
 
-- When Kilo Code believes the user's task has been completed
-- When summarizing what changes or improvements were made
-- When demonstrating the current result with a command execution
-- When providing a checkpoint for user feedback on the solution
-- When transitioning from one phase of work to potential refinements
+- 当 Kilo Code 认为用户的任务已完成时
+- 当总结所做更改或改进时
+- 当使用命令执行展示当前结果时
+- 当为用户反馈提供解决方案的检查点时
+- 当从工作阶段过渡到可能的优化时
 
-## Key Features
+## 主要特性
 
-- Provides a clear signal that Kilo Code believes the task is complete
-- Summarizes accomplishments in a concise message
-- Optionally demonstrates results through command execution
-- Enables user feedback for further refinements
-- Displays results in a special UI format distinct from regular messages
-- Captures task completion telemetry for system analytics
-- Maintains a structured conversation flow by providing checkpoints
-- Supports subtask completion within larger workflows
-- Ensures users receive a clear summary of what was done
-- Available in all modes as part of the "always available" tool group
+- 提供明确的信号表明 Kilo Code 认为任务已完成
+- 以简洁的消息总结完成的工作
+- 可选地通过命令执行展示结果
+- 支持用户反馈以进行进一步优化
+- 以不同于常规消息的特殊 UI 格式显示结果
+- 捕获任务完成遥测数据用于系统分析
+- 通过提供检查点维护结构化的对话流程
+- 支持在较大工作流中的子任务完成
+- 确保用户收到关于已完成工作的清晰摘要
+- 在所有模式下都可用，作为"始终可用"工具组的一部分
 
-## Limitations
+## 限制
 
-- Should not be used until previous tool uses are confirmed successful (guideline, not enforced)
-- Limited to a single command for result demonstration
-- Cannot present multiple command options
-- Commands require user approval before execution
-- Limited to demonstrating results that can be shown via CLI commands
-- Cannot be used for partial task completion or progress updates
-- Result formatting strips XML closing tags through internal processing
+- 在确认之前的工具使用成功之前不应使用（指南，非强制）
+- 仅限于单个命令来展示结果
+- 无法提供多个命令选项
+- 命令在执行前需要用户批准
+- 仅限于通过 CLI 命令展示结果
+- 不能用于部分任务完成或进度更新
+- 结果格式会通过内部处理移除 XML 闭合标签
 
-## How It Works
+## 工作原理
 
-When the `attempt_completion` tool is invoked, it follows this process:
+当调用 `attempt_completion` 工具时，它会遵循以下流程：
 
-1. **Safety Consideration** (guideline, not enforced):
-   - The AI is instructed to confirm previous tool uses were successful
-   - This is a best practice rather than a programmatically enforced mechanism
+1. **安全考虑**（指南，非强制）：
 
-2. **Result Presentation**:
-   - Displays the completion message to the user in a special "completion_result" UI format
-   - Removes XML closing tags from the result text using the `removeClosingTag` function
-   - Presents the result differently than regular messages for visual distinction
+    - AI 被指示确认之前的工具使用是否成功
+    - 这是一个最佳实践，而不是程序化强制机制
 
-3. **Command Execution** (if provided):
-   - Requests user approval before executing the command
-   - Only executes if the user approves
-   - Executes the command using the system's command execution functionality
-   - Shows the result of the command to the user
+2. **结果展示**：
 
-4. **Feedback Collection**:
-   - Waits for user feedback on the completion result
-   - Processes this feedback and returns it to the AI
-   - Enables continued refinement based on user input
+    - 以特殊的 "completion_result" UI 格式向用户显示完成消息
+    - 使用 `removeClosingTag` 函数从结果文本中移除 XML 闭合标签
+    - 以不同于常规消息的方式呈现结果，以实现视觉区分
 
-5. **Task Completion and Continuation**:
-   - Signals the task as completed in the system
-   - Captures telemetry data for the completed task
-   - For subtasks, offers to finish the subtask and resume the parent task
-   - Supports continued conversation through the feedback mechanism
+3. **命令执行**（如果提供）：
 
-6. **Implementation Integration**:
-   - Tool results are parsed through the system's parsing mechanism in `parse-assistant-message.ts`
-   - The tool is part of the "ALWAYS_AVAILABLE_TOOLS" constant, making it available in all modes
+    - 在执行前请求用户批准
+    - 仅在用户批准后执行
+    - 使用系统的命令执行功能执行命令
+    - 向用户展示命令结果
 
-## Result Formatting Guidelines
+4. **反馈收集**：
 
-The result message should follow these guidelines:
+    - 等待用户对完成结果的反馈
+    - 处理此反馈并将其返回给 AI
+    - 支持基于用户输入的持续优化
 
-- Clearly communicate what was accomplished
-- Be concise but complete
-- Focus on the value delivered to the user
-- Avoid unnecessary pleasantries or filler text
-- Maintain a professional, straightforward tone
-- Present information in a way that's easy to scan and understand
-- Acknowledge that the user may provide feedback for further refinements
+5. **任务完成与继续**：
 
-Note: The system automatically strips XML closing tags from the result text through the `removeClosingTag` function.
+    - 在系统中标记任务为已完成
+    - 捕获已完成任务的遥测数据
+    - 对于子任务，提供完成子任务并恢复父任务的选项
+    - 通过反馈机制支持继续对话
 
-## Command Selection Guidelines
+6. **实现集成**：
+    - 工具结果通过系统的解析机制在 `parse-assistant-message.ts` 中处理
+    - 该工具是 "ALWAYS_AVAILABLE_TOOLS" 常量的一部分，使其在所有模式下都可用
 
-When including a command, follow these guidelines:
+## 结果格式指南
 
-- Choose commands that visually demonstrate the result
-- Prefer commands that show the user what was created or modified
-- Examples include:
-  * `open index.html` to display a created website
-  * `npm start` to launch a development server
-  * `python app.py` to run a created application
-- Avoid commands that merely print text (like `echo` or `cat`)
-- Remember that commands require user approval before execution
-- Ensure the command is valid for the user's operating system
+结果消息应遵循以下指南：
 
-## Feedback and UI Representation
+- 清晰地传达已完成的工作
+- 简洁但完整
+- 专注于为用户提供的价值
+- 避免不必要的客套或填充文本
+- 保持专业、直接的语气
+- 以易于浏览和理解的方式呈现信息
+- 确认用户可能会提供反馈以进行进一步优化
 
-The `attempt_completion` tool has a unique feedback mechanism:
+注意：系统会通过 `removeClosingTag` 函数自动从结果文本中移除 XML 闭合标签。
 
-- Results appear in a special "completion_result" UI format distinct from regular messages
-- The system waits for user feedback after presenting the result
-- Feedback is processed and returned to Kilo Code for further refinements
-- This creates an iterative improvement cycle rather than ending the conversation
-- The UI includes special elements for providing feedback
-- Results serve as clear checkpoints in the conversation flow
+## 命令选择指南
 
-When used within subtasks:
-- The system offers to finish the subtask and resume the parent task
-- If approved, the subtask is completed with a summary
-- The parent task resumes with context from the completed subtask
-- This enables complex, nested workflows while maintaining context
+包含命令时，请遵循以下指南：
 
-## Examples When Used
+- 选择能直观展示结果的命令
+- 优先选择能展示用户创建或修改内容的命令
+- 示例包括：
+    - `open index.html` 展示创建的网站
+    - `npm start` 启动开发服务器
+    - `python app.py` 运行创建的应用程序
+- 避免仅打印文本的命令（如 `echo` 或 `cat`）
+- 记住命令在执行前需要用户批准
+- 确保命令适用于用户的操作系统
 
-- When creating a website, Kilo Code presents the solution and uses `open index.html` to show the result. The user provides feedback, and Kilo Code refines the design.
-- When implementing a feature, Kilo Code summarizes the changes and their impact. The user requests additional test coverage, and Kilo Code continues the task.
-- When fixing bugs, Kilo Code explains what was fixed and how the solution addresses the Kilo Codet cause. The user confirms the fix works.
-- When setting up a development environment, Kilo Code confirms all components are installed. The user requests additional configuration, and Kilo Code continues.
-- When creating a data processing script, Kilo Code summarizes the functionality. The user suggests performance improvements, and Kilo Code optimizes the code.
+## 反馈与 UI 表示
 
-## Usage Examples
+`attempt_completion` 工具具有独特的反馈机制：
 
+- 结果以特殊的 "completion_result" UI 格式显示，不同于常规消息
+- 系统在呈现结果后等待用户反馈
+- 反馈被处理并返回给 Kilo Code 以进行进一步优化
+- 这创建了一个迭代改进周期，而不是结束对话
+- UI 包含用于提供反馈的特殊元素
+- 结果作为对话流程中的明确检查点
 
-Completing a task with just a result summary:
+用于子任务时：
+
+- 系统提供完成子任务并恢复父任务的选项
+- 如果批准，子任务将以摘要完成
+- 父任务在完成子任务的上下文中恢复
+- 这支持复杂、嵌套的工作流，同时保持上下文
+
+## 使用示例
+
+- 当创建网站时，Kilo Code 展示解决方案并使用 `open index.html` 展示结果。用户提供反馈，Kilo Code 优化设计。
+- 当实现功能时，Kilo Code 总结更改及其影响。用户请求额外的测试覆盖，Kilo Code 继续任务。
+- 当修复错误时，Kilo Code 解释修复内容以及解决方案如何解决根本原因。用户确认修复有效。
+- 当设置开发环境时，Kilo Code 确认所有组件已安装。用户请求额外配置，Kilo Code 继续。
+- 当创建数据处理脚本时，Kilo Code 总结功能。用户建议性能优化，Kilo Code 优化代码。
+
+## 使用示例
+
+仅使用结果摘要完成任务：
+
 ```
 <attempt_completion>
 <result>
-I've updated the CSS for the navigation bar to match the design mockup. The changes include:
-1. Updated color scheme to use the new brand colors
-2. Added responsive behavior for mobile devices
-3. Fixed the alignment issues in the dropdown menus
+我已更新导航栏的 CSS 以匹配设计稿。更改包括：
+1. 更新配色方案以使用新的品牌颜色
+2. 为移动设备添加了响应式行为
+3. 修复了下拉菜单中的对齐问题
 </result>
 </attempt_completion>
 ```
 
-Completing a task with a result and demonstration command:
+使用结果和演示命令完成任务：
+
 ```
 <attempt_completion>
 <result>
-I've created a simple React application with the following features:
-1. A responsive landing page with the requested hero section
-2. A working contact form with validation
-3. Navigation between all three requested pages
-4. Styling that matches the provided design mockup
+我创建了一个简单的 React 应用程序，包含以下功能：
+1. 具有请求的英雄部分的响应式落地页
+2. 带有验证的工作联系表单
+3. 在请求的三个页面之间导航
+4. 匹配提供的设计稿的样式
 </result>
 <command>npm start</command>
 </attempt_completion>
 ```
 
-Completing a Python script task with execution:
+完成 Python 脚本任务并执行：
+
 ```
 <attempt_completion>
 <result>
-I've created a data processing script that:
-1. Reads the CSV files from the data directory
-2. Cleans and normalizes the data as requested
-3. Generates the summary statistics in JSON format
-4. Outputs the processed data to the output directory
+我创建了一个数据处理脚本，它：
+1. 从数据目录读取 CSV 文件
+2. 按要求清理和规范化数据
+3. 以 JSON 格式生成汇总统计
+4. 将处理后的数据输出到输出目录
 </result>
 <command>python process_data.py</command>
 </attempt_completion>

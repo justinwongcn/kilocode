@@ -2,36 +2,36 @@
 sidebar_label: Glama
 ---
 
-# Using Glama With Kilo Code
+# 使用 Glama 与 Kilo Code
 
-Glama provides access to a variety of language models through a unified API, including models from Anthropic, OpenAI, and others.  It offers features like prompt caching and cost tracking.
+Glama 通过统一的 API 提供了对多种语言模型的访问，包括来自 Anthropic、OpenAI 和其他提供商的模型。它提供了诸如提示缓存和成本跟踪等功能。
 
-**Website:** [https://glama.ai/](https://glama.ai/)
+**网站：** [https://glama.ai/](https://glama.ai/)
 
-## Getting an API Key
+## 获取 API 密钥
 
-1.  **Sign Up/Sign In:** Go to the [Glama sign-up page](https://glama.ai/sign-up). Sign up using your Google account or name/email/password.
-2.  **Get API Key:** After signing up, navigate to the [API Keys](https://glama.ai/settings/gateway/api-keys) page to get an API key.
-3.  **Copy the Key:** Copy the displayed API key.
+1. **注册/登录：** 前往 [Glama 注册页面](https://glama.ai/sign-up)。使用您的 Google 账户或姓名/电子邮件/密码注册。
+2. **获取 API 密钥：** 注册后，导航到 [API 密钥](https://glama.ai/settings/gateway/api-keys) 页面以获取 API 密钥。
+3. **复制密钥：** 复制显示的 API 密钥。
 
-## Supported Models
+## 支持的模型
 
-Kilo Code will automatically try to fetch a list of available models from the Glama API.  Some models that are commonly available through Glama include:
+Kilo Code 会自动尝试从 Glama API 获取可用模型的列表。通常通过 Glama 提供的一些模型包括：
 
-*  **Anthropic Claude models:**  (e.g., `anthropic/claude-3-5-sonnet`)  These are generally recommended for best performance with Kilo Code.
-*  **OpenAI models:** (e.g., `openai/o3-mini-high`)
-*  **Other providers and open-source models**
-    
-Refer to the [Glama documentation](https://glama.ai/models) for the most up-to-date list of supported models.
+- **Anthropic Claude 模型：** （例如，`anthropic/claude-3-5-sonnet`）这些通常推荐用于与 Kilo Code 的最佳性能。
+- **OpenAI 模型：** （例如，`openai/o3-mini-high`）
+- **其他提供商和开源模型**
 
-## Configuration in Kilo Code
+请参阅 [Glama 文档](https://glama.ai/models) 获取最新支持的模型列表。
 
-1.  **Open Kilo Code Settings:** Click the gear icon (<Codicon name="gear" />) in the Kilo Code panel.
-2.  **Select Provider:** Choose "Glama" from the "API Provider" dropdown.
-3.  **Enter API Key:** Paste your Glama API key into the "Glama API Key" field.
-4.  **Select Model:** Choose your desired model from the "Model" dropdown.
+## 在 Kilo Code 中配置
 
-## Tips and Notes
+1. **打开 Kilo Code 设置：** 点击 Kilo Code 面板中的齿轮图标 (<Codicon name="gear" />)。
+2. **选择提供商：** 从 "API 提供商" 下拉菜单中选择 "Glama"。
+3. **输入 API 密钥：** 将您的 Glama API 密钥粘贴到 "Glama API 密钥" 字段中。
+4. **选择模型：** 从 "模型" 下拉菜单中选择您想要的模型。
 
-* **Pricing:** Glama operates on a pay-per-use basis.  Pricing varies depending on the model you choose.
-* **Prompt Caching:** Glama supports prompt caching, which can significantly reduce costs and improve performance for repeated prompts.
+## 提示和注意事项
+
+- **定价：** Glama 采用按使用量计费的模式。根据您选择的模型，定价会有所不同。
+- **提示缓存：** Glama 支持提示缓存，这可以显著降低成本并提高重复提示的性能。

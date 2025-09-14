@@ -2,40 +2,41 @@
 sidebar_label: Additional Features
 ---
 
+# 附加功能
 
-# Additional Features
+Kilo Code 的附加功能简化了日常任务并提高了可访问性。
 
-Kilo Code's extras streamline routine tasks and improve accessibility.
+## 建议回复
 
-## Suggested Responses
+Kilo Code 提供建议回复，让您减少打字时间。
 
-Kilo Code offers suggested responses so you spend less time typing.
-- After you ask a question, buttons appear below the chat box.
-- Click a button to reuse it as your next prompt.
+- 提问后，聊天框下方会出现按钮。
+- 单击按钮可将其用作您的下一个提示。
 
-## Text to Speech
+## 文本转语音
 
-The Text-to-Speech feature lets Kilo Code read responses aloud.
-1. Enable TTS in settings.
-2. Click the speaker icon next to any response to start listening.
+文本转语音功能让 Kilo Code 可以朗读回复。
 
-## Global Language Support
+1.  在设置中启用 TTS。
+2.  单击任何回复旁边的扬声器图标即可开始收听。
 
-Kilo Code supports 14 languages:
+## 全球语言支持
 
-- Simplified Chinese
-- Traditional Chinese
-- Spanish
-- Hindi
-- French
-- Portuguese
-- German
-- Japanese
-- Korean
-- Italian
-- Turkish
-- Vietnamese
-- Polish
-- Catalan
+Kilo Code 支持 14 种语言：
 
-Change languages under **Advanced Settings > Language**.
+- 简体中文
+- 繁体中文
+- 西班牙语
+- 印地语
+- 法语
+- 葡萄牙语
+- 德语
+- 日语
+- 韩语
+- 意大利语
+- 土耳其语
+- 越南语
+- 波兰语
+- 加泰罗尼亚语
+
+在**高级设置 > 语言**下更改语言。

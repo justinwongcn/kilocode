@@ -1,26 +1,27 @@
 ---
-sidebar_label: 'Footgun Prompting'
+sidebar_label: "足枪式提示"
 ---
 
-# Footgun Prompting: Override System Prompts
+# 足枪式提示：覆盖系统提示
 
-Footgun Prompting, AKA Overriding System Prompt, allows advanced users to completely replace the default system prompt for a specific Kilo Code mode. This provides granular control over the AI's behavior but bypasses built-in safeguards.
+足枪式提示，又称覆盖系统提示，允许高级用户完全替换特定 Kilo Code 模式的默认系统提示。这提供了对 AI 行为的精细控制，但绕过了内置的安全措施。
 
-:::info **footgun** *(noun)*
+:::info **足枪** _(名词)_
 
-1.  *(programming slang, humorous, derogatory)* Any feature likely to lead to the programmer shooting themself in the foot.
+1.  _(编程俚语，幽默，贬义)_ 任何可能导致程序员自作自受的功能。
 
-> The System Prompt Override is considered a footgun because modifying the core instructions without a deep understanding can lead to unexpected or broken behavior, especially regarding tool usage and response consistency.
+> 系统提示覆盖被认为是一种足枪，因为在没有深入理解的情况下修改核心指令可能导致意外或错误的行为，尤其是在工具使用和响应一致性方面。
 
 :::
 
-## How It Works
+## 工作原理
 
-1.  **Override File:** Create a file named `.kilocode/system-prompt-{mode-slug}` in your workspace root (e.g., `.kilocode/system-prompt-code` for the Code mode).
-2.  **Content:** The content of this file becomes the new system prompt for that specific mode.
-3.  **Activation:** Kilo Code automatically detects this file. When present, it replaces most of the standard system prompt sections.
-4.  **Preserved Sections:** Only the core `roleDefinition` and any `customInstructions` you've set for the mode are kept alongside your override content. Standard sections like tool descriptions, rules, and capabilities are bypassed.
-5.  **Construction:** The final prompt sent to the model looks like this:
+1.  **覆盖文件：** 在您的工作区根目录中创建一个名为 `.kilocode/system-prompt-{mode-slug}` 的文件（例如，Code 模式的 `.kilocode/system-prompt-code`）。
+2.  **内容：** 此文件的内容将成为该特定模式的新系统提示。
+3.  **激活：** Kilo Code 会自动检测此文件。如果存在，它将替换大多数标准系统提示部分。
+4.  **保留部分：** 只有核心 `roleDefinition` 和您为该模式设置的任何 `customInstructions` 会与您的覆盖内容一起保留。工具描述、规则和功能等标准部分将被绕过。
+5.  **构建：** 发送到模型的最终提示如下所示：
+
     ```
     ${roleDefinition}
 
@@ -29,24 +30,23 @@ Footgun Prompting, AKA Overriding System Prompt, allows advanced users to comple
     ${customInstructions}
     ```
 
-## Accessing the Feature
+## 访问功能
 
-You can find the option and instructions within the Kilo Code UI:
+您可以在 Kilo Code UI 中找到选项和说明：
 
-1.  Click the MODE selector in the bottom-left of the Kilo Code text-input box.
-2.  Click "Edit..." at the bottom of the mode-selection list
-3.  Expand the **"Advanced: Override System Prompt"** section at the bottom.
-4.  Clicking the file path link within the explanation will open or create the correct override file for the currently selected mode in VS Code.
+1.  单击 Kilo Code 文本输入框左下角的 MODE 选择器。
+2.  单击模式选择列表底部的“编辑...”
+3.  展开底部的“**高级：覆盖系统提示**”部分。
+4.  单击说明中的文件路径链接将在 VS Code 中打开或创建当前选定模式的正确覆盖文件。
 
-<img src="/docs/img/footgun-prompting/footgun-prompting.png" alt="UI showing the Advanced: Override System Prompt section" width="500" />
+<img src="/docs/img/footgun-prompting/footgun-prompting.png" alt="UI 显示高级：覆盖系统提示部分" width="500" />
 
+## 主要注意事项和警告
 
-## Key Considerations & Warnings
+- **目标受众：** 最适合深入了解 Kilo Code 提示系统以及修改核心指令所带来影响的用户。
+- **对功能的影响：** 自定义提示会覆盖标准指令，包括工具使用和响应一致性的指令。如果管理不当，这可能导致意外行为或错误。
+- **模式特定：** 每个覆盖文件仅适用于其文件名中指定的模式（`{mode-slug}`）。
+- **无文件，无覆盖：** 如果 `.kilocode/system-prompt-{mode-slug}` 文件不存在，Kilo Code 将使用该模式的标准系统提示生成过程。
+- **目录创建：** Kilo Code 确保 `.kilocode` 目录存在，然后才尝试读取或创建覆盖文件。
 
--   **Intended Audience:** Best suited for users deeply familiar with Kilo Code's prompting system and the implications of modifying core instructions.
--   **Impact on Functionality:** Custom prompts override standard instructions, including those for tool usage and response consistency. This can cause unexpected behavior or errors if not managed carefully.
--   **Mode-Specific:** Each override file applies only to the mode specified in its filename (`{mode-slug}`).
--   **No File, No Override:** If the `.kilocode/system-prompt-{mode-slug}` file doesn't exist, Kilo Code uses the standard system prompt generation process for that mode.
--   **Directory Creation:** Kilo Code ensures the `.kilocode` directory exists before attempting to read or create the override file.
-
-Use this feature cautiously. While powerful for customization, incorrect implementation can significantly degrade Kilo Code's performance and reliability for the affected mode.
+请谨慎使用此功能。虽然它在自定义方面功能强大，但错误的实现可能会显著降低 Kilo Code 在受影响模式下的性能和可靠性。

@@ -1,35 +1,39 @@
-# Experimental Features
+# 实验性功能
 
-Kilo Code includes experimental features that are still under development.  These features may be unstable, change significantly, or be removed in future versions.  Use them with caution and be aware that they may not work as expected.
+Kilo Code 包含一些仍在开发中的实验性功能。这些功能可能不稳定，会在未来版本中发生重大变化，甚至可能被移除。请谨慎使用，并注意它们可能无法按预期工作。
 
-**Warning:** Experimental features may have unexpected behavior, including potential data loss or security vulnerabilities.  Enable them at your own risk.
+**警告：** 实验性功能可能存在意外行为，包括潜在的数据丢失或安全漏洞。启用这些功能需自行承担风险。
 
-## Enabling Experimental Features
+## 启用实验性功能
 
-To enable or disable experimental features:
+要启用或禁用实验性功能：
 
-1.  Open the Kilo Code settings (<Codicon name="gear" /> icon in the top right corner).
-2.  Go to the "Advanced Settings" section.
-3.  Find the "Experimental Features" section.
-4.  Check or uncheck the boxes for the features you want to enable or disable.
-5.  Click "Done" to save your changes.
+1. 打开 Kilo Code 设置（右上角的 <Codicon name="gear" /> 图标）。
+2. 进入“高级设置”部分。
+3. 找到“实验性功能”部分。
+4. 勾选或取消勾选要启用或禁用的功能。
+5. 点击“完成”保存更改。
 
-## Current Experimental Features
+## 当前可用的实验性功能
 
-The following experimental features are currently available:
+## 当前实验性功能
 
-## Autocomplete
-When enabled, Kilo Code will provide inline code suggestions as you type. Currently this requires the Kilo Code API Provider in order to use it.
+目前提供以下实验性功能：
 
-## Concurrent file edits
-When enabled, Kilo Code can edit multiple files in a single request. When disabled, Kilo Code must edit one file at a time. Disabling this can help when working with less capable models or when you want more control over file modifications.
+## 自动完成
 
-### Power Steering
+启用后，Kilo Code 将在您键入时提供内联代码建议。目前，这需要 Kilo Code API 提供商才能使用。
 
-When enabled, Kilo Code will remind the model about the details of its current mode definition more frequently. This will lead to stronger adherence to role definitions and custom instructions, but will use more tokens per message.
+## 并发文件编辑
 
-## Providing Feedback
+启用后，Kilo Code 可以在单个请求中编辑多个文件。禁用后，Kilo Code 必须一次编辑一个文件。禁用此功能有助于在使用功能较弱的模型时或当您希望对文件修改进行更多控制时。
 
-If you encounter any issues with experimental features, or if you have suggestions for improvements, please report them on the [Kilo Code Code GitHub Issues page](https://github.com/Kilo-Org/kilocode) or join our [Discord server](https://kilo.love/discord) where we have channels dedciated to many experimental features.
+### 强力转向
 
-Your feedback is valuable and helps us improve Kilo Code!
+启用后，Kilo Code 会更频繁地提醒模型当前的模式定义细节。这将导致更严格地遵守角色定义和自定义指令，但会消耗更多 token。
+
+## 提供反馈
+
+如果你在使用实验性功能时遇到任何问题，或有改进建议，请在 [Kilo Code Code GitHub Issues 页面](https://github.com/Kilo-Org/kilocode) 上报告。
+
+你的反馈对我们非常宝贵，将帮助我们改进 Kilo Code！

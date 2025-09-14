@@ -1,35 +1,35 @@
-# Custom Rules
+# 自定义规则
 
-Custom rules provide a powerful way to define project-specific and global behaviors and constraints for the Kilo Code AI agent. With custom rules, you can ensure consistent formatting, restrict access to sensitive files, enforce coding standards, and customize the AI's behavior for your specific project needs or across all projects.
+自定义规则为 Kilo Code AI 代理定义项目特定和全局行为及约束提供了一种强大的方式。通过自定义规则，您可以确保一致的格式、限制对敏感文件的访问、强制执行编码标准，并根据您的特定项目需求或所有项目自定义 AI 的行为。
 
-## Overview
+## 概述
 
-Custom rules allow you to create text-based instructions that all AI models will follow when interacting with your project. These rules act as guardrails and conventions that are consistently respected across all interactions with your codebase. Rules can be managed through both the file system and the built-in UI interface.
+自定义规则允许您创建基于文本的指令，所有 AI 模型在与您的项目交互时都会遵循这些指令。这些规则充当护栏和约定，在与代码库的所有交互中都会得到一致的尊重。规则可以通过文件系统和内置 UI 界面进行管理。
 
-## Rule Format
+## 规则格式
 
-Custom rules can be written in plain text, but Markdown format is recommended for better structure and comprehension by the AI models. The structured nature of Markdown helps the models parse and understand your rules more effectively.
+自定义规则可以以纯文本形式编写，但建议使用 Markdown 格式，以便 AI 模型更好地结构化和理解。Markdown 的结构化特性有助于模型更有效地解析和理解您的规则。
 
-- Use Markdown headers (`#`, `##`, etc.) to define rule categories
-- Use lists (`-`, `*`) to enumerate specific items or constraints
-- Use code blocks (``` ```) to include code examples when needed
+- 使用 Markdown 标题（`#`、`##` 等）定义规则类别
+- 使用列表（`-`、[\*](file:///Users/john/GolandProjects/kilocode/NOTICE)）列举特定项目或约束
+- 在需要时使用代码块（`` ` ``）包含代码示例
 
-## Rule Types
+## 规则类型
 
-Kilo Code supports two types of custom rules:
+Kilo Code 支持两种类型的自定义规则：
 
-- **Project Rules**: Apply only to the current project workspace
-- **Global Rules**: Apply across all projects and workspaces
+- **项目规则**：仅应用于当前项目工作区
+- **全局规则**：应用于所有项目和工作区
 
-:::note UI Support
-The built-in rules management UI is available for general rules only. Mode-specific rules must be managed through the file system.
+:::note UI 支持
+内置规则管理 UI 仅适用于通用规则。特定模式的规则必须通过文件系统管理。
 :::
 
-## Rule Location
+## 规则位置
 
-### Project Rules
+### 项目规则
 
-Custom rules are primarily loaded from the **`.kilocode/rules/` directory**. This is the recommended approach for organizing your project-specific rules. Each rule is typically placed in its own Markdown file with a descriptive name:
+自定义规则主要从 **`.kilocode/rules/` 目录**加载。这是组织项目特定规则的推荐方法。每个规则通常放在其自己的具有描述性名称的 Markdown 文件中：
 
 ```
 project/
@@ -42,9 +42,9 @@ project/
 └── ...
 ```
 
-### Global Rules
+### 全局规则
 
-Global rules are stored in your home directory and apply to all projects:
+全局规则存储在您的主目录中，适用于所有项目：
 
 ```
 ~/.kilocode/
@@ -54,161 +54,166 @@ Global rules are stored in your home directory and apply to all projects:
 │   └── documentation_style.md
 ```
 
-## Managing Rules Through the UI
+## 通过 UI 管理规则
 
-Kilo Code provides a built-in interface for managing your custom rules without manually editing files in the `.kilocode/rules/` directories. To access the UI, click on the <Codicon name="law" /> icon in the **bottom right corner** of the Kilo Code window.
+Kilo Code 提供了一个内置界面，用于管理您的自定义规则，而无需手动编辑 `.kilocode/rules/` 目录中的文件。要访问 UI，请单击 Kilo Code 窗口**右下角**的 <Codicon name="law" /> 图标。
 
-You can access the rules management UI to:
+您可以访问规则管理 UI 来：
 
-- View all active rules (both project and global)
-- Toggle rules on/off without deleting them
-- Create and edit rules directly in the interface
-- Organize rules by category and priority
+- 查看所有活动规则（项目和全局）
+- 在不删除规则的情况下切换规则的开启/关闭状态
+- 直接在界面中创建和编辑规则
+- 按类别和优先级组织规则
 
-## Rule Loading Order
+## 规则加载顺序
 
-### General Rules (Any Mode)
+### 通用规则（任何模式）
 
-Rules are loaded in the following priority order:
+规则按以下优先级顺序加载：
 
-1. **Global rules** from `~/.kilocode/rules/` directory
-2. **Project rules** from `.kilocode/rules/` directory
-3. **Legacy fallback files** (for backward compatibility):
-   - `.roorules`
-   - `.clinerules`
-   - `.kilocoderules` (deprecated)
+1. 来自 `~/.kilocode/rules/` 目录的**全局规则**
+2. 来自 `.kilocode/rules/` 目录的**项目规则**
+3. **遗留回退文件**（用于向后兼容性）：
+    - `.roorules`
+    - `.clinerules`
+    - `.kilocoderules`（已弃用）
 
-When both global and project rules exist, they are combined with project rules taking precedence over global rules for conflicting directives.
+当全局规则和项目规则同时存在时，它们会合并，对于冲突的指令，项目规则优先于全局规则。
 
 :::note
-We strongly recommend keeping your rules in the `.kilocode/rules/` folder as it provides better organization and is the preferred approach for future versions. The folder-based structure allows for more granular rule organization and clearer separation of concerns. The legacy file-based approach is maintained for backward compatibility but may be subject to change in future releases.
+我们强烈建议将您的规则保存在 `.kilocode/rules/` 文件夹中，因为它提供了更好的组织结构，也是未来版本的首选方法。基于文件夹的结构允许更细粒度的规则组织和更清晰的关注点分离。遗留的基于文件的方法是为了向后兼容而维护的，但在未来版本中可能会发生变化。
 :::
 
-### Mode-Specific Rules
+### 特定模式规则
 
-Additionally, the system supports mode-specific rules, which are loaded separately and have their own priority order:
+此外，系统还支持特定模式的规则，这些规则是单独加载的，并且有自己的优先级顺序：
 
-1. First, it checks for `.kilocode/rules-${mode}/` directory
-2. If that doesn't exist or is empty, it falls back to `.kilocoderules-${mode}` file (deprecated)
+1. 首先检查 `.kilocode/rules-${mode}/` 目录
+2. 如果该目录不存在或为空，则回退到 `.kilocoderules-${mode}` 文件（已弃用）
 
-Currently, mode-specific rules are only supported at the project level.
-When both generic rules and mode-specific rules exist, the mode-specific rules are given priority in the final output.
+目前，特定模式规则仅在项目级别受支持。
+当通用规则和特定模式规则同时存在时，特定模式规则在最终输出中具有优先权。
 
-## Creating Custom Rules
+## 创建自定义规则
 
-### Using the UI Interface
+### 使用 UI 界面
 
-<img src="/docs/img/custom-rules/rules-ui.png" alt="Rules tab in Kilo Code" width="400" />
+<img src="/docs/img/custom-rules/rules-ui.png" alt="Kilo Code 中的规则选项卡" width="400" />
 
-The easiest way to create and manage rules is through the built-in UI:
+创建和管理规则的最简单方法是通过内置 UI：
 
-1. Access the rules management interface from the Kilo Code panel
-2. Choose between creating project-specific or global rules
-3. Use the interface to create, edit, or toggle rules
-4. Rules are automatically saved and applied immediately
+1. 从 Kilo Code 面板访问规则管理界面
+2. 选择创建项目特定规则或全局规则
+3. 使用界面创建、编辑或切换规则
+4. 规则会自动保存并立即应用
 
-### Using the File System
+### 使用文件系统
 
-To create rules manually:
+要手动创建规则：
 
-**For Project Rules:**
-1. Create the `.kilocode/rules/` directory if it doesn't already exist
-2. Create a new Markdown file with a descriptive name in this directory
-3. Write your rule using Markdown formatting
-4. Save the file
+**对于项目规则：**
 
-**For Global Rules:**
-1. Create the `~/.kilocode/rules/` directory if it doesn't already exist
-2. Create a new Markdown file with a descriptive name in this directory
-3. Write your rule using Markdown formatting
-4. Save the file
+1. 如果 `.kilocode/rules/` 目录尚不存在，请创建它
+2. 在此目录中创建一个具有描述性名称的新 Markdown 文件
+3. 使用 Markdown 格式编写您的规则
+4. 保存文件
 
-Rules will be automatically applied to all future Kilo Code interactions. Any new changes will be applied immediately.
+**对于全局规则：**
 
-## Example Rules
+1. 如果 `~/.kilocode/rules/` 目录尚不存在，请创建它
+2. 在此目录中创建一个具有描述性名称的新 Markdown 文件
+3. 使用 Markdown 格式编写您的规则
+4. 保存文件
 
-### Example 1: Table Formatting
+规则将自动应用于所有未来的 Kilo Code 交互。任何新更改都会立即应用。
+
+## 示例规则
+
+### 示例 1：表格格式
 
 ```markdown
-# Tables
-When printing tables, always add an exclamation mark to each column header
+# 表格
+
+打印表格时，始终在每个列标题后添加感叹号
 ```
 
-This simple rule instructs the AI to add exclamation marks to all table column headers when generating tables in your project.
+这个简单的规则指示 AI 在项目中生成表格时，在所有表格列标题后添加感叹号。
 
-### Example 2: Restricted File Access
+### 示例 2：受限文件访问
 
 ```markdown
-# Restricted files
-Files in the list contain sensitive data, they MUST NOT be read
+# 受限文件
+
+列表中的文件包含敏感数据，不得读取
+
 - supersecrets.txt
 - credentials.json
 - .env
 ```
 
-This rule prevents the AI from reading or accessing sensitive files, even if explicitly requested to do so.
+此规则防止 AI 读取或访问敏感文件，即使明确要求这样做。
 
-<img src="/docs/img/custom-rules/custom-rules.png" alt="Kilo Code ignores request to read sensitive file" width="600" />
+<img src="/docs/img/custom-rules/custom-rules.png" alt="Kilo Code 忽略读取敏感文件的请求" width="600" />
 
-## Use Cases
+## 使用场景
 
-Custom rules can be applied to a wide variety of scenarios:
+自定义规则可以应用于各种场景：
 
-- **Code Style**: Enforce consistent formatting, naming conventions, and documentation styles
-- **Security Controls**: Prevent access to sensitive files or directories
-- **Project Structure**: Define where different types of files should be created
-- **Documentation Requirements**: Specify documentation formats and requirements
-- **Testing Patterns**: Define how tests should be structured
-- **API Usage**: Specify how APIs should be used and documented
-- **Error Handling**: Define error handling conventions
+- **代码风格**：强制执行一致的格式、命名约定和文档风格
+- **安全控制**：防止访问敏感文件或目录
+- **项目结构**：定义不同类型文件的创建位置
+- **文档要求**：指定文档格式和要求
+- **测试模式**：定义测试的结构方式
+- **API 使用**：指定 API 的使用和文档方式
+- **错误处理**：定义错误处理约定
 
-## Examples of Custom Rules
+## 自定义规则示例
 
-* "Strictly follow code style guide [your project-specific code style guide]"
-* "Always use spaces for indentation, with a width of 4 spaces"
-* "Use camelCase for variable names"
-* "Write unit tests for all new functions"
-* "Explain your reasoning before providing code"
-* "Focus on code readability and maintainability"
-* "Prioritize using the most common library in the community"
-* "When adding new features to websites, ensure they are responsive and accessible"
+- "严格遵循代码风格指南 [您的项目特定代码风格指南]"
+- "始终使用空格进行缩进，宽度为 4 个空格"
+- "使用驼峰命名法命名变量"
+- "为所有新函数编写单元测试"
+- "在提供代码之前解释您的推理过程"
+- "专注于代码的可读性和可维护性"
+- "优先使用社区中最常见的库"
+- "在网站中添加新功能时，确保它们是响应式的和可访问的"
 
-## Best Practices
+## 最佳实践
 
-- **Be Specific**: Clearly define the scope and intent of each rule
-- **Use Categories**: Organize related rules under common headers
-- **Separate Concerns**: Use different files for different types of rules
-- **Use Examples**: Include examples to illustrate the expected behavior
-- **Keep It Simple**: Rules should be concise and easy to understand
-- **Update Regularly**: Review and update rules as project requirements change
+- **具体明确**：清楚地定义每个规则的范围和意图
+- **使用类别**：将相关规则组织在共同的标题下
+- **分离关注点**：为不同类型的规则使用不同的文件
+- **使用示例**：包含示例以说明预期行为
+- **保持简洁**：规则应简洁易懂
+- **定期更新**：随着项目需求的变化审查和更新规则
 
-:::tip Pro Tip: File-Based Team Standards
-When working in team environments, placing `.kilocode/rules/codestyle.md` files under version control allows you to standardize Kilo's behavior across your entire development team. This ensures consistent code style, documentation practices, and development workflows for everyone on the project.
+:::tip 专业提示：基于文件的团队标准
+在团队环境中工作时，将 `.kilocode/rules/codestyle.md` 文件置于版本控制下，可以让你在整个开发团队中标准化 Kilo 的行为。这确保了项目中每个人的代码风格、文档实践和开发工作流程的一致性。
 :::
 
-## Limitations
+## 限制
 
-- Rules are applied on a best-effort basis by the AI models
-- Complex rules may require multiple examples for clear understanding
-- Project rules apply only to the project in which they are defined
-- Global rules apply across all projects
+- 规则由 AI 模型尽力应用
+- 复杂规则可能需要多个示例才能清楚理解
+- 项目规则仅适用于定义它们的项目
+- 全局规则适用于所有项目
 
-## Troubleshooting
+## 故障排除
 
-If your custom rules aren't being properly followed:
+如果您的自定义规则没有被正确遵循：
 
-1. **Check rule status in the UI**: Use the rules management interface to verify that your rules are active and properly loaded
-1. **Verify rule formatting**: Ensure that your rules are properly formatted with clear Markdown structure
-1. **Check rule locations**: Ensure that your rules are located in supported locations:
-   - Global rules: `~/.kilocode/rules/` directory
-   - Project rules: `.kilocode/rules/` directory
-   - Legacy files: `.kilocoderules`, `.roorules`, or `.clinerules`
-1. **Rule specificity**: Verify that the rules are specific and unambiguous
-1. **Restart VS Code**: Restart VS Code to ensure the rules are properly loaded
+1. **检查 UI 中的规则状态**：使用规则管理界面验证您的规则是否处于活动状态并已正确加载
+1. **验证规则格式**：确保您的规则具有清晰的 Markdown 结构格式
+1. **检查规则位置**：确保您的规则位于支持的位置：
+    - 全局规则：`~/.kilocode/rules/` 目录
+    - 项目规则：`.kilocode/rules/` 目录
+    - 遗留文件：`.kilocoderules`、`.roorules` 或 `.clinerules`
+1. **规则特异性**：验证规则是否具体且无歧义
+1. **重启 VS Code**：重启 VS Code 以确保规则被正确加载
 
-## Related Features
+## 相关功能
 
-- [Custom Modes](/docs/features/custom-modes)
-- [Custom Instructions](/advanced-usage/custom-instructions)
-- [Settings Management](/docs/features/settings-management)
-- [Auto-Approval Settings](/docs/features/auto-approving-actions)
+- [自定义模式](/docs/features/custom-modes)
+- [自定义指令](/advanced-usage/custom-instructions)
+- [设置管理](/docs/features/settings-management)
+- [自动批准设置](/docs/features/auto-approving-actions)

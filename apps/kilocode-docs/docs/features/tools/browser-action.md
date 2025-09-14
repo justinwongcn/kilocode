@@ -1,119 +1,132 @@
 # browser_action
 
-The `browser_action` tool enables web automation and interaction via a Puppeteer-controlled browser. It allows Kilo Code to launch browsers, navigate to websites, click elements, type text, and scroll pages with visual feedback through screenshots.
+`browser_action`工具通过Puppeteer控制的浏览器实现网页自动化交互。它允许Kilo Code启动浏览器、导航至网站、点击元素、输入文本、滚动页面，并通过截图提供可视化反馈。
 
-## Parameters
+> **⚠️ 安全警告**  
+> 使用此工具时请注意：
+>
+> - 确保访问的网站安全可靠
+> - 避免在浏览器中执行未经验证的操作
+> - 谨慎处理敏感信息
 
-The tool accepts these parameters:
+## 参数
 
-- `action` (required): The action to perform:
-  * `launch`: Start a new browser session at a URL
-  * `click`: Click at specific x,y coordinates
-  * `type`: Type text via the keyboard
-  * `scroll_down`: Scroll down one page height
-  * `scroll_up`: Scroll up one page height
-  * `close`: End the browser session
-- `url` (optional): The URL to navigate to when using the `launch` action
-- `coordinate` (optional): The x,y coordinates for the `click` action (e.g., "450,300")
-- `text` (optional): The text to type when using the `type` action
+该工具接受以下参数：
 
-## What It Does
+- `action` (必填): 要执行的操作：
+    - `launch`: 在指定URL启动新浏览器会话
+    - `click`: 在特定x,y坐标处点击
+    - `type`: 通过键盘输入文本
+    - `scroll_down`: 向下滚动一页高度
+    - `scroll_up`: 向上滚动一页高度
+    - `close`: 结束浏览器会话
+- `url` (可选): 使用`launch`操作时要导航的URL
+- `coordinate` (可选): `click`操作的x,y坐标（例如"450,300"）
+- `text` (可选): 使用`type`操作时要输入的文本
 
-This tool creates an automated browser session that Kilo Code can control to navigate websites, interact with elements, and perform tasks that require browser automation. Each action provides a screenshot of the current state, enabling visual verification of the process.
+## 功能
 
-## When is it used?
+该工具创建一个自动化浏览器会话，Kilo Code可以通过它来导航网站、与元素交互，并执行需要浏览器自动化的任务。每个操作都会提供当前状态的截图，以便进行可视化验证。
 
-- When Kilo Code needs to interact with web applications or websites
-- When testing user interfaces or web functionality
-- When capturing screenshots of web pages
-- When demonstrating web workflows visually
+## 使用场景
 
-## Key Features
+- 当Kilo Code需要与Web应用程序或网站交互时
+- 当测试用户界面或Web功能时
+- 当捕获网页截图时
+- 当演示Web工作流程时
 
-- Provides visual feedback with screenshots after each action and captures console logs
-- Supports complete workflows from launching to page interaction to closing
-- Enables precise interactions via coordinates, keyboard input, and scrolling
-- Maintains consistent browser sessions with intelligent page loading detection
-- Operates in two modes: local (isolated Puppeteer instance) or remote (connects to existing Chrome)
-- Handles errors gracefully with automatic session cleanup and detailed messages
-- Optimizes visual output with support for various formats and quality settings
-- Tracks interaction state with position indicators and action history
+## 主要特性
 
-## Browser Modes
+- 提供操作后的截图作为可视化反馈，并捕获控制台日志
+- 支持从启动到页面交互再到关闭的完整工作流程
+- 通过坐标、键盘输入和滚动实现精确交互
+- 通过智能页面加载检测保持一致的浏览器会话
+- 支持两种模式：本地（独立Puppeteer实例）或远程（连接现有Chrome）
+- 通过自动会话清理和详细消息优雅处理错误
+- 支持多种格式和质量设置的视觉输出优化
+- 通过位置指示器和操作历史跟踪交互状态
 
-The tool operates in two distinct modes:
+## 浏览器模式
 
-### Local Browser Mode (Default)
-- Downloads and manages a local Chromium instance through Puppeteer
-- Creates a fresh browser environment with each launch
-- No access to existing user profiles, cookies, or extensions
-- Consistent, predictable behavior in a sandboxed environment
-- Completely closes the browser when the session ends
+该工具支持两种模式：
 
-### Remote Browser Mode
-- Connects to an existing Chrome/Chromium instance running with remote debugging enabled
-- Can access existing browser state, cookies, and potentially extensions
-- Faster startup as it reuses an existing browser process
-- Supports connecting to browsers in Docker containers or on remote machines
-- Only disconnects (doesn't close) from the browser when session ends
-- Requires Chrome to be running with remote debugging port open (typically port 9222)
+### 本地浏览器模式（默认）
 
-## Limitations
+- 通过Puppeteer下载并管理本地Chromium实例
+- 每次启动时创建全新的浏览器环境
+- 无法访问现有用户配置文件、cookies或扩展程序
+- 在沙箱环境中保持行为一致且可预测
+- 会话结束时完全关闭浏览器
 
-- While the browser is active, only `browser_action` tool can be used
-- Browser coordinates are viewport-relative, not page-relative
-- Click actions must target visible elements within the viewport
-- Browser sessions must be explicitly closed before using other tools
-- Browser window has configurable dimensions (default 900x600)
-- Cannot directly interact with browser DevTools
-- Browser sessions are temporary and not persistent across Kilo Code restarts
-- Works only with Chrome/Chromium browsers, not Firefox or Safari
-- Local mode has no access to existing cookies; remote mode requires Chrome with debugging enabled
+### 远程浏览器模式
 
-## How It Works
+- 连接到已启用远程调试的现有Chrome/Chromium实例
+- 可以访问现有浏览器状态、cookies，可能还包括扩展程序
+- 由于重用现有浏览器进程，启动速度更快
+- 支持连接到Docker容器或远程机器上的浏览器
+- 会话结束时仅断开连接（不关闭浏览器）
+- 需要Chrome以远程调试端口运行（通常为9222端口）
 
-When the `browser_action` tool is invoked, it follows this process:
+## 限制
 
-1. **Action Validation and Browser Management**:
-   - Validates the required parameters for the requested action
-   - For `launch`: Initializes a browser session (either local Puppeteer instance or remote Chrome)
-   - For interaction actions: Uses the existing browser session
-   - For `close`: Terminates or disconnects from the browser appropriately
+- 浏览器活动时，只能使用`browser_action`工具
+- 浏览器坐标是相对于视口的，而不是页面
+- 点击操作必须针对视口内的可见元素
+- 在使用其他工具之前必须显式关闭浏览器会话
+- 浏览器窗口有可配置的尺寸（默认900x600）
+- 无法直接与浏览器DevTools交互
+- 浏览器会话是临时的，在Kilo Code重启时不会保留
+- 仅支持Chrome/Chromium浏览器，不支持Firefox或Safari
+- 本地模式无法访问现有cookies；远程模式需要启用调试的Chrome
 
-2. **Page Interaction and Stability**:
-   - Ensures pages are fully loaded using DOM stability detection via `waitTillHTMLStable` algorithm
-   - Executes requested actions (navigation, clicking, typing, scrolling) with proper timing
-   - Monitors network activity after clicks and waits for navigation when necessary
+## 工作原理
 
-3. **Visual Feedback**:
-   - Captures optimized screenshots using WebP format (with PNG fallback)
-   - Records browser console logs for debugging purposes
-   - Tracks mouse position and maintains paginated history of actions
+当调用`browser_action`工具时，它会遵循以下流程：
 
-4. **Session Management**:
-   - Maintains browser state across multiple actions
-   - Handles errors and automatically cleans up resources
-   - Enforces proper workflow sequence (launch → interactions → close)
+1. **操作验证和浏览器管理**：
 
-## Workflow Sequence
+    - 验证请求操作所需的参数
+    - 对于`launch`：初始化浏览器会话（本地Puppeteer实例或远程Chrome）
+    - 对于交互操作：使用现有浏览器会话
+    - 对于`close`：适当地终止或断开浏览器连接
 
-Browser interactions must follow this specific sequence:
+2. **页面交互和稳定性**：
 
-1. **Session Initialization**: All browser workflows must start with a `launch` action
-2. **Interaction Phase**: Multiple `click`, `type`, and scroll actions can be performed
-3. **Session Termination**: All browser workflows must end with a `close` action
-4. **Tool Switching**: After closing the browser, other tools can be used
+    - 使用`waitTillHTMLStable`算法通过DOM稳定性检测确保页面完全加载
+    - 以适当的时间执行请求的操作（导航、点击、输入、滚动）
+    - 监控点击后的网络活动，并在必要时等待导航
 
-## Examples When Used
+3. **可视化反馈**：
 
-- When creating a web form submission process, Kilo Code launches a browser, navigates to the form, fills out fields with the `type` action, and clicks submit.
-- When testing a responsive website, Kilo Code navigates to the site and uses scroll actions to examine different sections.
-- When capturing screenshots of a web application, Kilo Code navigates through different pages and takes screenshots at each step.
-- When demonstrating an e-commerce checkout flow, Kilo Code simulates the entire process from product selection to payment confirmation.
+    - 使用WebP格式（支持PNG回退）捕获优化截图
+    - 记录浏览器控制台日志以进行调试
+    - 跟踪鼠标位置并维护分页操作历史
 
-## Usage Examples
+4. **会话管理**：
+    - 跨多个操作维护浏览器状态
+    - 处理错误并自动清理资源
+    - 强制执行正确的工作流程顺序（启动→交互→关闭）
 
-Launching a browser and navigating to a website:
+## 工作流程顺序
+
+浏览器交互必须遵循以下特定顺序：
+
+1. **会话初始化**：所有浏览器工作流程必须以`launch`操作开始
+2. **交互阶段**：可以执行多个`click`、`type`和滚动操作
+3. **会话终止**：所有浏览器工作流程必须以`close`操作结束
+4. **工具切换**：关闭浏览器后，可以使用其他工具
+
+## 使用示例
+
+- 当创建Web表单提交过程时，Kilo Code启动浏览器，导航到表单，使用`type`操作填写字段，并点击提交。
+- 当测试响应式网站时，Kilo Code导航到网站并使用滚动操作检查不同部分。
+- 当捕获Web应用程序的截图时，Kilo Code导航到不同页面并在每一步截图。
+- 当演示电商结账流程时，Kilo Code模拟从产品选择到支付确认的整个过程。
+
+## 使用示例
+
+启动浏览器并导航到网站：
+
 ```
 <browser_action>
 <action>launch</action>
@@ -121,7 +134,8 @@ Launching a browser and navigating to a website:
 </browser_action>
 ```
 
-Clicking at specific coordinates (e.g., a button):
+在特定坐标处点击（例如按钮）：
+
 ```
 <browser_action>
 <action>click</action>
@@ -129,7 +143,8 @@ Clicking at specific coordinates (e.g., a button):
 </browser_action>
 ```
 
-Typing text into a focused input field:
+在聚焦的输入字段中输入文本：
+
 ```
 <browser_action>
 <action>type</action>
@@ -137,14 +152,16 @@ Typing text into a focused input field:
 </browser_action>
 ```
 
-Scrolling down to see more content:
+向下滚动以查看更多内容：
+
 ```
 <browser_action>
 <action>scroll_down</action>
 </browser_action>
 ```
 
-Closing the browser session:
+关闭浏览器会话：
+
 ```
 <browser_action>
 <action>close</action>

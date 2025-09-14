@@ -1,28 +1,28 @@
 import { DISCORD_URL } from '@site/src/constants.ts'
 
-# Adding More Tokens
+# 添加更多 Tokens
 
-Once you've used any initial free tokens, you can easily add more:
+一旦你使用完初始的免费 tokens，你可以轻松地充值更多：
 
-- Add a credit card to your account (all payments are securely processed through Stripe)
-- We don't currently offer a subscription, so you only pay for the tokens you use, and only when you choose to top up your tokens!
-- Leverage your own API provider by [connecting your own API provider](/getting-started/connecting-api-provider.md)
+- 为你的账户添加信用卡（所有支付均通过 Stripe 安全处理）
+- 我们目前不提供订阅服务，因此你只需为使用的 tokens 付费，并且仅在你选择充值 tokens 时付费！
+- 通过[连接你自己的 API 提供商](/getting-started/connecting-api-provider.md) 来利用你自己的 API 提供商
 
-## Transparent Pricing
+## 透明的定价
 
-At Kilo Code, we believe in complete pricing transparency:
+在 Kilo Code，我们相信完全透明的定价：
 
-- Our pricing matches the model provider's API rates exactly
-- We don't take any commission or markup, either per token or per top-up
-- You only pay for what you use with no hidden fees
+- 我们的定价与模型提供商的 API 费率完全一致
+- 我们不收取任何佣金或加价，无论是按 token 还是按充值
+- 你只需为使用的 tokens 付费，没有任何隐藏费用
 
-## Future Plans
+## 未来计划
 
-We're continuously working to improve Kilo Code and expand our offerings:
+我们正在不断改进 Kilo Code 并扩展我们的服务：
 
-- Additional LLM providers will be added in the future
-- More payment options and other plans are under development
+- 未来将添加更多 LLM 提供商
+- 更多支付选项和其他计划正在开发中
 
-:::tip Need Help?
-If you have any questions about pricing or tokens, please reach out to our [support team](mailto:hi@kilocode.ai) or ask in our <a href={DISCORD_URL} target='_blank'>Discord community</a>.
+:::tip 需要帮助？
+如果你对定价或 tokens 有任何疑问，请联系我们的[支持团队](mailto:hi@kilocode.ai) 或在我们的 <a href={DISCORD_URL} target='_blank'>Discord 社区</a>中提问。
 :::

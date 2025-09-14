@@ -1,37 +1,38 @@
-# How Tools Work
+# 工具工作原理
 
-Kilo Code uses tools to interact with your code and environment. These specialized helpers perform specific actions like reading files, making edits, running commands, or searching your codebase. Tools provide automation for common development tasks without requiring manual execution.
+Kilo Code 通过工具与你的代码和环境进行交互。这些专业助手可以执行特定操作，如读取文件、编辑内容、运行命令或搜索代码库。工具为常见开发任务提供自动化能力，无需手动执行。
 
-## Tool Workflow
+## 工具工作流程
 
-Describe what you want to accomplish in natural language, and Kilo Code will:
+用自然语言描述你想完成的任务，Kilo Code 将会：
 
-1. Select the appropriate tool based on your request
-2. Present the tool with its parameters for your review
-3. Execute the approved tool and show you the results
-4. Continue this process until your task is complete
+1. 根据你的请求选择合适的工具
+2. 展示工具及其参数供你审核
+3. 执行已批准的工具并显示结果
+4. 重复此过程直至任务完成
 
-## Tool Categories
+## 工具分类
 
-| Category | Purpose | Tool Names |
-| :------- | :------ | :--------- |
-| Read | Access file content and code structure | `read_file`, `search_files`, `list_files`, `list_code_definition_names` |
-| Edit | Create or modify files and code | `write_to_file`, `apply_diff` |
-| Execute | Run commands and perform system operations | `execute_command` |
-| Browser | Interact with web content | `browser_action` |
-| Workflow | Manage task flow and context | `ask_followup_question`, `attempt_completion`, `switch_mode`, `new_task` |
+| 类别   | 用途                   | 工具名称                                                                 |
+| :----- | :--------------------- | :----------------------------------------------------------------------- |
+| 读取   | 访问文件内容和代码结构 | `read_file`, `search_files`, `list_files`, `list_code_definition_names`  |
+| 编辑   | 创建或修改文件和代码   | `write_to_file`, `apply_diff`                                            |
+| 执行   | 运行命令和系统操作     | `execute_command`                                                        |
+| 浏览器 | 与网页内容交互         | `browser_action`                                                         |
+| 工作流 | 管理任务流程和上下文   | `ask_followup_question`, `attempt_completion`, `switch_mode`, `new_task` |
 
-## Example: Using Tools
+## 示例：工具使用
 
-Here's how a typical tool interaction works:
+以下是典型的工具交互过程：
 
-<img src="/docs/img/how-tools-work/how-tools-work.png" alt="Tool approval interface showing Save and Reject buttons along with Auto-approve checkbox" width="600" />
+<img src="/docs/img/how-tools-work/how-tools-work.png" alt="工具审批界面显示保存和拒绝按钮以及自动批准复选框" width="600" />
 
-*The tool approval interface shows Save/Reject buttons and Auto-approve options.*
+_工具审批界面显示保存/拒绝按钮和自动批准选项。_
 
-**User:** Create a file named `greeting.js` that logs a greeting message
+**用户：** 创建一个名为 `greeting.js` 的文件，用于输出问候消息
 
-**Kilo Code:** (Proposes the `write_to_file` tool as shown in the image above)
+**Kilo Code：** (建议使用 `write_to_file` 工具，如上图所示)
+
 ```xml
 <write_to_file>
 <path>greeting.js</path>
@@ -46,38 +47,37 @@ greet('World');
 </write_to_file>
 ```
 
-**User:** (Clicks "Save" in the interface)
+**用户：** (点击界面中的"保存"按钮)
 
-**Kilo Code:** (Confirms file creation)
+**Kilo Code：** (确认文件创建成功)
 
-## Tool Safety and Approval
+## 工具安全与审批
 
+每次使用工具都需要你的明确批准。当 Kilo 建议使用工具时，你会看到：
 
-Every tool use requires your explicit approval. When Kilo proposes a tool, you'll see:
+- "保存"按钮 - 批准并执行工具
+- "拒绝"按钮 - 拒绝建议的工具
+- 可选的"自动批准"设置 - 用于信任的操作
 
-* A "Save" button to approve and execute the tool
-* A "Reject" button to decline the proposed tool
-* An optional "Auto-approve" setting for trusted operations
+此安全机制确保你能完全控制哪些文件被修改、执行哪些命令以及如何更改代码库。执行前请务必仔细审查工具建议。
 
-This safety mechanism ensures you maintain control over which files are modified, what commands are executed, and how your codebase is changed. Always review tool proposals carefully before saving them.
+## 核心工具参考
 
-## Core Tools Reference
+| 工具名称                     | 描述                         | 类别   |
+| :--------------------------- | :--------------------------- | :----- |
+| `read_file`                  | 读取带行号的文件内容         | 读取   |
+| `search_files`               | 跨文件搜索文本或正则表达式   | 读取   |
+| `list_files`                 | 列出指定位置的文件和目录     | 读取   |
+| `list_code_definition_names` | 列出类/函数等代码定义        | 读取   |
+| `write_to_file`              | 创建新文件或覆盖现有文件     | 编辑   |
+| `apply_diff`                 | 对文件特定部分进行精确修改   | 编辑   |
+| `execute_command`            | 在 VS Code 终端中运行命令    | 执行   |
+| `browser_action`             | 在无头浏览器中执行操作       | 浏览器 |
+| `ask_followup_question`      | 向你提出澄清问题             | 工作流 |
+| `attempt_completion`         | 标记任务已完成               | 工作流 |
+| `switch_mode`                | 切换到不同操作模式           | 工作流 |
+| `new_task`                   | 创建具有特定启动模式的子任务 | 工作流 |
 
-| Tool Name | Description | Category |
-| :-------- | :---------- | :------- |
-| `read_file` | Reads the content of a file with line numbers | Read |
-| `search_files` | Searches for text or regex patterns across files | Read |
-| `list_files` | Lists files and directories in a specified location | Read |
-| `list_code_definition_names` | Lists code definitions like classes and functions | Read |
-| `write_to_file` | Creates new files or overwrites existing ones | Edit |
-| `apply_diff` | Makes precise changes to specific parts of a file | Edit |
-| `execute_command` | Runs commands in the VS Code terminal | Execute |
-| `browser_action` | Performs actions in a headless browser | Browser |
-| `ask_followup_question` | Asks you a clarifying question | Workflow |
-| `attempt_completion` | Indicates the task is complete | Workflow |
-| `switch_mode` | Changes to a different operational mode | Workflow |
-| `new_task` | Creates a new subtask with a specific starting mode | Workflow |
+## 了解更多工具信息
 
-## Learn More About Tools
-
-For more detailed information about each tool, including complete parameter references and advanced usage patterns, see the [Tool Use Overview](/features/tools/tool-use-overview) documentation.
+有关每个工具的完整参数参考和高级用法，请参阅[工具使用概述](/features/tools/tool-use-overview)文档。

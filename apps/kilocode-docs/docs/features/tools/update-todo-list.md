@@ -1,37 +1,37 @@
 # update_todo_list
 
-The `update_todo_list` tool replaces the entire TODO list with an updated checklist reflecting the current state. It provides step-by-step task tracking, allowing confirmation of completion before updating and dynamic addition of new todos discovered during complex tasks.
+`update_todo_list` 工具用反映当前状态的更新清单替换整个 TODO 列表。它提供分步任务跟踪，允许在更新和在复杂任务期间发现新待办事项时动态添加新待办事项之前确认完成。
 
-## Parameters
+## 参数
 
-The tool accepts these parameters:
+该工具接受以下参数：
 
-- `todos` (required): A markdown checklist with task descriptions and status indicators
+- `todos`（必需）：带有任务描述和状态指示器的 markdown 清单
 
-## What It Does
+## 作用
 
-This tool manages a comprehensive TODO list that tracks task progress through different status states. It replaces the entire list with each update, ensuring the current state accurately reflects all pending, in-progress, and completed tasks. The system displays the TODO list as reminders in subsequent messages.
+此工具管理一个全面的 TODO 列表，该列表通过不同的状态跟踪任务进度。它在每次更新时替换整个列表，确保当前状态准确反映所有待处理、进行中和已完成的任务。系统将 TODO 列表显示为后续消息中的提醒。
 
-## When is it used?
+## 何时使用？
 
-- When tasks involve multiple steps requiring systematic tracking
-- When new actionable items are discovered during task execution
-- When updating the status of several todos simultaneously
-- When complex projects benefit from clear, stepwise progress tracking
-- When organizing multi-phase workflows with dependencies
+- 当任务涉及需要系统跟踪的多个步骤时
+- 当新 actionable items are discovered during task execution
+- 当更新多个待办事项的状态时
+- 当复杂项目受益于清晰、分步的进度跟踪时
+- 当组织多阶段工作流 with dependencies
 
-## Key Features
+## 主要功能
 
-- Maintains a single-level markdown checklist with three status states
-- Updates multiple task statuses in a single operation
-- Dynamically adds new todos as they're discovered during execution
-- Provides visual progress tracking through status indicators
-- Integrates with the reminder system for persistent task visibility
-- Supports task reordering based on execution priority
+- 维护具有三种状态的单级 markdown 清单
+- 在单个操作中更新多个任务状态
+- 动态添加新待办事项 as they're discovered during execution
+- 通过状态指示器提供视觉进度跟踪
+- 与提醒系统集成 for persistent task visibility
+- 支持任务 reordering based on execution priority
 - Preserves all unfinished tasks unless explicitly removed
 - Enables efficient batch status updates
 
-## Limitations
+## 限制
 
 - Limited to single-level checklists (no nesting or subtasks)
 - Cannot remove tasks unless they're completed or no longer relevant
@@ -41,41 +41,44 @@ This tool manages a comprehensive TODO list that tracks task progress through di
 - Cannot schedule tasks for future execution
 - Limited to three status states (pending, in-progress, completed)
 
-## Status Indicators
+## 状态指示器
 
-The tool uses three distinct status indicators:
+该工具使用三种不同的状态指示器：
 
-- `[ ]` **Pending**: Task not yet started
-- `[-]` **In Progress**: Task currently being worked on  
-- `[x]` **Completed**: Task fully finished with no unresolved issues
+- `[ ]` **待处理**：任务尚未开始
+- `[-]` **进行中**：任务当前正在进行中
+- `[x]` **已完成**：任务已完全完成，没有未解决的问题
 
-## How It Works
+## 工作原理
 
-When the `update_todo_list` tool is invoked, it follows this process:
+当调用 `update_todo_list` 工具时，它遵循以下过程：
 
-1. **Status Validation**:
-   - Parses the markdown checklist format
-   - Validates status indicators are properly formatted
-   - Ensures task descriptions are clear and actionable
+1.  **状态验证**：
 
-2. **List Replacement**:
-   - Completely replaces the existing TODO list
-   - Preserves task order as specified in the update
-   - Maintains task descriptions and status states
+    - 解析 markdown 清单格式
+    - 验证状态指示器格式是否正确
+    - 确保任务描述清晰且可操作
 
-3. **Reminder Integration**:
-   - Integrates updated list with the reminder system
-   - Displays current tasks in subsequent message headers
-   - Provides persistent visibility of task progress
+2.  **列表替换**：
 
-4. **Progress Tracking**:
-   - Tracks completion status across multiple updates
-   - Maintains task history for reference
-   - Supports workflow continuation across sessions
+    - 完全替换现有 TODO 列表
+    - Preserves task order as specified in the update
+    - Maintains task descriptions and status states
 
-## Best Practices
+3.  **提醒集成**：
 
-### Task Management Guidelines
+    - 将更新的列表与提醒系统集成
+    - Displays current tasks in subsequent message headers
+    - Provides persistent visibility of task progress
+
+4.  **进度跟踪**：
+    - 跟踪多个更新的完成状态
+    - Maintains task history for reference
+    - Supports workflow continuation across sessions
+
+## 最佳实践
+
+### 任务管理指南
 
 - Mark tasks as completed immediately after all work is finished
 - Start the next task by marking it as in-progress
@@ -83,22 +86,24 @@ When the `update_todo_list` tool is invoked, it follows this process:
 - Use clear, descriptive task names that indicate specific actions
 - Order tasks by logical execution sequence or priority
 
-### Status Update Patterns
+### 状态更新模式
 
 - Update multiple statuses simultaneously when transitioning between tasks
 - Confirm task completion before marking as finished
 - Keep in-progress tasks focused on current work
 - Add blocking tasks when dependencies are discovered
 
-### When to Use
+### 何时使用
 
 Use this tool when:
+
 - The task involves multiple steps or requires ongoing tracking
 - New actionable items are discovered during task execution
 - Multiple todos need status updates simultaneously
 - Complex tasks benefit from clear progress visualization
 
 Avoid using when:
+
 - There is only a single, trivial task
 - The task can be completed in one or two simple steps
 - The request is purely conversational or informational
@@ -111,9 +116,10 @@ Avoid using when:
 - When documenting systems that require research, writing, and review phases
 - When refactoring code that affects multiple files and requires testing
 
-## Usage Examples
+## 用法示例
 
 Initial task breakdown:
+
 ```
 <update_todo_list>
 <todos>
@@ -128,6 +134,7 @@ Initial task breakdown:
 ```
 
 Updating progress and adding discovered tasks:
+
 ```
 <update_todo_list>
 <todos>
@@ -144,6 +151,7 @@ Updating progress and adding discovered tasks:
 ```
 
 Completing multiple tasks and transitioning focus:
+
 ```
 <update_todo_list>
 <todos>
@@ -157,3 +165,4 @@ Completing multiple tasks and transitioning focus:
 [ ] Implement rate limiting for login attempts
 </todos>
 </update_todo_list>
+```

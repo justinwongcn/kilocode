@@ -1,97 +1,106 @@
-# API Configuration Profiles
+# API 配置配置文件
 
-API Configuration Profiles allow you to create and switch between different sets of AI settings. Each profile can have different configurations for each mode, letting you optimize your experience based on the task at hand.
+API 配置配置文件允许您创建和切换不同的 AI 设置集。每个配置文件可以为每种模式设置不同的配置，让您根据手头的任务优化您的体验。
 
 :::info
-Having multiple configuration profiles lets you quickly switch between different AI providers, models, and settings without reconfiguring everything each time you want to change your setup.
+拥有多个配置配置文件可以让您快速切换不同的 AI 提供商、模型和设置，而无需每次更改设置时都重新配置所有内容。
 :::
-## How It Works
 
-Configuration profiles can have their own:
-- API providers (OpenAI, Anthropic, OpenRouter, Glama, etc.)
-- API keys and authentication details
-- Model selections (o3-mini-high, Claude 3.7 Sonnet, DeepSeek R1, etc.)
-- [Temperature settings](/features/model-temperature) for controlling response randomness
-- Thinking budgets
-- Provider-specific settings
+## 工作原理
 
-Note that available settings vary by provider and model. Each provider offers different configuration options, and even within the same provider, different models may support different parameter ranges or features.
+配置配置文件可以拥有自己的：
 
-## Creating and Managing Profiles
+- API 提供商（OpenAI、Anthropic、OpenRouter、Glama 等）
+- API 密钥和身份验证详细信息
+- 模型选择（o3-mini-high、Claude 3.7 Sonnet、DeepSeek R1 等）
+- [温度设置](/features/model-temperature)用于控制响应随机性
+- 思维预算
+- 特定于提供商的设置
 
-### Creating a Profile
+请注意，可用设置因提供商和模型而异。每个提供商提供不同的配置选项，即使在同一提供商内，不同的模型也可能支持不同的参数范围或功能。
 
-1. Open Settings by clicking the gear icon <Codicon name="gear" /> → Providers
-2. Click the "+" button next to the profile selector
+## 创建和管理配置文件
 
-   <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-1.png" alt="Profile selector with plus button" width="550" />
-3. Enter a name for your new profile
-   
-   <img src="/docs/img/api-configuration-profiles/api-configuration-profiles.png" alt="Creating a new profile dialog" width="550" />
-4. Configure the profile settings:
-   - Select your API provider
-      
-      <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-2.png" alt="Provider selection dropdown" width="550" />
-   - Enter API key
-   
-      <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-3.png" alt="API key entry field" width="550" />
-   - Choose a model
-   
-      <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-8.png" alt="Model selection interface" width="550" />
-   - Adjust model parameters
-   
-      <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-5.png" alt="Model parameter adjustment controls" width="550" />
+### 创建配置文件
 
-### Switching Profiles
+1.  单击齿轮图标 <Codicon name="gear" /> → Providers 打开设置
+2.  单击配置文件选择器旁边的“+”按钮
 
-Switch profiles in two ways:
-1. From Settings panel: Select a different profile from the dropdown
+    <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-1.png" alt="带加号按钮的配置文件选择器" width="550" />
 
-   <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-7.png" alt="Profile selection dropdown in Settings" width="550" />
-2. During chat: Access the API Configuration dropdown in the chat interface
+3.  输入新配置文件的名称
 
-   <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-6.png" alt="API Configuration dropdown in chat interface" width="550" />
-### Pinning and Sorting Profiles
+    <img src="/docs/img/api-configuration-profiles/api-configuration-profiles.png" alt="创建新配置文件对话框" width="550" />
 
-The API configuration dropdown now supports pinning your favorite profiles for quicker access:
+4.  配置配置文件设置：
 
-1. Hover over any profile in the dropdown to reveal the pin icon
-2. Click the pin icon to add the profile to your pinned list
-3. Pinned profiles appear at the top of the dropdown, sorted alphabetically
-4. Unpinned profiles appear below a separator, also sorted alphabetically
-5. You can unpin a profile by clicking the same icon again
+    - 选择您的 API 提供商
 
-<img src="/docs/img/api-configuration-profiles/api-configuration-profiles-4.png" alt="Pinning API configuration profiles" width="550" />
+        <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-2.png" alt="提供商选择下拉菜单" width="550" />
 
-This feature makes it easier to navigate between commonly used profiles, especially when you have many configurations.
+    - 输入 API 密钥
 
+        <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-3.png" alt="API 密钥输入字段" width="550" />
 
-### Editing and Deleting Profiles
+    - 选择模型
 
-<img src="/docs/img/api-configuration-profiles/api-configuration-profiles-10.png" alt="Profile editing interface" width="550" />
-- Select the profile in Settings to modify any settings
-- Click the pencil icon to rename a profile
-- Click the trash icon to delete a profile (you cannot delete the only remaining profile)
+        <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-8.png" alt="模型选择界面" width="550" />
 
-## Linking Profiles to Modes
-In the <Codicon name="notebook" /> Prompts tab, you can explicitly associate a specific Configuration Profile with each Mode. The system also automatically remembers which profile you last used with each mode, making your workflow more efficient.
+    - 调整模型参数
 
-Watch this demonstration of how to connect configuration profiles with specific modes for optimized workflows:
+        <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-5.png" alt="模型参数调整控件" width="550" />
+
+### 切换配置文件
+
+通过两种方式切换配置文件：
+
+1.  从设置面板：从下拉菜单中选择不同的配置文件
+
+    <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-7.png" alt="设置中的配置文件选择下拉菜单" width="550" />
+
+2.  聊天期间：访问聊天界面中的 API 配置下拉菜单
+
+    <img src="/docs/img/api-configuration-profiles/api-configuration-profiles-6.png" alt="聊天界面中的 API 配置下拉菜单" width="550" />
+
+### 固定和排序配置文件
+
+API 配置下拉菜单现在支持固定您喜欢的配置文件，以便更快访问：
+
+1.  将鼠标悬停在下拉菜单中的任何配置文件上以显示图钉图标
+2.  单击图钉图标将配置文件添加到您的固定列表
+3.  固定配置文件显示在下拉菜单顶部，按字母顺序排序
+4.  未固定配置文件显示在分隔符下方，也按字母顺序排序
+5.  您可以再次单击同一图标以取消固定配置文件
+
+<img src="/docs/img/api-configuration-profiles/api-configuration-profiles-4.png" alt="固定 API 配置配置文件" width="550" />
+
+此功能使您更容易在常用配置文件之间导航，尤其是在您有许多配置时。
+
+### 编辑和删除配置文件
+
+<img src="/docs/img/api-configuration-profiles/api-configuration-profiles-10.png" alt="配置文件编辑界面" width="550" />
+- 在设置中选择配置文件以修改任何设置
+- 单击铅笔图标以重命名配置文件
+- 单击垃圾桶图标以删除配置文件（您不能删除唯一剩余的配置文件）
+
+## 将配置文件链接到模式
+
+在 <Codicon name="notebook" /> 提示选项卡中，您可以将特定配置配置文件与每个模式明确关联。系统还会自动记住您上次与每个模式一起使用的配置文件，从而提高您的工作效率。
+
+观看此演示，了解如何将配置配置文件与特定模式连接以优化工作流：
 
 <video width="600" controls>
   <source src="/docs/img/api-configuration-profiles/provider-modes.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
+  您的浏览器不支持此视频标签。
 </video>
 
+## 安全注意事项
 
-## Security Note
+API 密钥安全地存储在 VSCode 的 Secret Storage 中，绝不会以纯文本形式公开。
 
-API keys are stored securely in VSCode's Secret Storage and are never exposed in plain text.
+## 相关功能
 
-## Related Features
-
-- Works with [custom modes](/features/custom-modes) you create
-- Integrates with [local models](/advanced-usage/local-models) for offline work
-- Supports [temperature settings](/features/model-temperature) per mode
-- Enhances cost management with [rate limits and usage tracking](/advanced-usage/rate-limits-costs)
-
+- 适用于您创建的[自定义模式](/features/custom-modes)
+- 与[本地模型](/advanced-usage/local-models)集成以进行离线工作
+- 支持每个模式的[温度设置](/features/model-temperature)
+- 通过[速率限制和使用跟踪](/advanced-usage/rate-limits-costs)增强成本管理

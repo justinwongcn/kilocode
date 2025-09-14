@@ -1,86 +1,87 @@
 ---
-sidebar_label: Connecting To A Provider
+sidebar_label: 连接到提供商
 ---
 
-# Connecting an AI Provider
+# 连接 AI 提供商
 
-Kilo Code requires an API key from an AI model provider to function. 
+Kilo Code 需要 AI 模型提供商的 API 密钥才能运行。
 
-We recommend these options for accessing the powerful **Claude 4 Sonnet** model:
+我们推荐以下选项来访问强大的 **Claude 4 Sonnet** 模型：
 
-- **Kilo Code API provider (Recommended):** Provides access to all of the models available through OpenRouter with competitive pricing and free credits to get started. [View pricing](https://kilocode.ai/pricing)
-- **OpenRouter:** Provides access to multiple AI models through a single API key. [View pricing](https://openrouter.ai/models?order=pricing-low-to-high).
-- **Anthropic:** Direct access to Claude models. Requires API access approval and may have [rate limits depending on your tier](https://docs.anthropic.com/en/api/rate-limits#requirements-to-advance-tier). See [Anthropic's pricing page](https://www.anthropic.com/pricing#anthropic-api) for details.
+- **Kilo Code API 提供商（推荐）：** 以有竞争力的价格提供对 OpenRouter 可用的所有模型的访问权限，并提供免费积分以供入门。 [查看定价](https://kilocode.ai/pricing)
+- **OpenRouter：** 通过单个 API 密钥提供对多个 AI 模型的访问权限。 [查看定价](https://openrouter.ai/models?order=pricing-low-to-high)。
+- **Anthropic：** 直接访问 Claude 模型。需要 API 访问批准，并且可能[根据您的层级有速率限制](https://docs.anthropic.com/en/api/rate-limits#requirements-to-advance-tier)。有关详细信息，请参阅 [Anthropic 的定价页面](https://www.anthropic.com/pricing#anthropic-api)。
 
-## Using the Kilo Code Provider
-By default when you install Kilo Code the extension, you'll be prompted to sign in or create an account in the [Kilo Code Provider](/providers/kilocode).
+## 使用 Kilo Code 提供商
 
-That will walk you through the account setup and _automatically_ configure Kilo Code properly to get you started. If you'd rather use another provider, you'll need to manually get your API key as described below.
+默认情况下，当您安装 Kilo Code 扩展时，系统会提示您在 [Kilo Code 提供商](/providers/kilocode)中登录或创建帐户。
 
-## Using another API Provider
+这将引导您完成帐户设置并*自动*正确配置 Kilo Code 以帮助您入门。如果您更喜欢使用其他提供商，则需要按照以下说明手动获取您的 API 密钥。
 
-### Getting Your API Key
+## 使用其他 API 提供商
 
-#### Option 1: LLM Routers
+### 获取您的API密钥
 
-LLM routers let you access multiple AI models with one API key, simplifying cost management and switching between models. They often offer [competitive pricing](https://openrouter.ai/models?order=pricing-low-to-high) compared to direct providers.
+#### 选项1：LLM路由器
+
+LLM路由器让您可以通过一个API密钥访问多个AI模型，简化了成本管理和模型切换。通常提供[更具竞争力的价格](https://openrouter.ai/models?order=pricing-low-to-high)。
 
 ##### OpenRouter
 
-1. Go to [openrouter.ai](https://openrouter.ai/)
-2. Sign in with your Google or GitHub account
-3. Navigate to the [API keys page](https://openrouter.ai/keys) and create a new key
-4. Copy your API key - you'll need this for Kilo Code setup
+1. 访问 [openrouter.ai](https://openrouter.ai/)
+2. 使用Google或GitHub账号登录
+3. 导航到[API密钥页面](https://openrouter.ai/keys)并创建新密钥
+4. 复制您的API密钥 - 您需要它来设置Kilo Code
 
-<img src="/docs/img/connecting-api-provider/connecting-api-provider-4.png" alt="OpenRouter API keys page" width="600" />
+<img src="/docs/img/connecting-api-provider/connecting-api-provider-4.png" alt="OpenRouter API密钥页面" width="600" />
 
-*OpenRouter dashboard with "Create key" button. Name your key and copy it after creation.*
+_OpenRouter仪表板，带有"创建密钥"按钮。命名您的密钥并在创建后复制它。_
 
 ##### Requesty
 
-1. Go to [requesty.ai](https://requesty.ai/)
-2. Sign in with your Google account or email
-3. Navigate to the [API management page](https://app.requesty.ai/manage-api) and create a new key
-4. **Important:** Copy your API key immediately as it won't be displayed again
+1. 访问 [requesty.ai](https://requesty.ai/)
+2. 使用Google账号或电子邮件登录
+3. 导航到[API管理页面](https://app.requesty.ai/manage-api)并创建新密钥
+4. **重要：** 立即复制您的API密钥，因为它不会再次显示
 
-<img src="/docs/img/connecting-api-provider/connecting-api-provider-7.png" alt="Requesty API management page" width="600" />
+<img src="/docs/img/connecting-api-provider/connecting-api-provider-7.png" alt="Requesty API管理页面" width="600" />
 
-*Requesty API management page with "Create API Key" button. Copy your key immediately - it's shown only once.*
+_Requesty API管理页面，带有"创建API密钥"按钮。立即复制您的密钥 - 它只会显示一次。_
 
-#### Option 2: Direct Providers
+#### 选项2：直接提供商
 
-For direct access to specific models from their original providers, with full access to their features and capabilities:
+直接访问特定模型的原提供商，完全使用其功能和特性：
 
 ##### Anthropic
 
-1. Go to [console.anthropic.com](https://console.anthropic.com/)
-2. Sign up for an account or log in
-3. Navigate to the [API keys section](https://console.anthropic.com/settings/keys) and create a new key
-4. **Important:** Copy your API key immediately as it won't be displayed again
+1. 访问 [console.anthropic.com](https://console.anthropic.com/)
+2. 注册账号或登录
+3. 导航到[API密钥部分](https://console.anthropic.com/settings/keys)并创建新密钥
+4. **重要：** 立即复制您的API密钥，因为它不会再次显示
 
-<img src="/docs/img/connecting-api-provider/connecting-api-provider-5.png" alt="Anthropic console API Keys section" width="600" />
+<img src="/docs/img/connecting-api-provider/connecting-api-provider-5.png" alt="Anthropic控制台API密钥部分" width="600" />
 
-*Anthropic console API Keys section with "Create key" button. Name your key, set expiration, and copy it immediately.*
+_Anthropic控制台API密钥部分，带有"创建密钥"按钮。命名您的密钥，设置过期时间，并立即复制它。_
 
 ##### OpenAI
 
-1. Go to [platform.openai.com](https://platform.openai.com/)
-2. Sign up for an account or log in
-3. Navigate to the [API keys section](https://platform.openai.com/api-keys) and create a new key
-4. **Important:** Copy your API key immediately as it won't be displayed again
+1. 访问 [platform.openai.com](https://platform.openai.com/)
+2. 注册账号或登录
+3. 导航到[API密钥部分](https://platform.openai.com/api-keys)并创建新密钥
+4. **重要：** 立即复制您的API密钥，因为它不会再次显示
 
-<img src="/docs/img/connecting-api-provider/connecting-api-provider-6.png" alt="OpenAI API keys page" width="600" />
+<img src="/docs/img/connecting-api-provider/connecting-api-provider-6.png" alt="OpenAI API密钥页面" width="600" />
 
-*OpenAI platform with "Create new secret key" button. Name your key and copy it immediately after creation.*
+_OpenAI平台，带有"创建新密钥"按钮。命名您的密钥并在创建后立即复制它。_
 
-### Configuring the Provider in Kilo Code
+### 在VS Code中配置Kilo Code
 
-Once you have your API key:
+获取API密钥后：
 
-1. Open the Kilo Code sidebar by clicking the Kilo Code icon (<img src="/docs/img/kilo-v1.svg" width="12" />) in the VS Code Side Bar
-2. In the welcome screen, select your API provider from the dropdown
-3. Paste your API key into the appropriate field
-4. Select your model:
-   - For **OpenRouter**: select `anthropic/claude-3.7-sonnet` ([model details](https://openrouter.ai/anthropic/claude-3.7-sonnet))
-   - For **Anthropic**: select `claude-3-7-sonnet-20250219` ([model details](https://www.anthropic.com/pricing#anthropic-api))
-5. Click "Let's go!" to save your settings and start using Kilo Code
+1. 点击VS Code侧边栏中的Kilo Code图标(<img src="/docs/img/kilo-v1.svg" width="12" />)打开Kilo Code侧边栏
+2. 在欢迎界面，从下拉菜单中选择您的API提供商
+3. 将API密钥粘贴到相应字段中
+4. 选择您的模型：
+    - 对于**OpenRouter**：选择`anthropic/claude-3.7-sonnet` ([模型详情](https://openrouter.ai/anthropic/claude-3.7-sonnet))
+    - 对于**Anthropic**：选择`claude-3-7-sonnet-20250219` ([模型详情](https://www.anthropic.com/pricing#anthropic-api))
+5. 点击"Let's go!"保存设置并开始使用Kilo Code

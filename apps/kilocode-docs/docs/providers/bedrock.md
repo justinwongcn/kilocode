@@ -2,90 +2,90 @@
 sidebar_label: AWS Bedrock
 ---
 
-# Using AWS Bedrock With Kilo Code
+# 在Kilo Code中使用AWS Bedrock
 
-Kilo Code supports accessing models through Amazon Bedrock, a fully managed service that makes a selection of high-performing foundation models (FMs) from leading AI companies available via a single API.
+Kilo Code支持通过Amazon Bedrock访问模型，这是一个完全托管的服务，通过单一API提供来自领先AI公司的高性能基础模型(FMs)。
 
-**Website:** [https://aws.amazon.com/bedrock/](https://aws.amazon.com/bedrock/)
+**官网:** [https://aws.amazon.com/bedrock/](https://aws.amazon.com/bedrock/)
 
-## Prerequisites
+## 前提条件
 
-*   **AWS Account:** You need an active AWS account.
-*   **Bedrock Access:** You must request and be granted access to Amazon Bedrock.  See the [AWS Bedrock documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started.html) for details on requesting access.
-*   **Model Access:** Within Bedrock, you need to request access to the specific models you want to use (e.g., Anthropic Claude).
-*   **Install AWS CLI:** Use AWS CLI to configure your account for authentication
+- **AWS账户:** 需要有效的AWS账户
+- **Bedrock访问权限:** 必须申请并获得Amazon Bedrock的访问权限。详见[AWS Bedrock文档](https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started.html)
+- **模型访问权限:** 需要在Bedrock中申请使用特定模型(如Anthropic Claude)的权限
+- **安装AWS CLI:** 使用AWS CLI配置账户认证
     ```bash
      aws configure
     ```
 
-## Getting Credentials
+## 获取凭证
 
-You have two main options for configuring AWS credentials:
+有两种主要配置方式：
 
-1.  **AWS Access Keys (Recommended for Development):**
-    *   Create an IAM user with the necessary permissions (at least `bedrock:InvokeModel`).
-    *   Generate an access key ID and secret access key for that user.
-    *   *(Optional)* Create a session token if required by your IAM configuration.
-2.  **AWS Profile:**
-    *   Configure an AWS profile using the AWS CLI or by manually editing your AWS credentials file.  See the [AWS CLI documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) for details.
+1.  **AWS访问密钥(推荐用于开发):**
+    - 创建具有必要权限的IAM用户(至少需要`bedrock:InvokeModel`)
+    - 生成该用户的访问密钥ID和秘密访问密钥
+    - (可选)根据IAM配置需要创建会话令牌
+2.  **AWS配置文件:**
+    - 使用AWS CLI或手动编辑AWS凭证文件配置配置文件。详见[AWS CLI文档](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
 
-## Supported Models
+## 支持的模型
 
-Kilo Code supports the following models through Bedrock (based on source code):
+根据源代码，Kilo Code支持通过Bedrock访问以下模型：
 
-*   **Amazon:**
-    *   `amazon.nova-pro-v1:0`
-    *   `amazon.nova-pro-latency-optimized-v1:0`
-    *   `amazon.nova-lite-v1:0`
-    *   `amazon.nova-micro-v1:0`
-    *   `amazon.titan-text-lite-v1:0`
-    *   `amazon.titan-text-express-v1:0`
-    *   `amazon.titan-text-embeddings-v1:0`
-    *   `amazon.titan-text-embeddings-v2:0`
-*   **Anthropic:**
-    *   `anthropic.claude-3-7-sonnet-20250219-v1:0`
-    *   `anthropic.claude-3-5-sonnet-20241022-v2:0`
-    *   `anthropic.claude-3-5-haiku-20241022-v1:0`
-    *   `anthropic.claude-3-5-sonnet-20240620-v1:0`
-    *   `anthropic.claude-3-opus-20240229-v1:0`
-    *   `anthropic.claude-3-sonnet-20240229-v1:0`
-    *   `anthropic.claude-3-haiku-20240307-v1:0`
-    *   `anthropic.claude-2-1-v1:0`
-    *   `anthropic.claude-2-0-v1:0`
-    *   `anthropic.claude-instant-v1:0`
-*   **DeepSeek:**
-    *   `deepseek.r1-v1:0`
-*   **Meta:**
-    *   `meta.llama3-3-70b-instruct-v1:0`
-    *   `meta.llama3-2-90b-instruct-v1:0`
-    *   `meta.llama3-2-11b-instruct-v1:0`
-    *   `meta.llama3-2-3b-instruct-v1:0`
-    *   `meta.llama3-2-1b-instruct-v1:0`
-    *   `meta.llama3-1-405b-instruct-v1:0`
-    *   `meta.llama3-1-70b-instruct-v1:0`
-    *   `meta.llama3-1-70b-instruct-latency-optimized-v1:0`
-    *   `meta.llama3-1-8b-instruct-v1:0`
-    *   `meta.llama3-70b-instruct-v1:0`
-    *   `meta.llama3-8b-instruct-v1:0`
+- **Amazon:**
+    - `amazon.nova-pro-v1:0`
+    - `amazon.nova-pro-latency-optimized-v1:0`
+    - `amazon.nova-lite-v1:0`
+    - `amazon.nova-micro-v1:0`
+    - `amazon.titan-text-lite-v1:0`
+    - `amazon.titan-text-express-v1:0`
+    - `amazon.titan-text-embeddings-v1:0`
+    - `amazon.titan-text-embeddings-v2:0`
+- **Anthropic:**
+    - `anthropic.claude-3-7-sonnet-20250219-v1:0`
+    - `anthropic.claude-3-5-sonnet-20241022-v2:0`
+    - `anthropic.claude-3-5-haiku-20241022-v1:0`
+    - `anthropic.claude-3-5-sonnet-20240620-v1:0`
+    - `anthropic.claude-3-opus-20240229-v1:0`
+    - `anthropic.claude-3-sonnet-20240229-v1:0`
+    - `anthropic.claude-3-haiku-20240307-v1:0`
+    - `anthropic.claude-2-1-v1:0`
+    - `anthropic.claude-2-0-v1:0`
+    - `anthropic.claude-instant-v1:0`
+- **DeepSeek:**
+    - `deepseek.r1-v1:0`
+- **Meta:**
+    - `meta.llama3-3-70b-instruct-v1:0`
+    - `meta.llama3-2-90b-instruct-v1:0`
+    - `meta.llama3-2-11b-instruct-v1:0`
+    - `meta.llama3-2-3b-instruct-v1:0`
+    - `meta.llama3-2-1b-instruct-v1:0`
+    - `meta.llama3-1-405b-instruct-v1:0`
+    - `meta.llama3-1-70b-instruct-v1:0`
+    - `meta.llama3-1-70b-instruct-latency-optimized-v1:0`
+    - `meta.llama3-1-8b-instruct-v1:0`
+    - `meta.llama3-70b-instruct-v1:0`
+    - `meta.llama3-8b-instruct-v1:0`
 
-Refer to the [Amazon Bedrock documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html) for the most up-to-date list of available models and their IDs. Make sure to use the *model ID* when configuring Kilo Code, not the model name.
+请参考[Amazon Bedrock文档](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html)获取最新可用模型及其ID列表。配置Kilo Code时请使用*模型ID*而非模型名称。
 
-## Configuration in Kilo Code
+## 在Kilo Code中配置
 
-1.  **Open Kilo Code Settings:** Click the gear icon (<Codicon name="gear" />) in the Kilo Code panel.
-2.  **Select Provider:** Choose "Bedrock" from the "API Provider" dropdown.
-3.  **Select Authentication Method:**
-    *   **AWS Credentials:**
-        *   Enter your "AWS Access Key" and "AWS Secret Key."
-        *   (Optional) Enter your "AWS Session Token" if you're using temporary credentials.
-    *   **AWS Profile:**
-        *   Enter your "AWS Profile" name (e.g., "default").
-4.  **Select Region:** Choose the AWS region where your Bedrock service is available (e.g., "us-east-1").
-5.  **(Optional) Cross-Region Inference:** Check "Use cross-region inference" if you want to access models in a region different from your configured AWS region.
-6.  **Select Model:** Choose your desired model from the "Model" dropdown.
+1.  **打开Kilo Code设置:** 点击Kilo Code面板中的齿轮图标(<Codicon name="gear" />)
+2.  **选择提供商:** 在"API Provider"下拉菜单中选择"Bedrock"
+3.  **选择认证方式:**
+    - **AWS凭证:**
+        - 输入"AWS Access Key"和"AWS Secret Key"
+        - (可选)如果使用临时凭证，输入"AWS Session Token"
+    - **AWS配置文件:**
+        - 输入AWS配置文件名称(如"default")
+4.  **选择区域:** 选择Bedrock服务可用的AWS区域(如"us-east-1")
+5.  **(可选)跨区域推理:** 如果要访问与配置的AWS区域不同的区域中的模型，请勾选"Use cross-region inference"
+6.  **选择模型:** 从"Model"下拉菜单中选择所需模型
 
-## Tips and Notes
+## 提示与注意事项
 
-*   **Permissions:**  Ensure your IAM user or role has the necessary permissions to invoke Bedrock models.  The `bedrock:InvokeModel` permission is required.
-*   **Pricing:**  Refer to the [Amazon Bedrock pricing](https://aws.amazon.com/bedrock/pricing/) page for details on model costs.
-*   **Cross-Region Inference:**  Using cross-region inference may result in higher latency.
+- **权限:** 确保IAM用户或角色具有调用Bedrock模型所需的权限，需要`bedrock:InvokeModel`权限
+- **定价:** 参考[Amazon Bedrock定价](https://aws.amazon.com/bedrock/pricing/)页面了解模型费用详情
+- **跨区域推理:** 使用跨区域推理可能会导致延迟增加

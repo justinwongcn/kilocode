@@ -1,283 +1,283 @@
 ---
-sidebar_label: Free & Budget Models
+sidebar_label: 免费和预算模型
 ---
 
-# Using Kilo Code for Free and on a Budget
+# 免费和低成本使用 Kilo Code
 
-**Why this matters:** AI model costs can add up quickly during development. This guide shows you how to use Kilo Code effectively while minimizing or eliminating costs through free models, budget-friendly alternatives, and smart usage strategies.
+**为什么这很重要：** 在开发过程中，AI 模型成本可能会迅速累积。本指南展示了如何通过免费模型、经济实惠的替代方案和智能使用策略，在最小化或消除成本的同时有效使用 Kilo Code。
 
-## Completely Free Options
+## 完全免费的选项
 
 ### Grok Code Fast 1
 
-This frontier AI model is 100% free in Kilo Code for a limited time. [See the blog post for more details](https://blog.kilocode.ai/p/grok-code-fast-get-this-frontier-ai-model-free).
+这款前沿 AI 模型在 Kilo Code 中限时 100% 免费。[查看博客文章了解更多信息](https://blog.kilocode.ai/p/grok-code-fast-get-this-frontier-ai-model-free)。
 
-### OpenRouter Free Tier Models
+### OpenRouter 免费层级模型
 
-OpenRouter offers several models with generous free tiers. **Note:** You'll need to create a free OpenRouter account to access these models.
+OpenRouter 免费提供了几种具有慷慨额度的模型。**注意：** 你需要创建一个免费的 OpenRouter 账户才能访问这些模型。
 
-**Setup:**
+**设置：**
 
-1. Create a free [OpenRouter account](https://openrouter.ai)
-2. Get your API key from the dashboard
-3. Configure Kilo Code with the OpenRouter provider
+1. 创建一个免费的 [OpenRouter 账户](https://openrouter.ai)
+2. 从仪表板获取你的 API 密钥
+3. 使用 OpenRouter 供应商配置 Kilo Code
 
-**Available free models:**
+**可用的免费模型：**
 
-- **Qwen3 Coder (free)** - Optimized for agentic coding tasks such as function calling, tool use, and long-context reasoning over repositories.
-- **Z.AI: GLM 4.5 Air (free)** - Lightweight variant of the GLM-4.5 family, purpose-built for agent-centric applications.
-- **DeepSeek: R1 0528 (free)** - Performance on par with OpenAI o1, but open-sourced and with fully open reasoning tokens.
-- **MoonshotAI: Kimi K2 (free)** - Optimized for agentic capabilities, including advanced tool use, reasoning, and code synthesis.
+- **Qwen3 Coder (免费)** - 针对代理编码任务进行了优化，如函数调用、工具使用和对仓库的长上下文推理。
+- **Z.AI: GLM 4.5 Air (免费)** - GLM-4.5 系列的轻量级变体，专为以代理为中心的应用程序而构建。
+- **DeepSeek: R1 0528 (免费)** - 性能与 OpenAI o1 相当，但是开源的并且具有完全开放的推理令牌。
+- **MoonshotAI: Kimi K2 (免费)** - 针对代理能力进行了优化，包括高级工具使用、推理和代码合成。
 
-## Cost-Effective Premium Models
+## 性价比高的付费模型
 
-When you need more capability than free models provide, these options deliver excellent value:
+当你需要比免费模型提供更多功能时，这些选项提供了极佳的价值：
 
-### Ultra-Budget Champions (Under $0.50 per million tokens)
+### 超低预算冠军（每百万 Tokens 低于 $0.50）
 
 **Mistral Devstral Small**
 
-- **Cost:** ~$0.20 per million input tokens
-- **Best for:** Code generation, debugging, refactoring
-- **Performance:** 85% of premium model capability at 10% of the cost
+- **成本：** ~$0.20 每百万输入 Tokens
+- **最佳用途：** 代码生成、调试、重构
+- **性能：** 85% 的高级模型能力，成本仅为 10%
 
 **Llama 4 Maverick**
 
-- **Cost:** ~$0.30 per million input tokens
-- **Best for:** Complex reasoning, architecture planning
-- **Performance:** Excellent for most development tasks
+- **成本：** ~$0.30 每百万输入 Tokens
+- **最佳用途：** 复杂推理、架构规划
+- **性能：** 适用于大多数开发任务
 
 **DeepSeek v3**
 
-- **Cost:** ~$0.27 per million input tokens
-- **Best for:** Code analysis, large codebase understanding
-- **Performance:** Strong technical reasoning
+- **成本：** ~$0.27 每百万输入 Tokens
+- **最佳用途：** 代码分析、大型代码库理解
+- **性能：** 强大的技术推理能力
 
-### Mid-Range Value Models ($0.50-$2.00 per million tokens)
+### 中等价位模型（每百万 Tokens $0.50-$2.00）
 
 **Qwen3 235B**
 
-- **Cost:** ~$1.20 per million input tokens
-- **Best for:** Complex projects requiring high accuracy
-- **Performance:** Near-premium quality at 40% of the cost
+- **成本：** ~$1.20 每百万输入 Tokens
+- **最佳用途：** 需要高精度的复杂项目
+- **性能：** 接近高级质量，成本为 40%
 
-## Smart Usage Strategies
+## 智能使用策略
 
-### The 50% Rule
+### 50% 规则
 
-**Principle:** Use budget models for 50% of your tasks, premium models for the other 50%.
+**原则：** 将预算模型用于 50% 的任务，将高级模型用于另外 50% 的任务。
 
-**Budget model tasks:**
+**预算模型任务：**
 
-- Code reviews and analysis
-- Documentation writing
-- Simple bug fixes
-- Boilerplate generation
-- Refactoring existing code
+- 代码审查和分析
+- 文档编写
+- 简单的错误修复
+- 样板代码生成
+- 重构现有代码
 
-**Premium model tasks:**
+**高级模型任务：**
 
-- Complex architecture decisions
-- Debugging difficult issues
-- Performance optimization
-- New feature design
-- Critical production code
+- 复杂的架构决策
+- 调试困难的问题
+- 性能优化
+- 新功能设计
+- 关键生产代码
 
-### Context Management for Cost Savings
+### 成本节约的上下文管理
 
-**Minimize context size:**
+**最小化上下文大小：**
 
 ```typescript
-// Instead of mentioning entire files
+// 而不是提及整个文件
 @src/components/UserProfile.tsx
 
-// Mention specific functions or sections
+// 提及特定函数或部分
 @src/components/UserProfile.tsx:45-67
 ```
 
-**Use Memory Bank effectively:**
+**有效使用记忆库：**
 
-- Store project context once in [Memory Bank](/advanced-usage/memory-bank)
-- Reduces need to re-explain project details
-- Saves 200-500 tokens per conversation
+- 在 [Memory bank](/advanced-usage/memory-bank) 中存储一次项目上下文
+- 减少重复解释项目细节的需要
+- 每次对话节省 200-500 个 Tokens
 
-**Strategic file mentions:**
+**战略性文件提及：**
 
-- Only include files directly relevant to the task
-- Use [`@folder/`](/basic-usage/context-mentions) for broad context, specific files for targeted work
+- 仅包含与任务直接相关的文件
+- 使用 [`@folder/`](/basic-usage/context-mentions) 获取广泛上下文，使用特定文件进行针对性工作
 
-### Model Switching Strategies
+### 模型切换策略
 
-**Start cheap, escalate when needed:**
+**从便宜开始，需要时升级：**
 
-1. **Begin with free models** (Qwen3 Coder, GLM-4.5-Air)
-2. **Switch to budget models** if free models struggle
-3. **Escalate to premium models** only for complex tasks
+1. **从免费模型开始**（Qwen3 Coder, GLM-4.5-Air）
+2. **如果免费模型难以胜任，则切换到预算模型**
+3. **仅对复杂任务升级到高级模型**
 
-**Use API Configuration Profiles:**
+**使用 API 配置档案：**
 
-- Set up [multiple profiles](/features/api-configuration-profiles) for different cost tiers
-- Quick switching between free, budget, and premium models
-- Match model capability to task complexity
+- 为不同成本层级设置 [多个配置](/features/api-configuration-profiles)
+- 在免费、预算和高级模型之间快速切换
+- 根据任务复杂性匹配模型能力
 
-### Mode-Based Cost Optimization
+### 基于模式的成本优化
 
-**Use appropriate modes to limit expensive operations:**
+**使用适当的模式来限制昂贵的操作：**
 
-- **[Ask Mode](/basic-usage/using-modes#ask-mode):** Information gathering without code changes
-- **[Architect Mode](/basic-usage/using-modes#architect-mode):** Planning without expensive file operations
-- **[Debug Mode](/basic-usage/using-modes#debug-mode):** Focused troubleshooting
+- **[询问模式](/basic-usage/using-modes#ask-mode)：** 信息收集，无需代码更改
+- **[架构师模式](/basic-usage/using-modes#architect-mode)：** 规划，无需昂贵的文件操作
+- **[调试模式](/basic-usage/using-modes#debug-mode)：** 专注的故障排除
 
-**Custom modes for budget control:**
+**用于预算控制的自定义模式：**
 
-- Create modes that restrict expensive tools
-- Limit file access to specific directories
-- Control which operations are auto-approved
+- 创建限制昂贵工具的模式
+- 限制对特定目录的文件访问
+- 控制哪些操作是自动批准的
 
-## Real-World Performance Comparisons
+## 现实世界的性能比较
 
-### Code Generation Tasks
+### 代码生成任务
 
-**Simple function creation:**
+**简单函数创建：**
 
-- **Mistral Devstral Small:** 95% success rate
-- **GPT-4:** 98% success rate
-- **Cost difference:** Free vs $0.20 vs $30 per million tokens
+- **Mistral Devstral Small：** 95% 成功率
+- **GPT-4：** 98% 成功率
+- **成本差异：** 免费 vs $0.20 vs $30 每百万令牌
 
-**Complex refactoring:**
+**复杂重构：**
 
-- **Budget models:** 70-80% success rate
-- **Premium models:** 90-95% success rate
-- **Recommendation:** Start with budget, escalate if needed
+- **预算模型：** 70-80% 成功率
+- **高级模型：** 90-95% 成功率
+- **建议：** 从预算开始，需要时再升级
 
-### Debugging Performance
+### 调试性能
 
-**Simple bugs:**
+**简单错误：**
 
-- **Free models:** Usually sufficient
-- **Budget models:** Excellent performance
-- **Premium models:** Overkill for most cases
+- **免费模型：** 通常足够
+- **预算模型：** 表现优秀
+- **高级模型：** 对于大多数情况来说过于强大
 
-**Complex system issues:**
+**复杂系统问题：**
 
-- **Free models:** 40-60% success rate
-- **Budget models:** 60-80% success rate
-- **Premium models:** 85-95% success rate
+- **免费模型：** 40-60% 成功率
+- **预算模型：** 60-80% 成功率
+- **高级模型：** 85-95% 成功率
 
-## Hybrid Approach Recommendations
+## 混合方法建议
 
-### Daily Development Workflow
+### 日常开发工作流程
 
-**Morning planning session:**
+**早晨规划会议：**
 
-- Use **Architect mode** with **DeepSeek R1**
-- Plan features and architecture
-- Create task breakdowns
+- 使用 **架构师模式** 配合 **DeepSeek R1**
+- 规划特性和架构
+- 创建任务分解
 
-**Implementation phase:**
+**实施阶段：**
 
-- Use **Code mode** with **budget models**
-- Generate and modify code
-- Handle routine development tasks
+- 使用 **代码模式** 配合 **预算模型**
+- 生成和修改代码
+- 处理日常开发任务
 
-**Complex problem solving:**
+**复杂问题解决：**
 
-- Switch to **premium models** when stuck
-- Use for critical debugging
-- Architecture decisions affecting multiple systems
+- 当遇到困难时切换到 **高级模型**
+- 用于关键调试
+- 影响多个系统的架构决策
 
-### Project Phase Strategy
+### 项目阶段策略
 
-**Early development:**
+**早期开发：**
 
-- Free and budget models for prototyping
-- Rapid iteration without cost concerns
-- Establish patterns and structure
+- 免费和预算模型用于原型制作
+- 快速迭代，无需担心成本
+- 建立模式和结构
 
-**Production preparation:**
+**生产准备：**
 
-- Premium models for critical code review
-- Performance optimization
-- Security considerations
+- 高级模型用于关键代码审查
+- 性能优化
+- 安全考虑
 
-## Cost Monitoring and Control
+## 成本监控和控制
 
-### Track Your Usage
+### 跟踪你的使用情况
 
-**Monitor token consumption:**
+**监控令牌消耗：**
 
-- Check cost estimates in chat history
-- Review monthly usage patterns
-- Identify high-cost operations
+- 查看聊天历史中的成本估算
+- 审查每月使用模式
+- 识别高成本操作
 
-**Set spending limits:**
+**设置支出限额：**
 
-- Use provider billing alerts
-- Configure [rate limits](/advanced-usage/rate-limits-costs) to control usage
-- Set daily/monthly budgets
+- 使用提供商账单警报
+- 配置 [速率限制](/advanced-usage/rate-limits-costs) 来控制使用
+- 设置每日/每月预算
 
-### Cost-Saving Tips
+### 节约成本的技巧
 
-**Reduce system prompt size:**
+**减少系统提示大小：**
 
-- [Disable MCP](/features/mcp/using-mcp-in-kilo-code) if not using external tools
-- Use focused custom modes
-- Minimize unnecessary context
+- 如果不使用外部工具，则 [禁用 MCP](/features/mcp/using-mcp-in-kilo-code)
+- 使用专注的自定义模式
+- 最小化不必要的上下文
 
-**Optimize conversation length:**
+**优化对话长度：**
 
-- Use [Checkpoints](/features/checkpoints) to reset context
-- Start fresh conversations for unrelated tasks
-- Archive completed work
+- 使用 [检查点](/features/checkpoints) 重置上下文
+- 为无关任务开始新的对话
+- 归档已完成的工作
 
-**Batch similar tasks:**
+**批量处理相似任务：**
 
-- Group related code changes
-- Handle multiple files in single requests
-- Reduce conversation overhead
+- 分组相关的代码更改
+- 在单个请求中处理多个文件
+- 减少对话开销
 
-## Getting Started with Budget Models
+## 开始使用预算模型
 
-### Quick Setup Guide
+### 快速设置指南
 
-1. **Create OpenRouter account** for free models
-2. **Configure multiple providers** in Kilo Code
-3. **Set up API Configuration Profiles** for easy switching
-4. **Escalate to budget models** when needed
-5. **Reserve premium models** for complex work
+1. **创建 OpenRouter 账户** 以获取免费模型
+2. **在 Kilo Code 中配置多个提供商**
+3. **设置 API 配置档案** 以便轻松切换
+4. **在需要时升级到预算模型**
+5. **为复杂工作预留高级模型**
 
-### Recommended Provider Mix
+### 推荐的提供商组合
 
-**Free tier foundation:**
+**免费层用于基础：**
 
-- [OpenRouter](/providers/openrouter) - Free models
-- [Groq](/providers/groq) - Fast inference for supported models
-- [Z.ai](https://z.ai/model-api) - Provides a free model GLM-4.5-Flash
+- [OpenRouter](/providers/openrouter) - 免费模型
+- [Groq](/providers/groq) - 支持模型的快速推理
+- [Z.ai](https://z.ai/model-api) - 提供免费模型 GLM-4.5-Flash
 
-**Budget tier options:**
+**预算层用于选则：**
 
-- [DeepSeek](/providers/deepseek) - Excellent value models
-- [Mistral](/providers/mistral) - Specialized coding models
+- [DeepSeek](/providers/deepseek) - 性价比极高的模型
+- [Mistral](/providers/mistral) - 专业的编码模型
 
-**Premium tier backup:**
+**高级层用于备份：**
 
-- [Anthropic](/providers/anthropic) - Claude for complex reasoning
-- [OpenAI](/providers/openai) - GPT-4 for critical tasks
+- [Anthropic](/providers/anthropic) - Claude 用于复杂推理
+- [OpenAI](/providers/openai) - GPT-4 用于关键任务
 
-## Measuring Success
+## 衡量是否成功
 
-**Track these metrics:**
+**跟踪这些指标：**
 
-- Monthly AI costs vs. development productivity
-- Task completion rates by model tier
-- Time saved vs. money spent
-- Code quality improvements
+- 每月 AI 成本 vs 开发生产力
+- 按模型层级的任务完成率
+- 节省的时间 vs 花费的钱
+- 代码质量改进
 
-**Success indicators:**
+**成功指标：**
 
-- 70%+ of tasks completed with free/budget models
-- Monthly costs under your target budget
-- Maintained or improved code quality
-- Faster development cycles
+- 70%+ 的任务使用免费/预算模型完成
+- 每月成本在你的目标预算内
+- 保持或提高代码质量
+- 更快的开发周期
 
-By combining free models, strategic budget model usage, and smart optimization techniques, you can harness the full power of AI-assisted development while keeping costs minimal. Start with free options and gradually incorporate budget models as your needs and comfort with costs grow.
+通过结合免费模型、战略性预算模型使用和智能优化技术，你可以在保持最低成本的同时充分利用 AI 辅助开发的强大功能。从免费选项开始，随着你的需求和对成本的适应程度逐渐增加预算模型。

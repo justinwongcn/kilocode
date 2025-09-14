@@ -1,106 +1,108 @@
-# Why I Let AI Write My Commit Messages
-### And Probably You Should Too
+# 为什么我让 AI 来写我的提交信息
 
-I've just finished implementing a big feature, the code is staged and ready to go, but there I am — mesmerized by the empty commit message field, brain is blank. What do I write? "Fixed stuff"? "Updates"? "asdf"? Do you know that feeling too?
+### 而且你可能也应该这样做
 
-I've been there countless times, and honestly, it's one of those tiny friction points that really bother me - or, better to say, bothered me, because since we shipped `auto-generate commit messages feature`, the problem disappeared for good. That feature became one of those things where once I have it, I wonder how I ever lived without it.
+我刚刚完成了一个大功能的实现，代码已经暂存准备提交，但我却盯着空空的提交信息字段发呆，大脑一片空白。我该写什么？"修复了一些东西"？"更新"？"asdf"？你也有过这种感觉吗？
 
-## The Problem with Commit Messages
+我经历过无数次这样的情况，老实说，这是真正困扰我的一个小摩擦点——或者更准确地说，曾经困扰我，因为自从我们发布了"自动生成提交信息功能"后，这个问题就彻底消失了。这个功能成了那种一旦拥有就再也回不去的东西。
 
-**Writing good commit messages is hard.** Like, genuinely difficult. You need to:
+## 提交信息的问题
 
-- Summarize what changed without being too vague
-- Follow your team's conventions (Conventional Commits, anyone?)
-- Capture the *why* behind the change, which is often harder than the *what*
-- Keep it concise but informative
-- Do all this while your brain is already moving on to the coffee machine
+**写好提交信息很难。** 真的很难。你需要：
 
-The result? Most of us end up with commit histories that look like something between an archaeological mystery and a stand-up show. Future you (or your teammates) trying to understand why something was changed becomes an exercise in detective work.
+- 在不过于模糊的情况下总结变更内容
+- 遵循团队的约定（有人知道 Conventional Commits 吗？）
+- 捕捉变更背后的"原因"，这通常比"什么"更难
+- 保持简洁但信息丰富
+- 在大脑已经想着去喝咖啡的时候完成所有这些
 
-## How It Actually Works
+结果呢？我们大多数人最终得到的提交历史看起来介于考古谜团和脱口秀之间。未来的你（或你的队友）试图理解为什么某些东西被更改时，就成了侦探工作。
 
-Here's the thing that makes this feature genuinely useful: it only looks at your **staged changes**. Not your entire working directory, not random files you've been tinkering with—just the specific changes you've decided to commit.
+## 它实际上是如何工作的
 
-This is crucial because it means the AI understands the scope of what you're actually committing. It can see that you added a new authentication method, fixed a specific bug, or updated documentation, and it crafts the message accordingly.
+让这个功能真正有用的是：它只查看你的**暂存变更**。不是你的整个工作目录，也不是你随意修改的文件——只是你决定提交的特定变更。
 
-The process is dead simple:
-1. Stage your changes (like you normally would)
-2. Click the Kilo Code logo next to the commit message field
-3. Get a properly formatted commit message - automagically!
+这很关键，因为这意味着 AI 理解你实际提交的范围。它可以看到你添加了新的身份验证方法，修复了特定的错误，或更新了文档，并相应地编写信息。
 
-<img src="https://kilocode.ai/docs/img/git-commit-generation/git-commit-1.png" alt="Auto-generated commit message in VS Code" width="600" />
+这个过程非常简单：
 
-## Real Examples from Real Work
+1. 暂存你的变更（就像你平常做的那样）
+2. 点击提交信息字段旁边的 Kilo Code 徽标
+3. 自动获得格式正确的提交信息！
 
-Let me show you some actual commit messages this feature has generated for me:
+<img src="https://kilocode.ai/docs/img/git-commit-generation/git-commit-1.png" alt="在 VS Code 中自动生成的提交消息" width="600" />
 
-```
-feat(auth): implement OAuth2 integration with GitHub
+## 真实工作示例
 
-Add GitHub OAuth2 authentication flow including:
-- OAuth2 client configuration  
-- User profile retrieval
-- Token refresh mechanism
-```
+让我给你看一些这个功能为我生成的实际提交信息：
 
 ```
-fix(api): resolve race condition in user session handling
+feat(auth): 实现 GitHub OAuth2 集成
 
-Add proper locking mechanism to prevent concurrent
-session updates from causing data corruption
+添加 GitHub OAuth2 身份验证流程，包括：
+- OAuth2 客户端配置
+- 用户资料检索
+- Token 刷新机制
 ```
 
 ```
-docs(readme): update installation requirements
+fix(api): 解决用户会话处理中的竞态条件
 
-Clarify Node.js version requirements and add
-troubleshooting section for common setup issues
+添加适当的锁定机制，以防止并发
+会话更新导致数据损坏
 ```
 
-Notice how these follow [Conventional Commits](https://www.conventionalcommits.org/) format by default? That's not an accident. The feature understands modern commit conventions best practices and applying them automatically.
+```
+docs(readme): 更新安装要求
 
-## The Customization That Actually Matters
+澄清 Node.js 版本要求并添加
+常见设置问题的故障排除部分
+```
 
-Here's where it gets interesting. You can customize the prompt template to match your team's specific needs or your own preferences. Don't want to be "too conventional" or just have your own standards? Maybe you want to use a different commit format, or you want to include ticket numbers, your git username or you have specific terminology for your project?
+注意这些提交信息是如何默认遵循 [Conventional Commits](https://www.conventionalcommits.org/) 格式的？这不是偶然。这个功能理解现代提交规范的最佳实践并自动应用它们。
 
-Just head to `Settings → Prompts → Commit Message Generation` and modify the template. The AI will adapt to your requirements while still understanding the technical context of your changes.
+## 真正重要的自定义
 
-<img src="https://kilocode.ai/docs/img/git-commit-generation/git-commit-2.png" alt="Customizing commit message templates" width="600" />
+有趣的地方来了。你可以自定义提示模板，以匹配你团队的特定需求或你自己的偏好。不想“过于传统”或者有自己的标准？也许你想使用不同的提交格式，或者你想包含工单号、你的 git 用户名，或者你的项目有特定的术语？
 
-## Why This Isn't Just Another AI Gimmick
+只需前往“设置 → 提示 → 提交消息生成”并修改模板。AI 将适应你的要求，同时仍然理解你更改的技术上下文。
 
-I've seen plenty of AI features that feel like solutions looking for problems. This isn't one of them, it actually works:
+<img src="https://kilocode.ai/docs/img/git-commit-generation/git-commit-2.png" alt="自定义提交消息模板" width="600" />
 
-**It's contextually aware**: The AI sees your actual code changeset, not just filenames. It understands when you've added error handling, refactored a function, or fixed a typo.
+## 为什么这不是另一个AI噱头
 
-**It respects your workflow**: You still stage changes the same way. You still review and edit the message if needed. It just removes the blank-page problem.
+我见过很多 AI 功能感觉像是为问题寻找解决方案。这并非其中之一，它确实有效：
 
-**It's fast**: No waiting around for some cloud service to analyze your entire codebase. It's quick and focused.
+**它具有上下文感知能力**：AI 会查看你实际的代码变更集，而不仅仅是文件名。它能理解你何时添加了错误处理、重构了函数或修复了拼写错误。
 
-**It follows your patterns**: The more you adjust it, the better it gets at matching your project's style and conventions.
+**它尊重你的工作流程**：你仍然以相同的方式暂存更改。你仍然可以根据需要审查和编辑消息。它只是消除了“空白页”问题。
 
-## The Productivity Impact
+**它速度快**：无需等待某个云服务来分析你的整个代码库。它快速且专注。
 
-Here's the thing I didn't expect: this feature doesn't just save time on writing commit messages. It actually makes me commit more frequently and more conciously.
+**它遵循你的模式**：你调整得越多，它就越能更好地匹配你项目的风格和约定。
 
-When writing commit messages was a friction point, I'd sometimes batch unrelated changes together just to avoid writing multiple messages. Just squeeze everything into a bucket and throw it at the server, like `git add . && git commit -m "blablabla" && git push`. Now, I commit logical chunks of work as I complete them, which leads to a much cleaner git history.
+## 生产力影响
 
-Better commit messages also mean better code reviews. When your teammates can quickly understand what each commit does, the entire review process becomes more efficient.
+我没有想到的是：这个功能不仅节省了编写提交信息的时间。它实际上让我更频繁、更有意识地提交。
 
-## Getting Started
+当编写提交信息是一个摩擦点时，我有时会把不相关的更改批量处理，只是为了避免编写多条消息。就像 `git add . && git commit -m "blablabla" && git push` 这样，把所有东西塞进一个桶里然后扔到服务器上。现在，我会在完成工作后提交逻辑上的代码块，这使得 Git 历史记录更清晰。
 
-The feature is available in Kilo Code since `v4.35` and became customizable in `v4.38`. Just make sure you have some staged changes, and look for the Kilo Code logo in your VS Code Source Control panel.
+更好的提交信息也意味着更好的代码审查。当你的队友可以快速理解每个提交做了什么时，整个审查过程就会更高效。
 
-Pro tip: Consider setting up a dedicated [API configuration profile](https://kilocode.ai/docs/features/api-configuration-profiles/) with a faster, cheaper model specifically for commit message generation. You don't need the most powerful model for this task, and it'll save you some API costs and time - yes, it's exactly what we did in [2x Faster, 30x Cheaper Prompt Enhancement](https://blog.kilocode.ai/p/2x-faster-prompt-enhancement-in-kilo)!
+## 入门指南
 
-## One More Thing
+此功能在 `v4.35` 版本的 Kilo Code 中可用，并在 `v4.38` 中变得可自定义。只需确保你有一些暂存的更改，然后在 VS Code 源代码控制面板中寻找 Kilo Code 徽标。
 
-I mentioned I use this feature constantly, and that's not hyperbole. It's become such a natural part of my workflow that I actually get annoyed when I have to write commit messages manually.
+专业提示：考虑设置一个专用的 [API 配置配置文件](https://kilocode.ai/docs/features/api-configuration-profiles/)，其中包含一个更快、更便宜的模型，专门用于提交消息生成。你不需要最强大的模型来完成此任务，这样可以为你节省一些 API 成本和时间——是的，这正是我们在 [2x Faster, 30x Cheaper Prompt Enhancement](https://blog.kilocode.ai/p/2x-faster-prompt-enhancement-in-kilo) 中所做的！
 
-That's the mark of a good tool — when it "dissolves" into your workflow and just makes everything smoother. No fanfare, just one less thing to think about so you can focus on what actually matters: writing great code.
+## 最后一点
 
-Give it a try. I think you'll find yourself wondering how you ever managed without it.
+我提到我经常使用这个功能，这并非夸张。它已经成为我工作流程中如此自然的一部分，以至于当我不得不手动编写提交信息时，我都会感到恼火。
+
+这就是一个好工具的标志——当它“融入”你的工作流程，让一切变得更顺畅，而不是大张旗鼓，只是少了一件需要思考的事情，这样你就可以专注于真正重要的事情：编写出色的代码。
+
+试试看吧。我想你会发现自己会想，以前没有它你是怎么做到的。
 
 ---
 
-*Want to learn more about Kilo Code's commit message generation? Check out the [full documentation](https://kilocode.ai/docs/basic-usage/git-commit-generation/) I wrote for setup details. And let me know what you think about it or how could we improve it even more here in comments or on our [Discord Server](https://kilo.love/discord)!*
+_想了解更多关于 Kilo Code 提交信息生成的功能？查看我为设置细节编写的 [完整文档](https://kilocode.ai/docs/basic-usage/git-commit-generation/)。并通过评论或在我们的 [Discord 服务器](https://kilo.love/discord) 上告诉我你对此的看法，或者我们如何进一步改进它！_

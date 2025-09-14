@@ -1,90 +1,90 @@
 import Image from '@site/src/components/Image';
 
-# Code Actions
+# 代码操作
 
-Code Actions are a powerful feature of VS Code that provide quick fixes, refactorings, and other code-related suggestions directly within the editor. Kilo Code integrates with this system to offer AI-powered assistance for common coding tasks.
+代码操作是 VS Code 的强大功能，它直接在编辑器中提供快速修复、重构和其他与代码相关的建议。Kilo Code 与此系统集成，为常见的编码任务提供 AI 辅助。
 
-## What are Code Actions?
+## 什么是代码操作？
 
-Code Actions appear as a lightbulb icon (💡) in the editor gutter (the area to the left of the line numbers). They can also be accessed via the right-click context menu, or via keyboard shortcut. They are triggered when:
+代码操作在编辑器装订线（行号左侧区域）中显示为灯泡图标（💡）。它们也可以通过右键单击上下文菜单或通过键盘快捷键访问。它们在以下情况下触发：
 
-*   You select a range of code.
-*   Your cursor is on a line with a problem (error, warning, or hint).
-*   You invoke them via command.
+- 您选择了一段代码。
+- 您的光标位于有问题（错误、警告或提示）的行上。
+- 您通过命令调用它们。
 
-Clicking the lightbulb, right-clicking and selecting "Kilo Code", or using the keyboard shortcut (`Ctrl+.` or `Cmd+.` on macOS, by default), displays a menu of available actions.
+单击灯泡、右键单击并选择“Kilo Code”，或使用键盘快捷键（macOS 上默认为 `Ctrl+.` 或 `Cmd+.`），将显示可用操作菜单。
 
-<Image src="/docs/img/code-actions/code-actions-1.png" alt="VS Code code actions in line with code" width="500" />
+<img src="/docs/img/code-actions/code-actions-1.png" alt="VS Code 代码操作与代码在同一行" width="500" />
 
-## Kilo Code's Code Actions
+## Kilo Code 的代码操作
 
-Kilo Code provides the following Code Actions:
+Kilo Code 提供以下代码操作：
 
-*   **Add to Context:** Quickly adds the selected code to your chat with Kilo, including line numbers so Kilo knows exactly where the code is from. It's listed first in the menu for easy access. (More details below).
-*   **Explain Code:** Asks Kilo Code to explain the selected code.
-*   **Fix Code:** Asks Kilo Code to fix problems in the selected code (available when diagnostics are present).
-*   **Improve Code:** Asks Kilo Code to suggest improvements to the selected code.
+- **添加到上下文：** 快速将选定的代码添加到与 Kilo 的聊天中，包括行号，以便 Kilo 确切知道代码来自何处。它在菜单中排在第一位，以便于访问。（更多详细信息见下文）。
+- **解释代码：** 要求 Kilo Code 解释选定的代码。
+- **修复代码：** 要求 Kilo Code 修复选定代码中的问题（在存在诊断时可用）。
+- **改进代码：** 要求 Kilo Code 建议改进选定的代码。
 
-### Add to Context Deep Dive
+### 添加到上下文深入探讨
 
-The **Add to Context** action is listed first in the Code Actions menu so you can quickly add code snippets to your conversation. When you use it, Kilo Code includes the filename and line numbers along with the code.
+**添加到上下文**操作在代码操作菜单中排在第一位，因此您可以快速将代码片段添加到对话中。当您使用它时，Kilo Code 会将文件名和行号以及代码包含在内。
 
-This helps Kilo understand the exact context of your code within the project, allowing it to provide more relevant and accurate assistance.
+这有助于 Kilo 理解代码在项目中的确切上下文，从而使其能够提供更相关和准确的帮助。
 
-<Image src="/docs/img/code-actions/add-to-context.gif" alt="code actions - add to context gif" width="80%" />
+<img src="/docs/img/code-actions/add-to-context.gif" alt="代码操作 - 添加到上下文 gif" width="80%" />
 
-**Example Chat Input:**
+**示例聊天输入：**
 
 ```
-Can you explain this function?
+你能解释一下这个函数吗？
 @myFile.js:15:25
 ```
 
-*(Where `@myFile.js:15:25` represents the code added via "Add to Context")*
+_（其中 `@myFile.js:15:25` 表示通过“添加到上下文”添加的代码）_
 
-Each of these actions can be performed "in a new task" or "in the current task."
+这些操作中的每一个都可以在“新任务中”或“当前任务中”执行。
 
-## Using Code Actions
+## 使用代码操作
 
-There are three main ways to use Kilo Code's Code Actions:
+使用 Kilo Code 的代码操作有三种主要方式：
 
-### 1. From the Lightbulb (💡)
+### 1. 从灯泡 (💡)
 
-1.  **Select Code:** Select the code you want to work with. You can select a single line, multiple lines, or an entire block of code.
-2.  **Look for the Lightbulb:** A lightbulb icon will appear in the gutter next to the selected code (or the line with the error/warning).
-3.  **Click the Lightbulb:** Click the lightbulb icon to open the Code Actions menu.
-4.  **Choose an Action:** Select the desired Kilo Code action from the menu.
-5.  **Review and Approve:** Kilo Code will propose a solution in the chat panel. Review the proposed changes and approve or reject them.
+1.  **选择代码：** 选择您要处理的代码。您可以选择单行、多行或整个代码块。
+2.  **查找灯泡：** 灯泡图标将出现在选定代码（或带有错误/警告的行）旁边的装订线中。
+3.  **单击灯泡：** 单击灯泡图标以打开代码操作菜单。
+4.  **选择操作：** 从菜单中选择所需的 Kilo Code 操作。
+5.  **审查和批准：** Kilo Code 将在聊天面板中提出解决方案。审查提议的更改并批准或拒绝它们。
 
-### 2. From the Right-Click Context Menu
+### 2. 从右键上下文菜单
 
-1.  **Select Code:** Select the code you want to work with.
-2.  **Right-Click:** Right-click on the selected code to open the context menu.
-3.  **Choose "Kilo Code":** Select the "Kilo Code" option from the context menu. A submenu will appear with the available Kilo Code actions.
-4.  **Choose an Action:** Select the desired action from the submenu.
-5.  **Review and Approve:** Kilo Code will propose a solution in the chat panel. Review the proposed changes and approve or reject them.
+1.  **选择代码：** 选择您要处理的代码。
+2.  **右键单击：** 右键单击选定的代码以打开上下文菜单。
+3.  **选择“Kilo Code”：** 从上下文菜单中选择“Kilo Code”选项。将出现一个子菜单，其中包含可用的 Kilo Code 操作。
+4.  **选择操作：** 从子菜单中选择所需的操作。
+5.  **审查和批准：** Kilo Code 将在聊天面板中提出解决方案。审查提议的更改并批准或拒绝它们。
 
-### 3. From the Command Palette
+### 3. 从命令面板
 
-1.  **Select Code:** Select the code you want to work with.
-2.  **Open the Command Palette:** Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS).
-3.  **Type a Command:** Type "Kilo Code" to filter the commands, then choose the relevant code action (e.g., "Kilo Code: Explain Code"). You can also type the start of the command, like "Kilo Code: Explain", and select from the filtered list.
-4.  **Review and Approve:** Kilo Code will propose a solution in the chat panel. Review the proposed changes and approve or reject them.
+1.  **选择代码：** 选择您要处理的代码。
+2.  **打开命令面板：** 按 `Ctrl+Shift+P` (Windows/Linux) 或 `Cmd+Shift+P` (macOS)。
+3.  **键入命令：** 键入“Kilo Code”以过滤命令，然后选择相关的代码操作（例如，“Kilo Code: Explain Code”）。您也可以键入命令的开头，例如“Kilo Code: Explain”，然后从过滤列表中选择。
+4.  **审查和批准：** Kilo Code 将在聊天面板中提出解决方案。审查提议的更改并批准或拒绝它们。
 
-## Code Actions and Current Task
+## 代码操作和当前任务
 
-Each code action gives you two options:
+每个代码操作都为您提供两个选项：
 
-*   **in New Task:** Select this to begin a conversation with Kilo centered around this code action.
-*   **in Current Task:** If a conversation has already begun, this option will add the code action as an additional message.
+- **在新任务中：** 选择此选项以开始与 Kilo 的对话，围绕此代码操作进行。
+- **在当前任务中：** 如果对话已经开始，此选项将代码操作添加为附加消息。
 
-## Customizing Code Action Prompts
+## 自定义代码操作提示
 
-You can customize the prompts used for each Code Action by modifying the "Support Prompts" in the **Prompts** tab.  This allows you to fine-tune the instructions given to the AI model and tailor the responses to your specific needs.
+您可以通过修改“提示”选项卡中的“支持提示”来自定义每个代码操作使用的提示。这允许您微调提供给 AI 模型的指令，并根据您的特定需求调整响应。
 
-1.  **Open the Prompts Tab:** Click the <Codicon name="notebook" /> icon in the Kilo Code top menu bar.
-2. **Find "Support Prompts":** You will see the support prompts, including "Enhance Prompt", "Explain Code", "Fix Code", and "Improve Code".
-3. **Edit the Prompts:**  Modify the text in the text area for the prompt you want to customize. You can use placeholders like `${filePath}` and `${selectedText}` to include information about the current file and selection.
-4. **Click "Done":** Save your changes.
+1.  **打开提示选项卡：** 单击 Kilo Code 顶部菜单栏中的 <Codicon name="notebook" /> 图标。
+2.  **查找“支持提示”：** 您将看到支持提示，包括“增强提示”、“解释代码”、“修复代码”和“改进代码”。
+3.  **编辑提示：** 修改您要自定义的提示的文本区域中的文本。您可以使用 `${filePath}` 和 `${selectedText}` 等占位符来包含有关当前文件和选择的信息。
+4.  **单击“完成”：** 保存您的更改。
 
-By using Kilo Code's Code Actions, you can quickly get AI-powered assistance directly within your coding workflow. This can save you time and help you write better code.
+通过使用 Kilo Code 的代码操作，您可以直接在编码工作流中快速获得 AI 辅助。这可以节省您的时间并帮助您编写更好的代码。

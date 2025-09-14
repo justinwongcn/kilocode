@@ -5,65 +5,65 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 import { DISCORD_URL } from '@site/src/constants.ts'
 
-# Frequently Asked Questions
+# 常见问题解答
 
-This page answers some common questions about Kilo Code.
+本页面回答了一些关于 Kilo Code 的常见问题。
 
-## General
+## 一般问题
 
-### What is Kilo Code?
+### 什么是 Kilo Code？
 
-Kilo Code is an open-source AI agent extension for Visual Studio Code. It helps you write code more efficiently by generating code, automating tasks, and providing suggestions.
+Kilo Code 是一个用于 Visual Studio Code 的开源 AI 代理扩展。它通过生成代码、自动化任务和提供建议来帮助你更高效地编写代码。
 
-### How does Kilo Code work?
+### Kilo Code 是如何工作的？
 
-Kilo Code uses large language models (LLMs) to understand your requests and translate them into actions. It can:
+Kilo Code 使用大型语言模型（LLMs）来理解你的请求并将其转化为操作。它可以：
 
-- Read and write files in your project.
-- Execute commands in your VS Code terminal.
-- Perform web browsing (if enabled).
-- Use external tools via the Model Context Protocol (MCP).
+- 读取和写入项目中的文件。
+- 在 VS Code 终端中执行命令。
+- 执行网页浏览（如果启用）。
+- 通过模型上下文协议（MCP）使用外部工具。
 
-You interact with Kilo Code through a chat interface, where you provide instructions and review/approve its proposed actions.
+你通过聊天界面与 Kilo Code 交互，在其中提供指令并审查/批准其建议的操作。
 
-### What can Kilo Code do?
+### Kilo Code 能做什么？
 
-Kilo Code can help with a variety of coding tasks, including:
+Kilo Code 可以帮助你完成各种编码任务，包括：
 
-- Generating code from natural language descriptions.
-- Refactoring existing code.
-- Fixing bugs.
-- Writing documentation.
-- Explaining code.
-- Answering questions about your codebase.
-- Automating repetitive tasks.
-- Creating new files and projects.
+- 从自然语言描述生成代码。
+- 重构现有代码。
+- 修复错误。
+- 编写文档。
+- 解释代码。
+- 回答关于代码库的问题。
+- 自动化重复性任务。
+- 创建新文件和项目。
 
-### Is Kilo Code free to use?
+### Kilo Code 是免费使用的吗？
 
-The Kilo Code extension itself is free and open-source. If you're looking to earn some credits, you could join our <a href={DISCORD_URL} target='_blank'>Discord</a> where we sometimes have promotional offers!
+Kilo Code 扩展本身是免费且开源的。如果你想赚取一些积分，可以加入我们的 <a href={DISCORD_URL} target='_blank'>Discord</a>，我们有时会有促销活动！
 
-After that, you can add a credit card to buy more tokens (securely processed through Stripe. Our pricing matches Anthropic's API rates exactly. We don't take any cut, either per token or per top-up. In the future we'll add more LLM providers.
+之后，你可以添加信用卡购买更多代币（通过 Stripe 安全处理。我们的定价与 Anthropic 的 API 费率完全一致。我们不收取任何费用，无论是按代币还是按充值。未来我们将添加更多 LLM 提供商。
 
-Alternatively, you can "Bring Your Own API" (like [Anthropic](providers/anthropic), [OpenAI](providers/openai), [OpenRouter](providers/openrouter), [Requesty](providers/requesty), etc.) for its AI capabilities. These providers typically charge for API usage based on the number of tokens processed. You will need to create an account and obtain an API key from your chosen provider. See [Setting Up Your First AI Provider](getting-started/connecting-api-provider) for details.
+或者，你可以“自己提供 API”（如 [Anthropic](providers/anthropic)、[OpenAI](providers/openai)、[OpenRouter](providers/openrouter)、[Requesty](providers/requesty) 等）来使用其 AI 功能。这些提供商通常根据处理的代币数量收取 API 使用费。你需要创建账户并从所选提供商处获取 API 密钥。详情请参见 [设置你的第一个 AI 提供商](getting-started/connecting-api-provider)。
 
-### What are the risks of using Kilo Code?
+### 使用 Kilo Code 有哪些风险？
 
-Kilo Code is a powerful tool, and it's important to use it responsibly. Here are some things to keep in mind:
+Kilo Code 是一个强大的工具，使用时需要负责任。以下是一些需要注意的事项：
 
-- **Kilo Code can make mistakes.** Always review Kilo Code's proposed changes carefully before approving them.
-- **Kilo Code can execute commands.** Be very cautious about allowing Kilo Code to run commands, especially if you're using auto-approval.
-- **Kilo Code can access the internet.** If you're using a provider that supports web browsing, be aware that Kilo Code could potentially access sensitive information.
+- **Kilo Code 可能会出错。** 在批准之前，请务必仔细审查 Kilo Code 建议的更改。
+- **Kilo Code 可以执行命令。** 允许 Kilo Code 运行命令时要非常谨慎，特别是如果你启用了自动批准。
+- **Kilo Code 可以访问互联网。** 如果你使用支持网页浏览的提供商，请注意 Kilo Code 可能会访问敏感信息。
 
-## Setup & Installation
+## 设置与安装
 
-### How do I install Kilo Code?
+### 如何安装 Kilo Code？
 
-See the [Installation Guide](/getting-started/installing) for detailed instructions.
+请参阅 [安装指南](/getting-started/installing) 获取详细说明。
 
-### Which API providers are supported?
+### 支持哪些 API 提供商？
 
-Kilo Code supports a wide range of API providers, including:
+Kilo Code 支持多种 API 提供商，包括：
 
 - [Anthropic (Claude)](/providers/kilocode)
 - [Anthropic (Claude)](/providers/anthropic)
@@ -79,102 +79,101 @@ Kilo Code supports a wide range of API providers, including:
 - [Mistral](/providers/mistral)
 - [Unbound](/providers/unbound)
 - [Requesty](/providers/requesty)
-- [VS Code Language Model API](/providers/vscode-lm)
+- [VS Code 语言模型 API](/providers/vscode-lm)
 
-### How do I get an API key?
+### 如何获取 API 密钥？
 
-Each API provider has its own process for obtaining an API key. See the [Setting Up Your First AI Provider](/getting-started/connecting-api-provider) for links to the relevant documentation for each provider.
+每个 API 提供商都有自己的获取 API 密钥的过程。请参阅 [设置你的第一个 AI 提供商](/getting-started/connecting-api-provider) 获取每个提供商的相关文档链接。
 
-### Can I use Kilo Code with local models?
+### 我可以将 Kilo Code 与本地模型一起使用吗？
 
-Yes, Kilo Code supports running models locally using [Ollama](/providers/ollama) and [LM Studio](/providers/lmstudio). See [Using Local Models](/advanced-usage/local-models) for instructions.
+是的，Kilo Code 支持使用 [Ollama](/providers/ollama) 和 [LM Studio](/providers/lmstudio) 在本地运行模型。请参阅 [使用本地模型](/advanced-usage/local-models) 获取说明。
 
-## Usage
+## 使用方法
 
-### How do I start a new task?
+### 如何开始新任务？
 
-Open the Kilo Code panel (<img src="/docs/img/kilo-v1.svg" width="12" />) and type your task in the chat box. Be clear and specific about what you want Kilo Code to do. See [The Chat Interface](/basic-usage/the-chat-interface) for best practices.
+打开 Kilo Code 面板 (<img src="/docs/img/kilo-v1.svg" width="12" />) 并在聊天框中输入你的任务。明确具体地说明你希望 Kilo Code 做什么。请参阅 [聊天界面](/basic-usage/the-chat-interface) 获取最佳实践。
 
-### What are modes in Kilo Code?
+### 什么是 Kilo Code 中的模式？
 
-[Modes](/basic-usage/using-modes) are different personas that Kilo Code can adopt, each with a specific focus and set of capabilities. The built-in modes are:
+[模式](/basic-usage/using-modes) 是 Kilo Code 可以采用的不同角色，每个角色都有特定的焦点和能力集。内置模式包括：
 
-- **Code:** For general-purpose coding tasks.
-- **Architect:** For planning and technical leadership.
-- **Ask:** For answering questions and providing information.
-- **Debug:** For systematic problem diagnosis.
-  You can also create [Custom Modes](/features/custom-modes).
+- **Code：** 用于通用编码任务。
+- **Architect：** 用于规划和技术领导。
+- **Ask：** 用于回答问题和提供信息。
+- **Debug：** 用于系统性问题诊断。
+  你还可以创建 [自定义模式](/features/custom-modes)。
 
-### How do I switch between modes?
+### 如何在模式之间切换？
 
-Use the dropdown menu in the chat input area to select a different mode, or use the `/` command to switch to a specific mode.
+使用聊天输入区域的下拉菜单选择不同的模式，或使用 [/](file:///Users/john/GolandProjects/kilo-docs/LICENSE) 命令切换到特定模式。
 
-### What are tools and how do I use them?
+### 什么是工具以及如何使用它们？
 
-[Tools](/basic-usage/how-tools-work) are how Kilo Code interacts with your system. Kilo Code automatically selects and uses the appropriate tools to complete your tasks. You don't need to call tools directly. You will be prompted to approve or reject each tool use.
+[工具](/basic-usage/how-tools-work) 是 Kilo Code 与你的系统交互的方式。Kilo Code 会自动选择并使用适当的工具来完成你的任务。你无需直接调用工具。每次工具使用时都会提示你批准或拒绝。
 
-### What are context mentions?
+### 什么是上下文提及？
 
-[Context mentions](/basic-usage/context-mentions) are a way to provide Kilo Code with specific information about your project, such as files, folders, or problems. Use the "@" symbol followed by the item you want to mention (e.g., `@/src/file.ts`, `@problems`).
+[上下文提及](/basic-usage/context-mentions) 是向 Kilo Code 提供项目特定信息的方式，如文件、文件夹或问题。使用 "@" 符号后跟你想要提及的项目（例如，`@/src/file.ts`，`@problems`）。
 
-### Can Kilo Code access the internet?
+### Kilo Code 可以访问互联网吗？
 
-Yes, if you are using a provider with a model that support web browsing. Be mindful of the security implications of allowing this.
+是的，如果你使用支持网页浏览的模型提供商。请注意允许此功能的安全影响。
 
-### Can Kilo Code run commands in my terminal?
+### Kilo Code 可以在我的终端中运行命令吗？
 
-Yes, Kilo Code can execute commands in your VS Code terminal. You will be prompted to approve each command before it's executed, unless you've enabled auto-approval for commands. Be extremely cautious about auto-approving commands. If you're experiencing issues with terminal commands, see the [Shell Integration Guide](/features/shell-integration) for troubleshooting.
+是的，Kilo Code 可以在你的 VS Code 终端中执行命令。除非你启用了命令的自动批准，否则每次执行命令前都会提示你批准。对于自动批准命令要极其谨慎。如果你在终端命令方面遇到问题，请参阅 [Shell 集成指南](/features/shell-integration) 进行故障排除。
 
-### How do I provide feedback to Kilo Code?
+### 如何向 Kilo Code 提供反馈？
 
-You can provide feedback by approving or rejecting Kilo Code's proposed actions. You can provide additional feedback by using the feedback field.
+你可以通过批准或拒绝 Kilo Code 建议的操作来提供反馈。你还可以使用反馈字段提供额外反馈。
 
-### Can I customize Kilo Code's behavior?
+### 我可以自定义 Kilo Code 的行为吗？
 
-Yes, you can customize Kilo Code in several ways:
+是的，你可以通过以下几种方式自定义 Kilo Code：
 
-- **Custom Instructions:** Provide general instructions that apply to all modes, or mode-specific instructions.
-- **Custom Modes:** Create your own modes with tailored prompts and tool permissions.
-- **`.clinerules` Files:** Create `.clinerules` files in your project to provide additional guidelines.
-- **Settings:** Adjust various settings, such as auto-approval, diff editing, and more.
+- **自定义指令：** 提供适用于所有模式的一般指令，或特定模式的指令。
+- **自定义模式：** 创建具有定制提示和工具权限的自己的模式。
+- **`.clinerules` 文件：** 在项目中创建 `.clinerules` 文件以提供额外指导。
+- **设置：** 调整各种设置，如自动批准、差异编辑等。
 
-### Does Kilo Code have any auto approval settings?
+### Kilo Code 有自动批准设置吗？
 
-Yes, Kilo Code has a few settings that when enabled will automatically approve actions. Find out more [here](/features/auto-approving-actions).
+是的，Kilo Code 有一些启用后会自动批准操作的设置。了解更多 [这里](/features/auto-approving-actions)。
 
-## Advanced Features
+## 高级功能
 
-### Can I use Kilo Code offline?
+### 我可以离线使用 Kilo Code 吗？
 
-Yes, if you use a [local model](/advanced-usage/local-models).
+是的，如果你使用 [本地模型](/advanced-usage/local-models)。
 
-### What is MCP (Model Context Protocol)?
+### 什么是 MCP（模型上下文协议）？
 
-[MCP](/features/mcp/overview) is a protocol that allows Kilo Code to communicate with external servers, extending its capabilities with custom tools and resources.
+[MCP](/features/mcp/overview) 是一种允许 Kilo Code 与外部服务器通信的协议，通过自定义工具和资源扩展其功能。
 
-### Can I create my own MCP servers?
+### 我可以创建自己的 MCP 服务器吗？
 
-Yes, you can create your own MCP servers to add custom functionality to Kilo Code. See the [MCP documentation](https://github.com/modelcontextprotocol) for details.
-Yes, you can create your own MCP servers to add custom functionality to Kilo Code. See the [MCP documentation](https://github.com/modelcontextprotocol) for details.
+是的，你可以创建自己的 MCP 服务器来为 Kilo Code 添加自定义功能。详情请参阅 [MCP 文档](https://github.com/modelcontextprotocol)。
 
-## Troubleshooting
+## 故障排除
 
-### Kilo Code isn't responding. What should I do?
+### Kilo Code 没有响应。我该怎么办？
 
-- Make sure your API key is correct and hasn't expired.
-- Check your internet connection.
-- Check the status of your chosen API provider.
-- Try restarting VS Code.
-- If the problem persists, report the issue on [GitHub](https://github.com/Kilo-Org/kilocode/issues) or [Discord](https://kilocode.ai/discord).
+- 确保你的 API 密钥正确且未过期。
+- 检查你的互联网连接。
+- 检查你选择的 API 提供商的状态。
+- 尝试重启 VS Code。
+- 如果问题仍然存在，请在 [GitHub](https://github.com/Kilo-Org/kilocode/issues) 或 [Discord](https://kilocode.ai/discord) 上报告问题。
 
-### I'm seeing an error message. What does it mean?
+### 我看到错误消息。这是什么意思？
 
-The error message should provide some information about the problem. If you're unsure how to resolve it, seek help in the community forums.
+错误消息应该提供有关问题的一些信息。如果你不确定如何解决，请在社区论坛寻求帮助。
 
-### Kilo Code made changes I didn't want. How do I undo them?
+### Kilo Code 做了我不想要的更改。如何撤销？
 
-Kilo Code uses VS Code's built-in file editing capabilities. You can use the standard "Undo" command (Ctrl/Cmd + Z) to revert changes. Also, if experimental checkpoints are enabled, Kilo can revert changes made to a file.
+Kilo Code 使用 VS Code 的内置文件编辑功能。你可以使用标准的“撤销”命令（Ctrl/Cmd + Z）来撤销更改。此外，如果启用了实验性检查点，Kilo 可以撤销对文件所做的更改。
 
-### How do I report a bug or suggest a feature?
+### 如何报告错误或建议功能？
 
-Please report bugs or suggest features on the Kilo Code [Issues page](https://github.com/Kilo-Org/kilocode/issues) and [Feature Requests page](https://github.com/Kilo-Org/kilocode/discussions/categories/ideas).
+请在 Kilo Code [问题页面](https://github.com/Kilo-Org/kilocode/issues) 和 [功能请求页面](https://github.com/Kilo-Org/kilocode/discussions/categories/ideas) 上报告错误或建议功能。

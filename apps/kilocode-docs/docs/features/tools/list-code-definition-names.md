@@ -1,68 +1,68 @@
 # list_code_definition_names
 
-The `list_code_definition_names` tool provides a structural overview of your codebase by listing code definitions from source files at the top level of a specified directory. It helps Kilo Code understand code architecture by displaying line numbers and definition snippets.
+`list_code_definition_names` 工具通过列出指定目录顶层源代码文件中的代码定义，为您的代码库提供结构化概览。它通过显示行号和定义片段，帮助 Kilo Code 理解代码架构。
 
-## Parameters
+## 参数
 
-The tool accepts these parameters:
+该工具接受以下参数：
 
-- `path` (required): The path of the directory to list top level source code definitions for, relative to the current working directory
+- `path`（必填）：要列出顶层源代码定义的目录路径，相对于当前工作目录
 
-## What It Does
+## 功能
 
-This tool scans source code files at the top level of a specified directory and extracts code definitions like classes, functions, and interfaces. It displays the line numbers and actual code for each definition, providing a quick way to map the important components of your codebase.
+该工具扫描指定目录顶层的源代码文件，并提取类、函数和接口等代码定义。它显示每个定义的行号和实际代码，以便快速映射代码库的重要组件。
 
-## When is it used?
+## 使用场景
 
-- When Kilo Code needs to understand your codebase architecture quickly
-- When Kilo Code needs to locate important code constructs across multiple files
-- When planning refactoring or extensions to existing code
-- Before diving into implementation details with other tools
-- When identifying relationships between different parts of your codebase
+- 当 Kilo Code 需要快速理解您的代码库架构时
+- 当 Kilo Code 需要定位多个文件中的重要代码结构时
+- 在计划重构或扩展现有代码时
+- 在使用其他工具深入研究实现细节之前
+- 在识别代码库不同部分之间的关系时
 
-## Key Features
+## 主要特性
 
-- Extracts classes, functions, methods, interfaces, and other definitions from source files
-- Displays line numbers and actual source code for each definition
-- Supports multiple programming languages including JavaScript, TypeScript, Python, Rust, Go, C++, C, C#, Ruby, Java, PHP, Swift, and Kotlin
-- Processes only files at the top level of the specified directory (not subdirectories)
-- Limits processing to a maximum of 50 files for performance
-- Focuses on top-level definitions to avoid overwhelming detail
-- Helps identify code organization patterns across the project
-- Creates a mental map of your codebase's architecture
-- Works in conjunction with other tools like `read_file` for deeper analysis
+- 从源代码文件中提取类、函数、方法、接口等定义
+- 显示每个定义的行号和实际源代码
+- 支持多种编程语言，包括 JavaScript、TypeScript、Python、Rust、Go、C++、C、C#、Ruby、Java、PHP、Swift 和 Kotlin
+- 仅处理指定目录顶层的文件（不包括子目录）
+- 为提升性能，最多处理 50 个文件
+- 专注于顶层定义，避免过多细节
+- 帮助识别项目中的代码组织模式
+- 创建代码库架构的思维导图
+- 与其他工具（如 `read_file`）结合使用，进行更深入的分析
 
-## Limitations
+## 限制
 
-- Only identifies top-level definitions, not nested ones
-- Only processes files at the top level of the specified directory, not subdirectories
-- Limited to processing a maximum of 50 files per request
-- Dependent on language-specific parsers, with varying detection quality
-- May not recognize all definitions in languages with complex syntax
-- Not a substitute for reading code to understand implementation details
-- Cannot detect runtime patterns or dynamic code relationships
-- Does not provide information about how definitions are used
-- May have reduced accuracy with highly dynamic or metaprogrammed code
-- Limited to specific languages supported by the implemented Tree-sitter parsers
+- 仅识别顶层定义，不包括嵌套定义
+- 仅处理指定目录顶层的文件，不包括子目录
+- 每次请求最多处理 50 个文件
+- 依赖于语言特定的解析器，检测质量可能有所不同
+- 对于语法复杂的语言，可能无法识别所有定义
+- 不能替代阅读代码以了解实现细节
+- 无法检测运行时模式或动态代码关系
+- 不提供有关定义使用情况的信息
+- 对于高度动态或元编程的代码，准确性可能降低
+- 仅限于 Tree-sitter 解析器支持的语言
 
-## How It Works
+## 工作原理
 
-When the `list_code_definition_names` tool is invoked, it follows this process:
+当调用 `list_code_definitions_names` 工具时，它会遵循以下流程：
 
-1. **Parameter Validation**: Validates the required `path` parameter
-2. **Path Resolution**: Resolves the relative path to an absolute path
-3. **Directory Scanning**: Scans only the top level of the specified directory for source code files (not recursive)
-4. **File Filtering**: Limits processing to a maximum of 50 files
-5. **Language Detection**: Identifies file types based on extensions (.js, .jsx, .ts, .tsx, .py, .rs, .go, .cpp, .hpp, .c, .h, .cs, .rb, .java, .php, .swift, .kt, .kts)
-6. **Code Parsing**: Uses Tree-sitter to parse code and extract definitions through these steps:
-   - Parsing file content into an Abstract Syntax Tree (AST)
-   - Creating a query using a language-specific query string
-   - Sorting the captures by their position in the file
-7. **Result Formatting**: Outputs definitions with line numbers and actual source code
+1. **参数验证**：验证必填的 `path` 参数
+2. **路径解析**：将相对路径解析为绝对路径
+3. **目录扫描**：仅扫描指定目录顶层的源代码文件（非递归）
+4. **文件过滤**：最多处理 50 个文件
+5. **语言检测**：根据文件扩展名识别文件类型（.js、.jsx、.ts、.tsx、.py、.rs、.go、.cpp、.hpp、.c、.h、.cs、.rb、.java、.php、.swift、.kt、.kts）
+6. **代码解析**：使用 Tree-sitter 解析代码并通过以下步骤提取定义：
+    - 将文件内容解析为抽象语法树 (AST)
+    - 使用语言特定的查询字符串创建查询
+    - 按文件中的位置对捕获进行排序
+7. **结果格式化**：输出定义及其行号和实际源代码
 
-## Output Format
+## 输出格式
 
-The output shows file paths followed by line numbers and the actual source code of each definition. For example:
+输出显示文件路径，后跟定义的行号和实际源代码。例如：
 
 ```
 src/utils.js:
@@ -76,39 +76,43 @@ src/models/User.js:
 20--20 | function createUser(data) {
 ```
 
-Each line displays:
-- The start and end line numbers of the definition
-- The pipe symbol (|) as a separator
-- The actual source code of the definition
+每行显示：
 
-This output format helps you quickly see both where definitions are located in the file and their implementation details.
+- 定义的起始和结束行号
+- 分隔符（|）
+- 定义的实际源代码
 
-## Examples When Used
+这种输出格式帮助您快速查看定义在文件中的位置及其实现细节。
 
-- When starting a new task, Kilo Code first lists key code definitions to understand the overall structure of your project.
-- When planning refactoring work, Kilo Code uses this tool to identify classes and functions that might be affected.
-- When exploring unfamiliar codebases, Kilo Code maps the important code constructs before diving into implementation details.
-- When adding new features, Kilo Code identifies existing patterns and relevant code definitions to maintain consistency.
-- When troubleshooting bugs, Kilo Code maps the codebase structure to locate potential sources of the issue.
-- When planning architecture changes, Kilo Code identifies all affected components across files.
+## 使用示例
 
-## Usage Examples
+- 当开始新任务时，Kilo Code 首先列出关键代码定义以了解项目的整体结构。
+- 当计划重构工作时，Kilo Code 使用此工具识别可能受影响的类和函数。
+- 在探索不熟悉的代码库时，Kilo Code 在深入研究实现细节之前映射重要代码结构。
+- 当添加新功能时，Kilo Code 识别现有模式和相关的代码定义以保持一致性。
+- 当排查错误时，Kilo Code 映射代码库结构以定位问题的潜在来源。
+- 当计划架构更改时，Kilo Code 识别所有受影响的组件。
 
-Listing code definitions in the current directory:
+## 用法示例
+
+列出当前目录中的代码定义：
+
 ```
 <list_code_definition_names>
 <path>.</path>
 </list_code_definition_names>
 ```
 
-Examining a specific module's structure:
+检查特定模块的结构：
+
 ```
 <list_code_definition_names>
 <path>src/components</path>
 </list_code_definition_names>
 ```
 
-Exploring a utility library:
+探索工具库：
+
 ```
 <list_code_definition_names>
 <path>lib/utils</path>

@@ -1,116 +1,121 @@
-
 # read_file
 
-The `read_file` tool examines the contents of files in a project. It allows Kilo Code to understand code, configuration files, and documentation to provide better assistance.
+`read_file`工具用于读取项目中的文件内容。它允许 Kilo Code 理解代码、配置文件和文档，以提供更好的协助。
 
-## Parameters
+## 参数
 
-The tool accepts these parameters:
+该工具接受以下参数：
 
-- `path` (required): The path of the file to read relative to the current working directory
-- `start_line` (optional): The starting line number to read from (1-based indexing)
-- `end_line` (optional): The ending line number to read to (1-based, inclusive)
-- `auto_truncate` (optional): Whether to automatically truncate large files when line range isn't specified (true/false)
+- `path`（必需）：要读取的文件路径（相对于当前工作目录）
+- `start_line`（可选）：开始读取的行号（从1开始）
+- `end_line`（可选）：结束读取的行号（从1开始，包含该行）
+- `auto_truncate`（可选）：当未指定行范围时，是否自动截断大文件（true/false）
 
-## What It Does
+## 功能
 
-This tool reads the content of a specified file and returns it with line numbers for easy reference. It can read entire files or specific sections, and even extract text from PDFs and Word documents.
+该工具读取指定文件的内容并返回带行号的结果，便于参考。它可以读取整个文件或特定部分，甚至能从PDF和Word文档中提取文本。
 
-## When is it used?
+## 使用场景
 
-- When Kilo Code needs to understand existing code structure
-- When Kilo Code needs to analyze configuration files
-- When Kilo Code needs to extract information from text files
-- When Kilo Code needs to see code before suggesting changes
-- When specific line numbers need to be referenced in discussions
+- 当 Kilo Code 需要理解现有代码结构时
+- 当 Kilo Code 需要分析配置文件时
+- 当 Kilo Code 需要从文本文件中提取信息时
+- 当 Kilo Code 在建议更改前需要查看代码时
+- 当需要在讨论中引用特定行号时
 
-## Key Features
+## 主要特性
 
-- Displays file content with line numbers for easy reference
-- Can read specific portions of files by specifying line ranges
-- Extracts readable text from PDF and DOCX files
-- Intelligently truncates large files to focus on the most relevant sections
-- Provides method summaries with line ranges for large code files
-- Efficiently streams only requested line ranges for better performance
-- Makes it easy to discuss specific parts of code with line numbering
+- 显示带行号的文件内容，便于参考
+- 通过指定行范围读取文件的特定部分
+- 从PDF和DOCX文件中提取可读文本
+- 智能截断大文件以聚焦最相关部分
+- 为大型代码文件提供带行范围的方法摘要
+- 高效流式传输请求的行范围以获得更好性能
+- 便于通过行号讨论代码的特定部分
 
-## Limitations
+## 限制
 
-- May not handle extremely large files efficiently without using line range parameters
-- For binary files (except PDF and DOCX), may return content that isn't human-readable
+- 如果不使用行范围参数，可能无法高效处理极大的文件
+- 对于二进制文件（除PDF和DOCX外），可能返回非人类可读的内容
 
-## How It Works
+## 工作原理
 
-When the `read_file` tool is invoked, it follows this process:
+当调用`read_file`工具时，它遵循以下流程：
 
-1. **Parameter Validation**: Validates the required `path` parameter and optional parameters
-2. **Path Resolution**: Resolves the relative path to an absolute path
-3. **Reading Strategy Selection**:
-   - The tool uses a strict priority hierarchy (explained in detail below)
-   - It chooses between range reading, auto-truncation, or full file reading
-4. **Content Processing**:
-   - Adds line numbers to the content (e.g., "1 | const x = 13") where `1 |` is the line number.
-   - For truncated files, adds truncation notice and method definitions
-   - For special formats (PDF, DOCX, IPYNB), extracts readable text
+1. **参数验证**：验证必需的`path`参数和可选参数
+2. **路径解析**：将相对路径解析为绝对路径
+3. **读取策略选择**：
+    - 工具使用严格的优先级层次（下文详细说明）
+    - 在范围读取、自动截断或完整文件读取之间选择
+4. **内容处理**：
+    - 为内容添加行号（例如"1 | const x = 13"）
+    - 对于截断文件，添加截断通知和方法定义
+    - 对于特殊格式（PDF、DOCX、IPYNB），提取可读文本
 
-## Reading Strategy Priority
+## 读取策略优先级
 
-The tool uses a clear decision hierarchy to determine how to read a file:
+工具使用明确的决策层次来确定如何读取文件：
 
-1. **First Priority: Explicit Line Range**
-   - If either `start_line` or `end_line` is provided, the tool always performs a range read
-   - The implementation efficiently streams only the requested lines, making it suitable for processing large files
-   - This takes precedence over all other options
+1. **第一优先级：显式行范围**
 
-2. **Second Priority: Auto-Truncation for Large Files**
-   - This only applies when ALL of these conditions are met:
-     - Neither `start_line` nor `end_line` is specified
-     - The `auto_truncate` parameter is set to `true`
-     - The file is not a binary file
-     - The file exceeds the configured line threshold (typically 500-1000 lines)
-   - When auto-truncation activates, the tool:
-     - Reads only the first portion of the file (determined by the maxReadFileLine setting)
-     - Adds a truncation notice showing the number of lines displayed vs. total
-     - Provides a summary of method definitions with their line ranges
+    - 如果提供了`start_line`或`end_line`，工具始终执行范围读取
+    - 实现高效流式传输仅请求的行，适合处理大文件
+    - 此选项优先于所有其他选项
 
-3. **Default Behavior: Read Entire File**
-   - If neither of the above conditions are met, it reads the entire file content
-   - For special formats like PDF, DOCX, and IPYNB, it uses specialized extractors
+2. **第二优先级：大文件自动截断**
 
-## Examples When Used
+    - 仅在满足以下所有条件时应用：
+        - 未指定`start_line`或`end_line`
+        - `auto_truncate`参数设为`true`
+        - 文件不是二进制文件
+        - 文件超过配置的行阈值（通常500-1000行）
+    - 当自动截断激活时，工具：
+        - 仅读取文件开头部分（由maxReadFileLine设置决定）
+        - 添加截断通知显示已显示行数与总行数
+        - 提供带行范围的方法定义摘要
 
-- When asked to explain or improve code, Kilo Code first reads the relevant files to understand the current implementation.
-- When troubleshooting configuration issues, Kilo Code reads config files to identify potential problems.
-- When working with documentation, Kilo Code reads existing docs to understand the current content before suggesting improvements.
+3. **默认行为：读取整个文件**
+    - 如果不符合上述条件，则读取整个文件内容
+    - 对于PDF、DOCX和IPYNB等特殊格式，使用专用提取器
 
-## Usage Examples
+## 使用示例
 
-Here are several scenarios demonstrating how the `read_file` tool is used and the typical output you might receive.
+- 当要求解释或改进代码时，Kilo Code 首先读取相关文件以理解当前实现
+- 当排查配置问题时，Kilo Code 读取配置文件以识别潜在问题
+- 当处理文档时，Kilo Code 读取现有文档以理解当前内容再建议改进
 
-### Reading an Entire File
+## 用法示例
 
-To read the complete content of a file:
+以下是几个展示`read_file`工具如何使用及可能收到的典型输出场景。
 
-**Input:**
+### 读取整个文件
+
+读取文件的完整内容：
+
+**输入：**
+
 ```xml
 <read_file>
 <path>src/app.js</path>
 </read_file>
 ```
 
-**Simulated Output (for a small file like `example_small.txt`):**
+**模拟输出（小文件如`example_small.txt`）：**
+
 ```
 1 | This is the first line.
 2 | This is the second line.
 3 | This is the third line.
 ```
-*(Output will vary based on the actual file content)*
 
-### Reading Specific Lines
+_(输出会根据实际文件内容而变化)_
 
-To read only a specific range of lines (e.g., 46-68):
+### 读取特定行
 
-**Input:**
+仅读取特定行范围（例如46-68行）：
+
+**输入：**
+
 ```xml
 <read_file>
 <path>src/app.js</path>
@@ -119,26 +124,30 @@ To read only a specific range of lines (e.g., 46-68):
 </read_file>
 ```
 
-**Simulated Output (for lines 2-3 of `example_five_lines.txt`):**
+**模拟输出（`example_five_lines.txt`的2-3行）：**
+
 ```
 2 | Content of line two.
 3 | Content of line three.
 ```
-*(Output shows only the requested lines with their original line numbers)*
 
-### Reading a Large File (Auto-Truncation)
+_(输出仅显示请求的行及其原始行号)_
 
-When reading a large file without specifying lines and `auto_truncate` is enabled (or defaults to true based on settings):
+### 读取大文件（自动截断）
 
-**Input:**
+当读取大文件且未指定行范围，且`auto_truncate`启用时（或根据设置默认为true）：
+
+**输入：**
+
 ```xml
 <read_file>
 <path>src/large-module.js</path>
-<auto_truncate>true</auto_truncate> <!-- Optional if default is true -->
+<auto_truncate>true</auto_truncate> <!-- 如果默认true则可选 -->
 </read_file>
 ```
 
-**Simulated Output (for `large_file.log` with 1500 lines, limit 1000):**
+**模拟输出（`large_file.log`有1500行，限制1000行）：**
+
 ```
 1 | Log entry 1...
 2 | Log entry 2...
@@ -146,36 +155,41 @@ When reading a large file without specifying lines and `auto_truncate` is enable
 1000 | Log entry 1000...
 [... truncated 500 lines ...]
 ```
-*(Output is limited to the configured maximum lines, with a truncation notice)*
 
-### Attempting to Read a Non-Existent File
+_(输出限制为配置的最大行数，并带有截断通知)_
 
-If the specified file does not exist:
+### 尝试读取不存在的文件
 
-**Input:**
+如果指定文件不存在：
+
+**输入：**
+
 ```xml
 <read_file>
 <path>non_existent_file.txt</path>
 </read_file>
 ```
 
-**Simulated Output (Error):**
+**模拟输出（错误）：**
+
 ```
 Error: File not found at path 'non_existent_file.txt'.
 ```
 
-### Attempting to Read a Blocked File
+### 尝试读取被阻止的文件
 
-If the file is excluded by rules in a `.kilocodeignore` file:
+如果文件被`.kilocodeignore`规则排除：
 
-**Input:**
+**输入：**
+
 ```xml
 <read_file>
 <path>.env</path>
 </read_file>
 ```
 
-**Simulated Output (Error):**
+**模拟输出（错误）：**
+
 ```
 Error: Access denied to file '.env' due to .kilocodeignore rules.
 ```

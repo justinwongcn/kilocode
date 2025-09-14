@@ -1,113 +1,118 @@
 # use_mcp_tool
 
-The `use_mcp_tool` tool enables interaction with external tools provided by connected Model Context Protocol (MCP) servers. It extends Kilo Code's capabilities with domain-specific functionality through a standardized protocol.
+`use_mcp_tool` 工具使 Kilo Code 能够与连接的 Model Context Protocol (MCP) 服务器提供的外部工具进行交互。它通过标准化协议扩展了 Kilo Code 的功能，提供特定领域的专业能力。
 
-## Parameters
+## 参数
 
-The tool accepts these parameters:
+该工具接受以下参数：
 
-- `server_name` (required): The name of the MCP server providing the tool
-- `tool_name` (required): The name of the tool to execute
-- `arguments` (required/optional): A JSON object containing the tool's input parameters, following the tool's input schema. May be optional for tools that require no input.
+- `server_name`（必填）：提供工具的 MCP 服务器名称
+- `tool_name`（必填）：要执行的工具名称
+- `arguments`（必填/可选）：包含工具输入参数的 JSON 对象，遵循工具的输入模式。对于不需要输入的工具，此参数可为可选。
 
-## What It Does
+## 功能
 
-This tool allows Kilo Code to access specialized functionality provided by external MCP servers. Each MCP server can offer multiple tools with unique capabilities, extending Kilo Code beyond its built-in functionality. The system validates arguments against schemas, manages server connections, and processes responses of various content types (text, image, resource).
+该工具允许 Kilo Code 访问由外部 MCP 服务器提供的专业功能。每个 MCP 服务器可以提供多个具有独特功能的工具，从而扩展 Kilo Code 的内置功能。系统会根据模式验证参数，管理服务器连接，并处理各种内容类型的响应（文本、图像、资源）。
 
-## When is it used?
+## 使用场景
 
-- When specialized functionality not available in core tools is needed
-- When domain-specific operations are required
-- When integration with external systems or services is needed
-- When working with data that requires specific processing or analysis
-- When accessing proprietary tools through a standardized interface
+- 当需要核心工具无法提供的专业功能时
+- 当需要特定领域的操作时
+- 当需要与外部系统或服务集成时
+- 当处理需要特定处理或分析的数据时
+- 当通过标准化接口访问专有工具时
 
-## Key Features
+## 主要特性
 
-- Uses the standardized MCP protocol via the `@modelcontextprotocol/sdk` library
-- Supports multiple transport mechanisms (StdioClientTransport and SSEClientTransport)
-- Validates arguments using Zod schema validation on both client and server sides
-- Processes multiple response content types: text, image, and resource references
-- Manages server lifecycle with automatic restarts when server code changes
-- Provides an "always allow" mechanism to bypass approval for trusted tools
-- Works with the companion `access_mcp_resource` tool for resource retrieval
-- Maintains proper error tracking and handling for failed operations
-- Supports configurable timeouts (1-3600 seconds, default: 60 seconds)
-- Allows file watchers to automatically detect and reload server changes
+- 使用 `@modelcontextprotocol/sdk` 库的标准化 MCP 协议
+- 支持多种通信机制（StdioClientTransport 和 SSEClientTransport）
+- 在客户端和服务器端使用 Zod 模式验证参数
+- 处理多种响应内容类型：文本、图像和资源引用
+- 当服务器代码更改时自动重启，管理服务器生命周期
+- 提供“始终允许”机制以绕过受信任工具的批准
+- 与配套的 `access_mcp_resource` 工具协同工作以获取资源
+- 维护适当的错误跟踪和处理机制
+- 支持可配置的超时时间（1-3600 秒，默认：60 秒）
+- 允许文件监视器自动检测和重新加载服务器更改
 
-## Limitations
+## 限制
 
-- Depends on external MCP servers being available and connected
-- Limited to the tools provided by connected servers
-- Tool capabilities vary between different MCP servers
-- Network issues can affect reliability and performance
-- Requires user approval before execution (unless in the "always allow" list)
-- Cannot execute multiple MCP tool operations simultaneously
+- 依赖外部 MCP 服务器的可用性和连接性
+- 仅限于连接服务器提供的工具
+- 不同 MCP 服务器的工具能力各不相同
+- 网络问题可能影响可靠性和性能
+- 需要用户批准才能执行（除非在“始终允许”列表中）
+- 无法同时执行多个 MCP 工具操作
 
-## Server Configuration
+## 服务器配置
 
-MCP servers can be configured globally or at the project level:
+MCP 服务器可以在全局或项目级别进行配置：
 
-- **Global Configuration**: Managed through the Kilo Code extension settings in VS Code. These apply across all projects unless overridden.
-- **Project-level Configuration**: Defined in a `.kilocode/mcp.json` file within your project's root directory.
- - This allows project-specific server setups.
- - Project-level servers take precedence over global servers if they share the same name.
- - Since `.kilocode/mcp.json` can be committed to version control, it simplifies sharing configurations with your team.
+- **全局配置**：通过 VS Code 中的 Kilo Code 扩展设置进行管理。这些设置适用于所有项目，除非被覆盖。
+- **项目级配置**：在项目根目录下的 `.kilocode/mcp.json` 文件中定义。
+    - 这允许项目特定的服务器设置。
+    - 如果项目级服务器与全局服务器同名，则项目级服务器优先。
+    - 由于 `.kilocode/mcp.json` 可以提交到版本控制，因此简化了与团队共享配置的过程。
 
-## How It Works
+## 工作原理
 
-When the `use_mcp_tool` tool is invoked, it follows this process:
+当调用 `use_mcp_tool` 工具时，它会遵循以下流程：
 
-1. **Initialization and Validation**:
-   - The system verifies that the MCP hub is available
-   - Confirms the specified server exists and is connected
-   - Validates the requested tool exists on the server
-   - Arguments are validated against the tool's schema definition
-   - Timeout settings are extracted from server configuration (default: 60 seconds)
+1. **初始化和验证**：
 
-2. **Execution and Communication**:
-   - The system selects the appropriate transport mechanism:
-     - `StdioClientTransport`: For communicating with local processes via standard I/O
-     - `SSEClientTransport`: For communicating with HTTP servers via Server-Sent Events
-   - A request is sent with validated server name, tool name, and arguments
-   - Communication uses the `@modelcontextprotocol/sdk` library for standardized interactions
-   - Request execution is tracked with timeout handling to prevent hanging operations
+    - 系统验证 MCP hub 是否可用
+    - 确认指定的服务器存在并已连接
+    - 验证请求的工具存在于服务器上
+    - 根据工具的模式定义验证参数
+    - 从服务器配置中提取超时设置（默认：60 秒）
 
-3. **Response Processing**:
-   - Responses can include multiple content types:
-     - Text content: Plain text responses
-     - Image content: Binary image data with MIME type information
-     - Resource references: URIs to access server resources (works with `access_mcp_resource`)
-   - The system checks the `isError` flag to determine if error handling is needed
-   - Results are formatted for display in the Kilo Code interface
+2. **执行和通信**：
 
-4. **Resource and Error Handling**:
-   - The system uses WeakRef patterns to prevent memory leaks
-   - A consecutive mistake counter tracks and manages errors
-   - File watchers monitor for server code changes and trigger automatic restarts
-   - The security model requires approval for tool execution unless in the "always allow" list
+    - 系统选择适当的通信机制：
+        - `StdioClientTransport`：用于通过标准 I/O 与本地进程通信
+        - `SSEClientTransport`：用于通过 Server-Sent Events 与 HTTP 服务器通信
+    - 发送包含已验证的服务器名称、工具名称和参数的请求
+    - 使用 `@modelcontextprotocol/sdk` 库进行标准化交互
+    - 跟踪请求执行并处理超时，防止挂起操作
 
-## Security and Permissions
+3. **响应处理**：
 
-The MCP architecture provides several security features:
+    - 响应可以包含多种内容类型：
+        - 文本内容：纯文本响应
+        - 图像内容：带有 MIME 类型信息的二进制图像数据
+        - 资源引用：用于访问服务器资源的 URI（与 `access_mcp_resource` 协同工作）
+    - 系统检查 `isError` 标志以确定是否需要错误处理
+    - 结果会被格式化以在 Kilo Code 界面中显示
 
-- Users must approve tool usage before execution (by default)
-- Specific tools can be marked for automatic approval in the "always allow" list
-- Server configurations are validated with Zod schemas for integrity
-- Configurable timeouts prevent hanging operations (1-3600 seconds)
-- Server connections can be enabled or disabled through the UI
+4. **资源和错误处理**：
+    - 系统使用 WeakRef 模式防止内存泄漏
+    - 连续错误计数器跟踪和管理错误
+    - 文件监视器监控服务器代码更改并触发自动重启
+    - 安全模型要求批准工具执行，除非在“始终允许”列表中
 
-## Examples When Used
+## 安全和权限
 
-- Analyzing specialized data formats using server-side processing tools
-- Generating images or other media through AI models hosted on external servers
-- Executing complex domain-specific calculations without local implementation
-- Accessing proprietary APIs or services through a controlled interface
-- Retrieving data from specialized databases or data sources
+MCP 架构提供了多项安全功能：
 
-## Usage Examples
+- 默认情况下，用户必须在执行前批准工具使用
+- 特定工具可以标记为“始终允许”列表中的自动批准
+- 使用 Zod 模式验证服务器配置以确保完整性
+- 可配置的超时时间防止挂起操作（1-3600 秒）
+- 可以通过 UI 启用或禁用服务器连接
 
-Requesting weather forecast data with text response:
+## 使用示例
+
+- 使用服务器端处理工具分析专业数据格式
+- 通过托管在外部服务器上的 AI 模型生成图像或其他媒体
+- 执行复杂的领域特定计算，无需本地实现
+- 通过受控接口访问专有 API 或服务
+- 从专业数据库或数据源检索数据
+
+## 用法示例
+
+请求天气预报数据并返回文本响应：
+使用文本响应请求天气预报数据：
+
 ```
 <use_mcp_tool>
 <server_name>weather-server</server_name>
@@ -122,7 +127,8 @@ Requesting weather forecast data with text response:
 </use_mcp_tool>
 ```
 
-Analyzing source code with a specialized tool that returns JSON:
+使用返回 JSON 的专用工具分析源代码：
+
 ```
 <use_mcp_tool>
 <server_name>code-analysis</server_name>
@@ -138,7 +144,8 @@ Analyzing source code with a specialized tool that returns JSON:
 </use_mcp_tool>
 ```
 
-Generating an image with specific parameters:
+使用特定参数生成图像：
+
 ```
 <use_mcp_tool>
 <server_name>image-generation</server_name>
@@ -157,7 +164,8 @@ Generating an image with specific parameters:
 </use_mcp_tool>
 ```
 
-Accessing a resource through a tool that returns a resource reference:
+通过返回资源引用的工具访问资源：
+
 ```
 <use_mcp_tool>
 <server_name>database-connector</server_name>
@@ -176,7 +184,8 @@ Accessing a resource through a tool that returns a resource reference:
 </use_mcp_tool>
 ```
 
-Tool with no required arguments:
+不需要参数的工具：
+
 ```
 <use_mcp_tool>
 <server_name>system-monitor</server_name>

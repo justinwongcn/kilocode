@@ -2,80 +2,85 @@
 sidebar_label: xAI (Grok)
 ---
 
-# Using xAI (Grok) With Kilo Code
+# 在 Kilo Code 中使用 xAI (Grok)
 
-xAI is the company behind Grok, a large language model known for its conversational abilities and large context window. Grok models are designed to provide helpful, informative, and contextually relevant responses.
+xAI 是 Grok 背后的公司，Grok 是一种大型语言模型，以其对话能力和大型上下文窗口而闻名。Grok 模型旨在提供有用、信息丰富且与上下文相关的响应。
 
-**Website:** [https://x.ai/](https://x.ai/)
+**网站：** [https://x.ai/](https://x.ai/)
 
-## Getting an API Key
+## 获取 API 密钥
 
-1.  **Sign Up/Sign In:** Go to the [xAI Console](https://console.x.ai/). Create an account or sign in.
-2.  **Navigate to API Keys:** Go to the API keys section in your dashboard.
-3.  **Create a Key:** Click to create a new API key. Give your key a descriptive name (e.g., "Kilo Code").
-4.  **Copy the Key:** **Important:** Copy the API key *immediately*. You will not be able to see it again. Store it securely.
+1.  **注册/登录：** 访问 [xAI 控制台](https://console.x.ai/)。创建帐户或登录。
+2.  **导航到 API 密钥：** 转到仪表板中的 API 密钥部分。
+3.  **创建密钥：** 单击以创建新的 API 密钥。为您的密钥指定一个描述性名称（例如，“Kilo Code”）。
+4.  **复制密钥：** **重要提示：** 立即复制 API 密钥。您将无法再次看到它。请妥善保管。
 
-## Supported Models
+## 支持的模型
 
-Kilo Code supports the following xAI Grok models:
+Kilo Code 支持以下 xAI Grok 模型：
 
-### Grok-3 Models
-* `grok-3-beta` (Default) - xAI's Grok-3 beta model with 131K context window
-* `grok-3-fast-beta` - xAI's Grok-3 fast beta model with 131K context window
-* `grok-3-mini-beta` - xAI's Grok-3 mini beta model with 131K context window
-* `grok-3-mini-fast-beta` - xAI's Grok-3 mini fast beta model with 131K context window
+### Grok-3 模型
 
-### Grok-2 Models
-* `grok-2-latest` - xAI's Grok-2 model - latest version with 131K context window
-* `grok-2` - xAI's Grok-2 model with 131K context window
-* `grok-2-1212` - xAI's Grok-2 model (version 1212) with 131K context window
+- `grok-3-beta`（默认）- xAI 的 Grok-3 beta 模型，具有 131K 上下文窗口
+- `grok-3-fast-beta` - xAI 的 Grok-3 快速 beta 模型，具有 131K 上下文窗口
+- `grok-3-mini-beta` - xAI 的 Grok-3 mini beta 模型，具有 131K 上下文窗口
+- `grok-3-mini-fast-beta` - xAI 的 Grok-3 mini 快速 beta 模型，具有 131K 上下文窗口
 
-### Grok Vision Models
-* `grok-2-vision-latest` - xAI's Grok-2 Vision model - latest version with image support and 32K context window
-* `grok-2-vision` - xAI's Grok-2 Vision model with image support and 32K context window
-* `grok-2-vision-1212` - xAI's Grok-2 Vision model (version 1212) with image support and 32K context window
-* `grok-vision-beta` - xAI's Grok Vision Beta model with image support and 8K context window
+### Grok-2 模型
 
-### Legacy Models
-* `grok-beta` - xAI's Grok Beta model (legacy) with 131K context window
+- `grok-2-latest` - xAI 的 Grok-2 模型 - 最新版本，具有 131K 上下文窗口
+- `grok-2` - xAI 的 Grok-2 模型，具有 131K 上下文窗口
+- `grok-2-1212` - xAI 的 Grok-2 模型（版本 1212），具有 131K 上下文窗口
 
-## Configuration in Kilo Code
+### Grok 视觉模型
 
-1.  **Open Kilo Code Settings:** Click the gear icon (<Codicon name="gear" />) in the Kilo Code panel.
-2.  **Select Provider:** Choose "xAI" from the "API Provider" dropdown.
-3.  **Enter API Key:** Paste your xAI API key into the "xAI API Key" field.
-4.  **Select Model:** Choose your desired Grok model from the "Model" dropdown.
+- `grok-2-vision-latest` - xAI 的 Grok-2 视觉模型 - 最新版本，支持图像，具有 32K 上下文窗口
+- `grok-2-vision` - xAI 的 Grok-2 视觉模型，支持图像，具有 32K 上下窗口
+- `grok-2-vision-1212` - xAI 的 Grok-2 视觉模型（版本 1212），支持图像，具有 32K 上下文窗口
+- `grok-vision-beta` - xAI 的 Grok 视觉 Beta 模型，支持图像，具有 8K 上下文窗口
 
-## Reasoning Capabilities
+### 遗留模型
 
-Grok 3 Mini models feature specialized reasoning capabilities, allowing them to "think before responding" - particularly useful for complex problem-solving tasks.
+- `grok-beta` - xAI 的 Grok Beta 模型（遗留），具有 131K 上下文窗口
 
-### Reasoning-Enabled Models
+## Kilo Code 中的配置
 
-Reasoning is only supported by:
-* `grok-3-mini-beta`
-* `grok-3-mini-fast-beta`
+1.  **打开 Kilo Code 设置：** 单击 Kilo Code 面板中的齿轮图标（<Codicon name="gear" />）。
+2.  **选择提供商：** 从“API 提供商”下拉菜单中选择“xAI”。
+3.  **输入 API 密钥：** 将您的 xAI API 密钥粘贴到“xAI API 密钥”字段中。
+4.  **选择模型：** 从“模型”下拉菜单中选择您想要的 Grok 模型。
 
-The Grok 3 models `grok-3-beta` and `grok-3-fast-beta` do not support reasoning.
+## 推理能力
 
-### Controlling Reasoning Effort
+Grok 3 Mini 模型具有专业的推理能力，允许它们“在响应前思考”——这对于复杂的解决问题任务特别有用。
 
-When using reasoning-enabled models, you can control how hard the model thinks with the `reasoning_effort` parameter:
+### 启用推理的模型
 
-* `low`: Minimal thinking time, using fewer tokens for quick responses
-* `high`: Maximum thinking time, leveraging more tokens for complex problems
+推理仅受以下模型支持：
 
-Choose `low` for simple queries that should complete quickly, and `high` for harder problems where response latency is less important.
+- `grok-3-mini-beta`
+- `grok-3-mini-fast-beta`
 
-### Key Features
+Grok 3 模型 `grok-3-beta` 和 `grok-3-fast-beta` 不支持推理。
 
-* **Step-by-Step Problem Solving**: The model thinks through problems methodically before delivering an answer
-* **Math & Quantitative Strength**: Excels at numerical challenges and logic puzzles
-* **Reasoning Trace Access**: The model's thinking process is available via the `reasoning_content` field in the response completion object
+### 控制推理工作量
 
-## Tips and Notes
+使用启用推理的模型时，您可以使用 `reasoning_effort` 参数控制模型思考的努力程度：
 
-* **Context Window:** Most Grok models feature large context windows (up to 131K tokens), allowing you to include substantial amounts of code and context in your prompts.
-* **Vision Capabilities:** Select vision-enabled models (`grok-2-vision-latest`, `grok-2-vision`, etc.) when you need to process or analyze images.
-* **Pricing:** Pricing varies by model, with input costs ranging from $0.3 to $5.0 per million tokens and output costs from $0.5 to $25.0 per million tokens. Refer to the xAI documentation for the most current pricing information.
-* **Performance Tradeoffs:** "Fast" variants typically offer quicker response times but may have higher costs, while "mini" variants are more economical but may have reduced capabilities.
+- `low`：最小思考时间，使用更少的 token 以实现快速响应
+- `high`：最大思考时间，利用更多 token 解决复杂问题
+
+对于应快速完成的简单查询，选择 `low`；对于响应延迟不那么重要的更难问题，选择 `high`。
+
+### 主要功能
+
+- **分步解决问题**：模型在提供答案之前有条不紊地思考问题
+- **数学和定量能力**：擅长数字挑战和逻辑谜题
+- **推理跟踪访问**：模型的思考过程可通过响应完成对象中的 `reasoning_content` 字段获取
+
+## 提示和注意事项
+
+- **上下文窗口：** 大多数 Grok 模型具有大型上下文窗口（高达 131K token），允许您在提示中包含大量代码和上下文。
+- **视觉功能：** 当您需要处理或分析图像时，选择启用视觉的模型（`grok-2-vision-latest`、`grok-2-vision` 等）。
+- **定价：** 定价因模型而异，输入成本从每百万 token 0.3 美元到 5.0 美元不等，输出成本从每百万 token 0.5 美元到 25.0 美元不等。有关最新定价信息，请参阅 xAI 文档。
+- **性能权衡：** “快速”变体通常提供更快的响应时间，但成本可能更高，而“迷你”变体更经济，但功能可能有所降低。

@@ -1,91 +1,93 @@
-# Prompt Engineering Tips
+# Prompt Engineering 技巧
 
-Prompt engineering is the art of crafting effective instructions for AI models like Kilo Code.  Well-written prompts lead to better results, fewer errors, and a more efficient workflow.
+Prompt engineering 是为 AI 模型（如 Kilo Code）编写有效指令的艺术。精心编写的提示可以带来更好的结果、更少的错误和更高的工作效率。
 
-## General Principles
+## 通用原则
 
-*   **Be Clear and Specific:** Clearly state what you want Kilo Code to do. Avoid ambiguity.
-    *   **Bad:** Fix the code.
-    *   **Good:** Fix the bug in the `calculateTotal` function that causes it to return incorrect results.
+- **清晰且具体：** 清楚地说明你希望 Kilo Code 做什么。避免歧义。
 
-*   **Provide Context:** Use [Context Mentions](/basic-usage/context-mentions) to refer to specific files, folders, or problems.
-    *   **Good:** `@/src/utils.ts` Refactor the `calculateTotal` function to use async/await.
+    - **不好：** 修复代码。
+    - **好：** 修复 `calculateTotal` 函数中导致返回错误结果的 bug。
 
-*   **Break Down Tasks:** Divide complex tasks into smaller, well-defined steps.
+- **提供上下文：** 使用 [上下文提及](/basic-usage/context-mentions) 来引用特定文件、文件夹或问题。
 
-*   **Give Examples:** If you have a specific coding style or pattern in mind, provide examples.
+    - **好：** `@/src/utils.ts` 重构 `calculateTotal` 函数以使用 async/await。
 
-*   **Specify Output Format:** If you need the output in a particular format (e.g., JSON, Markdown), specify it in the prompt.
+- **分解任务：** 将复杂的任务分解为更小、定义明确的步骤。
 
-*   **Iterate:** Don't be afraid to refine your prompt if the initial results aren't what you expect.
+- **提供示例：** 如果你有特定的编码风格或模式，请提供示例。
 
-## Thinking vs. Doing
+- **指定输出格式：** 如果你需要特定格式的输出（例如 JSON、Markdown），请在提示中指定。
 
-It's often helpful to guide Kilo Code through a "think-then-do" process:
+- **迭代：** 如果初始结果不符合预期，不要害怕优化你的提示。
 
-1.  **Analyze:** Ask Kilo Code to analyze the current code, identify problems, or plan the approach.
-2.  **Plan:**  Have Kilo Code outline the steps it will take to complete the task.
-3.  **Execute:**  Instruct Kilo Code to implement the plan, one step at a time.
-4.  **Review:**  Carefully review the results of each step before proceeding.
+## 思考与执行
 
-## Using Custom Instructions
+引导 Kilo Code 通过“先思考后执行”的过程通常很有帮助：
 
-You can provide custom instructions to further tailor Kilo Code's behavior. There are two types of custom instructions:
+1.  **分析：** 让 Kilo Code 分析当前代码，识别问题或规划方法。
+2.  **计划：** 让 Kilo Code 概述完成任务的步骤。
+3.  **执行：** 指示 Kilo Code 一步一步地执行计划。
+4.  **审查：** 在继续之前仔细审查每一步的结果。
 
-*   **Global Custom Instructions:** Apply to all modes.
-*   **Mode-Specific Custom Instructions:** Apply only to a specific mode (e.g., Code, Architect, Ask, Debug, or a custom mode).
+## 使用自定义指令
 
-Custom instructions are added to the system prompt, providing persistent guidance to the AI model. You can use these to:
+你可以提供自定义指令来进一步调整 Kilo Code 的行为。有两种类型的自定义指令：
 
-*   Enforce coding style guidelines.
-*   Specify preferred libraries or frameworks.
-*   Define project-specific conventions.
-*   Adjust Kilo Code's tone or personality.
+- **全局自定义指令：** 适用于所有模式。
+- **模式特定自定义指令：** 仅适用于特定模式（例如 Code、Architect、Ask、Debug 或自定义模式）。
 
-See the [Custom Instructions](/advanced-usage/custom-instructions) section for more details.
+自定义指令会添加到系统提示中，为 AI 模型提供持续的指导。你可以使用这些指令来：
 
-## Handling Ambiguity
+- 强制执行编码风格指南。
+- 指定首选的库或框架。
+- 定义项目特定的约定。
+- 调整 Kilo Code 的语气或个性。
 
-If your request is ambiguous or lacks sufficient detail, Kilo Code might:
+有关更多详细信息，请参阅 [自定义指令](/advanced-usage/custom-instructions) 部分。
 
-*   **Make Assumptions:**  It might proceed based on its best guess, which may not be what you intended.
-*   **Ask Follow-Up Questions:** It might use the `ask_followup_question` tool to clarify your request.
+## 处理歧义
 
-It's generally better to provide clear and specific instructions from the start to avoid unnecessary back-and-forth.
+如果你的请求含糊不清或缺乏足够的细节，Kilo Code 可能会：
 
-## Providing Feedback
+- **做出假设：** 它可能会根据最佳猜测继续，这可能不是你想要的。
+- **询问后续问题：** 它可能会使用 `ask_followup_question` 工具来澄清你的请求。
 
-If Kilo Code doesn't produce the desired results, you can provide feedback by:
+最好从一开始就提供清晰且具体的指令，以避免不必要的来回沟通。
 
-*   **Rejecting Actions:** Click the "Reject" button when Kilo Code proposes an action you don't want.
-*   **Providing Explanations:** When rejecting, explain *why* you're rejecting the action.  This helps Kilo Code learn from its mistakes.
-*   **Rewording Your Request:** Try rephrasing your initial task or providing more specific instructions.
-*   **Manually Correcting:** If there are a few small issues, you can also directly modify the code before accepting the changes.
+## 提供反馈
 
-## Examples
+如果 Kilo Code 没有产生预期的结果，你可以通过以下方式提供反馈：
 
-**Good Prompt:**
+- **拒绝操作：** 当 Kilo Code 提出你不想要的操作时，点击“拒绝”按钮。
+- **提供解释：** 拒绝时，解释*为什么*要拒绝该操作。这有助于 Kilo Code 从错误中学习。
+- **重新措辞你的请求：** 尝试重新表述你的初始任务或提供更具体的指令。
+- **手动更正：** 如果有几个小问题，你也可以在接受更改之前直接修改代码。
 
-> `@/src/components/Button.tsx` Refactor the `Button` component to use the `useState` hook instead of the `useReducer` hook.
+## 示例
 
-**Bad Prompt:**
+**好提示：**
 
-> Fix the button.
+> `@/src/components/Button.tsx` 重构 `Button` 组件以使用 `useState` 钩子而不是 `useReducer` 钩子。
 
-**Good Prompt:**
+**不好提示：**
 
-> Create a new file named `utils.py` and add a function called `calculate_average` that takes a list of numbers and returns their average.
+> 修复按钮。
 
-**Bad Prompt:**
+**好提示：**
 
-> Write some Python code.
+> 创建一个名为 `utils.py` 的新文件，并添加一个名为 `calculate_average` 的函数，该函数接受一个数字列表并返回它们的平均值。
 
-**Good Prompt:**
+**不好提示：**
 
-> `@problems` Address all errors and warnings in the current file.
+> 写一些 Python 代码。
 
-**Bad Prompt:**
+**好提示：**
 
-> Fix everything.
+> `@problems` 解决当前文件中的所有错误和警告。
 
-By following these tips, you can write effective prompts that get the most out of Kilo Code's capabilities.
+**不好提示：**
+
+> 修复所有问题。
+
+通过遵循这些技巧，你可以编写有效的提示，充分利用 Kilo Code 的能力。

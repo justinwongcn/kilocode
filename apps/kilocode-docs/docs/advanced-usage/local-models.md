@@ -1,38 +1,39 @@
-# Using Local Models
+# 使用本地模型
 
-Kilo Code supports running language models locally on your own machine using [Ollama](https://ollama.com/) and [LM Studio](https://lmstudio.ai/).  This offers several advantages:
+Kilo Code 支持使用 [Ollama](https://ollama.com/) 和 [LM Studio](https://lmstudio.ai/) 在本地计算机上运行语言模型。这提供了以下优势：
 
-*   **Privacy:** Your code and data never leave your computer.
-*   **Offline Access:**  You can use Kilo Code even without an internet connection.
-*   **Cost Savings:**  Avoid API usage fees associated with cloud-based models.
-*   **Customization:**  Experiment with different models and configurations.
+- **隐私性**：你的代码和数据永远不会离开你的计算机。
+- **离线访问**：即使没有互联网连接，你也可以使用 Kilo Code。
+- **成本节约**：避免与云端模型相关的 API 使用费用。
+- **定制性**：可以尝试不同的模型和配置。
 
-**However, using local models also has some drawbacks:**
+**然而，使用本地模型也有一些缺点：**
 
-*   **Resource Requirements:**  Local models can be resource-intensive, requiring a powerful computer with a good CPU and, ideally, a dedicated GPU.
-*   **Setup Complexity:**  Setting up local models can be more complex than using cloud-based APIs.
-*   **Model Performance:**  The performance of local models can vary significantly. While some are excellent, they may not always match the capabilities of the largest, most advanced cloud models.
-* **Limited Features**: Local models (and many online models) often do not support advanced features such as prompt caching, computer use, and others.
+- **资源需求**：本地模型可能对资源要求较高，需要一台性能强大的计算机，最好配备专用 GPU。
+- **设置复杂性**：设置本地模型可能比使用云端 API 更复杂。
+- **模型性能**：本地模型的性能可能差异较大。虽然有些模型表现优秀，但可能无法与最大、最先进的云端模型相媲美。
+- **功能限制**：本地模型（以及许多在线模型）通常不支持高级功能，例如提示缓存、计算机使用等。
 
-## Supported Local Model Providers
+## 支持的本地模型提供商
 
-Kilo Code currently supports two main local model providers:
+Kilo Code 目前支持两个主要的本地模型提供商：
 
-1.  **Ollama:**  A popular open-source tool for running large language models locally.  It supports a wide range of models.
-2.  **LM Studio:**  A user-friendly desktop application that simplifies the process of downloading, configuring, and running local models.  It also provides a local server that emulates the OpenAI API.
+1.  **Ollama**：一个流行的开源工具，用于在本地运行大型语言模型。它支持多种模型。
+2.  **LM Studio**：一个用户友好的桌面应用程序，简化了下载、配置和运行本地模型的过程。它还提供了一个模拟 OpenAI API 的本地服务器。
 
-## Setting Up Local Models
+## 设置本地模型
 
-For detailed setup instructions, see:
-* [Setting up Ollama](/providers/ollama)
-* [Setting up LM Studio](/providers/lmstudio)
+有关详细设置说明，请参阅：
 
-Both providers offer similar capabilities but with different user interfaces and workflows. Ollama provides more control through its command-line interface, while LM Studio offers a more user-friendly graphical interface.
+- [设置 Ollama](/providers/ollama)
+- [设置 LM Studio](/providers/lmstudio)
 
-## Troubleshooting
+这两个提供商提供类似的功能，但用户界面和工作流程不同。Ollama 通过命令行界面提供更多控制，而 LM Studio 提供了一个更友好的图形界面。
 
-*   **"No connection could be made because the target machine actively refused it":**  This usually means that the Ollama or LM Studio server isn't running, or is running on a different port/address than Kilo Code is configured to use.  Double-check the Base URL setting.
+## 故障排除
 
-*   **Slow Response Times:** Local models can be slower than cloud-based models, especially on less powerful hardware.  If performance is an issue, try using a smaller model.
+- **“由于目标计算机主动拒绝，无法建立连接”**：这通常意味着 Ollama 或 LM Studio 服务器未运行，或者 Kilo Code 配置的端口/地址与服务器不一致。请仔细检查 Base URL 设置。
 
-*   **Model Not Found:** Ensure you have typed in the name of the model correctly. If you're using Ollama, use the same name that you provide in the `ollama run` command.
+- **响应时间慢**：本地模型可能比云端模型慢，尤其是在硬件性能较低的情况下。如果遇到性能问题，请尝试使用较小的模型。
+
+- **找不到模型**：请确保你正确输入了模型名称。

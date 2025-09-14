@@ -1,76 +1,76 @@
 # apply_diff
 
-The `apply_diff` tool makes precise, surgical changes to files by specifying exactly what content to replace. It uses multiple sophisticated strategies for finding and applying changes while maintaining proper code formatting and structure.
+`apply_diff`工具通过指定要替换的确切内容，对文件进行精确的修改。它使用多种复杂策略来查找和应用更改，同时保持正确的代码格式和结构。
 
-## Parameters
+## 参数
 
-The tool accepts these parameters:
+该工具接受以下参数：
 
-- `path` (required): The path of the file to modify relative to the current working directory.
-- `diff` (required): The search/replace block defining the changes. **Line numbers are mandatory within the diff content format** for all currently implemented strategies.
+- `path`（必填）：相对于当前工作目录要修改的文件的路径。
+- `diff`（必填）：定义更改的搜索/替换块。**对于所有当前实现的策略，diff 内容格式中必须包含行号**。
 
-**Note**: While the system is designed to be extensible with different diff strategies, all currently implemented strategies require line numbers to be specified within the diff content itself using the `:start_line:` marker.
+**注意**：虽然系统设计为可扩展不同的 diff 策略，但所有当前实现的策略都要求在 diff 内容本身中使用 `:start_line:` 标记指定行号。
 
-## What It Does
+## 功能
 
-This tool applies targeted changes to existing files using sophisticated strategies to locate and replace content precisely. Unlike simple search and replace, it uses intelligent matching algorithms (including fuzzy matching) that adapt to different content types and file sizes, with fallback mechanisms for complex edits.
+该工具使用复杂的策略对现有文件进行有针对性的更改，以精确定位和替换内容。与简单的搜索和替换不同，它使用智能匹配算法（包括模糊匹配），能够适应不同的内容类型和文件大小，并为复杂编辑提供回退机制。
 
-## When is it used?
+## 使用场景
 
-- When Kilo Code needs to make precise changes to existing code without rewriting entire files.
-- When refactoring specific sections of code while maintaining surrounding context.
-- When fixing bugs in existing code with surgical precision.
-- When implementing feature enhancements that modify only certain parts of a file.
+- 当Kilo Code需要对现有代码进行精确更改而不重写整个文件时。
+- 在重构代码的特定部分同时保持周围上下文时。
+- 以手术般的精度修复现有代码中的错误时。
+- 实现仅修改文件某些部分的功能增强时。
 
-## Key Features
+## 主要特性
 
-- Uses intelligent fuzzy matching with configurable confidence thresholds (typically 0.8-1.0).
-- Provides context around matches using `BUFFER_LINES` (default 40).
-- Employs an overlapping window approach for searching large files.
-- Preserves code formatting and indentation automatically.
-- Combines overlapping matches for improved confidence scoring.
-- Shows changes in a diff view for user review and editing before applying.
-- Tracks consecutive errors per file (`consecutiveMistakeCountForApplyDiff`) to prevent repeated failures.
-- Validates file access against `.kilocodeignore` rules.
-- Handles multi-line edits effectively.
+- 使用可配置置信度阈值（通常为0.8-1.0）的智能模糊匹配。
+- 使用`BUFFER_LINES`（默认40）提供匹配的上下文。
+- 采用重叠窗口方法搜索大文件。
+- 自动保留代码格式和缩进。
+- 组合重叠匹配以提高置信度评分。
+- 在应用更改前，在diff视图中显示更改以供用户审查和编辑。
+- 跟踪每个文件的连续错误（`consecutiveMistakeCountForApplyDiff`）以防止重复失败。
+- 根据`.kilocodeignore`规则验证文件访问权限。
+- 有效处理多行编辑。
 
-## Limitations
+## 限制
 
-- Works best with unique, distinctive code sections for reliable identification.
-- Performance can vary with very large files or highly repetitive code patterns.
-- Fuzzy matching might occasionally select incorrect locations if content is ambiguous.
-- Each diff strategy has specific format requirements.
-- Complex edits might require careful strategy selection or manual review.
+- 对于独特、独特的代码部分效果最佳，以便可靠识别。
+- 对于非常大的文件或高度重复的代码模式，性能可能会有所不同。
+- 如果内容不明确，模糊匹配可能会偶尔选择错误的位置。
+- 每个diff策略都有特定的格式要求。
+- 复杂的编辑可能需要仔细选择策略或手动审查。
 
-## How It Works
+## 工作原理
 
-When the `apply_diff` tool is invoked, it follows this process:
+当调用`apply_diff`工具时，它会遵循以下过程：
 
-1.  **Parameter Validation**: Validates required `path` and `diff` parameters.
-2.  **KiloCodeIgnore Check**: Validates if the target file path is allowed by `.kilocodeignore` rules.
-3.  **File Analysis**: Loads the target file content.
-4.  **Match Finding**: Uses the selected strategy's algorithms (exact, fuzzy, overlapping windows) to locate the target content, considering confidence thresholds and context (`BUFFER_LINES`).
-5.  **Change Preparation**: Generates the proposed changes, preserving indentation.
-6.  **User Interaction**:
-    *   Displays the changes in a diff view.
-    *   Allows the user to review and potentially edit the proposed changes.
-    *   Waits for user approval or rejection.
-7.  **Change Application**: If approved, applies the changes (potentially including user edits) to the file.
-8.  **Error Handling**: If errors occur (e.g., match failure, partial application), increments the `consecutiveMistakeCountForApplyDiff` for the file and reports the failure type.
-9. **Feedback**: Returns the result, including any user feedback or error details.
+1. **参数验证**：验证必需的`path`和`diff`参数。
+2. **KiloCodeIgnore检查**：验证目标文件路径是否被`.kilocodeignore`规则允许。
+3. **文件分析**：加载目标文件内容。
+4. **匹配查找**：使用所选策略的算法（精确、模糊、重叠窗口）定位目标内容，考虑置信度阈值和上下文（`BUFFER_LINES`）。
+5. **更改准备**：生成建议的更改，保留缩进。
+6. **用户交互**：
+    - 在diff视图中显示更改。
+    - 允许用户审查并可能编辑建议的更改。
+    - 等待用户批准或拒绝。
+7. **更改应用**：如果获得批准，将更改（可能包括用户编辑）应用到文件。
+8. **错误处理**：如果发生错误（例如，匹配失败、部分应用），则递增文件的`consecutiveMistakeCountForApplyDiff`并报告失败类型。
+9. **反馈**：返回结果，包括任何用户反馈或错误详细信息。
 
-## Diff Strategy
+## Diff策略
 
-Kilo Code uses this strategy for applying diffs:
+Kilo Code使用以下策略来应用diff：
 
 ### MultiSearchReplaceDiffStrategy
 
-An enhanced search/replace format supporting multiple changes in one request. **Line numbers are mandatory for each search block.**
+一种增强的搜索/替换格式，支持在一个请求中进行多次更改。需要每个搜索块的行号。
 
-*   **Best for**: Multiple, distinct changes where line numbers are known or can be estimated.
-*   **Requires**: Exact match for the `SEARCH` block content, including whitespace and indentation. The `:start_line:` marker is **required** within each SEARCH block. Markers within content must be escaped (`\`).
+- **最佳使用场景**：已知或可以估计行号的多个不同更改。
+- **要求**：`SEARCH`块内容的精确匹配，包括空格和缩进。行号（`:start_line:`，`:end_line:`）是必需的。内容中的标记必须转义（`\`）。
 
-Example format for the `<diff>` block:
+`<diff>`块的示例格式：
 
 ```diff
 <<<<<<< SEARCH

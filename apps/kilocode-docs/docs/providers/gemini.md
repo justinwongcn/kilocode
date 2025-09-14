@@ -2,53 +2,53 @@
 sidebar_label: Google Gemini
 ---
 
-# Using Google Gemini With Kilo Code
+# 在Kilo Code中使用Google Gemini
 
-Kilo Code supports Google's Gemini family of models through the Google AI Gemini API.
+Kilo Code通过Google AI Gemini API支持Google的Gemini系列模型。
 
-**Website:** [https://ai.google.dev/](https://ai.google.dev/)
+**官网:** [https://ai.google.dev/](https://ai.google.dev/)
 
-## Getting an API Key
+## 获取API密钥
 
-1.  **Go to Google AI Studio:** Navigate to [https://ai.google.dev/](https://ai.google.dev/).
-2.  **Sign In:** Sign in with your Google account.
-3.  **Create API Key:** Click on "Create API key" in the left-hand menu.
-4.  **Copy API Key:** Copy the generated API key.
+1. **访问Google AI Studio:** 打开[https://ai.google.dev/](https://ai.google.dev/)
+2. **登录:** 使用Google账号登录
+3. **创建API密钥:** 点击左侧菜单中的"Create API key"
+4. **复制API密钥:** 复制生成的API密钥
 
-## Supported Models
+## 支持的模型
 
-Kilo Code supports the following Gemini models:
+Kilo Code支持以下Gemini模型：
 
-### Chat Models
+### 聊天模型
 
-* `gemini-2.5-pro-exp-03-25`
-* `gemini-2.0-flash-001`
-* `gemini-2.0-flash-lite-preview-02-05`
-* `gemini-2.0-pro-exp-02-05`
-* `gemini-2.0-flash-thinking-exp-01-21`
-* `gemini-2.0-flash-thinking-exp-1219`
-* `gemini-2.0-flash-exp`
-* `gemini-1.5-flash-002`
-* `gemini-1.5-flash-exp-0827`
-* `gemini-1.5-flash-8b-exp-0827`
-* `gemini-1.5-pro-002`
-* `gemini-1.5-pro-exp-0827`
-* `gemini-exp-1206`
+- `gemini-2.5-pro-exp-03-25`
+- `gemini-2.0-flash-001`
+- `gemini-2.0-flash-lite-preview-02-05`
+- `gemini-2.0-pro-exp-02-05`
+- `gemini-2.0-flash-thinking-exp-01-21`
+- `gemini-2.0-flash-thinking-exp-1219`
+- `gemini-2.0-flash-exp`
+- `gemini-1.5-flash-002`
+- `gemini-1.5-flash-exp-0827`
+- `gemini-1.5-flash-8b-exp-0827`
+- `gemini-1.5-pro-002`
+- `gemini-1.5-pro-exp-0827`
+- `gemini-exp-1206`
 
-### Embedding Models
+### 嵌入模型
 
-* `gemini-embedding-001` - Optimized for codebase indexing and semantic search
+- `gemini-embedding-001` - 针对代码库索引和语义搜索进行了优化
 
-Refer to the [Gemini documentation](https://ai.google.dev/models/gemini) for more details on each model.
+有关每个模型的更多详细信息，请参阅 [Gemini 文档](https://ai.google.dev/models/gemini)。
 
-## Configuration in Kilo Code
+## 在Kilo Code中的配置
 
-1.  **Open Kilo Code Settings:** Click the gear icon (<Codicon name="gear" />) in the Kilo Code panel.
-2.  **Select Provider:** Choose "Google Gemini" from the "API Provider" dropdown.
-3.  **Enter API Key:** Paste your Gemini API key into the "Gemini API Key" field.
-4.  **Select Model:** Choose your desired Gemini model from the "Model" dropdown.
+1. **打开Kilo Code设置:** 点击Kilo Code面板中的齿轮图标(<Codicon name="gear" />)
+2. **选择提供商:** 在"API Provider"下拉菜单中选择"Google Gemini"
+3. **输入API密钥:** 将Gemini API密钥粘贴到"Gemini API Key"字段
+4. **选择模型:** 从"Model"下拉菜单中选择所需的Gemini模型
 
-## Tips and Notes
+## 提示与注意事项
 
-*   **Pricing:**  Gemini API usage is priced based on input and output tokens. Refer to the [Gemini pricing page](https://ai.google.dev/pricing) for detailed information.
-*   **Codebase Indexing:** The `gemini-embedding-001` model is specifically supported for [codebase indexing](/features/codebase-indexing), providing high-quality embeddings for semantic code search.
+- **定价:** Gemini API使用根据输入和输出的token计费。参考[Gemini定价页面](https://ai.google.dev/pricing)获取详细信息。
+- **代码库索引：** `gemini-embedding-001` 模型专门支持[代码库索引](/features/codebase-indexing)，为语义代码搜索提供高质量嵌入。

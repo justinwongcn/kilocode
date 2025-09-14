@@ -1,93 +1,96 @@
-# Task Todo List
+# 任务待办事项列表
 
-**The big picture**: Never lose track of complex development tasks again. Task Todo Lists create interactive, persistent checklists that live right in your chat interface.
+**全局**：再也不会丢失复杂的开发任务。任务待办事项列表创建交互式、持久的清单，直接显示在您的聊天界面中。
 
-**Why it matters**: Complex workflows have lots of moving parts. Without structure, it's easy to miss steps, duplicate work, or forget what comes next.
+**为什么重要**：复杂的工作流程有很多移动部件。如果没有结构，很容易遗漏步骤、重复工作或忘记下一步是什么。
 
-<img src="/docs/img/task-todo-list/task-todo-list-1.png" alt="Task Todo List overview showing interactive checklist in Kilo Code" width="500" />
+<img src="/docs/img/task-todo-list/task-todo-list-1.png" alt="任务待办事项列表概述，显示 Kilo Code 中的交互式清单" width="500" />
 
-## How to trigger todo lists
+## 如何触发待办事项列表
 
-**Automatic triggers**:
-- Complex tasks with multiple steps
-- Working in Architect mode
-- Multi-phase workflows with dependencies
+**自动触发**：
 
-**Manual triggers**:
-- Ask Kilo to "use the [update_todo_list tool](/features/tools/update-todo-list)"
-- Say "create a todo list"
+- 包含多个步骤的复杂任务
+- 在 Architect 模式下工作
+- 具有依赖关系的多阶段工作流
 
-**The bottom line**: Kilo decides what goes in the list, but you can provide feedback during approval dialogs.
+**手动触发**：
 
----
+- 要求 Kilo“使用 [update_todo_list 工具](/features/tools/update-todo-list)”
+- 说“创建待办事项列表”
 
-## The old way vs. the new way
-
-**Before**: You juggled task steps in your head or scattered notes, constantly wondering "what's next?"
-
-**Now**: Kilo creates structured checklists that update automatically as work progresses. You see exactly where you are and what's coming up.
+**底线**：Kilo 决定列表中包含什么，但您可以在批准对话框中提供反馈。
 
 ---
 
-## Where todo lists appear
+## 旧方式与新方式
 
-**1. Task Header Summary**
-Quick progress overview with your next important item
+**以前**：您在脑海中或分散的笔记中处理任务步骤，不断思考“下一步是什么？”
 
-<img src="/docs/img/task-todo-list/task-header.png" alt="Task header summary showing todo list progress" width="500" />
-
-**2. Interactive Tool Block**
-Full todo interface in chat where you can:
-- See all items and their status
-- Edit descriptions when Kilo asks for approval
-- Stage changes using the "Edit" button
-
-**3. Environment Details**
-Background "REMINDERS" table that keeps Kilo informed about current progress
-
-## Task status decoded
-
-**Pending** → Empty checkbox (not started)
-
-<img src="/docs/img/task-todo-list/not-started.png" alt="Pending todo item with empty checkbox" width="300" />
+**现在**：Kilo 创建结构化清单，随着工作的进展自动更新。您清楚地知道自己所处的位置以及接下来要做什么。
 
 ---
 
-**In Progress** → Yellow dot (currently working)
+## 待办事项列表出现的位置
 
-<img src="/docs/img/task-todo-list/in-progress.png" alt="In progress todo item with yellow dot indicator" width="300" />
+**1. 任务标题摘要**
+快速进度概览，显示您的下一个重要事项
+
+<img src="/docs/img/task-todo-list/task-header.png" alt="任务标题摘要显示待办事项列表进度" width="500" />
+
+**2. 交互式工具块**
+聊天中的完整待办事项界面，您可以在其中：
+
+- 查看所有项目及其状态
+- 当 Kilo 请求批准时编辑描述
+- 使用“编辑”按钮暂存更改
+
+**3. 环境详细信息**
+后台“提醒”表，让 Kilo 了解当前进度
+
+## 任务状态解读
+
+**待处理** → 空复选框（未开始）
+
+<img src="/docs/img/task-todo-list/not-started.png" alt="待处理待办事项，带空复选框" width="300" />
 
 ---
 
-**Completed** → Green checkmark (finished)
+**进行中** → 黄点（当前正在工作）
 
-<img src="/docs/img/task-todo-list/complete.png" alt="Completed todo item with green checkmark" width="300" />
+<img src="/docs/img/task-todo-list/in-progress.png" alt="进行中待办事项，带黄点指示器" width="300" />
 
 ---
 
-## Common questions
+**已完成** → 绿勾（已完成）
 
-**"Can I create my own todo lists?"**
-Yes, just ask Kilo to use the update_todo_list tool. But Kilo stays in control of the content and workflow.
+<img src="/docs/img/task-todo-list/complete.png" alt="已完成待办事项，带绿勾" width="300" />
 
-**"What about simple tasks?"**
-Kilo typically skips todo lists for simple tasks. The overhead isn't worth it.
+---
 
-**"Why can't I directly edit the list?"**
-Design choice. Kilo maintains authority over task management to ensure consistent progress tracking. You provide input, Kilo executes.
+## 常见问题
+
+**“可以创建自己的待办事项列表吗？”**
+是的，只需要求 Kilo 使用 update_todo_list 工具。但 Kilo 仍控制内容和工作流。
+
+**“简单的任务怎么办？”**
+Kilo 通常会跳过简单任务的待办事项列表。开销不值得。
+
+**“为什么不能直接编辑列表？”**
+设计选择。Kilo 保持对任务管理的控制，以确保一致的进度跟踪。您提供输入，Kilo 执行。
 
 ---
 
 :::tip
 
-## Pro tip: Auto-approval
+## 专业提示：自动批准
 
-**What it does**: Automatically approves todo list updates without confirmation prompts.
+**作用**：自动批准待办事项列表更新，无需确认提示。
 
-**When to use it**: Long workflows where constant interruptions slow you down.
+**何时使用**：长时间工作流中，持续中断会降低您的速度。
 
-**How to enable it**: Check the [Update Todo List auto-approval settings](/features/auto-approving-actions#update-todo-list).
+**如何启用**：检查[更新待办事项列表自动批准设置](/features/auto-approving-actions#update-todo-list)。
 
-**The catch**: Less control, but faster execution.
+**缺点**：控制较少，但执行速度更快。
 
 :::
